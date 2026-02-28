@@ -73,7 +73,6 @@ const ACHIEVEMENT_SEEDS = [
   },
 ];
 
-// Seeds default achievement definitions if database is empty
 export async function seedAchievements(): Promise<void> {
   const existingCount = await AchievementDefinition.countDocuments();
   if (existingCount > 0) {
@@ -83,7 +82,6 @@ export async function seedAchievements(): Promise<void> {
 
   console.log('Seeding achievement definitions\u2026');
 
-  // Insert all predefined achievement templates
   for (const seed of ACHIEVEMENT_SEEDS) {
     await AchievementDefinition.create({
       ...seed,

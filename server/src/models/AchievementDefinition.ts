@@ -36,7 +36,6 @@ const achievementDefinitionSchema = new Schema<IAchievementDefinition>(
 achievementDefinitionSchema.index({ isActive: 1 });
 achievementDefinitionSchema.index({ criteriaType: 1 });
 
-// Convert ObjectId to string for JSON API responses
 achievementDefinitionSchema.set('toJSON', {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transform(_doc: any, ret: any) {

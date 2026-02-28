@@ -7,7 +7,6 @@ export default function AchievementToast() {
   const pending = useAppSelector(selectPendingToast);
   const [visible, setVisible] = useState(false);
 
-  // Handle toast visibility lifecycle—fade in, auto-dismiss after 4s, fade out
   useEffect(() => {
     if (pending) {
       requestAnimationFrame(() => setVisible(true));
@@ -35,7 +34,6 @@ export default function AchievementToast() {
         transition: 'transform 0.3s ease, opacity 0.3s ease',
       }}
     >
-      {/* Animated toast card that slides in from right */}
       <div
         className="rounded-xl p-4 flex items-center gap-3 shadow-lg"
         style={{
@@ -45,7 +43,6 @@ export default function AchievementToast() {
           maxWidth: '360px',
         }}
       >
-        {/* Achievement icon emoji */}
         <div className="text-3xl select-none flex-shrink-0">{pending.icon}</div>
         <div className="flex-1 min-w-0">
           <div
@@ -67,7 +64,6 @@ export default function AchievementToast() {
             {pending.description}
           </div>
         </div>
-        {/* Manual dismiss button */}
         <button
           onClick={() => {
             setVisible(false);
