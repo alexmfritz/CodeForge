@@ -4,6 +4,7 @@ import { useAppSelector } from '../../features/store';
 import { getCategoryColor } from '../../utils/helpers';
 import TierBadge from '../shared/TierBadge';
 import TypeBadge from '../shared/TypeBadge';
+import RatingDisplay from '../ratings/RatingDisplay';
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -71,6 +72,7 @@ export default function ExerciseCard({ exercise, onDismiss }: ExerciseCardProps)
       <p className="text-xs leading-relaxed line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
         {exercise.description}
       </p>
+      <RatingDisplay exerciseId={exercise._id} />
       {exercise.tags.length > 0 && (
         <div className="flex flex-wrap gap-1 mt-auto">
           {exercise.tags.slice(0, 4).map((tag) => (
