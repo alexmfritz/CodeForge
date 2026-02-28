@@ -1,0 +1,239 @@
+// ─── Exercise Types ────────────────────────────────────────────────────────────
+
+export type ExerciseType = 'js' | 'html' | 'css' | 'html-css';
+export type Tier = 1 | 2 | 3 | 4 | 5;
+export type TierName = 'spark' | 'foundations' | 'builder' | 'architect' | 'mastercraft';
+
+export interface TestCase {
+  query?: string;
+  assertion:
+    | 'exists'
+    | 'textContains'
+    | 'countAtLeast'
+    | 'equals'
+    | 'oneOf'
+    | 'sourceContains'
+    | 'sourceMatch'
+    | 'hasId'
+    | 'hasClass'
+    | 'contains';
+  property?: string;
+  value?: string | number | string[];
+  description: string;
+  flags?: string;
+}
+
+export interface Resource {
+  label: string;
+  url: string;
+  description?: string;
+}
+
+export interface Exercise {
+  _id: string;
+  legacyId?: number;
+  title: string;
+  slug: string;
+  type: ExerciseType;
+  tier: Tier;
+  category: string[];
+  tags: string[];
+  description: string;
+  instructions: string;
+  starterCode: string;
+  solution: string;
+  testRunner: string;
+  testCases?: TestCase[];
+  providedHtml?: string;
+  hints: string[];
+  resources: Resource[];
+  solutionGate?: number;
+  basePoints: number;
+  collectionId?: string;
+  isActive: boolean;
+  createdBy?: string;
+  updatedBy?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ─── Category / Collection ──────────────────────────────────────────────────
+
+export interface Category {
+  label: string;
+  icon?: string;
+  color?: string;
+  children?: Record<string, Category>;
+}
+
+export interface Collection {
+  _id: string;
+  slug: string;
+  name: string;
+  description: string;
+  exerciseIds: string[];
+  isDefault?: boolean;
+  hidden?: boolean;
+  color?: string;
+  source?: string;
+  license?: string;
+  attribution?: string;
+  order: number;
+}
+
+export interface ExercisesData {
+  categories: Record<string, Category>;
+  collections: Collection[];
+  exercises: Exercise[];
+}
+
+// ─── Auth & Users ───────────────────────────────────────────────────────────
+
+export type Role = 'instructor' | 'ta' | 'student';
+
+export interface User {
+  _id: string;
+  username: string;
+  role: Role;
+  displayName: string;
+  docNumber: string;
+  cohortId?: string;
+  isActive: boolean;
+  lastLogin?: string;
+  preferences: {
+    theme: Theme;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Cohort {
+  _id: string;
+  name: string;
+  startDate: string;
+  endDate?: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ─── Progress ───────────────────────────────────────────────────────────────
+
+export type ProgressStatus = 'not_started' | 'in_progress' | 'completed';
+
+export interface Progress {
+  _id: string;
+  userId: string;
+  exerciseId: string;
+  cohortId: string;
+  status: ProgressStatus;
+  currentCode: string;
+  attempts: number;
+  uniqueAttempts: number;
+  failedCodeHashes: string[];
+  hintsViewed: number;
+  solutionViewed: boolean;
+  score: number;
+  firstAttemptAt?: string;
+  completedAt?: string;
+  totalTimeSpent: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ─── Assignments ────────────────────────────────────────────────────────────
+
+export interface Assignment {
+  _id: string;
+  title: string;
+  description?: string;
+  cohortId: string;
+  exerciseIds: string[];
+  targetStudentIds?: string[];
+  dueDate?: string;
+  isActive: boolean;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ─── Achievements ───────────────────────────────────────────────────────────
+
+export interface AchievementDefinition {
+  _id: string;
+  name: string;
+  description: string;
+  icon: string;
+  criteriaType: string;
+  criteriaParams: Record<string, unknown>;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AchievementInstance {
+  _id: string;
+  userId: string;
+  achievementId: string;
+  cohortId: string;
+  earnedAt: string;
+  metadata: Record<string, unknown>;
+}
+
+// ─── Ratings ────────────────────────────────────────────────────────────────
+
+export interface Rating {
+  _id: string;
+  userId: string;
+  exerciseId: string;
+  cohortId: string;
+  stars: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ─── Test Results ───────────────────────────────────────────────────────────
+
+export interface TestResult {
+  pass: boolean;
+  description: string;
+  got?: unknown;
+}
+
+// ─── UI Types ───────────────────────────────────────────────────────────────
+
+export type Theme =
+  | 'midnight'
+  | 'daylight'
+  | 'high-contrast'
+  | 'monokai'
+  | 'solarized-dark'
+  | 'solarized-light'
+  | 'nord'
+  | 'dracula';
+
+export type StatusSort = 'default' | 'in-progress-first' | 'not-started-first' | 'completed-first';
+
+export interface Toast {
+  message: string;
+  type: 'error' | 'success' | 'warning' | 'celebration';
+}
+
+// ─── API Types ──────────────────────────────────────────────────────────────
+
+export interface ApiResponse<T = unknown> {
+  success: boolean;
+  data?: T;
+  error?: string;
+}
+
+export interface AuthPayload {
+  token: string;
+  user: User;
+}
+
+export interface JwtPayload {
+  userId: string;
+  role: Role;
+  cohortId: string | null;
+}

@@ -1,0 +1,382 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Theme 1: Midnight (dark default) ────────────────────────────────────── */
+:root,
+.midnight {
+  --bg-root: #090b10;
+  --bg-surface: #0f1219;
+  --bg-raised: #161b26;
+  --bg-editor: #080a0f;
+
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-faint: #475569;
+  --text-ghost: #334155;
+
+  --accent: #818cf8;
+  --accent-hover: #6366f1;
+
+  --success: #34d399;
+  --error: #f87171;
+  --warning: #facc15;
+  --orange: #fb923c;
+
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+
+  color-scheme: dark;
+}
+
+/* ─── Theme 2: Daylight ───────────────────────────────────────────────────── */
+.daylight {
+  --bg-root: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-raised: #f1f5f9;
+  --bg-editor: #f8f9fb;
+
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-faint: #cbd5e1;
+  --text-ghost: #e2e8f0;
+
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #d97706;
+  --orange: #ea580c;
+
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+
+  color-scheme: light;
+}
+
+/* ─── Theme 3: High Contrast (accessibility) ──────────────────────────────── */
+.high-contrast {
+  --bg-root: #000000;
+  --bg-surface: #0a0a0a;
+  --bg-raised: #1a1a1a;
+  --bg-editor: #000000;
+
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-muted: #b0b0b0;
+  --text-faint: #888888;
+  --text-ghost: #666666;
+
+  --accent: #a5b4fc;
+  --accent-hover: #818cf8;
+
+  --success: #4ade80;
+  --error: #fb7185;
+  --warning: #fbbf24;
+  --orange: #fb923c;
+
+  --border: rgba(255, 255, 255, 0.25);
+  --border-strong: rgba(255, 255, 255, 0.4);
+
+  color-scheme: dark;
+}
+
+/* ─── Theme 4: Monokai ────────────────────────────────────────────────────── */
+.monokai {
+  --bg-root: #272822;
+  --bg-surface: #2d2e27;
+  --bg-raised: #3e3d32;
+  --bg-editor: #272822;
+
+  --text-primary: #f8f8f2;
+  --text-secondary: #cfcfc2;
+  --text-muted: #90908a;
+  --text-faint: #75715e;
+  --text-ghost: #49483e;
+
+  --accent: #a6e22e;
+  --accent-hover: #b6f23e;
+
+  --success: #a6e22e;
+  --error: #f92672;
+  --warning: #e6db74;
+  --orange: #fd971f;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+
+  color-scheme: dark;
+}
+
+/* ─── Theme 5: Solarized Dark ─────────────────────────────────────────────── */
+.solarized-dark {
+  --bg-root: #002b36;
+  --bg-surface: #073642;
+  --bg-raised: #0a4050;
+  --bg-editor: #002b36;
+
+  --text-primary: #fdf6e3;
+  --text-secondary: #eee8d5;
+  --text-muted: #93a1a1;
+  --text-faint: #657b83;
+  --text-ghost: #586e75;
+
+  --accent: #268bd2;
+  --accent-hover: #2aa4f0;
+
+  --success: #859900;
+  --error: #dc322f;
+  --warning: #b58900;
+  --orange: #cb4b16;
+
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+
+  color-scheme: dark;
+}
+
+/* ─── Theme 6: Solarized Light ────────────────────────────────────────────── */
+.solarized-light {
+  --bg-root: #fdf6e3;
+  --bg-surface: #eee8d5;
+  --bg-raised: #e4ddc8;
+  --bg-editor: #fdf6e3;
+
+  --text-primary: #073642;
+  --text-secondary: #586e75;
+  --text-muted: #93a1a1;
+  --text-faint: #c0c4bb;
+  --text-ghost: #d5cfba;
+
+  --accent: #268bd2;
+  --accent-hover: #1a6fa8;
+
+  --success: #859900;
+  --error: #dc322f;
+  --warning: #b58900;
+  --orange: #cb4b16;
+
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+
+  color-scheme: light;
+}
+
+/* ─── Theme 7: Nord ───────────────────────────────────────────────────────── */
+.nord {
+  --bg-root: #2e3440;
+  --bg-surface: #3b4252;
+  --bg-raised: #434c5e;
+  --bg-editor: #2e3440;
+
+  --text-primary: #eceff4;
+  --text-secondary: #d8dee9;
+  --text-muted: #81a1c1;
+  --text-faint: #616e88;
+  --text-ghost: #4c566a;
+
+  --accent: #88c0d0;
+  --accent-hover: #8fbcbb;
+
+  --success: #a3be8c;
+  --error: #bf616a;
+  --warning: #ebcb8b;
+  --orange: #d08770;
+
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+
+  color-scheme: dark;
+}
+
+/* ─── Theme 8: Dracula ────────────────────────────────────────────────────── */
+.dracula {
+  --bg-root: #282a36;
+  --bg-surface: #2d2f3d;
+  --bg-raised: #44475a;
+  --bg-editor: #282a36;
+
+  --text-primary: #f8f8f2;
+  --text-secondary: #ccc8d8;
+  --text-muted: #9090a0;
+  --text-faint: #6272a4;
+  --text-ghost: #44475a;
+
+  --accent: #bd93f9;
+  --accent-hover: #d4b0ff;
+
+  --success: #50fa7b;
+  --error: #ff5555;
+  --warning: #f1fa8c;
+  --orange: #ffb86c;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+
+  color-scheme: dark;
+}
+
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-root);
+  color: var(--text-primary);
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography Scale ────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+/* ─── Scrollbars ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-ghost);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-faint);
+}
+
+/* ─── Focus styles ────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.high-contrast :focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ─── Utility classes ─────────────────────────────────────────────────────── */
+.font-heading {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.font-code {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+}
+
+/* ─── CodeMirror overrides ────────────────────────────────────────────────── */
+.cm-editor {
+  height: 100%;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace !important;
+  font-size: 14px !important;
+}
+
+.cm-scroller {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace !important;
+  overflow: auto;
+}
+
+.cm-editor.cm-focused {
+  outline: none !important;
+}
+
+/* ─── Tier badge styles ───────────────────────────────────────────────────── */
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  flex-shrink: 0;
+}
+
+/* ─── Animations ──────────────────────────────────────────────────────────── */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.test-result {
+  animation: slideIn 0.15s ease-out;
+}
+
+@keyframes skeleton-pulse {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes fadeOut {
+  0%   { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ─── Screen reader only ──────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only-focusable:focus {
+  position: fixed;
+  top: 4px;
+  left: 4px;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: 8px 16px;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background-color: var(--accent);
+  color: #fff;
+  border-radius: 4px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ─── Smooth theme transitions ────────────────────────────────────────────── */
+.transition-theme {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
