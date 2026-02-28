@@ -6,14 +6,15 @@ import {
   setSearch,
   toggleTag,
   setTierFilter,
+  setTypeFilter,
   setCategoryPath,
   clearFilters,
   setStatusSort,
   showToast,
 } from '../../features/uiSlice';
 import { resetExercise } from '../../features/progressSlice';
-import type { Tier, StatusSort } from '@codeforge/shared';
-import { TIER_META } from '@codeforge/shared/constants';
+import type { Tier, ExerciseType, StatusSort } from '@codeforge/shared';
+import { TIER_META, TYPE_META } from '@codeforge/shared/constants';
 import { getCategoryLabels } from '../../utils/helpers';
 import Skeleton from '../shared/Skeleton';
 import ExerciseCard from './ExerciseCard';
@@ -81,6 +82,9 @@ export default function BrowseView() {
     if (filter.tier) {
       result = result.filter((ex) => ex.tier === filter.tier);
     }
+    if (filter.type) {
+      result = result.filter((ex) => ex.type === filter.type);
+    }
     if (filter.tags.length > 0) {
       result = result.filter((ex) => filter.tags.some((t) => ex.tags.includes(t)));
     }
@@ -117,7 +121,7 @@ export default function BrowseView() {
   }, [exercises, filter, collections, progressItems, statusSort]);
 
   const hasActiveFilters =
-    filter.search || filter.tags.length > 0 || filter.tier || filter.collectionId || filter.categoryPath.length > 0 || statusSort !== 'default';
+    filter.search || filter.tags.length > 0 || filter.tier || filter.type || filter.collectionId || filter.categoryPath.length > 0 || statusSort !== 'default';
 
   const categoryBreadcrumbs = getCategoryLabels(filter.categoryPath, categories);
   const completedCount = exercises.filter((ex) => progressItems[ex._id]?.status === 'completed').length;
@@ -212,6 +216,23 @@ export default function BrowseView() {
                   onClick={() => dispatch(setTierFilter(filter.tier === t ? null : t))}
                   className="tier-badge"
                   style={{ width: 22, height: 22, fontSize: 9, backgroundColor: filter.tier === t ? meta.bgColor : 'var(--bg-raised)', border: `1px solid ${filter.tier === t ? meta.color : 'var(--border)'}`, color: filter.tier === t ? meta.color : 'var(--text-muted)', cursor: 'pointer' }}
+                >
+                  {meta.label}
+                </button>
+              );
+            })}
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs" style={{ color: 'var(--text-muted)', fontFamily: 'Lexend, sans-serif' }}>Type:</span>
+            {(Object.keys(TYPE_META) as ExerciseType[]).map((t) => {
+              const meta = TYPE_META[t];
+              const isActive = filter.type === t;
+              return (
+                <button
+                  key={t}
+                  onClick={() => dispatch(setTypeFilter(isActive ? null : t))}
+                  className="px-2 py-0.5 rounded text-xs font-bold"
+                  style={{ backgroundColor: isActive ? `${meta.color}22` : 'var(--bg-raised)', border: `1px solid ${isActive ? meta.color : 'var(--border)'}`, color: isActive ? meta.color : 'var(--text-muted)', cursor: 'pointer' }}
                 >
                   {meta.label}
                 </button>

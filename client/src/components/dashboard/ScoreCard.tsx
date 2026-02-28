@@ -1,26 +1,69 @@
 interface ScoreCardProps {
+  filteredPct: number;
+  filteredCompleted: number;
+  filteredCount: number;
+  filterLabel: string;
   totalScore: number;
-  completedCount: number;
-  totalExercises: number;
 }
 
-export default function ScoreCard({ totalScore, completedCount, totalExercises }: ScoreCardProps) {
+export default function ScoreCard({
+  filteredPct,
+  filteredCompleted,
+  filteredCount,
+  filterLabel,
+  totalScore,
+}: ScoreCardProps) {
   return (
     <div
-      className="rounded-xl p-6 text-center"
+      className="rounded-xl p-6 flex items-center gap-8"
       style={{
-        background: 'linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 60%, var(--bg-root)) 100%)',
-        border: '1px solid var(--accent)',
+        backgroundColor: 'var(--bg-surface)',
+        border: '1px solid var(--border)',
       }}
     >
-      <div className="text-5xl font-heading font-bold mb-1" style={{ color: 'var(--bg-root)' }}>
-        {totalScore.toLocaleString()}
+      <div className="flex flex-col items-center gap-1 flex-shrink-0">
+        <span
+          className="font-heading font-bold"
+          style={{ fontSize: '64px', lineHeight: 1, color: 'var(--accent)' }}
+        >
+          {filteredPct}
+          <span style={{ fontSize: '32px', color: 'var(--text-muted)' }}>%</span>
+        </span>
+        <span className="text-xs" style={{ color: 'var(--text-muted)', fontFamily: 'Lexend, sans-serif' }}>
+          {filterLabel}
+        </span>
       </div>
-      <div className="text-sm font-medium" style={{ color: 'var(--bg-surface)' }}>
-        Total Score
-      </div>
-      <div className="mt-3 text-xs" style={{ color: 'var(--bg-surface)', opacity: 0.8 }}>
-        {completedCount} of {totalExercises} exercises completed
+
+      <div className="flex-1 flex flex-col gap-3">
+        <div
+          className="h-4 rounded-full overflow-hidden"
+          style={{ backgroundColor: 'var(--bg-raised)' }}
+          role="progressbar"
+          aria-valuenow={filteredPct}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={`${filterLabel}: ${filteredCompleted} of ${filteredCount} exercises complete`}
+        >
+          <div
+            className="h-full rounded-full transition-all duration-700"
+            style={{ width: `${filteredPct}%`, backgroundColor: 'var(--accent)' }}
+          />
+        </div>
+        <div className="flex items-center justify-between text-sm">
+          <span style={{ color: 'var(--text-secondary)' }}>
+            <strong style={{ color: 'var(--text-primary)' }}>{filteredCompleted}</strong> of{' '}
+            {filteredCount} exercises
+          </span>
+          <span style={{ color: 'var(--text-muted)' }}>
+            {filteredCount - filteredCompleted} remaining
+          </span>
+        </div>
+        <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
+          <span>Total Score:</span>
+          <span className="font-heading font-bold" style={{ color: 'var(--accent)' }}>
+            {totalScore.toLocaleString()}
+          </span>
+        </div>
       </div>
     </div>
   );
