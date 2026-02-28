@@ -13,6 +13,7 @@ import ExerciseToolbar from './ExerciseToolbar';
 import ResetModal from './ResetModal';
 import CompareModal from './CompareModal';
 import EditorLayout from './EditorLayout';
+import RatingPrompt from '../ratings/RatingPrompt';
 
 export default function ExerciseView() {
   const { id } = useParams<{ id: string }>();
@@ -35,6 +36,16 @@ export default function ExerciseView() {
   const [showResetModal, setShowResetModal] = useState(false);
   const [panelCollapsed, setPanelCollapsed] = useState(false);
   const [showCompare, setShowCompare] = useState(false);
+  const [showRatingPrompt, setShowRatingPrompt] = useState(false);
+  const prevIsCompleteRef = useRef(isComplete);
+
+  useEffect(() => {
+    if (isComplete && !prevIsCompleteRef.current) {
+      const timer = setTimeout(() => setShowRatingPrompt(true), 2000);
+      return () => clearTimeout(timer);
+    }
+    prevIsCompleteRef.current = isComplete;
+  }, [isComplete]);
 
   const { sortedExercises, currentIndex, prevExercise, nextExercise, navContext } =
     useExerciseNavigation(id ?? '');
@@ -239,6 +250,9 @@ export default function ExerciseView() {
         <CompareModal isOpen={showCompare} studentCode={code} referenceCode={exercise.solution} language={exercise.type} onClose={() => setShowCompare(false)} />
         <EditorLayout exerciseType={exercise.type} code={code} cssCode={cssCode} onCodeChange={handleCodeChange} onCssChange={handleCssChange} onRun={runTests} />
       </div>
+      {showRatingPrompt && (
+        <RatingPrompt exerciseId={exercise._id} onClose={() => setShowRatingPrompt(false)} />
+      )}
     </div>
   );
 }

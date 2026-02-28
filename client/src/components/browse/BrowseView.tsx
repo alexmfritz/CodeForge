@@ -1,6 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
+import { fetchBulkRatings } from '../../features/ratingsSlice';
 import {
   setSearch,
   toggleTag,
@@ -45,6 +46,12 @@ export default function BrowseView() {
   const loading = useAppSelector((s) => s.exercises.loading);
 
   const [showFilters, setShowFilters] = useState(false);
+
+  useEffect(() => {
+    if (exercises.length > 0) {
+      dispatch(fetchBulkRatings(exercises.map((ex) => ex._id)));
+    }
+  }, [dispatch, exercises]);
 
   const handleRandom = () => {
     const unsolved = exercises.filter((ex) => progressItems[ex._id]?.status !== 'completed');
