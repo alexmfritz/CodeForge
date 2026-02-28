@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { Rating } from '../models/Rating.js';
 
+// Upsert: one rating per user per exercise, creates or updates
 export async function submitRating(
   userId: string,
   exerciseId: string,
@@ -20,6 +21,7 @@ export async function submitRating(
   return rating.toJSON();
 }
 
+// Aggregate pipeline for average stars and count for a single exercise
 export async function getExerciseRating(exerciseId: string) {
   const result = await Rating.aggregate([
     { $match: { exerciseId: new mongoose.Types.ObjectId(exerciseId) } },
@@ -42,6 +44,7 @@ export async function getExerciseRating(exerciseId: string) {
   };
 }
 
+// Bulk aggregate: compute averages for multiple exercises in one query
 export async function getExerciseRatings(exerciseIds: string[]) {
   const objectIds = exerciseIds.map((id) => new mongoose.Types.ObjectId(id));
 
@@ -56,6 +59,7 @@ export async function getExerciseRatings(exerciseIds: string[]) {
     },
   ]);
 
+  // Build a lookup map keyed by exerciseId with rounded averages
   const map: Record<string, { averageStars: number; totalRatings: number }> = {};
   for (const r of results) {
     map[String(r._id)] = {
@@ -67,6 +71,7 @@ export async function getExerciseRatings(exerciseIds: string[]) {
   return map;
 }
 
+// Fetch the current user's rating for a specific exercise
 export async function getUserRating(userId: string, exerciseId: string) {
   const rating = await Rating.findOne({
     userId: new mongoose.Types.ObjectId(userId),
@@ -76,12 +81,14 @@ export async function getUserRating(userId: string, exerciseId: string) {
   return rating ? rating.toJSON() : null;
 }
 
+// Instructor overview: global summary, top 5, and lowest 5 rated exercises
 export async function getRatingOverview(cohortId?: string) {
   const match: Record<string, unknown> = {};
   if (cohortId) {
     match.cohortId = new mongoose.Types.ObjectId(cohortId);
   }
 
+  // Run all three aggregation pipelines in parallel
   const [summaryResult, topRated, lowestRated] = await Promise.all([
     Rating.aggregate([
       { $match: match },

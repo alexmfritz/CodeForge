@@ -3,6 +3,7 @@ import { apiFetch } from '../utils/api';
 import type { Rating } from '@codeforge/shared';
 import type { RootState } from './store';
 
+// State shape: aggregate ratings per exercise + current user's own ratings
 interface RatingsState {
   ratings: Record<string, { averageStars: number; totalRatings: number }>;
   userRatings: Record<string, number>;
@@ -15,6 +16,7 @@ const initialState: RatingsState = {
   loading: false,
 };
 
+// POST a new star rating (upserts on the server)
 export const submitRating = createAsyncThunk(
   'ratings/submit',
   async ({ exerciseId, stars }: { exerciseId: string; stars: number }, { rejectWithValue }) => {
@@ -29,6 +31,7 @@ export const submitRating = createAsyncThunk(
   },
 );
 
+// Batch-fetch aggregate ratings for a list of exercise IDs
 export const fetchBulkRatings = createAsyncThunk(
   'ratings/fetchBulk',
   async (exerciseIds: string[], { rejectWithValue }) => {
@@ -43,6 +46,7 @@ export const fetchBulkRatings = createAsyncThunk(
   },
 );
 
+// Fetch the current user's existing rating for one exercise
 export const fetchUserRating = createAsyncThunk(
   'ratings/fetchUserRating',
   async (exerciseId: string, { rejectWithValue }) => {
@@ -58,6 +62,7 @@ const ratingsSlice = createSlice({
   name: 'ratings',
   initialState,
   reducers: {},
+  // Reducers: update local cache on submit, merge bulk data, track loading
   extraReducers: (builder) => {
     builder
       .addCase(submitRating.fulfilled, (state, action) => {
@@ -83,6 +88,7 @@ const ratingsSlice = createSlice({
   },
 });
 
+// Selectors: look up aggregate or user-specific rating by exercise ID
 export const selectExerciseRating = (exerciseId: string) => (state: RootState) =>
   state.ratings.ratings[exerciseId];
 

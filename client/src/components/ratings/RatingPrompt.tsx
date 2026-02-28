@@ -8,14 +8,17 @@ interface RatingPromptProps {
   onClose: () => void;
 }
 
+// Fixed-position prompt shown after exercise completion
 export default function RatingPrompt({ exerciseId, onClose }: RatingPromptProps) {
   const dispatch = useAppDispatch();
   const userRating = useAppSelector(selectUserRating(exerciseId));
 
+  // Load any existing user rating on mount
   useEffect(() => {
     dispatch(fetchUserRating(exerciseId));
   }, [dispatch, exerciseId]);
 
+  // Dispatch upsert on star click
   const handleRate = (stars: number) => {
     dispatch(submitRating({ exerciseId, stars }));
   };
@@ -56,6 +59,7 @@ export default function RatingPrompt({ exerciseId, onClose }: RatingPromptProps)
         </button>
       </div>
       <RatingStars rating={userRating || 0} interactive onRate={handleRate} />
+      {/* Show confirmation text after user has rated */}
       {userRating && (
         <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
           You rated this {userRating} star{userRating !== 1 ? 's' : ''}
