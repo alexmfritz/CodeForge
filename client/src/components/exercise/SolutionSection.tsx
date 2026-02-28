@@ -9,7 +9,6 @@ interface SolutionSectionProps {
   gate: number;
 }
 
-// Gated solution panel — locked until the student exhausts enough attempts or completes
 export default function SolutionSection({
   solution,
   solutionUnlocked,
@@ -41,7 +40,6 @@ export default function SolutionSection({
           <span style={{ color: 'var(--text-faint)' }} aria-hidden="true">{expanded ? '▲' : '▼'}</span>
         )}
       </button>
-      {/* Render in a <pre> to preserve code formatting without a full CodeMirror instance */}
       {solutionUnlocked && expanded && (
         <pre
           className="px-3 py-2 text-xs overflow-x-auto font-code"

@@ -10,7 +10,6 @@ interface ExerciseCardProps {
   onDismiss?: (exerciseId: string) => void;
 }
 
-// Clickable card in the browse grid — shows tier, type, status, and tag chips
 export default function ExerciseCard({ exercise, onDismiss }: ExerciseCardProps) {
   const navigate = useNavigate();
   const categories = useAppSelector((s) => s.exercises.categories);
@@ -41,7 +40,6 @@ export default function ExerciseCard({ exercise, onDismiss }: ExerciseCardProps)
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(`/exercises/${exercise._id}`); } }}
       aria-label={`Exercise: ${exercise.title}`}
     >
-        {/* Top-right icon: dismiss button (in-progress view), checkmark (complete), or attempt count */}
       {onDismiss ? (
         <button
           className="absolute top-2 right-2 flex items-center justify-center w-6 h-6 rounded"
@@ -73,7 +71,6 @@ export default function ExerciseCard({ exercise, onDismiss }: ExerciseCardProps)
       <p className="text-xs leading-relaxed line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
         {exercise.description}
       </p>
-      {/* Cap at 4 tags to keep card height consistent across the grid */}
       {exercise.tags.length > 0 && (
         <div className="flex flex-wrap gap-1 mt-auto">
           {exercise.tags.slice(0, 4).map((tag) => (

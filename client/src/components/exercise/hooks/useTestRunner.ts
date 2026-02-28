@@ -14,7 +14,6 @@ import { showToast } from '../../../features/uiSlice';
 import { getRandomCelebration } from '../../../utils/celebrationMessages';
 import type { Exercise, TestResult } from '@codeforge/shared';
 
-// Must match the DJB2 hash in progressSlice so client-side dedup stays in sync
 function hashCode(str: string): string {
   let hash = 5381;
   for (let i = 0; i < str.length; i++) {
@@ -31,7 +30,6 @@ interface UseTestRunnerResult {
   clearResults: () => void;
 }
 
-// Orchestrates running tests, recording attempts, and marking completion in one flow
 export function useTestRunner(
   exercise: Exercise | undefined,
   code: string,
@@ -54,7 +52,6 @@ export function useTestRunner(
     const fullCode = exercise.type === 'html-css' ? code + '\n' + cssCode : code;
     const codeHash = hashCode(fullCode.trim());
 
-    // Check before running: if the student already submitted this exact code, warn them
     const isDuplicate = selectIsDuplicateCode(exercise._id, fullCode)(store.getState());
     if (isDuplicate) {
       setDuplicateWarning(true);
@@ -97,7 +94,6 @@ export function useTestRunner(
     // Record attempt on server
     void dispatch(recordAttempt({ exerciseId: exercise._id, codeHash, passed: allPass }));
 
-    // Only fire the celebration toast on the first time the student passes
     if (allPass) {
       const wasAlreadyComplete = store.getState().progress.items[exercise._id]?.status === 'completed';
       const progress = store.getState().progress.items[exercise._id];
@@ -109,7 +105,6 @@ export function useTestRunner(
       if (!wasAlreadyComplete) {
         dispatch(showToast({ message: getRandomCelebration(), type: 'celebration' }));
       }
-    // Track the failed hash locally so the next run shows the duplicate warning instantly
     } else if (!isDuplicate) {
       dispatch(recordLocalFailedAttempt({ exerciseId: exercise._id, code: fullCode }));
     }

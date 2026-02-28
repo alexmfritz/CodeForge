@@ -33,7 +33,6 @@ export default function InstructionsPanel({
 
   const uniqueAttempts = useAppSelector(selectUniqueAttempts(exercise._id));
   const isComplete = useAppSelector(selectIsComplete(exercise._id));
-  // Solution gate: students must make enough unique attempts before peeking at the answer
   const gate = exercise.solutionGate ?? DEFAULT_SOLUTION_GATE;
   const solutionUnlocked = isComplete || uniqueAttempts >= gate;
 
@@ -46,7 +45,6 @@ export default function InstructionsPanel({
     });
   };
 
-  // Preview tab is hidden for JS exercises since there's no visual output to show
   const tabs: { id: 'instructions' | 'results' | 'preview'; label: string; show: boolean }[] = [
     { id: 'instructions', label: 'Instructions', show: true },
     { id: 'results', label: testResultCount > 0 ? `Results (${testPassCount}/${testResultCount})` : 'Results', show: true },

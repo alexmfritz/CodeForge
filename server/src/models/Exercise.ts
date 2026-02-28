@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-// TypeScript shape for exercise documents — drives validation and IDE autocomplete
 export interface IExercise extends Document {
   legacyId?: number;
   title: string;
@@ -14,7 +13,6 @@ export interface IExercise extends Document {
   starterCode: string;
   solution: string;
   testRunner: string;
-  // Declarative test definitions evaluated client-side by the appropriate runner
   testCases: {
     query?: string;
     assertion: string;
@@ -26,7 +24,6 @@ export interface IExercise extends Document {
   providedHtml?: string;
   hints: string[];
   resources: { label: string; url: string; description?: string }[];
-  // Minimum unique attempts before solution is unlocked for the student
   solutionGate?: number;
   basePoints: number;
   collectionId?: mongoose.Types.ObjectId;
@@ -37,7 +34,6 @@ export interface IExercise extends Document {
 
 const exerciseSchema = new Schema<IExercise>(
   {
-    // Preserves old numeric ID for cross-referencing migrated JSON data
     legacyId: { type: Number, index: true, sparse: true },
     title: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
@@ -50,7 +46,6 @@ const exerciseSchema = new Schema<IExercise>(
     starterCode: { type: String, default: '' },
     solution: { type: String, required: true },
     testRunner: { type: String, default: '' },
-    // Subdocuments without their own _id since they're only meaningful within an exercise
     testCases: [
       {
         _id: false,
@@ -82,14 +77,12 @@ const exerciseSchema = new Schema<IExercise>(
   { timestamps: true },
 );
 
-// Compound and single-field indexes to support browse-page filtering and collection lookups
 exerciseSchema.index({ type: 1, tier: 1 });
 exerciseSchema.index({ tags: 1 });
 exerciseSchema.index({ category: 1 });
 exerciseSchema.index({ collectionId: 1 });
 exerciseSchema.index({ isActive: 1 });
 
-// Stringify ObjectIds so the client receives plain strings instead of BSON objects
 exerciseSchema.set('toJSON', {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transform(_doc: any, ret: any) {
