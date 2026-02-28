@@ -14,10 +14,12 @@ export default function StudentList({ cohortId }: StudentListProps) {
   const [selectedStudentId, setSelectedStudentId] = useState<string | null>(null);
   const [search, setSearch] = useState('');
 
+  // Re-fetch when the cohort filter changes in the parent dashboard
   useEffect(() => {
     dispatch(fetchStudents(cohortId));
   }, [dispatch, cohortId]);
 
+  // Secondary role guard in case the store was populated by fetchAllUsers (which includes all roles)
   const filteredStudents = students
     .filter((s) => s.role === 'student')
     .filter(
@@ -89,6 +91,7 @@ export default function StudentList({ cohortId }: StudentListProps) {
                     borderBottom: '1px solid var(--border)',
                     cursor: 'pointer',
                   }}
+                  // Inline style toggling because Tailwind can't apply CSS variables in hover pseudo-class
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--bg-raised)';
                   }}
@@ -122,7 +125,7 @@ export default function StudentList({ cohortId }: StudentListProps) {
                   <td className="text-center py-3 px-4">
                     <button
                       onClick={(e) => {
-                        e.stopPropagation();
+                        e.stopPropagation(); // prevent the row-level onClick from firing twice
                         setSelectedStudentId(student._id);
                       }}
                       className="text-xs px-3 py-1 rounded transition-colors"

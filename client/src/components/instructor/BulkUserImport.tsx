@@ -25,6 +25,7 @@ export default function BulkUserImport({ onClose }: BulkUserImportProps) {
 
   const parseInput = () => {
     setError('');
+    // Normalise line endings and strip blank lines before parsing
     const lines = csvText
       .trim()
       .split('\n')
@@ -36,6 +37,7 @@ export default function BulkUserImport({ onClose }: BulkUserImportProps) {
       return;
     }
 
+    // Validate cohort selection before parsing so errors are surfaced together
     if (!selectedCohortId) {
       setError('Please select a cohort.');
       return;
@@ -58,6 +60,7 @@ export default function BulkUserImport({ onClose }: BulkUserImportProps) {
       parsed.push({ firstName, lastName, docNumber });
     });
 
+    // Collect all line errors before showing them so instructors can fix everything at once
     if (errors.length > 0) {
       setError(errors.join('\n'));
       return;
@@ -76,6 +79,7 @@ export default function BulkUserImport({ onClose }: BulkUserImportProps) {
         bulkCreateUsers({ users: parsedUsers, cohortId: selectedCohortId }),
       ).unwrap();
       setResult(`Successfully created ${created.length} student${created.length !== 1 ? 's' : ''}.`);
+      // Reset input state but keep the success banner visible until the panel is closed
       setCsvText('');
       setParsedUsers([]);
       setShowPreview(false);
@@ -86,6 +90,7 @@ export default function BulkUserImport({ onClose }: BulkUserImportProps) {
     }
   };
 
+  // Mirrors the server-side username generation so the preview is accurate
   const generateUsername = (firstName: string, lastName: string) => {
     return `${firstName.charAt(0).toLowerCase()}${lastName.toLowerCase().replace(/\s+/g, '')}`;
   };
@@ -139,7 +144,8 @@ export default function BulkUserImport({ onClose }: BulkUserImportProps) {
               }}
             >
               <option value="">Select a cohort</option>
-              {cohorts.filter((c) => c.isActive).map((c) => (
+              {/* Only show active cohorts; enrolling into an inactive cohort would be confusing */}
+            {cohorts.filter((c) => c.isActive).map((c) => (
                 <option key={c._id} value={c._id}>
                   {c.name}
                 </option>

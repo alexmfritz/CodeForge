@@ -21,10 +21,12 @@ export default function InstructorDashboard() {
   const dispatch = useAppDispatch();
   const { cohorts } = useAppSelector((s) => s.instructor);
 
+  // Cohorts are fetched once here so all child panels can read them from the store
   useEffect(() => {
     dispatch(fetchCohorts());
   }, [dispatch]);
 
+  // Auto-select the first active cohort so the dashboard is never blank on first load
   useEffect(() => {
     if (!selectedCohortId && cohorts.length > 0) {
       const activeCohort = cohorts.find((c) => c.isActive);
@@ -39,6 +41,7 @@ export default function InstructorDashboard() {
           <h1 className="text-2xl font-heading font-bold" style={{ color: 'var(--text-primary)' }}>
             Instructor Dashboard
           </h1>
+          {/* Global cohort filter passed down as a prop to each tab panel */}
           <select
             value={selectedCohortId || ''}
             onChange={(e) => setSelectedCohortId(e.target.value || undefined)}

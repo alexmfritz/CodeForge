@@ -4,6 +4,7 @@ import { Exercise } from '../models/Exercise.js';
 import { Cohort } from '../models/Cohort.js';
 
 export async function getOverview(cohortId?: string) {
+  // Scope student count to a specific cohort when the dashboard filter is active
   const studentFilter: Record<string, unknown> = { role: 'student', isActive: true };
   if (cohortId) studentFilter.cohortId = cohortId;
 
@@ -15,11 +16,14 @@ export async function getOverview(cohortId?: string) {
   const completedProgress = await Progress.find(progressFilter).lean();
   const totalCompleted = completedProgress.length;
   const totalScore = completedProgress.reduce((sum, p) => sum + p.score, 0);
+  // Guard against division by zero when no exercises have been completed yet
   const avgScore = totalCompleted > 0 ? Math.round(totalScore / totalCompleted) : 0;
 
+  // Always return all cohorts so the summary table is complete regardless of the filter
   const cohorts = await Cohort.find().sort({ startDate: -1 }).lean();
   const cohortSummary = await Promise.all(
     cohorts.map(async (cohort) => {
+      // N+1 queries here — acceptable given typical cohort counts (<100), but worth revisiting at scale
       const studentCount = await User.countDocuments({
         cohortId: cohort._id,
         role: 'student',
@@ -53,8 +57,10 @@ export async function getStudentProgress(studentId: string): Promise<Record<stri
   if (!student) throw new Error('Student not found');
 
   const progress = await Progress.find({ userId: studentId }).lean();
+  // Batch-fetch exercises via $in to avoid one query per progress record
   const exerciseIds = progress.map((p) => p.exerciseId);
   const exercises = await Exercise.find({ _id: { $in: exerciseIds } }).lean();
+  // Map by string ID for O(1) lookups during the join below
   const exerciseMap = new Map(exercises.map((e) => [String(e._id), e]));
 
   const progressWithDetails = progress.map((p) => {
@@ -81,12 +87,13 @@ export async function getStudentProgress(studentId: string): Promise<Record<stri
   const completed = progress.filter((p) => p.status === 'completed');
   const totalScore = completed.reduce((sum, p) => sum + p.score, 0);
 
+  // Build two aggregate views in a single pass to avoid iterating progress multiple times
   const tierBreakdown: Record<number, { completed: number; total: number; score: number }> = {};
   const typeBreakdown: Record<string, { completed: number; total: number; score: number }> = {};
 
   for (const p of progress) {
     const ex = exerciseMap.get(String(p.exerciseId));
-    if (!ex) continue;
+    if (!ex) continue; // skip orphaned progress records whose exercise was deleted
 
     if (!tierBreakdown[ex.tier]) tierBreakdown[ex.tier] = { completed: 0, total: 0, score: 0 };
     tierBreakdown[ex.tier].total += 1;
@@ -133,17 +140,20 @@ export async function getCohortHeatmap(cohortId: string) {
     userId: { $in: studentIds },
   }).lean();
 
+  // Show all active exercises as columns, not just those a student has touched
   const exercises = await Exercise.find({ isActive: true })
     .sort({ tier: 1, title: 1 })
     .select('_id title tier type category')
     .lean();
 
+  // Composite key avoids a nested Map and simplifies lookup in the grid loop
   const progressMap = new Map<string, string>();
   for (const p of progress) {
     const key = `${String(p.userId)}_${String(p.exerciseId)}`;
     progressMap.set(key, p.status);
   }
 
+  // Default to 'not_started' so the UI always receives a defined status per cell
   const grid = students.map((student) => ({
     studentId: String(student._id),
     displayName: student.displayName,
