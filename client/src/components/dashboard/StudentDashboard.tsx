@@ -8,6 +8,7 @@ import TierBreakdown from './TierBreakdown';
 import TypeBreakdown from './TypeBreakdown';
 import CollectionProgress from './CollectionProgress';
 import RecentActivity from './RecentActivity';
+import AssignmentList from '../assignments/AssignmentList';
 import Skeleton from '../shared/Skeleton';
 
 export default function StudentDashboard() {
@@ -79,16 +80,11 @@ export default function StudentDashboard() {
 
         <RecentActivity items={stats.recentActivity} />
 
-        <div
-          className="rounded-lg p-5"
-          style={{ backgroundColor: 'var(--bg-surface)', border: '1px dashed var(--border)' }}
-        >
-          <h3 className="font-heading font-semibold text-sm mb-2" style={{ color: 'var(--text-muted)' }}>
+        <div>
+          <h3 className="font-heading font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
             Assignments
           </h3>
-          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-            Assignments from your instructor will appear here.
-          </p>
+          <AssignmentList />
         </div>
 
         <div

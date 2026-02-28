@@ -6,6 +6,7 @@ import exercisesReducer from './exercisesSlice';
 import progressReducer from './progressSlice';
 import dashboardReducer from './dashboardSlice';
 import instructorReducer from './instructorSlice';
+import assignmentsReducer from './assignmentsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     progress: progressReducer,
     dashboard: dashboardReducer,
     instructor: instructorReducer,
+    assignments: assignmentsReducer,
   },
 });
 
