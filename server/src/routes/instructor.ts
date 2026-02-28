@@ -4,7 +4,6 @@ import { getOverview, getStudentProgress, getCohortHeatmap } from '../services/i
 
 const router = Router();
 
-// All instructor routes require authentication and an elevated role
 router.use(authenticate);
 router.use(authorize('instructor', 'ta'));
 
@@ -23,7 +22,6 @@ router.get('/students/:id/progress', async (req, res) => {
     const data = await getStudentProgress(req.params.id);
     res.json({ success: true, data });
   } catch (err) {
-    // Surface 404 explicitly so the client can distinguish "not found" from server errors
     const message = err instanceof Error ? err.message : 'Failed to fetch student progress';
     const status = message === 'Student not found' ? 404 : 500;
     res.status(status).json({ success: false, error: message });

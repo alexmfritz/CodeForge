@@ -27,7 +27,6 @@ interface ExerciseSummary {
   basePoints: number;
 }
 
-// exercise is null when the referenced exercise has been deleted from the DB
 interface ProgressWithExercise extends Progress {
   exercise: ExerciseSummary | null;
 }
@@ -97,7 +96,6 @@ const initialState: InstructorState = {
 export const fetchOverview = createAsyncThunk(
   'instructor/fetchOverview',
   async (cohortId: string | undefined, { rejectWithValue }) => {
-    // Build URL conditionally to avoid sending an empty cohortId query param
     const url = cohortId ? `/api/instructor/overview?cohortId=${cohortId}` : '/api/instructor/overview';
     const result = await apiFetch<OverviewData>(url);
     if (!result.success || !result.data) {
@@ -110,7 +108,6 @@ export const fetchOverview = createAsyncThunk(
 export const fetchStudents = createAsyncThunk(
   'instructor/fetchStudents',
   async (cohortId: string | undefined, { rejectWithValue }) => {
-    // Always filter by role=student to avoid fetching instructors/TAs into the student list
     const params = new URLSearchParams({ role: 'student' });
     if (cohortId) params.set('cohortId', cohortId);
     const result = await apiFetch<User[]>(`/api/users?${params.toString()}`);
@@ -301,7 +298,6 @@ const instructorSlice = createSlice({
       })
 
       .addCase(createCohort.fulfilled, (state, action) => {
-        // Prepend so the new cohort appears at the top of the list immediately
         state.cohorts.unshift({ ...action.payload, studentCount: action.payload.studentCount ?? 0 });
       })
 
@@ -313,7 +309,6 @@ const instructorSlice = createSlice({
       })
 
       .addCase(createUser.fulfilled, (state, action) => {
-        // Only add to the student list; instructors/TAs are managed separately in UserManager
         if (action.payload.role === 'student') {
           state.students.push(action.payload);
         }
@@ -335,7 +330,6 @@ const instructorSlice = createSlice({
       })
       .addCase(fetchAllUsers.fulfilled, (state, action) => {
         state.studentsLoading = false;
-        // UserManager needs all roles, so this overwrites the student-only list
         state.students = action.payload;
       })
       .addCase(fetchAllUsers.rejected, (state) => {

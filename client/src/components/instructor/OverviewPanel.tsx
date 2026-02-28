@@ -11,12 +11,10 @@ export default function OverviewPanel({ cohortId }: OverviewPanelProps) {
   const dispatch = useAppDispatch();
   const { overview, overviewLoading } = useAppSelector((s) => s.instructor);
 
-  // Re-fetch whenever the cohort filter changes so stats stay in sync
   useEffect(() => {
     dispatch(fetchOverview(cohortId));
   }, [dispatch, cohortId]);
 
-  // Show skeleton only on initial load; stale data stays visible during refetches
   if (overviewLoading && !overview) {
     return (
       <div className="flex flex-col gap-4">
@@ -33,7 +31,6 @@ export default function OverviewPanel({ cohortId }: OverviewPanelProps) {
 
   if (!overview) return null;
 
-  // Declared as an array so the cards render in a consistent, defined order
   const statCards = [
     { label: 'Total Students', value: overview.totalStudents },
     { label: 'Exercises Completed', value: overview.totalCompleted },

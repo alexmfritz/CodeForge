@@ -15,7 +15,6 @@ export default function StudentDetail({ studentId, onClose }: StudentDetailProps
 
   useEffect(() => {
     dispatch(fetchStudentProgress(studentId));
-    // Clear stale data on unmount so the next student opened doesn't flash the previous student's info
     return () => {
       dispatch(clearStudentProgress());
     };
@@ -23,7 +22,6 @@ export default function StudentDetail({ studentId, onClose }: StudentDetailProps
 
   return (
     <div
-      // Backdrop click closes the panel; inner click is stopped below to prevent bubbling
       className="fixed inset-0 flex justify-end"
       style={{ zIndex: 50, backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
       onClick={onClose}
@@ -102,7 +100,6 @@ export default function StudentDetail({ studentId, onClose }: StudentDetailProps
                 {Object.entries(selectedStudentProgress.summary.tierBreakdown).map(([tier, data]) => {
                   const tierNum = Number(tier);
                   const meta = TIER_META[tierNum as keyof typeof TIER_META];
-                  // Clamp to 0 when no exercises have been attempted to avoid a NaN width
                   const pct = data.total > 0 ? Math.round((data.completed / data.total) * 100) : 0;
                   return (
                     <div key={tier} className="flex items-center gap-3">
@@ -185,9 +182,8 @@ export default function StudentDetail({ studentId, onClose }: StudentDetailProps
                   </thead>
                   <tbody>
                     {selectedStudentProgress.progress
-                      .filter((p) => p.exercise) // drop orphaned progress whose exercise was deleted
+                      .filter((p) => p.exercise)
                       .sort((a, b) => {
-                        // Primary sort by tier so difficulty progression is visually grouped
                         const tierA = a.exercise?.tier ?? 0;
                         const tierB = b.exercise?.tier ?? 0;
                         if (tierA !== tierB) return tierA - tierB;
@@ -209,7 +205,6 @@ export default function StudentDetail({ studentId, onClose }: StudentDetailProps
                           </td>
                           <td className="text-right py-2 pl-3" style={{ color: 'var(--text-muted)' }}>
                             {p.attempts}
-                            {/* Asterisk flags that the student peeked at the solution */}
                             {p.solutionViewed && (
                               <span
                                 className="ml-1 text-xs"
@@ -255,7 +250,6 @@ function StatCard({ label, value, subtext }: { label: string; value: number; sub
 }
 
 function StatusBadge({ status }: { status: string }) {
-  // Fallback to not_started styles for any unrecognised status string
   const styles: Record<string, { bg: string; color: string; label: string }> = {
     completed: { bg: 'var(--bg-raised)', color: 'var(--success)', label: 'Completed' },
     in_progress: { bg: 'var(--bg-raised)', color: 'var(--warning)', label: 'In Progress' },
