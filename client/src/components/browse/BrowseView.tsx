@@ -21,7 +21,6 @@ import CollectionCards from './CollectionCards';
 import CollectionBanner from './CollectionBanner';
 import SubcategoryNav from './SubcategoryNav';
 
-// Curated subset of tags surfaced in the filter panel for quick one-click filtering
 const FEATURED_TAGS = [
   'arrays', 'strings', 'objects', 'loops', 'conditionals', 'functions',
   'oop', 'class', 'higher-order', 'reduce', 'map', 'filter',
@@ -34,7 +33,6 @@ const FEATURED_TAGS = [
   'positioning', 'typography', 'animation', 'responsive', 'accessibility',
 ] as const;
 
-// Main browse page: search bar, filter panel, topic/collection grids, and exercise list
 export default function BrowseView() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -48,7 +46,6 @@ export default function BrowseView() {
 
   const [showFilters, setShowFilters] = useState(false);
 
-  // Jump to a random unsolved exercise to encourage exploration
   const handleRandom = () => {
     const unsolved = exercises.filter((ex) => progressItems[ex._id]?.status !== 'completed');
     if (unsolved.length === 0) return;
@@ -56,7 +53,6 @@ export default function BrowseView() {
     navigate(`/exercises/${pick._id}`);
   };
 
-  // Apply all active filters and sort exercises; memoized to avoid re-filtering on each render
   const filteredExercises = useMemo(() => {
     let result = exercises;
 
@@ -90,7 +86,6 @@ export default function BrowseView() {
       );
     }
 
-    // Skip re-sorting when inside a collection — preserve the curated exercise order
     if (!filter.collectionId || filter.collectionId === '__in-progress__') {
       result = [...result].sort((a, b) => {
         if (statusSort !== 'default') {
@@ -245,7 +240,6 @@ export default function BrowseView() {
       )}
 
       <div className="flex-1 overflow-y-auto">
-          {/* Show topic and collection cards only on the unfiltered landing page */}
         {!hasActiveFilters && filter.categoryPath.length === 0 && (
           <>
             <TopicCards />

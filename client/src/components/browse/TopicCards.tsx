@@ -2,7 +2,6 @@ import { useAppDispatch, useAppSelector } from '../../features/store';
 import { setCategoryPath } from '../../features/uiSlice';
 import { calcPercent } from '../../utils/helpers';
 
-// Grid of top-level category cards with per-topic completion progress bars
 export default function TopicCards() {
   const dispatch = useAppDispatch();
   const categories = useAppSelector((s) => s.exercises.categories);
@@ -20,7 +19,6 @@ export default function TopicCards() {
       <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
         {topLevelKeys.map((key) => {
           const cat = categories[key];
-          // Match exercises whose root category matches this topic card
           const catExercises = exercises.filter((ex) => ex.category[0] === key);
           const completed = catExercises.filter((ex) => progressItems[ex._id]?.status === 'completed').length;
           const pct = calcPercent(completed, catExercises.length);

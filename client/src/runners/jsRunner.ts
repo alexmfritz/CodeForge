@@ -1,9 +1,7 @@
 import type { TestResult } from '@codeforge/shared';
 
-// Hard ceiling so infinite loops don't hang the UI
 const TIMEOUT_MS = 5000;
 
-// Detect if the test runner touches the DOM so we route it to an iframe instead of a Worker
 function needsDOM(testRunnerStr: string): boolean {
   return (
     /\bdocument\.createElement\b/.test(testRunnerStr) ||
@@ -12,13 +10,11 @@ function needsDOM(testRunnerStr: string): boolean {
   );
 }
 
-// Entry point: picks the best sandbox strategy based on environment and test content
 export async function runJsTests(code: string, testRunnerStr: string): Promise<TestResult[]> {
   if (!testRunnerStr.trim()) {
     return [{ pass: false, description: 'No test runner defined', got: undefined }];
   }
 
-  // Fallback for environments without Worker support (e.g. older DOC lab machines)
   if (typeof Worker === 'undefined') {
     return runDirect(code, testRunnerStr);
   }
@@ -30,7 +26,6 @@ export async function runJsTests(code: string, testRunnerStr: string): Promise<T
   return runInWorker(code, testRunnerStr);
 }
 
-// Main-thread evaluation — no isolation, used only as a last resort
 async function runDirect(code: string, testRunnerStr: string): Promise<TestResult[]> {
   try {
     const runner = new Function(`return (${testRunnerStr})`)() as (
@@ -48,7 +43,6 @@ async function runDirect(code: string, testRunnerStr: string): Promise<TestResul
   }
 }
 
-// Preferred path: runs student code in an isolated Worker thread with a timeout safety net
 function runInWorker(code: string, testRunnerStr: string): Promise<TestResult[]> {
   return new Promise((resolve) => {
     let settled = false;
@@ -93,13 +87,11 @@ function runInWorker(code: string, testRunnerStr: string): Promise<TestResult[]>
   });
 }
 
-// Used when tests need DOM APIs — sandboxed iframe provides a real document/window
 function runInIframeSandbox(code: string, testRunnerStr: string): Promise<TestResult[]> {
   return new Promise((resolve) => {
     let settled = false;
 
     const iframe = document.createElement('iframe');
-    // allow-scripts only — no allow-same-origin to prevent escaping the sandbox
     iframe.sandbox.add('allow-scripts');
     iframe.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:0;height:0;';
     document.body.appendChild(iframe);

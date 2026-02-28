@@ -1,7 +1,6 @@
 import type { Tier, ExerciseType, Category } from '@codeforge/shared';
 import { TIER_META, TYPE_META } from '@codeforge/shared/constants';
 
-// Prevents rapid-fire calls (e.g. auto-save on every keystroke) by collapsing into one
 export function debounce<T extends (...args: never[]) => unknown>(
   fn: T,
   delay: number,
@@ -13,7 +12,6 @@ export function debounce<T extends (...args: never[]) => unknown>(
   };
 }
 
-// Resolves the accent color from the root of the category tree for consistent badge tinting
 export function getCategoryColor(
   categoryPath: string[],
   categories: Record<string, Category>,
@@ -23,7 +21,6 @@ export function getCategoryColor(
   return root?.color ?? 'var(--accent)';
 }
 
-// Walks the category tree to build human-readable breadcrumb labels
 export function getCategoryLabels(
   categoryPath: string[],
   categories: Record<string, Category>,
@@ -51,7 +48,6 @@ export function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
 }
 
-// Avoids division-by-zero for empty collections, returns integer percentage
 export function calcPercent(completed: number, total: number): number {
   if (total === 0) return 0;
   return Math.round((completed / total) * 100);

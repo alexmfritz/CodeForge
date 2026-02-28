@@ -5,22 +5,18 @@ import fs from 'fs';
 import path from 'path';
 import { config } from '../config.js';
 
-// Assembles the full data bundle the client needs to populate the Redux store in one fetch
 export async function getExercisesData(): Promise<ExercisesData> {
-  // Parallel fetch to reduce round-trip latency on slow classroom networks
   const [exercises, collections] = await Promise.all([
     Exercise.find({ isActive: true }).lean(),
     Collection.find().sort({ order: 1 }).lean(),
   ]);
 
-  // Category hierarchy lives in a static JSON file rather than the DB for easy editing
   const categoriesPath = path.join(config.paths.exercises, 'categories.json');
   let categories = {};
   if (fs.existsSync(categoriesPath)) {
     categories = JSON.parse(fs.readFileSync(categoriesPath, 'utf-8'));
   }
 
-  // Manually stringify ObjectIds because .lean() returns raw BSON types
   const exerciseJson = exercises.map((ex) => ({
     ...ex,
     _id: ex._id.toString(),
@@ -55,7 +51,6 @@ export async function updateExercise(id: string, data: Record<string, unknown>, 
   return Exercise.findByIdAndUpdate(id, { ...data, updatedBy: userId }, { new: true });
 }
 
-// Appends a timestamp to guarantee uniqueness even for identically-titled exercises
 function generateSlug(title: string): string {
   const base = title
     .toLowerCase()

@@ -18,7 +18,6 @@ interface ExerciseToolbarProps {
   onCompare?: () => void;
 }
 
-// Horizontal bar above the editor: prev/next nav, exercise title, run button, and save status
 export default function ExerciseToolbar({
   exercise,
   prevExercise,
@@ -97,7 +96,6 @@ export default function ExerciseToolbar({
         )}
       </div>
       <div className="flex items-center gap-2">
-        {/* Warn when the student re-submits identical code they've already tried */}
         {duplicateWarning && (
           <span
             className="text-xs px-2 py-1 rounded"
@@ -120,7 +118,6 @@ export default function ExerciseToolbar({
             Reset
           </button>
         )}
-        {/* Compare button only appears after completion so students see the reference solution */}
         {isComplete && onCompare && (
           <button
             onClick={onCompare}

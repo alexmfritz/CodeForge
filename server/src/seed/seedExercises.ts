@@ -7,7 +7,6 @@ import { Collection } from '../models/Collection.js';
 import { BASE_POINTS } from '@codeforge/shared/constants';
 import type { Tier } from '@codeforge/shared';
 
-// Shape of exercise JSON before normalization into Mongoose documents
 interface RawExercise {
   id: number;
   title: string;
@@ -41,7 +40,6 @@ interface RawCollection {
   exercises?: RawExercise[];
 }
 
-// Deterministic slug using legacyId so re-seeding produces stable URLs
 function generateSlug(title: string, legacyId: number): string {
   const base = title
     .toLowerCase()
@@ -50,7 +48,6 @@ function generateSlug(title: string, legacyId: number): string {
   return `${base}-${legacyId}`;
 }
 
-// Backwards-compat: older JSON files used a single "hint" string field
 function normalizeHints(raw: RawExercise): string[] {
   if (raw.hints && raw.hints.length > 0) return raw.hints;
   if (raw.hint) return [raw.hint];
@@ -70,7 +67,6 @@ export async function seedExercises(): Promise<void> {
     return;
   }
 
-  // Only seed into an empty DB to avoid duplicating exercises on restart
   const existingCount = await Exercise.countDocuments();
   if (existingCount > 0) {
     console.log(`Found ${existingCount} exercises already seeded — skipping`);
@@ -79,7 +75,6 @@ export async function seedExercises(): Promise<void> {
 
   console.log(`Seeding exercises from ${files.length} collection files…`);
 
-  // Guard against duplicate IDs across collection files (first-write wins)
   const seenLegacyIds = new Set<number>();
   let totalExercises = 0;
 
@@ -140,7 +135,6 @@ export async function seedExercises(): Promise<void> {
       totalExercises++;
     }
 
-    // Back-populate the collection with the created exercise IDs
     collection.exerciseIds = exerciseIds.map((id) => new mongoose.Types.ObjectId(id));
     await collection.save();
 

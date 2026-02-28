@@ -1,6 +1,5 @@
 import { useAppSelector } from '../../features/store';
 
-// Header banner shown when browsing within a specific collection (name, description, attribution)
 export default function CollectionBanner() {
   const collectionId = useAppSelector((s) => s.ui.browseFilter.collectionId);
   const collection = useAppSelector((s) =>
@@ -20,7 +19,6 @@ export default function CollectionBanner() {
       {collection.description && (
         <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{collection.description}</p>
       )}
-      {/* Show provenance so instructors can verify licensing compliance */}
       {collection.source && (
         <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
           Source: {collection.source}

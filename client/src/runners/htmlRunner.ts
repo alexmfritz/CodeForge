@@ -1,6 +1,5 @@
 import type { TestResult, TestCase } from '@codeforge/shared';
 
-// Evaluates HTML exercises against declarative test cases using DOMParser (no iframe needed)
 export function runHtmlTests(htmlCode: string, testCases: TestCase[]): TestResult[] {
   const parser = new DOMParser();
   const doc = parser.parseFromString(
@@ -21,10 +20,8 @@ export function runHtmlTests(htmlCode: string, testCases: TestCase[]): TestResul
   });
 }
 
-// Dispatches each assertion type to the appropriate DOM or source-text check
 function evaluateHtmlAssertion(doc: Document, source: string, tc: TestCase): TestResult {
   const { assertion, value, description, flags } = tc;
-  // "selector" is a legacy alias for "query" in older exercise JSON files
   const query = tc.query ?? (tc as unknown as Record<string, unknown>).selector as string | undefined;
 
   switch (assertion) {
@@ -58,7 +55,6 @@ function evaluateHtmlAssertion(doc: Document, source: string, tc: TestCase): Tes
       const needle = String(value ?? '');
       return { pass: source.includes(needle), description, got: source.includes(needle) ? 'found' : `"${needle}" not found in source` };
     }
-    // Regex match against raw source for validating markup patterns (e.g. semantic tags)
     case 'sourceMatch': {
       const pattern = String(value ?? '');
       let matched = false;
