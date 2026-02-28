@@ -8,6 +8,7 @@ import userRoutes from './routes/users.js';
 import cohortRoutes from './routes/cohorts.js';
 import exerciseRoutes from './routes/exercises.js';
 import progressRoutes from './routes/progress.js';
+import instructorRoutes from './routes/instructor.js';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/cohorts', cohortRoutes);
 app.use('/api/exercises', exerciseRoutes);
 app.use('/api/progress', progressRoutes);
+app.use('/api/instructor', instructorRoutes);
 
 if (!config.isDev) {
   app.use(express.static(config.paths.clientDist));

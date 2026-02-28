@@ -12,6 +12,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import BrowseView from './components/browse/BrowseView';
 import ExerciseView from './components/exercise/ExerciseView';
 import StudentDashboard from './components/dashboard/StudentDashboard';
+import InstructorDashboard from './components/instructor/InstructorDashboard';
 import Toast from './components/shared/Toast';
 
 function App() {
@@ -105,7 +106,14 @@ function AppShell() {
       </header>
       <main className="flex-1 overflow-hidden">
         <Routes>
-          <Route path="/dashboard" element={<StudentDashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              user?.role === 'instructor' || user?.role === 'ta'
+                ? <InstructorDashboard />
+                : <StudentDashboard />
+            }
+          />
           <Route path="/exercises" element={<BrowseView />} />
           <Route path="/exercises/:id" element={<ExerciseView />} />
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
