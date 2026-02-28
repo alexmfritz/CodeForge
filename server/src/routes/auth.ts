@@ -1,4 +1,3 @@
-// Auth routes — login and current-user endpoints
 import { Router } from 'express';
 import { login } from '../services/authService.js';
 import { authenticate } from '../middleware/auth.js';
@@ -8,7 +7,6 @@ import { User } from '../models/User.js';
 
 const router = Router();
 
-// POST /login — validate credentials via Zod schema, return JWT + user on success
 router.post('/login', validate(loginSchema), async (req, res) => {
   try {
     const result = await login(req.body.username, req.body.password);
@@ -22,7 +20,6 @@ router.post('/login', validate(loginSchema), async (req, res) => {
   }
 });
 
-// GET /me — requires valid JWT; returns the currently authenticated user
 router.get('/me', authenticate, async (req, res) => {
   try {
     const user = await User.findById(req.user!.userId);

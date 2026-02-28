@@ -1,10 +1,8 @@
-// Auth middleware — JWT verification and role-based authorization
 import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { config } from '../config.js';
 import type { JwtPayload, Role } from '@codeforge/shared';
 
-// Augment Express Request to carry the decoded JWT payload on req.user
 declare global {
   namespace Express {
     interface Request {
@@ -13,7 +11,6 @@ declare global {
   }
 }
 
-// authenticate: extracts Bearer token from Authorization header, verifies it, and attaches payload to req.user
 export function authenticate(req: Request, res: Response, next: NextFunction): void {
   const header = req.headers.authorization;
   if (!header?.startsWith('Bearer ')) {
@@ -31,7 +28,6 @@ export function authenticate(req: Request, res: Response, next: NextFunction): v
   }
 }
 
-// authorize: factory that returns middleware restricting access to the listed roles
 export function authorize(...roles: Role[]) {
   return (req: Request, res: Response, next: NextFunction): void => {
     if (!req.user) {

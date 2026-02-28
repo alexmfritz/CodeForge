@@ -1,8 +1,6 @@
-// Cohort service — CRUD and student enrollment management
 import { Cohort } from '../models/Cohort.js';
 import { User } from '../models/User.js';
 
-// Create a new cohort record
 export async function createCohort(data: { name: string; startDate: string; endDate?: string }) {
   const cohort = await Cohort.create({
     name: data.name,
@@ -13,7 +11,6 @@ export async function createCohort(data: { name: string; startDate: string; endD
   return cohort.toJSON();
 }
 
-// Enroll a student in a cohort by setting their cohortId (only students allowed)
 export async function addStudentToCohort(cohortId: string, userId: string) {
   const [cohort, user] = await Promise.all([Cohort.findById(cohortId), User.findById(userId)]);
 
@@ -26,7 +23,6 @@ export async function addStudentToCohort(cohortId: string, userId: string) {
   return user.toJSON();
 }
 
-// Unenroll a student by clearing their cohortId
 export async function removeStudentFromCohort(userId: string) {
   const user = await User.findById(userId);
   if (!user) throw new Error('User not found');
@@ -36,7 +32,6 @@ export async function removeStudentFromCohort(userId: string) {
   return user.toJSON();
 }
 
-// Fetch a cohort and include a count of its active students
 export async function getCohortWithStudentCount(cohortId: string) {
   const cohort = await Cohort.findById(cohortId);
   if (!cohort) return null;

@@ -1,9 +1,7 @@
-// Auth Redux slice — manages user session state, login/logout, and token lifecycle
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { User } from '@codeforge/shared';
 import { apiFetch, setToken, clearToken, getToken } from '../utils/api';
 
-// Slice state: user object, JWT token, loading flag, and error message
 interface AuthState {
   user: User | null;
   token: string | null;
@@ -11,7 +9,6 @@ interface AuthState {
   error: string | null;
 }
 
-// Hydrate token from localStorage so the session survives page reloads
 const initialState: AuthState = {
   user: null,
   token: getToken(),
@@ -19,7 +16,6 @@ const initialState: AuthState = {
   error: null,
 };
 
-// Async thunk: POST credentials to /api/auth/login, persist token on success
 export const login = createAsyncThunk(
   'auth/login',
   async (credentials: { username: string; password: string }, { rejectWithValue }) => {
@@ -37,7 +33,6 @@ export const login = createAsyncThunk(
   },
 );
 
-// Async thunk: GET /api/auth/me to rehydrate the user from a stored token
 export const fetchMe = createAsyncThunk('auth/fetchMe', async (_, { rejectWithValue }) => {
   const result = await apiFetch<User>('/api/auth/me');
 
@@ -49,7 +44,6 @@ export const fetchMe = createAsyncThunk('auth/fetchMe', async (_, { rejectWithVa
   return result.data;
 });
 
-// Slice definition with sync reducers (logout, clearError) and async thunk case handlers
 const authSlice = createSlice({
   name: 'auth',
   initialState,

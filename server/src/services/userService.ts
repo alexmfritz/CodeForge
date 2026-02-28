@@ -1,16 +1,13 @@
-// User service — credential generation and user CRUD
 import { User } from '../models/User.js';
 import { hashPassword } from './authService.js';
 import type { Role } from '@codeforge/shared';
 
-// Username convention: first initial + full last name, e.g. "Jane Doe" -> "jdoe"
 export function generateUsername(firstName: string, lastName: string): string {
   const first = firstName.trim().toLowerCase();
   const last = lastName.trim().toLowerCase().replace(/\s+/g, '');
   return `${first.charAt(0)}${last}`;
 }
 
-// Append numeric suffix if the generated username already exists (jdoe, jdoe1, jdoe2, ...)
 export async function ensureUniqueUsername(baseUsername: string): Promise<string> {
   let username = baseUsername;
   let suffix = 1;
@@ -21,7 +18,6 @@ export async function ensureUniqueUsername(baseUsername: string): Promise<string
   return username;
 }
 
-// Create a single user; default password is the DOC number (hashed)
 export async function createUser(data: {
   firstName: string;
   lastName: string;
@@ -47,7 +43,6 @@ export async function createUser(data: {
   return user.toJSON();
 }
 
-// Bulk-create students for a given cohort (iterates to handle unique username generation)
 export async function bulkCreateUsers(
   users: { firstName: string; lastName: string; docNumber: string }[],
   cohortId: string,
@@ -64,7 +59,6 @@ export async function bulkCreateUsers(
   return results;
 }
 
-// Reset password back to the user's DOC number (instructor-initiated)
 export async function resetPassword(userId: string) {
   const user = await User.findById(userId);
   if (!user) return null;
