@@ -6,6 +6,10 @@ import {
   recordLocalFailedAttempt,
   selectIsDuplicateCode,
 } from '../../../features/progressSlice';
+import {
+  addNewlyEarned,
+  showAchievementToast,
+} from '../../../features/achievementsSlice';
 import { runJsTests } from '../../../runners/jsRunner';
 import { runHtmlTests } from '../../../runners/htmlRunner';
 import { runCssTests } from '../../../runners/cssRunner';
@@ -97,13 +101,22 @@ export function useTestRunner(
     if (allPass) {
       const wasAlreadyComplete = store.getState().progress.items[exercise._id]?.status === 'completed';
       const progress = store.getState().progress.items[exercise._id];
-      void dispatch(markComplete({
+      const completeResult = await dispatch(markComplete({
         exerciseId: exercise._id,
         attempts: progress?.uniqueAttempts ?? 1,
         solutionViewed: progress?.solutionViewed ?? false,
       }));
       if (!wasAlreadyComplete) {
         dispatch(showToast({ message: getRandomCelebration(), type: 'celebration' }));
+      }
+      if (markComplete.fulfilled.match(completeResult)) {
+        const earned = completeResult.payload.newAchievements;
+        if (earned.length > 0) {
+          dispatch(addNewlyEarned(earned));
+          setTimeout(() => {
+            dispatch(showAchievementToast(earned[0]));
+          }, 1500);
+        }
       }
     } else if (!isDuplicate) {
       dispatch(recordLocalFailedAttempt({ exerciseId: exercise._id, code: fullCode }));

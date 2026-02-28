@@ -3,6 +3,19 @@ import type { Progress } from '@codeforge/shared';
 import { apiFetch } from '../utils/api';
 import type { RootState } from './store';
 
+interface NewAchievement {
+  _id: string;
+  achievementId: string;
+  name: string;
+  description: string;
+  icon: string;
+  earnedAt: string;
+}
+
+interface CompleteResponse extends Progress {
+  newAchievements?: NewAchievement[];
+}
+
 function hashCode(str: string): string {
   let hash = 5381;
   for (let i = 0; i < str.length; i++) {
@@ -73,14 +86,15 @@ export const markComplete = createAsyncThunk(
     }: { exerciseId: string; attempts: number; solutionViewed: boolean },
     { rejectWithValue },
   ) => {
-    const result = await apiFetch<Progress>(`/api/progress/${exerciseId}/complete`, {
+    const result = await apiFetch<CompleteResponse>(`/api/progress/${exerciseId}/complete`, {
       method: 'POST',
       body: JSON.stringify({ attempts, solutionViewed }),
     });
     if (!result.success || !result.data) {
       return rejectWithValue(result.error || 'Complete failed');
     }
-    return result.data;
+    const { newAchievements, ...progress } = result.data;
+    return { progress: progress as Progress, newAchievements: newAchievements ?? [] };
   },
 );
 
@@ -151,7 +165,7 @@ const progressSlice = createSlice({
         state.items[action.payload.progress.exerciseId] = action.payload.progress;
       })
       .addCase(markComplete.fulfilled, (state, action) => {
-        state.items[action.payload.exerciseId] = action.payload;
+        state.items[action.payload.progress.exerciseId] = action.payload.progress;
       })
       .addCase(resetExercise.fulfilled, (state, action) => {
         const { exerciseId, progress } = action.payload;

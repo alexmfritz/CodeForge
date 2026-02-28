@@ -15,6 +15,7 @@ import StudentDashboard from './components/dashboard/StudentDashboard';
 import InstructorDashboard from './components/instructor/InstructorDashboard';
 import AssignmentDetail from './components/assignments/AssignmentDetail';
 import Toast from './components/shared/Toast';
+import AchievementToast from './components/achievements/AchievementToast';
 
 function App() {
   const theme = useAppSelector((state) => state.ui.theme);
@@ -52,6 +53,7 @@ function App() {
         />
       </Routes>
       <Toast />
+      <AchievementToast />
     </>
   );
 }
