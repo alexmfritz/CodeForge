@@ -2,10 +2,12 @@ import { useAppSelector } from '../../features/store';
 import { calcPercent } from '../../utils/helpers';
 
 export default function CollectionProgress() {
+  // reads directly from the exercises slice so progress stays reactive without a separate fetch
   const collections = useAppSelector((s) => s.exercises.collections);
   const exercises = useAppSelector((s) => s.exercises.exercises);
-  const progressItems = useAppSelector((s) => s.progress.items);
+  const progressItems = useAppSelector((s) => s.progress.items); // keyed by exerciseId for O(1) lookups
 
+  // hidden collections are admin-only or not yet published; omit from student view
   const visibleCollections = collections.filter((c) => !c.hidden);
   if (visibleCollections.length === 0) return null;
 
@@ -19,6 +21,7 @@ export default function CollectionProgress() {
       </h3>
       <div className="flex flex-col gap-3">
         {visibleCollections.map((col) => {
+          // Set enables O(1) membership test when filtering the full exercises list
           const colIds = new Set(col.exerciseIds);
           const colExercises = exercises.filter((ex) => colIds.has(ex._id));
           const completed = colExercises.filter((ex) => progressItems[ex._id]?.status === 'completed').length;
@@ -32,6 +35,7 @@ export default function CollectionProgress() {
                   <span className="text-xs font-medium" style={{ color: 'var(--text-primary)' }}>
                     {col.name}
                   </span>
+                  {/* source attribute credits the textbook/curriculum this collection maps to */}
                   {col.source && (
                     <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
                       {col.source}
@@ -43,6 +47,7 @@ export default function CollectionProgress() {
                 </span>
               </div>
               <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--bg-raised)' }}>
+                {/* fall back to accent so bars are never colorless when collection has no custom color */}
                 <div
                   className="h-full rounded-full transition-all duration-300"
                   style={{ width: `${pct}%`, backgroundColor: col.color ?? 'var(--accent)' }}

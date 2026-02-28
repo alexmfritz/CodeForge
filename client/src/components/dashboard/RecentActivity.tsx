@@ -9,6 +9,7 @@ interface RecentActivityProps {
 export default function RecentActivity({ items }: RecentActivityProps) {
   const navigate = useNavigate();
 
+  // empty state shown before the student has completed any exercises
   if (items.length === 0) {
     return (
       <div
@@ -41,18 +42,20 @@ export default function RecentActivity({ items }: RecentActivityProps) {
           const relative = formatRelativeDate(date);
 
           return (
+            // button instead of div so each row is keyboard-navigable
             <button
-              key={item.exerciseId + item.completedAt}
+              key={item.exerciseId + item.completedAt} // completedAt disambiguates if an exercise was reset and re-completed
               onClick={() => navigate(`/exercises/${item.exerciseId}`)}
               className="flex items-center gap-3 p-2 rounded-lg text-left cursor-pointer transition-all duration-150"
               style={{ backgroundColor: 'transparent' }}
-              onMouseEnter={(e) => {
+              onMouseEnter={(e) => { // inline hover because Tailwind can't access CSS vars in hover: utilities
                 (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--bg-raised)';
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
               }}
             >
+              {/* optional chaining guards against a tier value that hasn't been added to TIER_META yet */}
               <div
                 className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
                 style={{ backgroundColor: tierMeta?.bgColor, color: tierMeta?.color, border: `1px solid ${tierMeta?.borderColor}` }}
@@ -73,6 +76,7 @@ export default function RecentActivity({ items }: RecentActivityProps) {
               >
                 {typeMeta?.label}
               </div>
+              {/* prefix with + to reinforce that score is an earned reward, not a raw value */}
               <div className="flex-shrink-0 text-sm font-medium" style={{ color: 'var(--accent)' }}>
                 +{item.score}
               </div>
@@ -84,6 +88,7 @@ export default function RecentActivity({ items }: RecentActivityProps) {
   );
 }
 
+// kept local since no other component needs relative dates yet; promote to a util if reused
 function formatRelativeDate(date: Date): string {
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
@@ -95,5 +100,5 @@ function formatRelativeDate(date: Date): string {
   if (diffMin < 60) return `${diffMin}m ago`;
   if (diffHr < 24) return `${diffHr}h ago`;
   if (diffDay < 7) return `${diffDay}d ago`;
-  return date.toLocaleDateString();
+  return date.toLocaleDateString(); // falls back to locale date string beyond one week
 }

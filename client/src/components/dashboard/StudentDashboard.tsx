@@ -14,12 +14,13 @@ export default function StudentDashboard() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { stats, loading } = useAppSelector((s) => s.dashboard);
-  const exerciseCount = useAppSelector((s) => s.exercises.exercises.length);
+  const exerciseCount = useAppSelector((s) => s.exercises.exercises.length); // sourced from exercises slice, not stats, so it stays fresh
 
   useEffect(() => {
     dispatch(fetchDashboardStats());
-  }, [dispatch]);
+  }, [dispatch]); // refetch on mount to pick up any progress changes since last visit
 
+  // show skeletons only on first load; subsequent refreshes keep stale data visible
   if (loading && !stats) {
     return (
       <div className="h-full overflow-y-auto p-6">
@@ -35,6 +36,7 @@ export default function StudentDashboard() {
     );
   }
 
+  // stats will be null before the first fetch resolves; avoids a flash of empty UI
   if (!stats) return null;
 
   return (
@@ -60,7 +62,7 @@ export default function StudentDashboard() {
         <ScoreCard
           totalScore={stats.totalScore}
           completedCount={stats.completedCount}
-          totalExercises={exerciseCount}
+          totalExercises={exerciseCount} // live count from store, not cached in stats
         />
 
         <StatsRow
@@ -70,15 +72,18 @@ export default function StudentDashboard() {
           totalScore={stats.totalScore}
         />
 
+        {/* auto-fit so the two panels stack on narrow screens */}
         <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
           <TierBreakdown tierBreakdown={stats.tierBreakdown} />
           <TypeBreakdown typeBreakdown={stats.typeBreakdown} />
         </div>
 
+        {/* CollectionProgress reads directly from store to avoid duplicating collection data in stats */}
         <CollectionProgress />
 
         <RecentActivity items={stats.recentActivity} />
 
+        {/* placeholder panels — dashed border signals unimplemented features to reviewers */}
         <div
           className="rounded-lg p-5"
           style={{ backgroundColor: 'var(--bg-surface)', border: '1px dashed var(--border)' }}

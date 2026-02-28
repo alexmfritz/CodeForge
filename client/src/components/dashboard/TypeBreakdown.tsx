@@ -7,6 +7,7 @@ interface TypeBreakdownProps {
 }
 
 export default function TypeBreakdown({ typeBreakdown }: TypeBreakdownProps) {
+  // derive order from TYPE_META so adding a new type only requires updating the shared constant
   const types = Object.keys(TYPE_META) as ExerciseType[];
 
   return (
@@ -21,11 +22,12 @@ export default function TypeBreakdown({ typeBreakdown }: TypeBreakdownProps) {
         {types.map((type) => {
           const meta = TYPE_META[type];
           const data = typeBreakdown[type];
-          if (!data) return null;
+          if (!data) return null; // type is defined in meta but student has no exercises of this type
           const pct = calcPercent(data.completed, data.total);
 
           return (
             <div key={type} className="flex items-center gap-3">
+              {/* `${color}22` appends hex alpha for a translucent tinted pill background */}
               <div
                 className="flex-shrink-0 px-2 py-1 rounded text-xs font-bold"
                 style={{ backgroundColor: `${meta.color}22`, color: meta.color }}
