@@ -59,7 +59,7 @@ export default function CollectionCards() {
             >
               <div className="flex flex-col gap-0.5">
                 <span className="font-heading font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{col.name}</span>
-                {col.source && <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{col.source}</span>}
+                {col.source && col.source !== col.name && <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{col.source}</span>}
               </div>
               <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
                 <span>{colCompleted}/{colExercises.length}</span>

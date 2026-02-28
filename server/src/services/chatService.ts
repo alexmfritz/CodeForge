@@ -1,9 +1,10 @@
 import { ChatMessage } from '../models/ChatMessage.js';
 import { ChatLog } from '../models/ChatLog.js';
+import { config } from '../config.js';
 import type { EmojiReaction } from '@codeforge/shared';
 
 export function getTodayDateString(): string {
-  return new Date().toISOString().split('T')[0];
+  return new Date().toLocaleDateString('en-CA', { timeZone: config.timezone });
 }
 
 export async function saveMessage(data: {

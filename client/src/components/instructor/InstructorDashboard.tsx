@@ -95,12 +95,12 @@ export default function InstructorDashboard() {
           </select>
         </div>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
           {TABS.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className="px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              className="px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0"
               style={{
                 backgroundColor: activeTab === tab.id ? 'var(--bg-surface)' : 'transparent',
                 color: activeTab === tab.id ? 'var(--accent)' : 'var(--text-muted)',
