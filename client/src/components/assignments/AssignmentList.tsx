@@ -16,7 +16,6 @@ export default function AssignmentList({ cohortId }: AssignmentListProps) {
   const user = useAppSelector((s) => s.auth.user);
   const progressItems = useAppSelector((s) => s.progress.items);
 
-  // Refetch when cohortId changes (instructor switching cohorts)
   useEffect(() => {
     dispatch(fetchAssignments(cohortId));
   }, [dispatch, cohortId]);
@@ -50,7 +49,6 @@ export default function AssignmentList({ cohortId }: AssignmentListProps) {
       {assignments.map((assignment) => {
         const exerciseCount = assignment.exerciseIds.length;
         let completedCount = 0;
-        // Count completed exercises for progress display
         if (isStudent) {
           completedCount = assignment.exerciseIds.filter(
             (eid) => progressItems[eid]?.status === 'completed',

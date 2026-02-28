@@ -30,7 +30,6 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  // Search across title, category, and type with limit to prevent UI overflow
   const filteredExercises = useMemo(() => {
     if (!exerciseSearch.trim()) return exercises.slice(0, 50);
     const q = exerciseSearch.toLowerCase();
@@ -44,7 +43,6 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
       .slice(0, 50);
   }, [exercises, exerciseSearch]);
 
-  // Filter to active students in selected cohort for optional targeting
   const cohortStudents = useMemo(() => {
     if (!cohortId) return [];
     return students.filter((s) => s.cohortId === cohortId && s.role === 'student' && s.isActive);
@@ -62,7 +60,6 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
     );
   };
 
-  // Validate required fields and dispatch create/update with proper date formatting
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -224,7 +221,6 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
                 No exercises found.
               </div>
             ) : (
-              // Toggle exercise selection for inclusion in assignment
               filteredExercises.map((ex) => {
                 const isSelected = selectedExerciseIds.includes(ex._id);
                 return (
@@ -278,7 +274,6 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
                 border: '1px solid var(--border)',
               }}
             >
-              {/* Only show if targeting specific students, not assigning to all */}
               {cohortStudents.map((student) => {
                 const isSelected = targetStudentIds.includes(student._id);
                 return (
