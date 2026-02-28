@@ -4,9 +4,10 @@ import { calcPercent } from '../../utils/helpers';
 
 interface TypeBreakdownProps {
   typeBreakdown: Record<string, BreakdownEntry>;
+  onTypeClick?: (type: ExerciseType) => void;
 }
 
-export default function TypeBreakdown({ typeBreakdown }: TypeBreakdownProps) {
+export default function TypeBreakdown({ typeBreakdown, onTypeClick }: TypeBreakdownProps) {
   const types = Object.keys(TYPE_META) as ExerciseType[];
 
   return (
@@ -25,7 +26,15 @@ export default function TypeBreakdown({ typeBreakdown }: TypeBreakdownProps) {
           const pct = calcPercent(data.completed, data.total);
 
           return (
-            <div key={type} className="flex items-center gap-3">
+            <button
+              key={type}
+              type="button"
+              onClick={() => onTypeClick?.(type)}
+              className="flex items-center gap-3 w-full text-left rounded-lg px-2 py-1.5 -mx-2 transition-colors"
+              style={{ background: 'none', border: 'none', cursor: onTypeClick ? 'pointer' : 'default' }}
+              onMouseEnter={(e) => { if (onTypeClick) (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--bg-raised)'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; }}
+            >
               <div
                 className="flex-shrink-0 px-2 py-1 rounded text-xs font-bold"
                 style={{ backgroundColor: `${meta.color}22`, color: meta.color }}
@@ -48,7 +57,12 @@ export default function TypeBreakdown({ typeBreakdown }: TypeBreakdownProps) {
               <div className="flex-shrink-0 text-xs font-medium w-12 text-right" style={{ color: meta.color }}>
                 {data.score}
               </div>
-            </div>
+              {onTypeClick && (
+                <svg className="flex-shrink-0" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              )}
+            </button>
           );
         })}
       </div>

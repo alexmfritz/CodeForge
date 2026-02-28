@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { Theme, Toast, Tier, StatusSort } from '@codeforge/shared';
+import type { Theme, Toast, Tier, ExerciseType, StatusSort } from '@codeforge/shared';
 import { THEMES, DEFAULT_THEME } from '@codeforge/shared/constants';
 
 const VALID_THEMES = new Set(THEMES.map((t) => t.id));
@@ -19,6 +19,7 @@ interface UiState {
     search: string;
     tags: string[];
     tier: Tier | null;
+    type: ExerciseType | null;
     collectionId: string | null;
     categoryPath: string[];
   };
@@ -36,6 +37,7 @@ const initialState: UiState = {
     search: '',
     tags: [],
     tier: null,
+    type: null,
     collectionId: null,
     categoryPath: [],
   },
@@ -82,6 +84,9 @@ const uiSlice = createSlice({
     setTierFilter(state, action: PayloadAction<Tier | null>) {
       state.browseFilter.tier = action.payload;
     },
+    setTypeFilter(state, action: PayloadAction<ExerciseType | null>) {
+      state.browseFilter.type = action.payload;
+    },
     setCollectionFilter(state, action: PayloadAction<string | null>) {
       state.browseFilter.collectionId = action.payload;
     },
@@ -93,6 +98,7 @@ const uiSlice = createSlice({
         search: '',
         tags: [],
         tier: null,
+        type: null,
         collectionId: null,
         categoryPath: [],
       };
@@ -123,6 +129,7 @@ export const {
   setSearch,
   toggleTag,
   setTierFilter,
+  setTypeFilter,
   setCollectionFilter,
   setCategoryPath,
   clearFilters,
