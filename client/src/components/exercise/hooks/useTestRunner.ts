@@ -103,7 +103,7 @@ export function useTestRunner(
       const progress = store.getState().progress.items[exercise._id];
       const completeResult = await dispatch(markComplete({
         exerciseId: exercise._id,
-        attempts: progress?.uniqueAttempts ?? 1,
+        attempts: Math.max(progress?.uniqueAttempts ?? 0, 1),
         solutionViewed: progress?.solutionViewed ?? false,
       }));
       if (!wasAlreadyComplete) {
