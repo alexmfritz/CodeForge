@@ -99,8 +99,8 @@ export default function MessageBubble({ message, showPin }: MessageBubbleProps) 
           </div>
         )}
 
-        <div className="flex items-center justify-between">
-          <ReactionBar messageId={message._id} reactions={message.reactions} />
+        <div className="flex items-center justify-between" style={{ position: 'relative' }}>
+          <ReactionBar messageId={message._id} reactions={message.reactions} isOwn={isOwn} readOnly={!showPin} />
           {isInstructor && showPin && (
             <button
               onClick={handlePin}

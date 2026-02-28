@@ -66,6 +66,7 @@ function AppShell() {
   const unreadCount = useAppSelector((state) => state.chat.unreadCount);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useSocket();
 
@@ -82,7 +83,7 @@ function AppShell() {
           <nav className="flex items-center gap-1">
             <NavLink to="/dashboard" label="Dashboard" />
             <NavLink to="/exercises" label="Exercises" />
-            <NavLink to="/chat" label="Chat" badge={unreadCount} />
+            <NavLink to="/chat" label="Chat" badge={location.pathname.startsWith('/chat') ? undefined : unreadCount} />
           </nav>
         </div>
         <div className="flex items-center gap-4">
