@@ -16,7 +16,6 @@ export const fetchDashboardStats = createAsyncThunk(
   'dashboard/fetchStats',
   async (_, { rejectWithValue }) => {
     const result = await apiFetch<DashboardStats>('/api/progress/stats');
-    // propagate error string into rejected action so UI can surface it if needed
     if (!result.success || !result.data) {
       return rejectWithValue(result.error || 'Failed to load stats');
     }
@@ -27,18 +26,18 @@ export const fetchDashboardStats = createAsyncThunk(
 const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState,
-  reducers: {}, // no synchronous mutations needed; all updates come through the async thunk
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchDashboardStats.pending, (state) => {
-        state.loading = true; // triggers skeleton on first load
+        state.loading = true;
       })
       .addCase(fetchDashboardStats.fulfilled, (state, action) => {
         state.loading = false;
         state.stats = action.payload;
       })
       .addCase(fetchDashboardStats.rejected, (state) => {
-        state.loading = false; // clears loading even on failure so skeleton doesn't hang
+        state.loading = false;
       });
   },
 });
