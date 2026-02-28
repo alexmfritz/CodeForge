@@ -7,7 +7,6 @@ import TierBadge from '../shared/TierBadge';
 import TypeBadge from '../shared/TypeBadge';
 
 // ─── Types ─────────────────────────────────────────────────────────────────
-// Props for the 6-step exercise creation/editing wizard
 
 interface ExerciseWizardProps {
   onClose: () => void;
@@ -26,7 +25,6 @@ const STEPS: { step: WizardStep; label: string }[] = [
   { step: 6, label: 'Review' },
 ];
 
-// Available assertion types for HTML/CSS test cases
 const ASSERTION_OPTIONS: TestCase['assertion'][] = [
   'exists',
   'textContains',
@@ -40,7 +38,6 @@ const ASSERTION_OPTIONS: TestCase['assertion'][] = [
   'contains',
 ];
 
-// Type-specific placeholder text for the starter code textarea
 const STARTER_PLACEHOLDERS: Record<ExerciseType, string> = {
   js: 'function myFunction() {\n  // your code here\n}',
   html: '<!-- Your HTML here -->',
@@ -49,7 +46,6 @@ const STARTER_PLACEHOLDERS: Record<ExerciseType, string> = {
 };
 
 // ─── Tooltip Component ─────────────────────────────────────────────────────
-// Hover/click tooltip for field help text, positioned above the trigger
 
 function InfoTooltip({ text }: { text: string }) {
   const [show, setShow] = useState(false);
@@ -101,7 +97,6 @@ function InfoTooltip({ text }: { text: string }) {
 }
 
 // ─── Chip Input Component ──────────────────────────────────────────────────
-// Reusable tag/chip input with type-ahead suggestions, used for categories and tags
 
 function ChipInput({
   label,
@@ -226,8 +221,6 @@ function ChipInput({
 }
 
 // ─── Main Wizard ───────────────────────────────────────────────────────────
-// 6-step wizard: Basics → Instructions → Code → Tests → Extras → Review
-// Supports both create and edit mode via the optional editExercise prop
 
 export default function ExerciseWizard({ onClose, onCreated, editExercise }: ExerciseWizardProps) {
   const dispatch = useAppDispatch();
@@ -240,7 +233,6 @@ export default function ExerciseWizard({ onClose, onCreated, editExercise }: Exe
   const categoryKeys = useMemo(() => Object.keys(categories), [categories]);
 
   // ─── Form State ────────────────────────────────────────────────────────
-  // Each step's fields are initialized from editExercise when in edit mode
   const [currentStep, setCurrentStep] = useState<WizardStep>(1);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -284,7 +276,6 @@ export default function ExerciseWizard({ onClose, onCreated, editExercise }: Exe
   };
 
   // ─── Validation ────────────────────────────────────────────────────────
-  // Per-step validation: required fields checked before advancing
 
   const validateStep = (step: WizardStep): boolean => {
     const errors: Record<string, string> = {};
@@ -327,7 +318,6 @@ export default function ExerciseWizard({ onClose, onCreated, editExercise }: Exe
     setCurrentStep((s) => Math.max(s - 1, 1) as WizardStep);
   };
 
-  // Click step indicator to jump: backward always allowed, forward validates intermediate steps
   const goToStep = (step: WizardStep) => {
     if (step < currentStep) {
       setValidationErrors({});
@@ -342,7 +332,6 @@ export default function ExerciseWizard({ onClose, onCreated, editExercise }: Exe
   };
 
   // ─── Submit ────────────────────────────────────────────────────────────
-  // Build payload from all form fields, dispatch create or update thunk
 
   const handleSubmit = async () => {
     setError('');
@@ -383,7 +372,6 @@ export default function ExerciseWizard({ onClose, onCreated, editExercise }: Exe
   };
 
   // ─── Test Case Helpers ─────────────────────────────────────────────────
-  // CRUD operations for HTML/CSS structured test cases
 
   const addTestCase = () => {
     setTestCases([
@@ -403,7 +391,6 @@ export default function ExerciseWizard({ onClose, onCreated, editExercise }: Exe
   };
 
   // ─── Hint Helpers ──────────────────────────────────────────────────────
-  // Hints are ordered (unlock progressively at 3, 6, 9 attempts) and reorderable
 
   const addHint = () => setHints([...hints, '']);
   const updateHint = (index: number, value: string) => {

@@ -6,7 +6,6 @@ import TierBadge from '../shared/TierBadge';
 import TypeBadge from '../shared/TypeBadge';
 import ExerciseWizard from './ExerciseWizard';
 
-// Instructor exercise list with search, filters, and create/edit wizard access
 interface ExerciseManagerProps {
   cohortId?: string;
 }
@@ -21,7 +20,6 @@ export default function ExerciseManager({ cohortId: _cohortId }: ExerciseManager
   const [filterTier, setFilterTier] = useState<Tier | ''>('');
   const [filterCollection, setFilterCollection] = useState('');
 
-  // Filter exercises by search text, type, tier, and collection
   const filteredExercises = useMemo(() => {
     let result = exercises;
 
@@ -94,7 +92,6 @@ export default function ExerciseManager({ cohortId: _cohortId }: ExerciseManager
     border: '1px solid var(--border)',
   };
 
-  // When wizard is open, it replaces the list view entirely
   if (showWizard) {
     return (
       <ExerciseWizard
