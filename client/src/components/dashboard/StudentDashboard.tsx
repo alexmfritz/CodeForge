@@ -22,6 +22,14 @@ import AssignmentList from '../assignments/AssignmentList';
 import AchievementGrid from '../achievements/AchievementGrid';
 import Skeleton from '../shared/Skeleton';
 
+type Tab = 'progress' | 'achievements' | 'cohort';
+
+const TABS: { id: Tab; label: string }[] = [
+  { id: 'progress', label: 'Progress' },
+  { id: 'achievements', label: 'Achievements' },
+  { id: 'cohort', label: 'Cohort' },
+];
+
 export default function StudentDashboard() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -30,6 +38,8 @@ export default function StudentDashboard() {
   const collections = useAppSelector((s) => s.exercises.collections);
   const progressItems = useAppSelector((s) => s.progress.items);
 
+  const user = useAppSelector((s) => s.auth.user);
+  const [activeTab, setActiveTab] = useState<Tab>('progress');
   const [filterTier, setFilterTierLocal] = useState<Tier | null>(null);
   const [filterCollection, setFilterCollectionLocal] = useState<string | null>(null);
 
@@ -133,96 +143,133 @@ export default function StudentDashboard() {
           </button>
         </div>
 
-        {/* Progress filters */}
-        <div className="flex items-center gap-3 flex-wrap">
-          <div className="flex items-center gap-1">
-            {([1, 2, 3, 4, 5] as Tier[]).map((t) => {
-              const meta = TIER_META[t];
-              return (
-                <button
-                  key={t}
-                  onClick={() => setFilterTierLocal(filterTier === t ? null : t)}
-                  className="tier-badge"
-                  style={{
-                    width: 22,
-                    height: 22,
-                    fontSize: 9,
-                    backgroundColor: filterTier === t ? meta.bgColor : 'var(--bg-raised)',
-                    border: `1px solid ${filterTier === t ? meta.color : 'var(--border)'}`,
-                    color: filterTier === t ? meta.color : 'var(--text-faint)',
-                    cursor: 'pointer',
-                  }}
-                >
-                  {meta.label}
-                </button>
-              );
-            })}
-          </div>
-
-          <select
-            value={filterCollection ?? ''}
-            onChange={(e) => setFilterCollectionLocal(e.target.value || null)}
-            className="text-xs px-2 py-1 rounded"
-            style={{
-              backgroundColor: 'var(--bg-raised)',
-              border: `1px solid ${filterCollection ? 'var(--accent)' : 'var(--border)'}`,
-              color: filterCollection ? 'var(--accent)' : 'var(--text-secondary)',
-              cursor: 'pointer',
-              fontFamily: 'Lexend, sans-serif',
-            }}
-          >
-            <option value="">All Collections</option>
-            {visibleCollections.map((col) => (
-              <option key={col._id} value={col._id}>
-                {col.name}
-              </option>
-            ))}
-          </select>
-
-          {(filterTier || filterCollection) && (
+        <div className="flex items-center gap-1">
+          {TABS.map((tab) => (
             <button
-              onClick={() => { setFilterTierLocal(null); setFilterCollectionLocal(null); }}
-              className="text-xs px-2 py-1 rounded"
-              style={{ color: 'var(--text-muted)', border: '1px solid var(--border)', cursor: 'pointer', backgroundColor: 'transparent' }}
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className="px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              style={{
+                backgroundColor: activeTab === tab.id ? 'var(--bg-surface)' : 'transparent',
+                color: activeTab === tab.id ? 'var(--accent)' : 'var(--text-muted)',
+                border: activeTab === tab.id ? '1px solid var(--border)' : '1px solid transparent',
+                cursor: 'pointer',
+              }}
             >
-              Clear
+              {tab.label}
             </button>
-          )}
+          ))}
         </div>
 
-        <ScoreCard
-          filteredPct={filteredPct}
-          filteredCompleted={filteredCompleted}
-          filteredCount={filteredCount}
-          filterLabel={filterLabel}
-          totalScore={stats.totalScore}
-        />
+        {activeTab === 'progress' && (
+          <>
+            {/* Progress filters */}
+            <div className="flex items-center gap-3 flex-wrap">
+              <div className="flex items-center gap-1">
+                {([1, 2, 3, 4, 5] as Tier[]).map((t) => {
+                  const meta = TIER_META[t];
+                  return (
+                    <button
+                      key={t}
+                      onClick={() => setFilterTierLocal(filterTier === t ? null : t)}
+                      className="tier-badge"
+                      style={{
+                        width: 22,
+                        height: 22,
+                        fontSize: 9,
+                        backgroundColor: filterTier === t ? meta.bgColor : 'var(--bg-raised)',
+                        border: `1px solid ${filterTier === t ? meta.color : 'var(--border)'}`,
+                        color: filterTier === t ? meta.color : 'var(--text-faint)',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {meta.label}
+                    </button>
+                  );
+                })}
+              </div>
 
-        <StatsRow
-          completedCount={stats.completedCount}
-          inProgressCount={stats.inProgressCount}
-          totalAttempts={stats.totalAttempts}
-          totalScore={stats.totalScore}
-          onStatClick={handleStatClick}
-        />
+              <select
+                value={filterCollection ?? ''}
+                onChange={(e) => setFilterCollectionLocal(e.target.value || null)}
+                className="text-xs px-2 py-1 rounded"
+                style={{
+                  backgroundColor: 'var(--bg-raised)',
+                  border: `1px solid ${filterCollection ? 'var(--accent)' : 'var(--border)'}`,
+                  color: filterCollection ? 'var(--accent)' : 'var(--text-secondary)',
+                  cursor: 'pointer',
+                  fontFamily: 'Lexend, sans-serif',
+                }}
+              >
+                <option value="">All Collections</option>
+                {visibleCollections.map((col) => (
+                  <option key={col._id} value={col._id}>
+                    {col.name}
+                  </option>
+                ))}
+              </select>
 
-        <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
-          <TierBreakdown tierBreakdown={stats.tierBreakdown} onTierClick={handleTierClick} />
-          <TypeBreakdown typeBreakdown={stats.typeBreakdown} onTypeClick={handleTypeClick} />
-        </div>
+              {(filterTier || filterCollection) && (
+                <button
+                  onClick={() => { setFilterTierLocal(null); setFilterCollectionLocal(null); }}
+                  className="text-xs px-2 py-1 rounded"
+                  style={{ color: 'var(--text-muted)', border: '1px solid var(--border)', cursor: 'pointer', backgroundColor: 'transparent' }}
+                >
+                  Clear
+                </button>
+              )}
+            </div>
 
-        <CollectionProgress onCollectionClick={handleCollectionClick} filterTier={filterTier} filterCollection={filterCollection} />
+            <ScoreCard
+              filteredPct={filteredPct}
+              filteredCompleted={filteredCompleted}
+              filteredCount={filteredCount}
+              filterLabel={filterLabel}
+              totalScore={stats.totalScore}
+            />
 
-        <RecentActivity items={stats.recentActivity} />
+            <StatsRow
+              completedCount={stats.completedCount}
+              inProgressCount={stats.inProgressCount}
+              totalAttempts={stats.totalAttempts}
+              totalScore={stats.totalScore}
+              onStatClick={handleStatClick}
+            />
 
-        <div>
-          <h3 className="font-heading font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
-            Assignments
-          </h3>
-          <AssignmentList />
-        </div>
+            <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+              <TierBreakdown tierBreakdown={stats.tierBreakdown} onTierClick={handleTierClick} />
+              <TypeBreakdown typeBreakdown={stats.typeBreakdown} onTypeClick={handleTypeClick} />
+            </div>
 
-        <AchievementGrid />
+            <CollectionProgress onCollectionClick={handleCollectionClick} filterTier={filterTier} filterCollection={filterCollection} />
+
+            <RecentActivity items={stats.recentActivity} />
+          </>
+        )}
+
+        {activeTab === 'achievements' && <AchievementGrid />}
+
+        {activeTab === 'cohort' && (
+          <>
+            {user?.cohortId ? (
+              <div>
+                <h3 className="font-heading font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
+                  Assignments
+                </h3>
+                <AssignmentList cohortId={user.cohortId} />
+              </div>
+            ) : (
+              <div
+                className="rounded-lg p-8 text-center"
+                style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}
+              >
+                <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+                  You're not currently assigned to a cohort. Please contact your TA or instructor to be assigned.
+                </p>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
