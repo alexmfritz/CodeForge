@@ -32,6 +32,39 @@ export const fetchExercises = createAsyncThunk<ExercisesData>(
   },
 );
 
+// Create a new exercise via wizard — prepends to list on success
+export const createExercise = createAsyncThunk(
+  'exercises/create',
+  async (data: Omit<Exercise, '_id' | 'slug' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy' | 'isActive'>, { rejectWithValue }) => {
+    const result = await apiFetch<Exercise>('/api/exercises', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+    if (!result.success || !result.data) {
+      return rejectWithValue(result.error || 'Failed to create exercise');
+    }
+    return result.data;
+  },
+);
+
+// Update existing exercise via wizard — replaces in-place on success
+export const updateExercise = createAsyncThunk(
+  'exercises/update',
+  async (
+    { id, ...data }: { id: string } & Partial<Omit<Exercise, '_id' | 'slug' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'>>,
+    { rejectWithValue },
+  ) => {
+    const result = await apiFetch<Exercise>(`/api/exercises/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    });
+    if (!result.success || !result.data) {
+      return rejectWithValue(result.error || 'Failed to update exercise');
+    }
+    return result.data;
+  },
+);
+
 const exercisesSlice = createSlice({
   name: 'exercises',
   initialState,
@@ -51,6 +84,17 @@ const exercisesSlice = createSlice({
       .addCase(fetchExercises.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+      })
+
+      .addCase(createExercise.fulfilled, (state, action) => {
+        state.exercises.unshift(action.payload);
+      })
+
+      .addCase(updateExercise.fulfilled, (state, action) => {
+        const idx = state.exercises.findIndex((e) => e._id === action.payload._id);
+        if (idx !== -1) {
+          state.exercises[idx] = action.payload;
+        }
       });
   },
 });
