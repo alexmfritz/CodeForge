@@ -158,3 +158,25 @@ export const submitRatingSchema = z.object({
   exerciseId: z.string(),
   stars: z.number().int().min(1).max(5),
 });
+
+// ─── Chat ──────────────────────────────────────────────────────────────────
+
+export const sendChatMessageSchema = z.object({
+  messageType: z.enum(['text', 'exercise-link', 'code-snippet']),
+  content: z.string().max(2000),
+  exerciseLink: z
+    .object({
+      exerciseId: z.string(),
+      title: z.string(),
+      tier: z.number().int().min(1).max(5),
+      type: z.enum(['js', 'html', 'css', 'html-css']),
+    })
+    .optional(),
+  codeSnippet: z
+    .object({
+      code: z.string().max(5000),
+      language: z.string(),
+    })
+    .optional(),
+  mentions: z.array(z.string()).optional(),
+});

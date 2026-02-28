@@ -14,8 +14,10 @@ import ExerciseView from './components/exercise/ExerciseView';
 import StudentDashboard from './components/dashboard/StudentDashboard';
 import InstructorDashboard from './components/instructor/InstructorDashboard';
 import AssignmentDetail from './components/assignments/AssignmentDetail';
+import ChatPage from './components/chat/ChatPage';
 import Toast from './components/shared/Toast';
 import AchievementToast from './components/achievements/AchievementToast';
+import { useSocket } from './hooks/useSocket';
 
 function App() {
   const theme = useAppSelector((state) => state.ui.theme);
@@ -61,8 +63,11 @@ function App() {
 function AppShell() {
   const theme = useAppSelector((state) => state.ui.theme);
   const user = useAppSelector((state) => state.auth.user);
+  const unreadCount = useAppSelector((state) => state.chat.unreadCount);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  useSocket();
 
   return (
     <div className="h-screen flex flex-col bg-bg-root text-text-primary transition-theme">
@@ -77,7 +82,7 @@ function AppShell() {
           <nav className="flex items-center gap-1">
             <NavLink to="/dashboard" label="Dashboard" />
             <NavLink to="/exercises" label="Exercises" />
-            <NavLink to="/chat" label="Chat" />
+            <NavLink to="/chat" label="Chat" badge={unreadCount} />
           </nav>
         </div>
         <div className="flex items-center gap-4">
@@ -121,7 +126,7 @@ function AppShell() {
           <Route path="/exercises" element={<BrowseView />} />
           <Route path="/exercises/:id" element={<ExerciseView />} />
           <Route path="/assignments/:id" element={<AssignmentDetail />} />
-          <Route path="/chat" element={<ChatPlaceholder />} />
+          <Route path="/chat" element={<ChatPage />} />
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
@@ -130,22 +135,7 @@ function AppShell() {
   );
 }
 
-function ChatPlaceholder() {
-  return (
-    <div className="h-full flex items-center justify-center">
-      <div className="text-center">
-        <h2 className="text-xl font-heading font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-          Chat
-        </h2>
-        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          Coming Soon
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function NavLink({ to, label }: { to: string; label: string }) {
+function NavLink({ to, label, badge }: { to: string; label: string; badge?: number }) {
   const location = useLocation();
   const navigate = useNavigate();
   const isActive = location.pathname.startsWith(to);
@@ -153,7 +143,7 @@ function NavLink({ to, label }: { to: string; label: string }) {
   return (
     <button
       onClick={() => navigate(to)}
-      className="px-3 py-1.5 rounded text-sm font-medium transition-colors"
+      className="relative px-3 py-1.5 rounded text-sm font-medium transition-colors"
       style={{
         backgroundColor: isActive ? 'var(--bg-surface)' : 'transparent',
         color: isActive ? 'var(--accent)' : 'var(--text-muted)',
@@ -161,6 +151,19 @@ function NavLink({ to, label }: { to: string; label: string }) {
       }}
     >
       {label}
+      {badge != null && badge > 0 && (
+        <span
+          className="absolute -top-1 -right-1 flex items-center justify-center rounded-full text-white text-[10px] font-bold"
+          style={{
+            backgroundColor: 'var(--error)',
+            minWidth: 16,
+            height: 16,
+            padding: '0 4px',
+          }}
+        >
+          {badge > 99 ? '99+' : badge}
+        </span>
+      )}
     </button>
   );
 }

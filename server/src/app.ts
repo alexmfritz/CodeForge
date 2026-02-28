@@ -12,6 +12,7 @@ import instructorRoutes from './routes/instructor.js';
 import assignmentRoutes from './routes/assignments.js';
 import achievementRoutes from './routes/achievements.js';
 import ratingRoutes from './routes/ratings.js';
+import chatRoutes from './routes/chat.js';
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use('/api/instructor', instructorRoutes);
 app.use('/api/assignments', assignmentRoutes);
 app.use('/api/achievements', achievementRoutes);
 app.use('/api/ratings', ratingRoutes);
+app.use('/api/chat', chatRoutes);
 
 if (!config.isDev) {
   app.use(express.static(config.paths.clientDist));

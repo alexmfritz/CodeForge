@@ -20,6 +20,7 @@ import CollectionProgress from './CollectionProgress';
 import RecentActivity from './RecentActivity';
 import AssignmentList from '../assignments/AssignmentList';
 import AchievementGrid from '../achievements/AchievementGrid';
+import ChatLogViewer from '../chat/ChatLogViewer';
 import Skeleton from '../shared/Skeleton';
 
 type Tab = 'progress' | 'achievements' | 'cohort';
@@ -252,11 +253,19 @@ export default function StudentDashboard() {
         {activeTab === 'cohort' && (
           <>
             {user?.cohortId ? (
-              <div>
-                <h3 className="font-heading font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
-                  Assignments
-                </h3>
-                <AssignmentList cohortId={user.cohortId} />
+              <div className="flex flex-col gap-6">
+                <div>
+                  <h3 className="font-heading font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
+                    Assignments
+                  </h3>
+                  <AssignmentList cohortId={user.cohortId} />
+                </div>
+                <div>
+                  <h3 className="font-heading font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
+                    Chat History
+                  </h3>
+                  <ChatLogViewer cohortId={user.cohortId} />
+                </div>
               </div>
             ) : (
               <div
