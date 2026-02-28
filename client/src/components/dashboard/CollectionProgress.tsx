@@ -56,7 +56,7 @@ export default function CollectionProgress({ onCollectionClick, filterTier, filt
                   <span className="text-xs font-medium" style={{ color: 'var(--text-primary)' }}>
                     {col.name}
                   </span>
-                  {col.source && (
+                  {col.source && col.source !== col.name && (
                     <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
                       {col.source}
                     </span>

@@ -33,6 +33,8 @@ export const config = {
     expiresIn: process.env.JWT_EXPIRES_IN || '24h',
   },
 
+  timezone: process.env.TIMEZONE || 'America/Los_Angeles',
+
   instructor: {
     name: process.env.INSTRUCTOR_NAME || 'Admin User',
     docNumber: process.env.INSTRUCTOR_DOC_NUMBER || '000000',

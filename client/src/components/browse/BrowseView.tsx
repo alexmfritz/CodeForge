@@ -150,8 +150,8 @@ export default function BrowseView() {
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      <div className="flex-shrink-0 flex items-center gap-3 px-5 py-3" style={{ borderBottom: '1px solid var(--border)', backgroundColor: 'var(--bg-surface)' }}>
-        <div className="relative flex-1 max-w-sm">
+      <div className="flex-shrink-0 flex flex-wrap items-center gap-3 px-5 py-3" style={{ borderBottom: '1px solid var(--border)', backgroundColor: 'var(--bg-surface)' }}>
+        <div className="relative flex-1 max-w-sm" style={{ minWidth: '160px' }}>
           <input
             type="text"
             value={filter.search}
