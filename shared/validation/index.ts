@@ -163,7 +163,7 @@ export const submitRatingSchema = z.object({
 
 export const sendChatMessageSchema = z.object({
   messageType: z.enum(['text', 'exercise-link', 'code-snippet']),
-  content: z.string().max(2000),
+  content: z.string().min(1, 'Message content is required').max(2000),
   exerciseLink: z
     .object({
       exerciseId: z.string(),

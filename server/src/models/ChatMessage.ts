@@ -11,7 +11,7 @@ export interface IChatMessage extends Document {
   messageType: ChatMessageType;
   content: string;
   exerciseLink?: {
-    exerciseId: mongoose.Types.ObjectId;
+    exerciseId: string;
     title: string;
     tier: number;
     type: string;
@@ -39,16 +39,22 @@ const chatMessageSchema = new Schema<IChatMessage>(
     role: { type: String, enum: ['instructor', 'ta', 'student'], required: true },
     messageType: { type: String, enum: ['text', 'exercise-link', 'code-snippet', 'system'], required: true },
     content: { type: String, default: '' },
-    exerciseLink: {
-      exerciseId: { type: Schema.Types.ObjectId, ref: 'Exercise' },
-      title: String,
-      tier: Number,
-      type: String,
-    },
-    codeSnippet: {
-      code: String,
-      language: String,
-    },
+    exerciseLink: new Schema(
+      {
+        exerciseId: { type: String },
+        title: String,
+        tier: Number,
+        type: String,
+      },
+      { _id: false },
+    ),
+    codeSnippet: new Schema(
+      {
+        code: String,
+        language: String,
+      },
+      { _id: false },
+    ),
     mentions: [{ type: String }],
     reactions: [
       {
@@ -70,9 +76,6 @@ chatMessageSchema.set('toJSON', {
     ret._id = String(ret._id);
     ret.cohortId = String(ret.cohortId);
     ret.userId = String(ret.userId);
-    if (ret.exerciseLink?.exerciseId) {
-      ret.exerciseLink.exerciseId = String(ret.exerciseLink.exerciseId);
-    }
     ret.reactions = (ret.reactions ?? []).map((r: any) => ({
       ...r,
       userIds: (r.userIds ?? []).map(String),
