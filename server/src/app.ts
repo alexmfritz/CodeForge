@@ -10,6 +10,7 @@ import exerciseRoutes from './routes/exercises.js';
 import progressRoutes from './routes/progress.js';
 import instructorRoutes from './routes/instructor.js';
 import assignmentRoutes from './routes/assignments.js';
+import achievementRoutes from './routes/achievements.js';
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/api/exercises', exerciseRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/instructor', instructorRoutes);
 app.use('/api/assignments', assignmentRoutes);
+app.use('/api/achievements', achievementRoutes);
 
 if (!config.isDev) {
   app.use(express.static(config.paths.clientDist));

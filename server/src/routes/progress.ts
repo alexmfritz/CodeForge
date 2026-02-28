@@ -11,6 +11,7 @@ import {
   getUserProgress,
   getUserStats,
 } from '../services/progressService.js';
+import { checkAchievements } from '../services/achievementService.js';
 
 const router = Router();
 
@@ -68,7 +69,8 @@ router.post('/:exerciseId/complete', authenticate, validate(markCompleteSchema),
       req.body.attempts,
       req.body.solutionViewed,
     );
-    res.json({ success: true, data: progress.toJSON() });
+    const newAchievements = await checkAchievements(req.user!.userId, cohortId);
+    res.json({ success: true, data: { ...progress.toJSON(), newAchievements } });
   } catch (err) {
     next(err);
   }

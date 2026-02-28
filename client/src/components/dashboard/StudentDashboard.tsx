@@ -9,6 +9,7 @@ import TypeBreakdown from './TypeBreakdown';
 import CollectionProgress from './CollectionProgress';
 import RecentActivity from './RecentActivity';
 import AssignmentList from '../assignments/AssignmentList';
+import AchievementGrid from '../achievements/AchievementGrid';
 import Skeleton from '../shared/Skeleton';
 
 export default function StudentDashboard() {
@@ -87,17 +88,7 @@ export default function StudentDashboard() {
           <AssignmentList />
         </div>
 
-        <div
-          className="rounded-lg p-5 mb-8"
-          style={{ backgroundColor: 'var(--bg-surface)', border: '1px dashed var(--border)' }}
-        >
-          <h3 className="font-heading font-semibold text-sm mb-2" style={{ color: 'var(--text-muted)' }}>
-            Achievements
-          </h3>
-          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-            Earn achievements by completing exercises and reaching milestones.
-          </p>
-        </div>
+        <AchievementGrid />
       </div>
     </div>
   );
