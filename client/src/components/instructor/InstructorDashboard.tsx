@@ -8,14 +8,16 @@ import UserManager from './UserManager';
 import AssignmentList from '../assignments/AssignmentList';
 import AssignmentBuilder from '../assignments/AssignmentBuilder';
 import RatingOverview from '../ratings/RatingOverview';
+import ExerciseManager from './ExerciseManager';
 
-type Tab = 'overview' | 'students' | 'cohorts' | 'users' | 'assignments' | 'ratings';
+type Tab = 'overview' | 'students' | 'cohorts' | 'users' | 'assignments' | 'exercises' | 'ratings';
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'overview', label: 'Overview' },
   { id: 'students', label: 'Students' },
   { id: 'cohorts', label: 'Cohorts' },
   { id: 'assignments', label: 'Assignments' },
+  { id: 'exercises', label: 'Exercises' },
   { id: 'ratings', label: 'Ratings' },
   { id: 'users', label: 'Users' },
 ];
@@ -114,6 +116,7 @@ export default function InstructorDashboard() {
             <AssignmentList cohortId={selectedCohortId} />
           </div>
         )}
+        {activeTab === 'exercises' && <ExerciseManager cohortId={selectedCohortId} />}
         {activeTab === 'ratings' && <RatingOverview cohortId={selectedCohortId} />}
         {activeTab === 'users' && <UserManager cohortId={selectedCohortId} />}
       </div>
