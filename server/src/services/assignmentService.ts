@@ -3,17 +3,15 @@ import { Progress } from '../models/Progress.js';
 import { Exercise } from '../models/Exercise.js';
 import { User } from '../models/User.js';
 
-// Return active assignments, filtering by cohort for students to prevent cross-cohort viewing
 export async function listAssignments(role: string, cohortId: string | null) {
   const filter: Record<string, unknown> = { isActive: true };
   if (role === 'student' && cohortId) {
-    filter.cohortId = cohortId; // Students only see assignments from their cohort
+    filter.cohortId = cohortId;
   }
   const assignments = await Assignment.find(filter).sort({ createdAt: -1 }).lean();
   return assignments.map(toPlainAssignment);
 }
 
-// Fetch assignment with expanded exercise details to avoid multiple client requests
 export async function getAssignmentById(id: string): Promise<Record<string, unknown> | null> {
   const assignment = await Assignment.findById(id);
   if (!assignment) return null;
@@ -57,12 +55,10 @@ export async function deactivateAssignment(id: string) {
   return assignment.toJSON();
 }
 
-// Aggregate completion data per student, handling optional targeting and filtering non-completed exercises
 export async function getAssignmentProgress(assignmentId: string) {
   const assignment = await Assignment.findById(assignmentId);
   if (!assignment) return null;
 
-  // Scope to target students if specified, otherwise entire cohort
   const studentFilter: Record<string, unknown> = { cohortId: assignment.cohortId, role: 'student', isActive: true };
   if (assignment.targetStudentIds && assignment.targetStudentIds.length > 0) {
     studentFilter._id = { $in: assignment.targetStudentIds };
@@ -76,7 +72,6 @@ export async function getAssignmentProgress(assignmentId: string) {
     exerciseId: { $in: assignment.exerciseIds },
   }).lean();
 
-  // Build map of completed exercises per student for efficient lookup
   const progressMap = new Map<string, Set<string>>();
   for (const p of progress) {
     if (p.status !== 'completed') continue;

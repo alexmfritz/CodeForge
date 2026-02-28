@@ -13,19 +13,17 @@ import {
 
 const router = Router();
 
-// List assignments with client-side filtering for targeted students
 router.get('/', authenticate, async (req, res, next) => {
   try {
     const { role, cohortId } = req.user!;
     const filterCohort = (req.query.cohortId as string) || cohortId;
     const assignments = await listAssignments(role, filterCohort);
 
-    // Further filter targeted assignments at route level for students
     if (role === 'student' && cohortId) {
       const userId = req.user!.userId;
       const filtered = assignments.filter((a: Record<string, unknown>) => {
         const targets = a.targetStudentIds as string[] | undefined;
-        if (!targets || targets.length === 0) return true; // Empty targets = for all cohort students
+        if (!targets || targets.length === 0) return true;
         return targets.includes(userId);
       });
       return res.json({ success: true, data: filtered });
@@ -49,7 +47,6 @@ router.get('/:id', authenticate, async (req, res, next) => {
   }
 });
 
-// Only instructors and TAs can create assignments with validated schema
 router.post(
   '/',
   authenticate,
@@ -82,7 +79,6 @@ router.patch(
   },
 );
 
-// Soft delete via deactivation preserves assignment and student progress history
 router.delete(
   '/:id',
   authenticate,
@@ -100,7 +96,6 @@ router.delete(
   },
 );
 
-// Only instructors and TAs can view detailed student progress
 router.get('/:id/progress', authenticate, authorize('instructor', 'ta'), async (req, res, next) => {
   try {
     const data = await getAssignmentProgress(req.params.id as string);
