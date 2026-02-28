@@ -1,8 +1,6 @@
-// User model — defines the schema for all platform users (instructors, TAs, students)
 import mongoose, { Schema, Document } from 'mongoose';
 import type { Role, Theme } from '@codeforge/shared';
 
-// Document interface: typed fields for the User mongoose document
 export interface IUser extends Document {
   username: string;
   passwordHash: string;
@@ -19,7 +17,6 @@ export interface IUser extends Document {
   updatedAt: Date;
 }
 
-// Schema definition: username is unique+lowercased, role is enum-restricted, cohortId links students to a cohort
 const userSchema = new Schema<IUser>(
   {
     username: { type: String, required: true, unique: true, lowercase: true, trim: true },
@@ -37,14 +34,10 @@ const userSchema = new Schema<IUser>(
   { timestamps: true },
 );
 
-// Indexes for common query patterns: lookup by DOC number, filter by cohort, filter by role+active status
 userSchema.index({ docNumber: 1 });
-// Indexes for common query patterns: lookup by DOC number, filter by cohort, filter by role+active status
 userSchema.index({ cohortId: 1 });
-// Indexes for common query patterns: lookup by DOC number, filter by cohort, filter by role+active status
 userSchema.index({ role: 1, isActive: 1 });
 
-// toJSON transform: strip passwordHash and __v so they are never sent to the client
 userSchema.set('toJSON', {
   transform: (_doc, ret) => {
     delete ret.passwordHash;

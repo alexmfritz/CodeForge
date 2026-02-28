@@ -1,10 +1,8 @@
-// LoginPage — form-based login that dispatches the login thunk and navigates on success
 import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { login, clearError } from '../../features/authSlice';
 
-// Component: controlled form inputs dispatch login() async thunk; redirects to "/" on success
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +10,6 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const { loading, error } = useAppSelector((state) => state.auth);
 
-  // Dispatch login thunk and navigate to home on fulfilled result
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const result = await dispatch(login({ username, password }));
