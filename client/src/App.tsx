@@ -1,12 +1,17 @@
 import { useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from './features/store';
 import { setTheme } from './features/uiSlice';
 import { fetchMe, logout } from './features/authSlice';
+import { fetchExercises } from './features/exercisesSlice';
+import { fetchProgress } from './features/progressSlice';
 import { THEMES } from '@codeforge/shared/constants';
 import type { Theme } from '@codeforge/shared';
 import LoginPage from './components/auth/LoginPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import BrowseView from './components/browse/BrowseView';
+import ExerciseView from './components/exercise/ExerciseView';
+import Toast from './components/shared/Toast';
 
 function App() {
   const theme = useAppSelector((state) => state.ui.theme);
@@ -23,18 +28,28 @@ function App() {
     }
   }, [token, user, dispatch]);
 
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchExercises());
+      dispatch(fetchProgress());
+    }
+  }, [user, dispatch]);
+
   return (
-    <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route
-        path="/*"
-        element={
-          <ProtectedRoute>
-            <AppShell />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/*"
+          element={
+            <ProtectedRoute>
+              <AppShell />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+      <Toast />
+    </>
   );
 }
 
@@ -42,11 +57,15 @@ function AppShell() {
   const theme = useAppSelector((state) => state.ui.theme);
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-bg-root text-text-primary transition-theme">
-      <header className="flex items-center justify-between px-6 py-4 border-b border-border">
-        <h1 className="text-xl font-heading font-bold tracking-tight">
+    <div className="h-screen flex flex-col bg-bg-root text-text-primary transition-theme">
+      <header className="flex-shrink-0 flex items-center justify-between px-6 py-3 border-b border-border">
+        <h1
+          className="text-xl font-heading font-bold tracking-tight cursor-pointer"
+          onClick={() => navigate('/exercises')}
+        >
           <span style={{ color: 'var(--accent)' }}>Code</span>Forge
         </h1>
         <div className="flex items-center gap-4">
@@ -77,22 +96,12 @@ function AppShell() {
           )}
         </div>
       </header>
-      <main className="p-6">
+      <main className="flex-1 overflow-hidden">
         <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="text-center mt-20">
-                <h2 className="text-3xl font-heading font-bold mb-2">
-                  Welcome, {user?.displayName}
-                </h2>
-                <p className="text-text-secondary">
-                  Signed in as <strong>{user?.username}</strong> ({user?.role})
-                </p>
-              </div>
-            }
-          />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/exercises" element={<BrowseView />} />
+          <Route path="/exercises/:id" element={<ExerciseView />} />
+          <Route path="/" element={<Navigate to="/exercises" replace />} />
+          <Route path="*" element={<Navigate to="/exercises" replace />} />
         </Routes>
       </main>
     </div>

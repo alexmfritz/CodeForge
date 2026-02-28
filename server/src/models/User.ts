@@ -39,7 +39,8 @@ userSchema.index({ cohortId: 1 });
 userSchema.index({ role: 1, isActive: 1 });
 
 userSchema.set('toJSON', {
-  transform: (_doc, ret) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  transform: (_doc: any, ret: any) => {
     delete ret.passwordHash;
     delete ret.__v;
     return ret;

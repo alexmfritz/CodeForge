@@ -86,7 +86,7 @@ router.patch('/:id', authenticate, validate(updateUserSchema), async (req, res) 
 
 router.post('/:id/reset-password', authorize('instructor'), async (req, res) => {
   try {
-    const user = await resetPassword(req.params.id);
+    const user = await resetPassword(req.params.id as string);
     if (!user) {
       res.status(404).json({ success: false, error: 'User not found' });
       return;

@@ -32,7 +32,7 @@ export async function removeStudentFromCohort(userId: string) {
   return user.toJSON();
 }
 
-export async function getCohortWithStudentCount(cohortId: string) {
+export async function getCohortWithStudentCount(cohortId: string): Promise<Record<string, unknown> | null> {
   const cohort = await Cohort.findById(cohortId);
   if (!cohort) return null;
 

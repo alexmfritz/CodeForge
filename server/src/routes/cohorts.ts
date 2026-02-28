@@ -79,7 +79,7 @@ router.post('/:id/students', authorize('instructor'), async (req, res) => {
       res.status(400).json({ success: false, error: 'userId is required' });
       return;
     }
-    const user = await addStudentToCohort(req.params.id, userId);
+    const user = await addStudentToCohort(req.params.id as string, userId);
     res.json({ success: true, data: user });
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Failed to add student';
@@ -89,7 +89,7 @@ router.post('/:id/students', authorize('instructor'), async (req, res) => {
 
 router.delete('/:id/students/:userId', authorize('instructor'), async (req, res) => {
   try {
-    const user = await removeStudentFromCohort(req.params.userId);
+    const user = await removeStudentFromCohort(req.params.userId as string);
     res.json({ success: true, data: user });
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Failed to remove student';
