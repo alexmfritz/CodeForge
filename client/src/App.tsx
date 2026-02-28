@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from './features/store';
 import { setTheme } from './features/uiSlice';
 import { fetchMe, logout } from './features/authSlice';
@@ -11,6 +11,7 @@ import LoginPage from './components/auth/LoginPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import BrowseView from './components/browse/BrowseView';
 import ExerciseView from './components/exercise/ExerciseView';
+import StudentDashboard from './components/dashboard/StudentDashboard';
 import Toast from './components/shared/Toast';
 
 function App() {
@@ -62,12 +63,18 @@ function AppShell() {
   return (
     <div className="h-screen flex flex-col bg-bg-root text-text-primary transition-theme">
       <header className="flex-shrink-0 flex items-center justify-between px-6 py-3 border-b border-border">
-        <h1
-          className="text-xl font-heading font-bold tracking-tight cursor-pointer"
-          onClick={() => navigate('/exercises')}
-        >
-          <span style={{ color: 'var(--accent)' }}>Code</span>Forge
-        </h1>
+        <div className="flex items-center gap-6">
+          <h1
+            className="text-xl font-heading font-bold tracking-tight cursor-pointer"
+            onClick={() => navigate('/dashboard')}
+          >
+            <span style={{ color: 'var(--accent)' }}>Code</span>Forge
+          </h1>
+          <nav className="flex items-center gap-1">
+            <NavLink to="/dashboard" label="Dashboard" />
+            <NavLink to="/exercises" label="Exercises" />
+          </nav>
+        </div>
         <div className="flex items-center gap-4">
           <select
             value={theme}
@@ -98,13 +105,34 @@ function AppShell() {
       </header>
       <main className="flex-1 overflow-hidden">
         <Routes>
+          <Route path="/dashboard" element={<StudentDashboard />} />
           <Route path="/exercises" element={<BrowseView />} />
           <Route path="/exercises/:id" element={<ExerciseView />} />
-          <Route path="/" element={<Navigate to="/exercises" replace />} />
-          <Route path="*" element={<Navigate to="/exercises" replace />} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </main>
     </div>
+  );
+}
+
+function NavLink({ to, label }: { to: string; label: string }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isActive = location.pathname.startsWith(to);
+
+  return (
+    <button
+      onClick={() => navigate(to)}
+      className="px-3 py-1.5 rounded text-sm font-medium transition-colors"
+      style={{
+        backgroundColor: isActive ? 'var(--bg-surface)' : 'transparent',
+        color: isActive ? 'var(--accent)' : 'var(--text-muted)',
+        cursor: 'pointer',
+      }}
+    >
+      {label}
+    </button>
   );
 }
 

@@ -141,6 +141,35 @@ export interface Progress {
   updatedAt: string;
 }
 
+// ─── Dashboard Stats ────────────────────────────────────────────────────────
+
+export interface BreakdownEntry {
+  completed: number;
+  total: number;
+  score: number;
+}
+
+export interface RecentActivityItem {
+  exerciseId: string;
+  title: string;
+  tier: number;
+  type: ExerciseType;
+  score: number;
+  completedAt: string;
+  attempts: number;
+}
+
+export interface DashboardStats {
+  totalExercises: number;
+  completedCount: number;
+  inProgressCount: number;
+  totalScore: number;
+  totalAttempts: number;
+  tierBreakdown: Record<number, BreakdownEntry>;
+  typeBreakdown: Record<string, BreakdownEntry>;
+  recentActivity: RecentActivityItem[];
+}
+
 // ─── Assignments ────────────────────────────────────────────────────────────
 
 export interface Assignment {

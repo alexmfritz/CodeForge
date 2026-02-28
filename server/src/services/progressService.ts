@@ -104,16 +104,68 @@ export async function getUserProgress(userId: string) {
 }
 
 export async function getUserStats(userId: string) {
+  // single query for all of the user's progress rows; lean() avoids Mongoose overhead for read-only aggregation
   const progress = await Progress.find({ userId }).lean();
   const completed = progress.filter((p) => p.status === 'completed');
   const totalScore = completed.reduce((sum, p) => sum + p.score, 0);
-  const totalAttempts = progress.reduce((sum, p) => sum + p.attempts, 0);
+  const totalAttempts = progress.reduce((sum, p) => sum + p.attempts, 0); // includes in-progress attempts
+
+  // batch-fetch exercises referenced by progress to avoid N+1 queries
+  const exerciseIds = progress.map((p) => p.exerciseId);
+  const exercises = await Exercise.find({ _id: { $in: exerciseIds } }).lean();
+  const exerciseMap = new Map(exercises.map((e) => [String(e._id), e])); // Map for O(1) lookups in the loop below
+
+  const tierBreakdown: Record<number, { completed: number; total: number; score: number }> = {};
+  const typeBreakdown: Record<string, { completed: number; total: number; score: number }> = {};
+
+  // single pass over progress to build both breakdowns simultaneously
+  for (const p of progress) {
+    const ex = exerciseMap.get(String(p.exerciseId));
+    if (!ex) continue; // exercise was deleted after progress was recorded; skip to avoid misleading stats
+
+    const tier = ex.tier;
+    if (!tierBreakdown[tier]) tierBreakdown[tier] = { completed: 0, total: 0, score: 0 };
+    tierBreakdown[tier].total += 1;
+    if (p.status === 'completed') {
+      tierBreakdown[tier].completed += 1;
+      tierBreakdown[tier].score += p.score;
+    }
+
+    const type = ex.type;
+    if (!typeBreakdown[type]) typeBreakdown[type] = { completed: 0, total: 0, score: 0 };
+    typeBreakdown[type].total += 1;
+    if (p.status === 'completed') {
+      typeBreakdown[type].completed += 1;
+      typeBreakdown[type].score += p.score;
+    }
+  }
+
+  // sort descending by completion date then take the 10 most recent for the activity feed
+  const recentActivity = completed
+    .filter((p) => p.completedAt)
+    .sort((a, b) => new Date(b.completedAt!).getTime() - new Date(a.completedAt!).getTime())
+    .slice(0, 10)
+    .map((p) => {
+      const ex = exerciseMap.get(String(p.exerciseId));
+      return {
+        exerciseId: String(p.exerciseId),
+        title: ex?.title ?? 'Unknown', // fallback if exercise was deleted
+        tier: ex?.tier ?? 1,
+        type: ex?.type ?? 'js',
+        score: p.score,
+        completedAt: p.completedAt,
+        attempts: p.uniqueAttempts, // unique attempts drive scoring, so that's what's surfaced to the student
+      };
+    });
 
   return {
-    totalExercises: progress.length,
+    totalExercises: progress.length, // any exercise the student has touched (not_started is excluded by Progress model)
     completedCount: completed.length,
     inProgressCount: progress.filter((p) => p.status === 'in_progress').length,
     totalScore,
     totalAttempts,
+    tierBreakdown,
+    typeBreakdown,
+    recentActivity,
   };
 }
