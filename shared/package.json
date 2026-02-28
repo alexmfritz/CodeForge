@@ -2,8 +2,17 @@
   "name": "@codeforge/shared",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "main": "./types/index.ts",
   "types": "./types/index.ts",
+  "exports": {
+    ".": "./types/index.ts",
+    "./types": "./types/index.ts",
+    "./types/*": "./types/*",
+    "./validation": "./validation/index.ts",
+    "./validation/*": "./validation/*",
+    "./constants": "./constants.ts"
+  },
   "dependencies": {
     "zod": "^3.23.0"
   }

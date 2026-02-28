@@ -1,11 +1,14 @@
 import mongoose from 'mongoose';
 import { app } from './app.js';
 import { config } from './config.js';
+import { seedInstructor } from './seed/seedInstructor.js';
 
 async function start(): Promise<void> {
   try {
     await mongoose.connect(config.mongoUri);
     console.log('Connected to MongoDB');
+
+    await seedInstructor();
 
     const port = config.isDev ? config.devPort : config.port;
     app.listen(port, () => {
