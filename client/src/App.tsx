@@ -13,6 +13,7 @@ import BrowseView from './components/browse/BrowseView';
 import ExerciseView from './components/exercise/ExerciseView';
 import StudentDashboard from './components/dashboard/StudentDashboard';
 import InstructorDashboard from './components/instructor/InstructorDashboard';
+import AssignmentDetail from './components/assignments/AssignmentDetail';
 import Toast from './components/shared/Toast';
 
 function App() {
@@ -116,6 +117,7 @@ function AppShell() {
           />
           <Route path="/exercises" element={<BrowseView />} />
           <Route path="/exercises/:id" element={<ExerciseView />} />
+          <Route path="/assignments/:id" element={<AssignmentDetail />} />
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>

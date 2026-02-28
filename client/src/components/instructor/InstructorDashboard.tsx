@@ -1,23 +1,27 @@
 import { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../features/store';
-import { fetchCohorts } from '../../features/instructorSlice';
+import { fetchCohorts, fetchStudents } from '../../features/instructorSlice';
 import OverviewPanel from './OverviewPanel';
 import StudentList from './StudentList';
 import CohortManager from './CohortManager';
 import UserManager from './UserManager';
+import AssignmentList from '../assignments/AssignmentList';
+import AssignmentBuilder from '../assignments/AssignmentBuilder';
 
-type Tab = 'overview' | 'students' | 'cohorts' | 'users';
+type Tab = 'overview' | 'students' | 'cohorts' | 'users' | 'assignments';
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'overview', label: 'Overview' },
   { id: 'students', label: 'Students' },
   { id: 'cohorts', label: 'Cohorts' },
+  { id: 'assignments', label: 'Assignments' },
   { id: 'users', label: 'Users' },
 ];
 
 export default function InstructorDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [selectedCohortId, setSelectedCohortId] = useState<string | undefined>(undefined);
+  const [showAssignmentBuilder, setShowAssignmentBuilder] = useState(false);
   const dispatch = useAppDispatch();
   const { cohorts } = useAppSelector((s) => s.instructor);
 
@@ -31,6 +35,12 @@ export default function InstructorDashboard() {
       if (activeCohort) setSelectedCohortId(activeCohort._id);
     }
   }, [cohorts, selectedCohortId]);
+
+  useEffect(() => {
+    if (activeTab === 'assignments' && selectedCohortId) {
+      dispatch(fetchStudents(selectedCohortId));
+    }
+  }, [activeTab, selectedCohortId, dispatch]);
 
   return (
     <div className="h-full overflow-y-auto p-6">
@@ -74,6 +84,32 @@ export default function InstructorDashboard() {
         {activeTab === 'overview' && <OverviewPanel cohortId={selectedCohortId} />}
         {activeTab === 'students' && <StudentList cohortId={selectedCohortId} />}
         {activeTab === 'cohorts' && <CohortManager />}
+        {activeTab === 'assignments' && (
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <span className="text-sm" style={{ color: 'var(--text-muted)' }}>
+                Assignments for {selectedCohortId ? cohorts.find((c) => c._id === selectedCohortId)?.name || 'selected cohort' : 'all cohorts'}
+              </span>
+              {!showAssignmentBuilder && (
+                <button
+                  onClick={() => setShowAssignmentBuilder(true)}
+                  className="px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                  style={{
+                    backgroundColor: 'var(--accent)',
+                    color: 'var(--bg-root)',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Create Assignment
+                </button>
+              )}
+            </div>
+            {showAssignmentBuilder && (
+              <AssignmentBuilder onClose={() => setShowAssignmentBuilder(false)} />
+            )}
+            <AssignmentList cohortId={selectedCohortId} />
+          </div>
+        )}
         {activeTab === 'users' && <UserManager cohortId={selectedCohortId} />}
       </div>
     </div>

@@ -143,6 +143,15 @@ export const createAssignmentSchema = z.object({
   dueDate: z.string().datetime().optional(),
 });
 
+export const updateAssignmentSchema = z.object({
+  title: z.string().min(1).max(200).optional(),
+  description: z.string().optional(),
+  exerciseIds: z.array(z.string()).min(1).optional(),
+  targetStudentIds: z.array(z.string()).optional(),
+  dueDate: z.string().datetime().nullable().optional(),
+  isActive: z.boolean().optional(),
+});
+
 // ─── Ratings ────────────────────────────────────────────────────────────────
 
 export const submitRatingSchema = z.object({
