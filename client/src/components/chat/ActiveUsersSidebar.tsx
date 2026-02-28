@@ -16,12 +16,12 @@ export default function ActiveUsersSidebar({ users }: ActiveUsersSidebarProps) {
       </h3>
       <div className="flex flex-col gap-1.5">
         {users.map((user) => (
-          <div key={user.userId} className="flex items-center gap-1.5">
+          <div key={user.userId} className="flex items-center gap-1.5 min-w-0">
             <div
               className="w-2 h-2 rounded-full flex-shrink-0"
               style={{ backgroundColor: 'var(--success)' }}
             />
-            <span className="text-xs truncate" style={{ color: 'var(--text-primary)' }}>
+            <span className="text-xs truncate" style={{ color: 'var(--text-primary)' }} title={user.displayName}>
               {user.displayName}
             </span>
             <RoleBadge role={user.role} />
