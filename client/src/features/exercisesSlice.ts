@@ -32,6 +32,7 @@ export const fetchExercises = createAsyncThunk<ExercisesData>(
   },
 );
 
+// Create a new exercise via wizard — prepends to list on success
 export const createExercise = createAsyncThunk(
   'exercises/create',
   async (data: Omit<Exercise, '_id' | 'slug' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy' | 'isActive'>, { rejectWithValue }) => {
@@ -46,6 +47,7 @@ export const createExercise = createAsyncThunk(
   },
 );
 
+// Update existing exercise via wizard — replaces in-place on success
 export const updateExercise = createAsyncThunk(
   'exercises/update',
   async (
