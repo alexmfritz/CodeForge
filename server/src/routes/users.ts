@@ -1,3 +1,4 @@
+// User routes — CRUD, bulk creation, and password reset (all require authentication)
 import { Router } from 'express';
 import { authenticate, authorize } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
@@ -7,8 +8,10 @@ import { User } from '../models/User.js';
 
 const router = Router();
 
+// All user routes require a valid JWT
 router.use(authenticate);
 
+// GET / — list users with optional filters (cohortId, role, active). Instructor/TA only.
 router.get('/', authorize('instructor', 'ta'), async (req, res) => {
   try {
     const filter: Record<string, unknown> = {};
@@ -23,6 +26,7 @@ router.get('/', authorize('instructor', 'ta'), async (req, res) => {
   }
 });
 
+// POST / — create a single user. Instructor only.
 router.post('/', authorize('instructor'), validate(createUserSchema), async (req, res) => {
   try {
     const user = await createUser(req.body);
@@ -33,6 +37,7 @@ router.post('/', authorize('instructor'), validate(createUserSchema), async (req
   }
 });
 
+// POST /bulk — batch-create students for a cohort. Instructor only.
 router.post('/bulk', authorize('instructor'), validate(bulkCreateUsersSchema), async (req, res) => {
   try {
     const users = await bulkCreateUsers(req.body.users, req.body.cohortId);
@@ -43,6 +48,7 @@ router.post('/bulk', authorize('instructor'), validate(bulkCreateUsersSchema), a
   }
 });
 
+// GET /:id — fetch a single user by ID. Instructor/TA only.
 router.get('/:id', authorize('instructor', 'ta'), async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -56,6 +62,7 @@ router.get('/:id', authorize('instructor', 'ta'), async (req, res) => {
   }
 });
 
+// PATCH /:id — update user. Admins can update anything; students can only update their own preferences.
 router.patch('/:id', authenticate, validate(updateUserSchema), async (req, res) => {
   try {
     const isAdmin = req.user!.role === 'instructor' || req.user!.role === 'ta';
@@ -84,6 +91,7 @@ router.patch('/:id', authenticate, validate(updateUserSchema), async (req, res) 
   }
 });
 
+// POST /:id/reset-password — reset user password to their DOC number. Instructor only.
 router.post('/:id/reset-password', authorize('instructor'), async (req, res) => {
   try {
     const user = await resetPassword(req.params.id);

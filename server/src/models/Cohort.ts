@@ -1,5 +1,7 @@
+// Cohort model — represents a class cohort with a date range and active flag
 import mongoose, { Schema, Document } from 'mongoose';
 
+// Document interface for Cohort
 export interface ICohort extends Document {
   name: string;
   startDate: Date;
@@ -9,6 +11,7 @@ export interface ICohort extends Document {
   updatedAt: Date;
 }
 
+// Schema: name and startDate are required; endDate is optional (null = ongoing cohort)
 const cohortSchema = new Schema<ICohort>(
   {
     name: { type: String, required: true, trim: true },
@@ -19,6 +22,7 @@ const cohortSchema = new Schema<ICohort>(
   { timestamps: true },
 );
 
+// Strip __v from JSON output
 cohortSchema.set('toJSON', {
   transform: (_doc, ret) => {
     delete ret.__v;

@@ -1,3 +1,4 @@
+// Cohort routes — CRUD and student enrollment management (instructor/TA only)
 import { Router } from 'express';
 import { authenticate, authorize } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
@@ -8,9 +9,11 @@ import { User } from '../models/User.js';
 
 const router = Router();
 
+// All cohort routes require authentication and instructor/TA role
 router.use(authenticate);
 router.use(authorize('instructor', 'ta'));
 
+// GET / — list all cohorts with student counts, sorted by most recent
 router.get('/', async (_req, res) => {
   try {
     const cohorts = await Cohort.find().sort({ startDate: -1 });
@@ -30,6 +33,7 @@ router.get('/', async (_req, res) => {
   }
 });
 
+// POST / — create a new cohort. Instructor only.
 router.post('/', authorize('instructor'), validate(createCohortSchema), async (req, res) => {
   try {
     const cohort = await createCohort(req.body);
@@ -40,6 +44,7 @@ router.post('/', authorize('instructor'), validate(createCohortSchema), async (r
   }
 });
 
+// GET /:id — fetch a single cohort with its student count
 router.get('/:id', async (req, res) => {
   try {
     const cohort = await getCohortWithStudentCount(req.params.id);
@@ -53,6 +58,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// PATCH /:id — update cohort fields. Instructor only.
 router.patch('/:id', authorize('instructor'), validate(updateCohortSchema), async (req, res) => {
   try {
     const update: Record<string, unknown> = {};
@@ -72,6 +78,7 @@ router.patch('/:id', authorize('instructor'), validate(updateCohortSchema), asyn
   }
 });
 
+// POST /:id/students — enroll a student in this cohort. Instructor only.
 router.post('/:id/students', authorize('instructor'), async (req, res) => {
   try {
     const { userId } = req.body;
@@ -87,6 +94,7 @@ router.post('/:id/students', authorize('instructor'), async (req, res) => {
   }
 });
 
+// DELETE /:id/students/:userId — remove a student from this cohort. Instructor only.
 router.delete('/:id/students/:userId', authorize('instructor'), async (req, res) => {
   try {
     const user = await removeStudentFromCohort(req.params.userId);

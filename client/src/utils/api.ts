@@ -1,5 +1,8 @@
+// API utility — JWT-aware fetch wrapper and token lifecycle helpers
+// localStorage key for persisting the JWT across page reloads
 const TOKEN_KEY = 'codeforge_token';
 
+// Token accessors: read, write, and clear the JWT from localStorage
 export function getToken(): string | null {
   try {
     return localStorage.getItem(TOKEN_KEY);
@@ -24,6 +27,7 @@ export function clearToken(): void {
   }
 }
 
+// apiFetch: wraps fetch to auto-inject Bearer token and redirect to /login on 401 (expired session)
 export async function apiFetch<T>(
   url: string,
   options: RequestInit = {},

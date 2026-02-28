@@ -1,3 +1,4 @@
+// App — top-level routing: public /login route + all other routes wrapped in ProtectedRoute
 import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from './features/store';
@@ -8,6 +9,7 @@ import type { Theme } from '@codeforge/shared';
 import LoginPage from './components/auth/LoginPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
+// App: applies theme class to <html>, fetches current user on mount if token exists but user is null
 function App() {
   const theme = useAppSelector((state) => state.ui.theme);
   const { token, user } = useAppSelector((state) => state.auth);
@@ -38,6 +40,8 @@ function App() {
   );
 }
 
+// App: applies theme class to <html>, fetches current user on mount if token exists but user is null
+// AppShell: authenticated layout with header (theme picker, user info, sign-out) and nested routes
 function AppShell() {
   const theme = useAppSelector((state) => state.ui.theme);
   const user = useAppSelector((state) => state.auth.user);

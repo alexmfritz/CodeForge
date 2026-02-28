@@ -1,3 +1,4 @@
+// ProtectedRoute — wrapper that redirects unauthenticated users to /login
 import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../../features/store';
 
@@ -5,6 +6,7 @@ interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
+// If loading, show spinner; if no token, redirect to /login; otherwise render children
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { token, loading } = useAppSelector((state) => state.auth);
 
