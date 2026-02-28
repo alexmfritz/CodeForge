@@ -1,5 +1,3 @@
-// Root React component — applies theme class and renders shell layout
-  // Sync Redux theme state to <html> className so CSS variables activate
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from './features/store';
 import { setTheme } from './features/uiSlice';
@@ -10,12 +8,10 @@ function App() {
   const theme = useAppSelector((state) => state.ui.theme);
   const dispatch = useAppDispatch();
 
-  // Sync Redux theme state to <html> className so CSS variables activate
   useEffect(() => {
     document.documentElement.className = theme;
   }, [theme]);
 
-  // Shell layout: header with theme picker, centered placeholder for future route outlet
   return (
     <div className="min-h-screen bg-bg-root text-text-primary transition-theme">
       <header className="flex items-center justify-between px-6 py-4 border-b border-border">

@@ -1,4 +1,3 @@
-// Client entry point — wraps App in StrictMode, Redux Provider, and BrowserRouter
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';

@@ -1,12 +1,9 @@
-// Canonical domain types — shared between client and server (single source of truth)
 // ─── Exercise Types ────────────────────────────────────────────────────────────
 
-// Supported exercise languages and difficulty tiers (1=spark through 5=mastercraft)
 export type ExerciseType = 'js' | 'html' | 'css' | 'html-css';
 export type Tier = 1 | 2 | 3 | 4 | 5;
 export type TierName = 'spark' | 'foundations' | 'builder' | 'architect' | 'mastercraft';
 
-// Declarative test case shape — used by both JS (Web Worker) and HTML/CSS (iframe) runners
 export interface TestCase {
   query?: string;
   assertion:
@@ -32,7 +29,6 @@ export interface Resource {
   description?: string;
 }
 
-// Full exercise document — mirrors the MongoDB Exercise collection schema
 export interface Exercise {
   _id: string;
   legacyId?: number;
@@ -63,7 +59,6 @@ export interface Exercise {
 
 // ─── Category / Collection ──────────────────────────────────────────────────
 
-// Nested category tree and ordered collection groupings for browse UI
 export interface Category {
   label: string;
   icon?: string;
@@ -94,7 +89,6 @@ export interface ExercisesData {
 
 // ─── Auth & Users ───────────────────────────────────────────────────────────
 
-// RBAC roles — instructor can CRUD everything, ta can view progress, student is default
 export type Role = 'instructor' | 'ta' | 'student';
 
 export interface User {
@@ -125,7 +119,6 @@ export interface Cohort {
 
 // ─── Progress ───────────────────────────────────────────────────────────────
 
-// Per-exercise progress tracking — one Progress doc per (user, exercise, cohort) triple
 export type ProgressStatus = 'not_started' | 'in_progress' | 'completed';
 
 export interface Progress {
@@ -150,7 +143,6 @@ export interface Progress {
 
 // ─── Assignments ────────────────────────────────────────────────────────────
 
-// Instructor-created exercise bundles assigned to a cohort (optionally targeted to specific students)
 export interface Assignment {
   _id: string;
   title: string;
@@ -167,7 +159,6 @@ export interface Assignment {
 
 // ─── Achievements ───────────────────────────────────────────────────────────
 
-// Gamification: badge definitions and per-user earned instances
 export interface AchievementDefinition {
   _id: string;
   name: string;
@@ -191,7 +182,6 @@ export interface AchievementInstance {
 
 // ─── Ratings ────────────────────────────────────────────────────────────────
 
-// 1-5 star exercise ratings — one per (user, exercise, cohort)
 export interface Rating {
   _id: string;
   userId: string;
@@ -204,7 +194,6 @@ export interface Rating {
 
 // ─── Test Results ───────────────────────────────────────────────────────────
 
-// Shape returned from test runners to the UI after each submission attempt
 export interface TestResult {
   pass: boolean;
   description: string;
@@ -213,7 +202,6 @@ export interface TestResult {
 
 // ─── UI Types ───────────────────────────────────────────────────────────────
 
-// Client-side UI state types — themes, sort options, toast notifications
 export type Theme =
   | 'midnight'
   | 'daylight'
@@ -233,7 +221,6 @@ export interface Toast {
 
 // ─── API Types ──────────────────────────────────────────────────────────────
 
-// Standardized API envelope and JWT auth payload shapes
 export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
@@ -245,7 +232,6 @@ export interface AuthPayload {
   user: User;
 }
 
-// JWT payload structure — attached to req.user by auth middleware
 export interface JwtPayload {
   userId: string;
   role: Role;

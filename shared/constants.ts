@@ -1,9 +1,7 @@
-// Shared constants — imported by both client and server to stay in sync
 import type { Tier, TierName, ExerciseType, Theme } from './types';
 
 // ─── Tier Metadata ──────────────────────────────────────────────────────────
 
-// Tier display metadata — colors map to CSS variables and tier badge component
 export const TIER_META: Record<
   Tier,
   { name: TierName; label: string; color: string; bgColor: string; borderColor: string }
@@ -55,7 +53,6 @@ export const TIER_NAMES: Record<TierName, Tier> = {
 
 // ─── Type Metadata ──────────────────────────────────────────────────────────
 
-// Exercise type labels and accent colors for badge rendering
 export const TYPE_META: Record<ExerciseType, { label: string; color: string }> = {
   js: { label: 'JS', color: '#facc15' },
   html: { label: 'HTML', color: '#f472b6' },
@@ -65,7 +62,6 @@ export const TYPE_META: Record<ExerciseType, { label: string; color: string }> =
 
 // ─── Scoring ────────────────────────────────────────────────────────────────
 
-// Score formula: floor(base x attemptMod x solutionMod) — see spec Section 6
 export const BASE_POINTS: Record<Tier, number> = {
   1: 10,
   2: 25,
@@ -77,7 +73,6 @@ export const BASE_POINTS: Record<Tier, number> = {
 export const ATTEMPT_MODIFIERS = [1.0, 0.9, 0.75, 0.5] as const;
 export const SOLUTION_VIEWED_MODIFIER = 0.5;
 
-// Compute final score factoring in tier, attempt count, and solution-viewed penalty
 export function calculateScore(
   tier: Tier,
   attempts: number,
@@ -93,7 +88,6 @@ export function calculateScore(
 
 // ─── Hint Gates ─────────────────────────────────────────────────────────────
 
-// Hints unlock at attempt thresholds [3, 6, 9]; solution unlocks at gate (default 10)
 export const HINT_GATES = [3, 6, 9] as const;
 export const DEFAULT_SOLUTION_GATE = 10;
 
@@ -113,7 +107,6 @@ export const ROLES = ['instructor', 'ta', 'student'] as const;
 
 // ─── Themes ─────────────────────────────────────────────────────────────────
 
-// All available themes — id maps to CSS class on <html>, scheme drives color-scheme
 export const THEMES: {
   id: Theme;
   name: string;
