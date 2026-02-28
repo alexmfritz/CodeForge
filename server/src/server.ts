@@ -1,3 +1,4 @@
+// Entry point — connect to MongoDB then start listening
 import mongoose from 'mongoose';
 import { app } from './app.js';
 import { config } from './config.js';
@@ -7,6 +8,7 @@ async function start(): Promise<void> {
     await mongoose.connect(config.mongoUri);
     console.log('Connected to MongoDB');
 
+    // Dev uses separate port (3001) so Vite proxy can forward /api requests
     const port = config.isDev ? config.devPort : config.port;
     app.listen(port, () => {
       console.log(

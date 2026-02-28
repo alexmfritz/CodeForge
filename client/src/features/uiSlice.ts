@@ -1,9 +1,11 @@
+// UI slice — client-only state for theme, browse filters, toasts, and misc flags
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { Theme, Toast, Tier, StatusSort } from '@codeforge/shared';
 import { THEMES, DEFAULT_THEME } from '@codeforge/shared/constants';
 
 const VALID_THEMES = new Set(THEMES.map((t) => t.id));
 
+// Hydrate theme from localStorage on load — falls back to midnight if missing/invalid
 function getInitialTheme(): Theme {
   try {
     const stored = localStorage.getItem('theme') as Theme | null;
@@ -13,6 +15,7 @@ function getInitialTheme(): Theme {
   }
 }
 
+// Full UI state shape — browseFilter drives the exercise list sidebar
 interface UiState {
   theme: Theme;
   browseFilter: {
@@ -47,10 +50,12 @@ const initialState: UiState = {
   serverReachable: true,
 };
 
+// Slice definition — each reducer is a small, focused state transition
 const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
+      // Persist to localStorage so theme survives page reload
     setTheme(state, action: PayloadAction<Theme>) {
       if (VALID_THEMES.has(action.payload)) {
         state.theme = action.payload;
@@ -88,6 +93,7 @@ const uiSlice = createSlice({
     setCategoryPath(state, action: PayloadAction<string[]>) {
       state.browseFilter.categoryPath = action.payload;
     },
+    // Reset all browse filters to defaults — triggered by "Clear" button in sidebar
     clearFilters(state) {
       state.browseFilter = {
         search: '',
