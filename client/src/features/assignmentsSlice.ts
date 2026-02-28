@@ -30,6 +30,11 @@ interface AssignmentProgressData {
   students: StudentProgressEntry[];
 }
 
+export interface ProgressSummary {
+  totalStudents: number;
+  studentsCompleted: number;
+}
+
 interface AssignmentsState {
   assignments: Assignment[];
   loading: boolean;
@@ -37,6 +42,7 @@ interface AssignmentsState {
   detailLoading: boolean;
   progress: AssignmentProgressData | null;
   progressLoading: boolean;
+  progressSummaries: Record<string, ProgressSummary>;
 }
 
 const initialState: AssignmentsState = {
@@ -46,12 +52,23 @@ const initialState: AssignmentsState = {
   detailLoading: false,
   progress: null,
   progressLoading: false,
+  progressSummaries: {},
 };
 
 export const fetchAssignments = createAsyncThunk(
   'assignments/fetchAll',
-  async (cohortId: string | undefined, { rejectWithValue }) => {
-    const url = cohortId ? `/api/assignments?cohortId=${cohortId}` : '/api/assignments';
+  async (
+    params: { cohortId?: string; includeArchived?: boolean } | string | undefined,
+    { rejectWithValue },
+  ) => {
+    // Support legacy string arg (cohortId) and new object arg
+    const cohortId = typeof params === 'string' ? params : params?.cohortId;
+    const includeArchived = typeof params === 'object' && params?.includeArchived;
+    const searchParams = new URLSearchParams();
+    if (cohortId) searchParams.set('cohortId', cohortId);
+    if (includeArchived) searchParams.set('includeArchived', 'true');
+    const qs = searchParams.toString();
+    const url = qs ? `/api/assignments?${qs}` : '/api/assignments';
     const result = await apiFetch<Assignment[]>(url);
     if (!result.success || !result.data) {
       return rejectWithValue(result.error || 'Failed to load assignments');
@@ -77,6 +94,20 @@ export const fetchAssignmentProgress = createAsyncThunk(
     const result = await apiFetch<AssignmentProgressData>(`/api/assignments/${id}/progress`);
     if (!result.success || !result.data) {
       return rejectWithValue(result.error || 'Failed to load progress');
+    }
+    return result.data;
+  },
+);
+
+export const fetchProgressSummaries = createAsyncThunk(
+  'assignments/fetchProgressSummaries',
+  async (assignmentIds: string[], { rejectWithValue }) => {
+    const result = await apiFetch<Record<string, ProgressSummary>>('/api/assignments/progress-summaries', {
+      method: 'POST',
+      body: JSON.stringify({ assignmentIds }),
+    });
+    if (!result.success || !result.data) {
+      return rejectWithValue(result.error || 'Failed to load progress summaries');
     }
     return result.data;
   },
@@ -206,7 +237,15 @@ const assignmentsSlice = createSlice({
       })
 
       .addCase(deleteAssignment.fulfilled, (state, action) => {
-        state.assignments = state.assignments.filter((a) => a._id !== action.payload._id);
+        // Update in place (soft delete sets isActive: false) so archived filter works
+        const idx = state.assignments.findIndex((a) => a._id === action.payload._id);
+        if (idx !== -1) {
+          state.assignments[idx] = action.payload;
+        }
+      })
+
+      .addCase(fetchProgressSummaries.fulfilled, (state, action) => {
+        state.progressSummaries = { ...state.progressSummaries, ...action.payload };
       });
   },
 });

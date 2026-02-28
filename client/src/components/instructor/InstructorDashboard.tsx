@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { fetchCohorts, fetchStudents } from '../../features/instructorSlice';
+import type { Assignment } from '@codeforge/shared';
 import OverviewPanel from './OverviewPanel';
 import StudentList from './StudentList';
 import CohortManager from './CohortManager';
@@ -25,7 +26,8 @@ const TABS: { id: Tab; label: string }[] = [
 export default function InstructorDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [selectedCohortId, setSelectedCohortId] = useState<string | undefined>(undefined);
-  const [showAssignmentBuilder, setShowAssignmentBuilder] = useState(false);
+  const [builderMode, setBuilderMode] = useState<'hidden' | 'create' | 'edit' | 'duplicate'>('hidden');
+  const [builderAssignment, setBuilderAssignment] = useState<Assignment | null>(null);
   const dispatch = useAppDispatch();
   const { cohorts } = useAppSelector((s) => s.instructor);
 
@@ -47,6 +49,28 @@ export default function InstructorDashboard() {
       dispatch(fetchStudents(selectedCohortId));
     }
   }, [activeTab, selectedCohortId, dispatch]);
+
+  const closeBuilder = useCallback(() => {
+    setBuilderMode('hidden');
+    setBuilderAssignment(null);
+  }, []);
+
+  const handleEdit = useCallback((assignment: Assignment) => {
+    setBuilderAssignment(assignment);
+    setBuilderMode('edit');
+  }, []);
+
+  const handleDuplicate = useCallback((assignment: Assignment) => {
+    // Strip _id so it creates a new assignment, prefix title
+    setBuilderAssignment({
+      ...assignment,
+      _id: '',
+      title: `${assignment.title} (Copy)`,
+    });
+    setBuilderMode('duplicate');
+  }, []);
+
+  const showBuilder = builderMode !== 'hidden';
 
   return (
     <div className="h-full overflow-y-auto p-6">
@@ -96,9 +120,9 @@ export default function InstructorDashboard() {
               <span className="text-sm" style={{ color: 'var(--text-muted)' }}>
                 Assignments for {selectedCohortId ? cohorts.find((c) => c._id === selectedCohortId)?.name || 'selected cohort' : 'all cohorts'}
               </span>
-              {!showAssignmentBuilder && (
+              {!showBuilder && (
                 <button
-                  onClick={() => setShowAssignmentBuilder(true)}
+                  onClick={() => setBuilderMode('create')}
                   className="px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                   style={{
                     backgroundColor: 'var(--accent)',
@@ -110,10 +134,19 @@ export default function InstructorDashboard() {
                 </button>
               )}
             </div>
-            {showAssignmentBuilder && (
-              <AssignmentBuilder onClose={() => setShowAssignmentBuilder(false)} />
+            {showBuilder && (
+              <AssignmentBuilder
+                key={builderMode + (builderAssignment?._id || 'new')}
+                onClose={closeBuilder}
+                editingAssignment={builderMode === 'edit' ? builderAssignment : undefined}
+                duplicatingFrom={builderMode === 'duplicate' ? builderAssignment : undefined}
+              />
             )}
-            <AssignmentList cohortId={selectedCohortId} />
+            <AssignmentList
+              cohortId={selectedCohortId}
+              onEdit={handleEdit}
+              onDuplicate={handleDuplicate}
+            />
           </div>
         )}
         {activeTab === 'exercises' && <ExerciseManager cohortId={selectedCohortId} />}

@@ -6,8 +6,16 @@ import {
   fetchAssignmentProgress,
   clearAssignmentDetail,
 } from '../../features/assignmentsSlice';
+import type { AssignmentStatus } from '@codeforge/shared';
+import { getAssignmentStatus } from '@codeforge/shared';
 import AssignmentProgress from './AssignmentProgress';
 import Skeleton from '../shared/Skeleton';
+
+const STATUS_CONFIG: Record<AssignmentStatus, { label: string; color: string }> = {
+  active: { label: 'Active', color: 'var(--success)' },
+  'past-due': { label: 'Past Due', color: 'var(--warning, #e89a3c)' },
+  archived: { label: 'Archived', color: 'var(--text-muted)' },
+};
 
 export default function AssignmentDetail() {
   const { id } = useParams<{ id: string }>();
@@ -50,7 +58,8 @@ export default function AssignmentDetail() {
     (ex) => progressItems[ex._id]?.status === 'completed',
   ).length;
 
-  const isOverdue = assignment.dueDate && new Date(assignment.dueDate) < new Date();
+  const status = getAssignmentStatus(assignment);
+  const statusInfo = STATUS_CONFIG[status];
 
   return (
     <div className="h-full overflow-y-auto p-6">
@@ -71,6 +80,14 @@ export default function AssignmentDetail() {
           <h1 className="text-xl font-heading font-bold" style={{ color: 'var(--text-primary)' }}>
             {assignment.title}
           </h1>
+          {isInstructor && (
+            <span
+              className="inline-block px-2 py-0.5 rounded text-xs font-medium"
+              style={{ backgroundColor: 'var(--bg-raised)', color: statusInfo.color }}
+            >
+              {statusInfo.label}
+            </span>
+          )}
         </div>
 
         <div
@@ -86,7 +103,7 @@ export default function AssignmentDetail() {
             <div className="flex items-center gap-4 text-xs" style={{ color: 'var(--text-muted)' }}>
               <span>{totalExercises} exercise{totalExercises !== 1 ? 's' : ''}</span>
               {assignment.dueDate && (
-                <span style={{ color: isOverdue ? 'var(--error)' : undefined }}>
+                <span style={{ color: status === 'past-due' ? 'var(--error)' : undefined }}>
                   Due {new Date(assignment.dueDate).toLocaleDateString()}
                 </span>
               )}

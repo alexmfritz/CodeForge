@@ -186,6 +186,14 @@ export interface Assignment {
   updatedAt: string;
 }
 
+export type AssignmentStatus = 'active' | 'past-due' | 'archived';
+
+export function getAssignmentStatus(assignment: Pick<Assignment, 'isActive' | 'dueDate'>): AssignmentStatus {
+  if (!assignment.isActive) return 'archived';
+  if (assignment.dueDate && new Date(assignment.dueDate) < new Date()) return 'past-due';
+  return 'active';
+}
+
 // ─── Achievements ───────────────────────────────────────────────────────────
 
 export interface AchievementDefinition {
