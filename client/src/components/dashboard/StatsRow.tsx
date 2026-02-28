@@ -6,16 +6,14 @@ interface StatsRowProps {
 }
 
 export default function StatsRow({ completedCount, inProgressCount, totalAttempts, totalScore }: StatsRowProps) {
-  // data-driven config keeps the JSX loop simple and makes adding/reordering stats trivial
   const stats = [
     { label: 'Completed', value: completedCount, color: 'var(--success)' },
-    { label: 'In Progress', value: inProgressCount, color: '#f59e0b' }, // hardcoded amber — no theme var for warning yellow yet
+    { label: 'In Progress', value: inProgressCount, color: '#f59e0b' },
     { label: 'Total Attempts', value: totalAttempts, color: 'var(--text-secondary)' },
-    { label: 'Avg Score', value: completedCount > 0 ? Math.round(totalScore / completedCount) : 0, color: 'var(--accent)' }, // guard against division by zero
+    { label: 'Avg Score', value: completedCount > 0 ? Math.round(totalScore / completedCount) : 0, color: 'var(--accent)' },
   ];
 
   return (
-    // auto-fit collapses cards to a single column on small screens without a media query
     <div
       className="grid gap-3"
       style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))' }}
