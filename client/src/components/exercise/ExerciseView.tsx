@@ -14,6 +14,7 @@ import ResetModal from './ResetModal';
 import CompareModal from './CompareModal';
 import EditorLayout from './EditorLayout';
 
+// Top-level exercise page: wires up the editor, instructions, test runner, and navigation
 export default function ExerciseView() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ export default function ExerciseView() {
   const exercise = useAppSelector((s) =>
     s.exercises.exercises.find((ex) => ex._id === id),
   );
+  // Restore previously saved code so the student picks up where they left off
   const savedCode = useAppSelector(selectSavedCode(id ?? ''));
   const isComplete = useAppSelector(
     (s) => s.progress.items[id ?? '']?.status === 'completed',
@@ -42,6 +44,7 @@ export default function ExerciseView() {
   const { testResults, isRunning, duplicateWarning, runTests, clearResults } =
     useTestRunner(exercise, code, cssCode, () => setActiveTab('results'));
 
+  // Seed the editor with saved code or starter code when the exercise changes
   useEffect(() => {
     if (!exercise) return;
     if (exercise.type === 'html-css') {
@@ -55,6 +58,7 @@ export default function ExerciseView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exercise?._id]);
 
+  // Build live preview HTML for non-JS exercises whenever code changes
   useEffect(() => {
     if (!exercise) return;
     if (exercise.type === 'js') return;
@@ -70,6 +74,7 @@ export default function ExerciseView() {
   const dispatchRef = useRef(dispatch);
   dispatchRef.current = dispatch;
   const saveTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  // Debounced auto-save: persists code to server 1s after the student stops typing
   const debouncedSave = useRef(
     debounce((exerciseId: string, codeToSave: string) => {
       dispatchRef.current(setSaveStatus('saving'));
@@ -105,6 +110,7 @@ export default function ExerciseView() {
     [exercise, code, debouncedSave],
   );
 
+  // Wipe progress and restore the exercise to its starter code state
   const handleReset = async () => {
     if (!exercise) return;
     try {

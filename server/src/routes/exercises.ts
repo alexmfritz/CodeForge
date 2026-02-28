@@ -6,6 +6,7 @@ import { getExercisesData, getExerciseById, createExercise, updateExercise } fro
 
 const router = Router();
 
+// Returns full exercises+collections+categories payload for the client-side Redux store
 router.get('/', authenticate, async (_req, res, next) => {
   try {
     const data = await getExercisesData();
@@ -15,6 +16,7 @@ router.get('/', authenticate, async (_req, res, next) => {
   }
 });
 
+// Single exercise fetch used for deep-link navigation
 router.get('/:id', authenticate, async (req, res, next) => {
   try {
     const exercise = await getExerciseById(req.params.id as string);
@@ -27,6 +29,7 @@ router.get('/:id', authenticate, async (req, res, next) => {
   }
 });
 
+// Only instructors/TAs can author new exercises; Zod validates the payload shape
 router.post(
   '/',
   authenticate,
@@ -42,6 +45,7 @@ router.post(
   },
 );
 
+// Partial update — tracks who last modified for audit purposes
 router.patch(
   '/:id',
   authenticate,

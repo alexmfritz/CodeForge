@@ -2,11 +2,13 @@ import { useAppDispatch, useAppSelector } from '../../features/store';
 import { setCategoryPath } from '../../features/uiSlice';
 import type { Category } from '@codeforge/shared';
 
+// Shows child categories for the current path so users can drill deeper into topics
 export default function SubcategoryNav() {
   const dispatch = useAppDispatch();
   const categories = useAppSelector((s) => s.exercises.categories);
   const categoryPath = useAppSelector((s) => s.ui.browseFilter.categoryPath);
 
+  // Walk the category tree to find children at the current depth
   let node: Record<string, Category> | undefined = categories;
   for (const seg of categoryPath) {
     const cat: Category | undefined = node?.[seg];

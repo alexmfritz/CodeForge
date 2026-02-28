@@ -14,6 +14,7 @@ import {
 
 const router = Router();
 
+// Bulk fetch all progress records so the client can hydrate its local state map
 router.get('/', authenticate, async (req, res, next) => {
   try {
     const progress = await getUserProgress(req.user!.userId);
@@ -23,6 +24,7 @@ router.get('/', authenticate, async (req, res, next) => {
   }
 });
 
+// Aggregated stats for the student dashboard (completion count, total score, etc.)
 router.get('/stats', authenticate, async (req, res, next) => {
   try {
     const stats = await getUserStats(req.user!.userId);
@@ -32,8 +34,10 @@ router.get('/stats', authenticate, async (req, res, next) => {
   }
 });
 
+// Auto-save endpoint called on editor blur/interval — persists work-in-progress code
 router.post('/:exerciseId/save', authenticate, validate(saveCodeSchema), async (req, res, next) => {
   try {
+    // Fall back to userId as cohort when no cohort is assigned (solo learners)
     const cohortId = req.user!.cohortId ?? req.user!.userId;
     const progress = await saveCode(req.user!.userId, req.params.exerciseId as string, cohortId, req.body.code);
     res.json({ success: true, data: progress.toJSON() });
@@ -42,6 +46,7 @@ router.post('/:exerciseId/save', authenticate, validate(saveCodeSchema), async (
   }
 });
 
+// Logs each test run; returns whether the code hash was a new unique attempt
 router.post('/:exerciseId/attempt', authenticate, validate(recordAttemptSchema), async (req, res, next) => {
   try {
     const cohortId = req.user!.cohortId ?? req.user!.userId;
@@ -58,6 +63,7 @@ router.post('/:exerciseId/attempt', authenticate, validate(recordAttemptSchema),
   }
 });
 
+// Finalizes the exercise — computes score based on attempts and solution usage
 router.post('/:exerciseId/complete', authenticate, validate(markCompleteSchema), async (req, res, next) => {
   try {
     const cohortId = req.user!.cohortId ?? req.user!.userId;
@@ -74,6 +80,7 @@ router.post('/:exerciseId/complete', authenticate, validate(markCompleteSchema),
   }
 });
 
+// Wipes all progress so the student can re-attempt from scratch
 router.post('/:exerciseId/reset', authenticate, async (req, res, next) => {
   try {
     const progress = await resetProgress(req.user!.userId, req.params.exerciseId as string);
@@ -83,6 +90,7 @@ router.post('/:exerciseId/reset', authenticate, async (req, res, next) => {
   }
 });
 
+// Records that the student peeked at the solution (affects final score penalty)
 router.post('/:exerciseId/view-solution', authenticate, async (req, res, next) => {
   try {
     const cohortId = req.user!.cohortId ?? req.user!.userId;

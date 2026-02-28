@@ -10,11 +10,13 @@ interface UseExerciseNavigationResult {
   navContext: string | null;
 }
 
+// Derives prev/next exercise and position from the current browse filters
 export function useExerciseNavigation(exerciseId: string): UseExerciseNavigationResult {
   const exercises = useAppSelector((s) => s.exercises.exercises);
   const collections = useAppSelector((s) => s.exercises.collections);
   const browseFilter = useAppSelector((s) => s.ui.browseFilter);
 
+  // Re-apply browse filters to determine the ordered list the user was navigating through
   const sortedExercises = useMemo(() => {
     let result = exercises;
 
@@ -24,6 +26,7 @@ export function useExerciseNavigation(exerciseId: string): UseExerciseNavigation
       );
     }
 
+    // When navigating within a collection, preserve that collection's exercise order
     if (browseFilter.collectionId && browseFilter.collectionId !== '__in-progress__') {
       const col = collections.find((c) => c._id === browseFilter.collectionId);
       if (col) {
@@ -47,6 +50,7 @@ export function useExerciseNavigation(exerciseId: string): UseExerciseNavigation
       ? sortedExercises[currentIndex + 1]
       : null;
 
+  // Human-readable label shown in the toolbar so the student knows their navigation scope
   const navContext = useMemo(() => {
     if (browseFilter.collectionId && browseFilter.collectionId !== '__in-progress__') {
       const col = collections.find((c) => c._id === browseFilter.collectionId);

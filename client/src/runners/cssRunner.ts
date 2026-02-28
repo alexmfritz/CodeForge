@@ -1,11 +1,13 @@
 import type { TestResult, TestCase } from '@codeforge/shared';
 
+// CSS tests require computed styles, so we render into a real offscreen iframe
 export function runCssTests(
   cssCode: string,
   providedHtml: string,
   testCases: TestCase[],
 ): Promise<{ results: TestResult[]; cleanup: () => void }> {
   return new Promise((resolve) => {
+    // Fixed dimensions ensure consistent computed values across machines
     const iframe = document.createElement('iframe');
     iframe.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:800px;height:600px;';
     document.body.appendChild(iframe);
@@ -17,6 +19,7 @@ export function runCssTests(
     );
     doc.close();
 
+    // Wait one frame so the browser finishes style computation before we read values
     requestAnimationFrame(() => {
       const results = testCases.map((tc): TestResult => {
         try {
@@ -41,6 +44,7 @@ export function runCssTests(
   });
 }
 
+// Routes each assertion type — source checks don't need the DOM, style checks use getComputedStyle
 function evaluateCssAssertion(doc: Document, source: string, tc: TestCase): TestResult {
   const { assertion, property, value, description } = tc;
   const query = tc.query ?? (tc as unknown as Record<string, unknown>).selector as string | undefined;

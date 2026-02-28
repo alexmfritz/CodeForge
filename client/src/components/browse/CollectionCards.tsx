@@ -3,12 +3,14 @@ import { useAppDispatch, useAppSelector } from '../../features/store';
 import { setCollectionFilter } from '../../features/uiSlice';
 import { calcPercent } from '../../utils/helpers';
 
+// Renders collection cards with completion progress; includes a virtual "In Progress" card
 export default function CollectionCards() {
   const dispatch = useAppDispatch();
   const collections = useAppSelector((s) => s.exercises.collections);
   const exercises = useAppSelector((s) => s.exercises.exercises);
   const progressItems = useAppSelector((s) => s.progress.items);
 
+  // Exclude admin-only hidden collections from the student-facing browse view
   const visibleCollections = collections.filter((c) => !c.hidden);
 
   const inProgressCount = useMemo(() => {
@@ -26,6 +28,7 @@ export default function CollectionCards() {
         Collections
       </h2>
       <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
+        {/* Synthetic "In Progress" card so students can quickly resume unfinished exercises */}
         {inProgressCount > 0 && (
           <button
             onClick={() => dispatch(setCollectionFilter('__in-progress__'))}

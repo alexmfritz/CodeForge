@@ -11,12 +11,14 @@ interface HintsSectionProps {
   uniqueAttempts: number;
 }
 
+// Progressive hint reveal: each hint unlocks after a configurable number of unique attempts
 export default function HintsSection({ hints, expandedHints, onToggleHint, uniqueAttempts }: HintsSectionProps) {
   if (hints.length === 0) return null;
 
   return (
     <div className="flex flex-col gap-2">
       {hints.map((hintText, i) => {
+        // Each hint has an escalating gate; fall back to the last threshold for extra hints
         const gateThreshold = HINT_GATES[i] ?? HINT_GATES[HINT_GATES.length - 1];
         const unlocked = uniqueAttempts >= gateThreshold;
 

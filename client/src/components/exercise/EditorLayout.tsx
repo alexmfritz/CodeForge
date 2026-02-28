@@ -10,6 +10,7 @@ interface EditorLayoutProps {
   onRun: () => void;
 }
 
+// Renders a single editor pane or side-by-side HTML+CSS panes depending on exercise type
 export default function EditorLayout({
   exerciseType,
   code,
@@ -18,6 +19,7 @@ export default function EditorLayout({
   onCssChange,
   onRun,
 }: EditorLayoutProps) {
+  // Dual-editor layout: HTML on the left, CSS on the right with labeled headers
   if (exerciseType === 'html-css') {
     return (
       <div className="flex-1 flex overflow-hidden">

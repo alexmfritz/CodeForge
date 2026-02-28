@@ -19,11 +19,13 @@ const initialState: ExercisesState = {
   error: null,
 };
 
+// Fetches exercises, collections, and category tree in a single request to minimize network trips
 export const fetchExercises = createAsyncThunk<ExercisesData>(
   'exercises/fetchAll',
   async (_, { dispatch, rejectWithValue }) => {
     const result = await apiFetch<ExercisesData>('/api/exercises');
     if (!result.success || !result.data) {
+      // Signal the UI to show offline banner when the server can't be reached
       dispatch(setServerReachable(false));
       return rejectWithValue(result.error || 'Failed to load exercises');
     }
@@ -36,6 +38,7 @@ const exercisesSlice = createSlice({
   name: 'exercises',
   initialState,
   reducers: {},
+  // All state changes come from the async thunk — no synchronous reducers needed
   extraReducers: (builder) => {
     builder
       .addCase(fetchExercises.pending, (state) => {

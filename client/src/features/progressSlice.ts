@@ -3,6 +3,7 @@ import type { Progress } from '@codeforge/shared';
 import { apiFetch } from '../utils/api';
 import type { RootState } from './store';
 
+// DJB2 hash — lightweight string fingerprint for detecting duplicate submissions client-side
 function hashCode(str: string): string {
   let hash = 5381;
   for (let i = 0; i < str.length; i++) {
@@ -11,6 +12,7 @@ function hashCode(str: string): string {
   return String(hash);
 }
 
+// Keyed by exerciseId for O(1) lookups from any component
 interface ProgressState {
   items: Record<string, Progress>;
   loading: boolean;
@@ -32,6 +34,7 @@ export const fetchProgress = createAsyncThunk(
   },
 );
 
+// Persists the student's current code to the server (called on auto-save intervals)
 export const saveSolution = createAsyncThunk(
   'progress/save',
   async ({ exerciseId, code }: { exerciseId: string; code: string }, { rejectWithValue }) => {
@@ -46,6 +49,7 @@ export const saveSolution = createAsyncThunk(
   },
 );
 
+// Sends the code hash so the server can track unique vs. duplicate attempts
 export const recordAttempt = createAsyncThunk(
   'progress/attempt',
   async (
@@ -63,6 +67,7 @@ export const recordAttempt = createAsyncThunk(
   },
 );
 
+// Triggers server-side score computation and marks the exercise as done
 export const markComplete = createAsyncThunk(
   'progress/complete',
   async (
@@ -114,6 +119,7 @@ const progressSlice = createSlice({
   name: 'progress',
   initialState,
   reducers: {
+    // Optimistic client-side dedup: updates the hash set before the server round-trip
     recordLocalFailedAttempt(
       state,
       action: PayloadAction<{ exerciseId: string; code: string }>,
@@ -135,6 +141,7 @@ const progressSlice = createSlice({
       })
       .addCase(fetchProgress.fulfilled, (state, action) => {
         state.loading = false;
+        // Re-key the array into a lookup map indexed by exerciseId
         const map: Record<string, Progress> = {};
         for (const p of action.payload) {
           map[p.exerciseId] = p;
@@ -185,6 +192,7 @@ export const selectUniqueAttempts = (exerciseId: string) => (state: RootState) =
 export const selectAttempts = (exerciseId: string) => (state: RootState) =>
   state.progress.items[exerciseId]?.attempts ?? 0;
 
+// Used to show "you already tried this code" feedback before the student submits
 export const selectIsDuplicateCode =
   (exerciseId: string, code: string) => (state: RootState) => {
     const item = state.progress.items[exerciseId];

@@ -20,6 +20,7 @@ interface CodeEditorProps {
   minHeight?: string;
 }
 
+// Each theme mirrors the app-wide CSS variable palette for visual consistency
 const lightTheme = EditorView.theme(
   {
     '&': { backgroundColor: '#f8f9fb', color: '#1e293b' },
@@ -171,6 +172,7 @@ export default function CodeEditor({
   const onChangeRef = useRef(onChange);
   const onRunRef = useRef(onRun);
 
+  // Compartments let us hot-swap theme/language/readOnly without rebuilding the editor
   const themeCompartment = useRef(new Compartment());
   const languageCompartment = useRef(new Compartment());
   const readOnlyCompartment = useRef(new Compartment());
@@ -187,6 +189,7 @@ export default function CodeEditor({
       }
     });
 
+    // Ctrl/Cmd+Enter shortcut to run tests without leaving the editor
     const runKeymap = keymap.of([
       { key: 'Ctrl-Enter', run: () => { onRunRef.current?.(); return true; } },
       { key: 'Mod-Enter', run: () => { onRunRef.current?.(); return true; } },
@@ -246,6 +249,7 @@ export default function CodeEditor({
     view.dispatch({ effects: readOnlyCompartment.current.reconfigure(EditorState.readOnly.of(readOnly)) });
   }, [readOnly]);
 
+  // Sync external value prop into the editor (e.g. after reset or exercise switch)
   useEffect(() => {
     const view = viewRef.current;
     if (!view) return;
