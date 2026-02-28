@@ -4,6 +4,7 @@ import { config } from './config.js';
 import { seedInstructor } from './seed/seedInstructor.js';
 import { seedExercises } from './seed/seedExercises.js';
 import { seedAchievements } from './seed/seedAchievements.js';
+import { seedAssignments } from './seed/seedAssignments.js';
 
 async function start(): Promise<void> {
   try {
@@ -13,6 +14,7 @@ async function start(): Promise<void> {
     await seedInstructor();
     await seedExercises();
     await seedAchievements();
+    await seedAssignments();
 
     const port = config.isDev ? config.devPort : config.port;
     app.listen(port, () => {
