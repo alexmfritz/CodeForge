@@ -109,11 +109,59 @@ export async function getUserStats(userId: string) {
   const totalScore = completed.reduce((sum, p) => sum + p.score, 0);
   const totalAttempts = progress.reduce((sum, p) => sum + p.attempts, 0);
 
+  const exerciseIds = progress.map((p) => p.exerciseId);
+  const exercises = await Exercise.find({ _id: { $in: exerciseIds } }).lean();
+  const exerciseMap = new Map(exercises.map((e) => [String(e._id), e]));
+
+  const tierBreakdown: Record<number, { completed: number; total: number; score: number }> = {};
+  const typeBreakdown: Record<string, { completed: number; total: number; score: number }> = {};
+
+  for (const p of progress) {
+    const ex = exerciseMap.get(String(p.exerciseId));
+    if (!ex) continue;
+
+    const tier = ex.tier;
+    if (!tierBreakdown[tier]) tierBreakdown[tier] = { completed: 0, total: 0, score: 0 };
+    tierBreakdown[tier].total += 1;
+    if (p.status === 'completed') {
+      tierBreakdown[tier].completed += 1;
+      tierBreakdown[tier].score += p.score;
+    }
+
+    const type = ex.type;
+    if (!typeBreakdown[type]) typeBreakdown[type] = { completed: 0, total: 0, score: 0 };
+    typeBreakdown[type].total += 1;
+    if (p.status === 'completed') {
+      typeBreakdown[type].completed += 1;
+      typeBreakdown[type].score += p.score;
+    }
+  }
+
+  const recentActivity = completed
+    .filter((p) => p.completedAt)
+    .sort((a, b) => new Date(b.completedAt!).getTime() - new Date(a.completedAt!).getTime())
+    .slice(0, 10)
+    .map((p) => {
+      const ex = exerciseMap.get(String(p.exerciseId));
+      return {
+        exerciseId: String(p.exerciseId),
+        title: ex?.title ?? 'Unknown',
+        tier: ex?.tier ?? 1,
+        type: ex?.type ?? 'js',
+        score: p.score,
+        completedAt: p.completedAt,
+        attempts: p.uniqueAttempts,
+      };
+    });
+
   return {
     totalExercises: progress.length,
     completedCount: completed.length,
     inProgressCount: progress.filter((p) => p.status === 'in_progress').length,
     totalScore,
     totalAttempts,
+    tierBreakdown,
+    typeBreakdown,
+    recentActivity,
   };
 }
