@@ -13,6 +13,7 @@ export default function AchievementGrid() {
   const { definitions, loading } = useAppSelector((s) => s.achievements);
   const earnedMap = useAppSelector(selectEarnedMap);
 
+  // Load all definitions and user's earned achievements on mount
   useEffect(() => {
     dispatch(fetchDefinitions());
     dispatch(fetchMyAchievements());
@@ -54,6 +55,7 @@ export default function AchievementGrid() {
 
   const earnedCount = Object.keys(earnedMap).length;
 
+  // Sort earned achievements to the top for better UX visibility
   const sorted = [...definitions].sort((a, b) => {
     const aEarned = !!earnedMap[a._id];
     const bEarned = !!earnedMap[b._id];

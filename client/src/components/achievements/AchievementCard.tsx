@@ -16,6 +16,7 @@ export default function AchievementCard({ definition, earned, earnedAt }: Achiev
         opacity: earned ? 1 : 0.55,
       }}
     >
+      {/* Show achievement icon if earned, locked icon otherwise */}
       <div
         className="text-3xl mb-2 select-none"
         style={{
@@ -36,6 +37,7 @@ export default function AchievementCard({ definition, earned, earnedAt }: Achiev
       >
         {definition.description}
       </div>
+      {/* Display earned date badge only for completed achievements */}
       {earned && earnedAt && (
         <div
           className="text-xs mt-2 px-2 py-0.5 rounded-full"
