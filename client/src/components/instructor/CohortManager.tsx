@@ -11,7 +11,6 @@ export default function CohortManager() {
   const [formData, setFormData] = useState({ name: '', startDate: '', endDate: '' });
   const [error, setError] = useState('');
 
-  // Centralised reset so both Cancel and post-submit paths leave identical clean state
   const resetForm = () => {
     setFormData({ name: '', startDate: '', endDate: '' });
     setShowForm(false);
@@ -54,7 +53,6 @@ export default function CohortManager() {
   };
 
   const startEdit = (cohort: (typeof cohorts)[0]) => {
-    // Strip the time component so the date input receives a plain YYYY-MM-DD value
     setFormData({
       name: cohort.name,
       startDate: cohort.startDate.split('T')[0],
@@ -64,7 +62,6 @@ export default function CohortManager() {
     setShowForm(true);
   };
 
-  // Single-field patch; no form needed since this is just a boolean flip
   const toggleActive = async (cohort: (typeof cohorts)[0]) => {
     await dispatch(updateCohort({ id: cohort._id, isActive: !cohort.isActive })).unwrap();
   };

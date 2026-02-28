@@ -24,12 +24,10 @@ export default function UserManager({ cohortId }: UserManagerProps) {
   });
   const [error, setError] = useState('');
 
-  // Fetch all roles (not just students) so instructors and TAs are visible here too
   useEffect(() => {
     dispatch(fetchAllUsers());
   }, [dispatch]);
 
-  // Client-side filter; no debouncing needed given typical user counts in a DOC classroom
   const filteredUsers = users.filter((u) => {
     const matchesSearch =
       u.displayName.toLowerCase().includes(search.toLowerCase()) ||
@@ -237,7 +235,6 @@ export default function UserManager({ cohortId }: UserManagerProps) {
               </select>
             </div>
           </div>
-          {/* Preview the auto-generated credentials so the instructor can verify before submitting */}
           <p className="text-xs mt-2" style={{ color: 'var(--text-muted)' }}>
             Username: {formData.firstName && formData.lastName
               ? `${formData.firstName.charAt(0).toLowerCase()}${formData.lastName.toLowerCase().replace(/\s+/g, '')}`
@@ -310,7 +307,6 @@ export default function UserManager({ cohortId }: UserManagerProps) {
             </thead>
             <tbody>
               {filteredUsers.map((user) => {
-                // Resolve cohort name from the already-loaded store rather than an extra fetch
                 const cohort = cohorts.find((c) => c._id === user.cohortId);
                 return (
                   <tr key={user._id} style={{ borderBottom: '1px solid var(--border)' }}>
