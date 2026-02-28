@@ -1,9 +1,7 @@
-// Zod schemas — shared validation used by both server middleware and client forms
 import { z } from 'zod';
 
 // ─── Auth ───────────────────────────────────────────────────────────────────
 
-// Auth: simple username/password (no email — offline DOC environment)
 export const loginSchema = z.object({
   username: z.string().min(1, 'Username is required'),
   password: z.string().min(1, 'Password is required'),
@@ -11,7 +9,6 @@ export const loginSchema = z.object({
 
 // ─── Users ──────────────────────────────────────────────────────────────────
 
-// User management — bulk create supports CSV-imported cohort rosters
 export const createUserSchema = z.object({
   firstName: z.string().min(1).max(50),
   lastName: z.string().min(1).max(50),
@@ -31,7 +28,6 @@ export const bulkCreateUsersSchema = z.object({
   cohortId: z.string(),
 });
 
-// Partial update — students can change display name and theme preference
 export const updateUserSchema = z.object({
   displayName: z.string().min(1).max(100).optional(),
   isActive: z.boolean().optional(),
@@ -55,7 +51,6 @@ export const updateUserSchema = z.object({
 
 // ─── Cohorts ────────────────────────────────────────────────────────────────
 
-// Cohort CRUD — date range defines the active enrollment window
 export const createCohortSchema = z.object({
   name: z.string().min(1).max(100),
   startDate: z.string().datetime(),
@@ -71,7 +66,6 @@ export const updateCohortSchema = z.object({
 
 // ─── Exercises ──────────────────────────────────────────────────────────────
 
-// Full exercise validation — testCases array is optional (JS exercises use testRunner instead)
 export const createExerciseSchema = z.object({
   title: z.string().min(1).max(200),
   type: z.enum(['js', 'html', 'css', 'html-css']),
@@ -124,7 +118,6 @@ export const createExerciseSchema = z.object({
 
 // ─── Progress ───────────────────────────────────────────────────────────────
 
-// Progress endpoints — save drafts, record attempts (with code hash for uniqueness), mark complete
 export const saveCodeSchema = z.object({
   code: z.string(),
 });
@@ -141,7 +134,6 @@ export const markCompleteSchema = z.object({
 
 // ─── Assignments ────────────────────────────────────────────────────────────
 
-// Assignments — instructor bundles exercises and optionally targets specific students
 export const createAssignmentSchema = z.object({
   title: z.string().min(1).max(200),
   description: z.string().optional(),
@@ -153,7 +145,6 @@ export const createAssignmentSchema = z.object({
 
 // ─── Ratings ────────────────────────────────────────────────────────────────
 
-// Post-completion 1-5 star rating per exercise
 export const submitRatingSchema = z.object({
   exerciseId: z.string(),
   stars: z.number().int().min(1).max(5),

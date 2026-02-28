@@ -1,10 +1,8 @@
-/* Global styles — Tailwind directives, 8 theme palettes, base resets, and utility classes */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ─── Theme 1: Midnight (dark default) ────────────────────────────────────── */
-/* Default dark theme — also serves as :root fallback if no theme class is set */
 :root,
 .midnight {
   --bg-root: #090b10;
@@ -60,7 +58,6 @@
 }
 
 /* ─── Theme 3: High Contrast (accessibility) ──────────────────────────────── */
-/* WCAG AAA target — increased border contrast and brighter text for accessibility */
 .high-contrast {
   --bg-root: #000000;
   --bg-surface: #0a0a0a;
@@ -223,7 +220,6 @@
 }
 
 /* ─── Base Styles ─────────────────────────────────────────────────────────── */
-/* Global reset — border-box sizing and zero default margins */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -236,7 +232,6 @@ body,
   height: 100%;
 }
 
-/* Body defaults — monospace font matches CodeMirror editor for visual consistency */
 body {
   background-color: var(--bg-root);
   color: var(--text-primary);
@@ -256,7 +251,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Scrollbars ──────────────────────────────────────────────────────────── */
-/* Slim custom scrollbars — uses theme ghost/faint tokens for subtle appearance */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -273,13 +267,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Focus styles ────────────────────────────────────────────────────────── */
-/* Keyboard focus ring — accent-colored, with thicker variant for high-contrast theme */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* WCAG AAA target — increased border contrast and brighter text for accessibility */
 .high-contrast :focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
@@ -295,7 +287,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── CodeMirror overrides ────────────────────────────────────────────────── */
-/* CodeMirror overrides — force monospace font and fill parent height */
 .cm-editor {
   height: 100%;
   font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace !important;
@@ -312,7 +303,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Tier badge styles ───────────────────────────────────────────────────── */
-/* Tier difficulty badge — small colored circle with Roman numeral label */
 .tier-badge {
   display: inline-flex;
   align-items: center;
@@ -327,7 +317,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Animations ──────────────────────────────────────────────────────────── */
-/* Micro-animations for test results, skeleton loaders, and toast fade-out */
 @keyframes slideIn {
   from { opacity: 0; transform: translateY(-4px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -354,7 +343,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Screen reader only ──────────────────────────────────────────────────── */
-/* Screen reader utilities — visually hidden but accessible to assistive tech */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -389,7 +377,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Smooth theme transitions ────────────────────────────────────────────── */
-/* Smooth theme swap — transitions bg, text, and border so theme changes feel polished */
 .transition-theme {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
