@@ -12,7 +12,6 @@ import {
 
 const router = Router();
 
-// POST / - Submit or update a star rating for an exercise
 router.post('/', authenticate, validate(submitRatingSchema), async (req, res, next) => {
   try {
     const { exerciseId, stars } = req.body;
@@ -28,7 +27,6 @@ router.post('/', authenticate, validate(submitRatingSchema), async (req, res, ne
   }
 });
 
-// GET /exercise/:id - Aggregate rating stats for one exercise
 router.get('/exercise/:exerciseId', authenticate, async (req, res, next) => {
   try {
     const data = await getExerciseRating(req.params.exerciseId as string);
@@ -38,7 +36,6 @@ router.get('/exercise/:exerciseId', authenticate, async (req, res, next) => {
   }
 });
 
-// GET /mine/:id - Fetch the authenticated user's own rating
 router.get('/mine/:exerciseId', authenticate, async (req, res, next) => {
   try {
     const rating = await getUserRating(req.user!.userId, req.params.exerciseId as string);
@@ -48,7 +45,6 @@ router.get('/mine/:exerciseId', authenticate, async (req, res, next) => {
   }
 });
 
-// GET /bulk?ids=a,b,c - Batch-fetch averages for multiple exercises
 router.get('/bulk', authenticate, async (req, res, next) => {
   try {
     const ids = typeof req.query.ids === 'string' ? req.query.ids.split(',').filter(Boolean) : [];
@@ -59,7 +55,6 @@ router.get('/bulk', authenticate, async (req, res, next) => {
   }
 });
 
-// GET /overview - Instructor/TA-only dashboard with top and lowest rated exercises
 router.get('/overview', authenticate, authorize('instructor', 'ta'), async (req, res, next) => {
   try {
     const cohortId = typeof req.query.cohortId === 'string' ? req.query.cohortId : undefined;

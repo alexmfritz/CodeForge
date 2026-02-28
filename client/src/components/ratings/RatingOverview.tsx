@@ -20,12 +20,10 @@ interface OverviewData {
   lowestRated: ExerciseRatingRow[];
 }
 
-// Instructor dashboard panel showing rating summary and rankings
 export default function RatingOverview({ cohortId }: RatingOverviewProps) {
   const [data, setData] = useState<OverviewData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch overview data on mount or when cohort filter changes
   useEffect(() => {
     setLoading(true);
     const query = cohortId ? `?cohortId=${cohortId}` : '';
@@ -56,7 +54,6 @@ export default function RatingOverview({ cohortId }: RatingOverviewProps) {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Summary cards: total count and overall average */}
       <div className="grid grid-cols-2 gap-4">
         <div
           className="p-4 rounded-lg"
@@ -79,7 +76,6 @@ export default function RatingOverview({ cohortId }: RatingOverviewProps) {
         </div>
       </div>
 
-      {/* Side-by-side lists: top 5 and lowest 5 rated exercises */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div
           className="p-4 rounded-lg"

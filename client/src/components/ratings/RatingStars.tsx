@@ -7,7 +7,6 @@ interface RatingStarsProps {
   onRate?: (stars: number) => void;
 }
 
-// Renders a single star SVG: filled, half-filled via gradient, or empty outline
 function StarIcon({ filled, half, color, size }: { filled: boolean; half: boolean; color: string; size: number }) {
   if (half) {
     return (
@@ -43,7 +42,6 @@ function StarIcon({ filled, half, color, size }: { filled: boolean; half: boolea
 }
 
 export default function RatingStars({ rating, size = 'md', interactive = false, onRate }: RatingStarsProps) {
-  // Highlight stars on hover in interactive mode, fall back to actual rating
   const [hoverValue, setHoverValue] = useState(0);
   const starSize = size === 'sm' ? 14 : 20;
   const displayRating = hoverValue || rating;
@@ -55,7 +53,6 @@ export default function RatingStars({ rating, size = 'md', interactive = false, 
       style={{ gap: size === 'sm' ? '1px' : '2px' }}
       onMouseLeave={interactive ? () => setHoverValue(0) : undefined}
     >
-      {/* Render 5 stars; each determines filled/half from display rating */}
       {[1, 2, 3, 4, 5].map((star) => {
         const isFilled = displayRating >= star;
         const isHalf = !isFilled && displayRating >= star - 0.5;

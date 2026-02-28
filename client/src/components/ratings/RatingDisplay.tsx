@@ -5,11 +5,9 @@ interface RatingDisplayProps {
   exerciseId: string;
 }
 
-// Compact inline badge showing average stars and count for an exercise
 export default function RatingDisplay({ exerciseId }: RatingDisplayProps) {
   const rating = useAppSelector(selectExerciseRating(exerciseId));
 
-  // Hide when no ratings exist yet
   if (!rating || rating.totalRatings === 0) {
     return null;
   }
@@ -28,7 +26,6 @@ export default function RatingDisplay({ exerciseId }: RatingDisplayProps) {
           strokeLinejoin="round"
         />
       </svg>
-      {/* Display average (1 decimal) and total count */}
       <span>{rating.averageStars.toFixed(1)}</span>
       <span>({rating.totalRatings})</span>
     </span>
