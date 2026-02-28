@@ -13,7 +13,6 @@ interface EarnedAchievement {
   earnedAt: string;
 }
 
-// Evaluates if a user meets achievement criteria based on their progress data
 async function evaluateCriteria(
   definition: IAchievementDefinition,
   userId: string,
@@ -94,7 +93,6 @@ async function evaluateCriteria(
   }
 }
 
-// Main achievement check function—queries for new achievements and returns newly earned ones
 export async function checkAchievements(
   userId: string,
   cohortId: string,
@@ -102,7 +100,6 @@ export async function checkAchievements(
   const definitions = await AchievementDefinition.find({ isActive: true }).lean();
   if (definitions.length === 0) return [];
 
-  // Filter out already earned achievements to avoid duplicates
   const existingInstances = await AchievementInstance.find({ userId }).lean();
   const earnedIds = new Set(
     existingInstances.map((i) => String(i.achievementId)),
@@ -113,7 +110,6 @@ export async function checkAchievements(
   );
   if (unearnedDefinitions.length === 0) return [];
 
-  // Fetch and normalize user's completed exercises
   const allProgress = await Progress.find({
     userId,
     status: 'completed',
@@ -126,7 +122,6 @@ export async function checkAchievements(
     score: p.score,
   }));
 
-  // Build exercise metadata map for fast lookups during criteria evaluation
   const exerciseIds = completedProgress.map((p) => p.exerciseId);
   const exercises = await Exercise.find({ _id: { $in: exerciseIds } }).lean();
   const exerciseMap = new Map(
@@ -142,7 +137,6 @@ export async function checkAchievements(
 
   const newlyEarned: EarnedAchievement[] = [];
 
-  // Check each unearned achievement and persist those that are now met
   for (const definition of unearnedDefinitions) {
     const met = await evaluateCriteria(
       definition as unknown as IAchievementDefinition,
@@ -178,13 +172,11 @@ export async function getAllDefinitions() {
   return AchievementDefinition.find({ isActive: true }).sort({ name: 1 }).lean();
 }
 
-// Returns all achievements earned by a user with full definition details
 export async function getUserAchievements(userId: string) {
   const instances = await AchievementInstance.find({ userId })
     .populate('achievementId')
     .lean();
 
-  // Enrich instances with populated achievement definitions for client display
   return instances.map((inst) => {
     const def = inst.achievementId as unknown as IAchievementDefinition;
     return {

@@ -44,7 +44,6 @@ const initialState: AchievementsState = {
   pendingToast: null,
 };
 
-// Fetches all available achievement definitions from server
 export const fetchDefinitions = createAsyncThunk(
   'achievements/fetchDefinitions',
   async (_, { rejectWithValue }) => {
@@ -56,7 +55,6 @@ export const fetchDefinitions = createAsyncThunk(
   },
 );
 
-// Fetches user's earned achievements with definitions
 export const fetchMyAchievements = createAsyncThunk(
   'achievements/fetchMine',
   async (_, { rejectWithValue }) => {
@@ -72,7 +70,6 @@ const achievementsSlice = createSlice({
   name: 'achievements',
   initialState,
   reducers: {
-    // Adds newly earned achievements to state (called by websocket/polling on earn)
     addNewlyEarned(state, action: PayloadAction<NewAchievement[]>) {
       for (const achievement of action.payload) {
         const alreadyExists = state.earned.some(
@@ -99,11 +96,9 @@ const achievementsSlice = createSlice({
         }
       }
     },
-    // Queues achievement for toast display
     showAchievementToast(state, action: PayloadAction<NewAchievement>) {
       state.pendingToast = action.payload;
     },
-    // Clears toast from display
     dismissAchievementToast(state) {
       state.pendingToast = null;
     },

@@ -4,7 +4,6 @@ import { getAllDefinitions, getUserAchievements } from '../services/achievementS
 
 const router = Router();
 
-// Fetch all available achievement definitions
 router.get('/', authenticate, async (_req, res, next) => {
   try {
     const definitions = await getAllDefinitions();
@@ -14,7 +13,6 @@ router.get('/', authenticate, async (_req, res, next) => {
   }
 });
 
-// Fetch achievements earned by current user with full definitions
 router.get('/mine', authenticate, async (req, res, next) => {
   try {
     const achievements = await getUserAchievements(req.user!.userId);

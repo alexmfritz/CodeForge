@@ -23,7 +23,6 @@ achievementInstanceSchema.index({ userId: 1, achievementId: 1 }, { unique: true 
 achievementInstanceSchema.index({ userId: 1 });
 achievementInstanceSchema.index({ cohortId: 1 });
 
-// Normalize all ObjectIds to strings for client-server consistency
 achievementInstanceSchema.set('toJSON', {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transform(_doc: any, ret: any) {
