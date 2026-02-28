@@ -77,6 +77,7 @@ function AppShell() {
           <nav className="flex items-center gap-1">
             <NavLink to="/dashboard" label="Dashboard" />
             <NavLink to="/exercises" label="Exercises" />
+            <NavLink to="/chat" label="Chat" />
           </nav>
         </div>
         <div className="flex items-center gap-4">
@@ -120,10 +121,26 @@ function AppShell() {
           <Route path="/exercises" element={<BrowseView />} />
           <Route path="/exercises/:id" element={<ExerciseView />} />
           <Route path="/assignments/:id" element={<AssignmentDetail />} />
+          <Route path="/chat" element={<ChatPlaceholder />} />
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </main>
+    </div>
+  );
+}
+
+function ChatPlaceholder() {
+  return (
+    <div className="h-full flex items-center justify-center">
+      <div className="text-center">
+        <h2 className="text-xl font-heading font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
+          Chat
+        </h2>
+        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+          Coming Soon
+        </p>
+      </div>
     </div>
   );
 }
