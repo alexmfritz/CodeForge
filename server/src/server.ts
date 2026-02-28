@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { app } from './app.js';
 import { config } from './config.js';
 import { seedInstructor } from './seed/seedInstructor.js';
+import { seedExercises } from './seed/seedExercises.js';
 
 async function start(): Promise<void> {
   try {
@@ -9,6 +10,7 @@ async function start(): Promise<void> {
     console.log('Connected to MongoDB');
 
     await seedInstructor();
+    await seedExercises();
 
     const port = config.isDev ? config.devPort : config.port;
     app.listen(port, () => {

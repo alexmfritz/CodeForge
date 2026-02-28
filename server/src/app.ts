@@ -6,6 +6,8 @@ import { errorHandler } from './middleware/errorHandler.js';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import cohortRoutes from './routes/cohorts.js';
+import exerciseRoutes from './routes/exercises.js';
+import progressRoutes from './routes/progress.js';
 
 const app = express();
 
@@ -19,6 +21,8 @@ app.get('/api/health', (_req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/cohorts', cohortRoutes);
+app.use('/api/exercises', exerciseRoutes);
+app.use('/api/progress', progressRoutes);
 
 if (!config.isDev) {
   app.use(express.static(config.paths.clientDist));
