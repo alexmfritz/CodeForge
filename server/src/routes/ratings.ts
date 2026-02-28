@@ -18,7 +18,7 @@ router.post('/', authenticate, validate(submitRatingSchema), async (req, res, ne
     const rating = await submitRating(
       req.user!.userId,
       exerciseId,
-      req.user!.cohortId!,
+      req.user!.cohortId ?? null,
       stars,
     );
     res.json({ success: true, data: rating });

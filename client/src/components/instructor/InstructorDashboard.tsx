@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { fetchCohorts, fetchStudents } from '../../features/instructorSlice';
 import OverviewPanel from './OverviewPanel';
@@ -31,12 +31,14 @@ export default function InstructorDashboard() {
     dispatch(fetchCohorts());
   }, [dispatch]);
 
+  const initializedRef = useRef(false);
   useEffect(() => {
-    if (!selectedCohortId && cohorts.length > 0) {
+    if (!initializedRef.current && cohorts.length > 0) {
+      initializedRef.current = true;
       const activeCohort = cohorts.find((c) => c.isActive);
       if (activeCohort) setSelectedCohortId(activeCohort._id);
     }
-  }, [cohorts, selectedCohortId]);
+  }, [cohorts]);
 
   useEffect(() => {
     if (activeTab === 'assignments' && selectedCohortId) {

@@ -4,7 +4,7 @@ import { Rating } from '../models/Rating.js';
 export async function submitRating(
   userId: string,
   exerciseId: string,
-  cohortId: string,
+  cohortId: string | null,
   stars: number,
 ) {
   const rating = await Rating.findOneAndUpdate(
@@ -12,7 +12,7 @@ export async function submitRating(
     {
       userId: new mongoose.Types.ObjectId(userId),
       exerciseId: new mongoose.Types.ObjectId(exerciseId),
-      cohortId: new mongoose.Types.ObjectId(cohortId),
+      cohortId: cohortId ? new mongoose.Types.ObjectId(cohortId) : null,
       stars,
     },
     { upsert: true, new: true, runValidators: true },

@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface IRating extends Document {
   userId: mongoose.Types.ObjectId;
   exerciseId: mongoose.Types.ObjectId;
-  cohortId: mongoose.Types.ObjectId;
+  cohortId: mongoose.Types.ObjectId | null;
   stars: number;
 }
 
@@ -11,7 +11,7 @@ const ratingSchema = new Schema<IRating>(
   {
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     exerciseId: { type: Schema.Types.ObjectId, ref: 'Exercise', required: true },
-    cohortId: { type: Schema.Types.ObjectId, ref: 'Cohort', required: true },
+    cohortId: { type: Schema.Types.ObjectId, ref: 'Cohort', default: null },
     stars: { type: Number, required: true, min: 1, max: 5 },
   },
   { timestamps: true },
@@ -27,7 +27,7 @@ ratingSchema.set('toJSON', {
     ret._id = String(ret._id);
     ret.userId = String(ret.userId);
     ret.exerciseId = String(ret.exerciseId);
-    ret.cohortId = String(ret.cohortId);
+    if (ret.cohortId) ret.cohortId = String(ret.cohortId);
     delete ret.__v;
     return ret;
   },
