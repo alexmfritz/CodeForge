@@ -10,8 +10,9 @@ import AssignmentList from '../assignments/AssignmentList';
 import AssignmentBuilder from '../assignments/AssignmentBuilder';
 import RatingOverview from '../ratings/RatingOverview';
 import ExerciseManager from './ExerciseManager';
+import ChatLogViewer from '../chat/ChatLogViewer';
 
-type Tab = 'overview' | 'students' | 'cohorts' | 'users' | 'assignments' | 'exercises' | 'ratings';
+type Tab = 'overview' | 'students' | 'cohorts' | 'users' | 'assignments' | 'exercises' | 'ratings' | 'chat-logs';
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'overview', label: 'Overview' },
@@ -20,6 +21,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'assignments', label: 'Assignments' },
   { id: 'exercises', label: 'Exercises' },
   { id: 'ratings', label: 'Ratings' },
+  { id: 'chat-logs', label: 'Chat Logs' },
   { id: 'users', label: 'Users' },
 ];
 
@@ -151,6 +153,19 @@ export default function InstructorDashboard() {
         )}
         {activeTab === 'exercises' && <ExerciseManager cohortId={selectedCohortId} />}
         {activeTab === 'ratings' && <RatingOverview cohortId={selectedCohortId} />}
+        {activeTab === 'chat-logs' && selectedCohortId && (
+          <ChatLogViewer cohortId={selectedCohortId} canDelete />
+        )}
+        {activeTab === 'chat-logs' && !selectedCohortId && (
+          <div
+            className="rounded-lg p-8 text-center"
+            style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}
+          >
+            <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+              Select a cohort to view chat logs.
+            </p>
+          </div>
+        )}
         {activeTab === 'users' && <UserManager cohortId={selectedCohortId} />}
       </div>
     </div>

@@ -3,6 +3,7 @@ import { authenticate, authorize } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
 import { createCohortSchema, updateCohortSchema } from '@codeforge/shared/validation';
 import { createCohort, addStudentToCohort, removeStudentFromCohort, getCohortWithStudentCount } from '../services/cohortService.js';
+import { deleteCohortChatData } from '../services/chatService.js';
 import { Cohort } from '../models/Cohort.js';
 import { User } from '../models/User.js';
 

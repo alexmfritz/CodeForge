@@ -274,3 +274,95 @@ export interface JwtPayload {
   role: Role;
   cohortId: string | null;
 }
+
+// ─── Chat Types ────────────────────────────────────────────────────────────
+
+export type ChatMessageType = 'text' | 'exercise-link' | 'code-snippet' | 'system';
+
+export type EmojiReaction = 'thumbs-up' | 'lightbulb' | 'checkmark';
+
+export interface ChatReaction {
+  emoji: EmojiReaction;
+  userIds: string[];
+}
+
+export interface ExerciseLinkData {
+  exerciseId: string;
+  title: string;
+  tier: Tier;
+  type: ExerciseType;
+}
+
+export interface CodeSnippetData {
+  code: string;
+  language: string;
+}
+
+export interface ChatMessage {
+  _id: string;
+  cohortId: string;
+  date: string;
+  userId: string;
+  username: string;
+  displayName: string;
+  role: Role;
+  messageType: ChatMessageType;
+  content: string;
+  exerciseLink?: ExerciseLinkData;
+  codeSnippet?: CodeSnippetData;
+  mentions: string[];
+  reactions: ChatReaction[];
+  isPinned: boolean;
+  createdAt: string;
+}
+
+export interface ChatLog {
+  _id: string;
+  cohortId: string;
+  date: string;
+  messages: ChatMessage[];
+  messageCount: number;
+  participants: string[];
+  archivedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ChatActiveUser {
+  userId: string;
+  username: string;
+  displayName: string;
+  role: Role;
+}
+
+// ─── Socket Event Types ────────────────────────────────────────────────────
+
+export interface ServerToClientEvents {
+  'chat:message': (message: ChatMessage) => void;
+  'chat:history': (messages: ChatMessage[]) => void;
+  'chat:user-joined': (user: ChatActiveUser) => void;
+  'chat:user-left': (user: ChatActiveUser) => void;
+  'chat:active-users': (users: ChatActiveUser[]) => void;
+  'chat:typing': (data: { userId: string; username: string; isTyping: boolean }) => void;
+  'chat:pinned': (message: ChatMessage | null) => void;
+  'chat:reaction': (data: { messageId: string; reactions: ChatReaction[] }) => void;
+  'chat:mention': (data: { from: string; messageId: string; content: string }) => void;
+  'chat:error': (error: string) => void;
+}
+
+export interface ClientToServerEvents {
+  'chat:join': (data: { cohortId: string }) => void;
+  'chat:leave': () => void;
+  'chat:send-message': (data: {
+    messageType: ChatMessageType;
+    content: string;
+    exerciseLink?: ExerciseLinkData;
+    codeSnippet?: CodeSnippetData;
+    mentions?: string[];
+  }) => void;
+  'chat:typing': (isTyping: boolean) => void;
+  'chat:pin': (messageId: string) => void;
+  'chat:unpin': () => void;
+  'chat:react': (data: { messageId: string; emoji: EmojiReaction }) => void;
+  'chat:get-active-users': (cohortId: string) => void;
+}

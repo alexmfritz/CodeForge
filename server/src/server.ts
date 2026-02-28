@@ -1,6 +1,9 @@
+import { createServer } from 'http';
 import mongoose from 'mongoose';
 import { app } from './app.js';
 import { config } from './config.js';
+import { initSocketIO } from './socket.js';
+import { archivePreviousDayLogs } from './services/chatService.js';
 import { seedInstructor } from './seed/seedInstructor.js';
 import { seedExercises } from './seed/seedExercises.js';
 import { seedAchievements } from './seed/seedAchievements.js';
@@ -16,8 +19,13 @@ async function start(): Promise<void> {
     await seedAchievements();
     await seedAssignments();
 
+    await archivePreviousDayLogs();
+
+    const httpServer = createServer(app);
+    initSocketIO(httpServer);
+
     const port = config.isDev ? config.devPort : config.port;
-    app.listen(port, () => {
+    httpServer.listen(port, () => {
       console.log(
         `CodeForge server running on http://localhost:${port} (${config.isDev ? 'dev' : 'production'})`,
       );

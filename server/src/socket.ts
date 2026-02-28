@@ -1,0 +1,49 @@
+import { Server as SocketIOServer } from 'socket.io';
+import type { Server as HttpServer } from 'http';
+import jwt from 'jsonwebtoken';
+import { config } from './config.js';
+import { registerChatHandlers } from './socket/chatHandlers.js';
+import type { JwtPayload, ServerToClientEvents, ClientToServerEvents } from '@codeforge/shared';
+
+declare module 'socket.io' {
+  interface Socket {
+    user: JwtPayload;
+  }
+}
+
+export function initSocketIO(
+  httpServer: HttpServer,
+): SocketIOServer<ClientToServerEvents, ServerToClientEvents> {
+  const io = new SocketIOServer<ClientToServerEvents, ServerToClientEvents>(httpServer, {
+    cors: {
+      origin: config.isDev ? ['http://localhost:5173'] : false,
+      credentials: true,
+    },
+    path: '/socket.io',
+  });
+
+  io.use((socket, next) => {
+    const token = socket.handshake.auth.token as string | undefined;
+    if (!token) {
+      return next(new Error('Authentication required'));
+    }
+    try {
+      const payload = jwt.verify(token, config.jwt.secret) as JwtPayload;
+      socket.user = payload;
+      next();
+    } catch {
+      next(new Error('Invalid or expired token'));
+    }
+  });
+
+  io.on('connection', (socket) => {
+    console.log(`[Socket] Connected: ${socket.user.userId} (${socket.user.role})`);
+    registerChatHandlers(io, socket);
+
+    socket.on('disconnect', () => {
+      console.log(`[Socket] Disconnected: ${socket.user.userId}`);
+    });
+  });
+
+  return io;
+}

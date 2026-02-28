@@ -9,6 +9,7 @@ import instructorReducer from './instructorSlice';
 import assignmentsReducer from './assignmentsSlice';
 import achievementsReducer from './achievementsSlice';
 import ratingsReducer from './ratingsSlice';
+import chatReducer from './chatSlice';
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
     assignments: assignmentsReducer,
     achievements: achievementsReducer,
     ratings: ratingsReducer,
+    chat: chatReducer,
   },
 });
 
