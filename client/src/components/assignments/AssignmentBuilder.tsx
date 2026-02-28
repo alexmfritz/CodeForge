@@ -2,28 +2,35 @@ import { useState, useMemo } from 'react';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { createAssignment, updateAssignment } from '../../features/assignmentsSlice';
 import type { Assignment } from '@codeforge/shared';
+import { getAssignmentStatus } from '@codeforge/shared';
 
 interface AssignmentBuilderProps {
   onClose: () => void;
   editingAssignment?: Assignment | null;
+  duplicatingFrom?: Assignment | null;
 }
 
-export default function AssignmentBuilder({ onClose, editingAssignment }: AssignmentBuilderProps) {
+export default function AssignmentBuilder({ onClose, editingAssignment, duplicatingFrom }: AssignmentBuilderProps) {
+  // When duplicating, use source data to pre-fill but treat as a new assignment
+  const sourceAssignment = editingAssignment || duplicatingFrom;
   const dispatch = useAppDispatch();
   const { cohorts } = useAppSelector((s) => s.instructor);
   const { exercises } = useAppSelector((s) => s.exercises);
   const { students } = useAppSelector((s) => s.instructor);
 
-  const [title, setTitle] = useState(editingAssignment?.title || '');
-  const [description, setDescription] = useState(editingAssignment?.description || '');
-  const [cohortId, setCohortId] = useState(editingAssignment?.cohortId || '');
+  const isPastDue = editingAssignment ? getAssignmentStatus(editingAssignment) === 'past-due' : false;
+
+  const [title, setTitle] = useState(sourceAssignment?.title || '');
+  const [description, setDescription] = useState(sourceAssignment?.description || '');
+  const [cohortId, setCohortId] = useState(sourceAssignment?.cohortId || '');
   const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>(
-    editingAssignment?.exerciseIds || [],
+    sourceAssignment?.exerciseIds || [],
   );
   const [targetStudentIds, setTargetStudentIds] = useState<string[]>(
-    editingAssignment?.targetStudentIds || [],
+    sourceAssignment?.targetStudentIds || [],
   );
   const [dueDate, setDueDate] = useState(
+    // When duplicating, don't carry over the due date
     editingAssignment?.dueDate ? editingAssignment.dueDate.split('T')[0] : '',
   );
   const [exerciseSearch, setExerciseSearch] = useState('');
@@ -49,12 +56,14 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
   }, [students, cohortId]);
 
   const toggleExercise = (exerciseId: string) => {
+    if (isPastDue) return;
     setSelectedExerciseIds((prev) =>
       prev.includes(exerciseId) ? prev.filter((id) => id !== exerciseId) : [...prev, exerciseId],
     );
   };
 
   const toggleStudent = (studentId: string) => {
+    if (isPastDue) return;
     setTargetStudentIds((prev) =>
       prev.includes(studentId) ? prev.filter((id) => id !== studentId) : [...prev, studentId],
     );
@@ -79,19 +88,28 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
 
     setSubmitting(true);
     try {
-      const payload = {
-        title: title.trim(),
-        description: description.trim() || undefined,
-        cohortId,
-        exerciseIds: selectedExerciseIds,
-        targetStudentIds: targetStudentIds.length > 0 ? targetStudentIds : undefined,
-        dueDate: dueDate ? new Date(dueDate + 'T23:59:59.000Z').toISOString() : undefined,
-      };
-
-      if (editingAssignment) {
-        await dispatch(updateAssignment({ id: editingAssignment._id, ...payload })).unwrap();
+      if (editingAssignment && isPastDue) {
+        // Past-due: only send description + dueDate
+        await dispatch(updateAssignment({
+          id: editingAssignment._id,
+          description: description.trim() || undefined,
+          dueDate: dueDate ? new Date(dueDate + 'T23:59:59.000Z').toISOString() : undefined,
+        })).unwrap();
       } else {
-        await dispatch(createAssignment(payload)).unwrap();
+        const payload = {
+          title: title.trim(),
+          description: description.trim() || undefined,
+          cohortId,
+          exerciseIds: selectedExerciseIds,
+          targetStudentIds: targetStudentIds.length > 0 ? targetStudentIds : undefined,
+          dueDate: dueDate ? new Date(dueDate + 'T23:59:59.000Z').toISOString() : undefined,
+        };
+
+        if (editingAssignment) {
+          await dispatch(updateAssignment({ id: editingAssignment._id, ...payload })).unwrap();
+        } else {
+          await dispatch(createAssignment(payload)).unwrap();
+        }
       }
       onClose();
     } catch (err) {
@@ -101,6 +119,11 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
     }
   };
 
+  const disabledStyle = {
+    opacity: 0.5,
+    pointerEvents: 'none' as const,
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -108,11 +131,20 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
       style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}
     >
       <h3 className="font-heading font-semibold text-sm mb-4" style={{ color: 'var(--text-primary)' }}>
-        {editingAssignment ? 'Edit Assignment' : 'Create Assignment'}
+        {editingAssignment ? 'Edit Assignment' : duplicatingFrom ? 'Duplicate Assignment' : 'Create Assignment'}
       </h3>
 
+      {isPastDue && (
+        <div
+          className="rounded p-3 mb-4 text-xs"
+          style={{ backgroundColor: 'var(--bg-raised)', color: 'var(--warning, #e89a3c)' }}
+        >
+          This assignment is past due. Only the description and due date can be modified.
+        </div>
+      )}
+
       <div className="flex flex-col gap-4">
-        <div>
+        <div style={isPastDue ? disabledStyle : undefined}>
           <label className="block text-xs mb-1" style={{ color: 'var(--text-muted)' }}>
             Title
           </label>
@@ -120,6 +152,7 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            disabled={isPastDue}
             className="w-full px-3 py-2 rounded text-sm"
             style={{
               backgroundColor: 'var(--bg-root)',
@@ -149,7 +182,7 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
         </div>
 
         <div className="grid gap-4" style={{ gridTemplateColumns: '1fr 1fr' }}>
-          <div>
+          <div style={isPastDue ? disabledStyle : undefined}>
             <label className="block text-xs mb-1" style={{ color: 'var(--text-muted)' }}>
               Cohort
             </label>
@@ -159,6 +192,7 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
                 setCohortId(e.target.value);
                 setTargetStudentIds([]);
               }}
+              disabled={isPastDue}
               className="w-full px-3 py-2 rounded text-sm"
               style={{
                 backgroundColor: 'var(--bg-root)',
@@ -192,7 +226,7 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
           </div>
         </div>
 
-        <div>
+        <div style={isPastDue ? disabledStyle : undefined}>
           <label className="block text-xs mb-1" style={{ color: 'var(--text-muted)' }}>
             Exercises ({selectedExerciseIds.length} selected)
           </label>
@@ -200,6 +234,7 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
             type="text"
             value={exerciseSearch}
             onChange={(e) => setExerciseSearch(e.target.value)}
+            disabled={isPastDue}
             className="w-full px-3 py-2 rounded text-sm mb-2"
             style={{
               backgroundColor: 'var(--bg-root)',
@@ -228,11 +263,12 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
                     key={ex._id}
                     type="button"
                     onClick={() => toggleExercise(ex._id)}
+                    disabled={isPastDue}
                     className="w-full text-left flex items-center gap-2 px-3 py-2 text-sm transition-colors"
                     style={{
                       borderBottom: '1px solid var(--border)',
                       backgroundColor: isSelected ? 'var(--bg-surface)' : 'transparent',
-                      cursor: 'pointer',
+                      cursor: isPastDue ? 'not-allowed' : 'pointer',
                     }}
                   >
                     <div
@@ -262,7 +298,7 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
         </div>
 
         {cohortId && cohortStudents.length > 0 && (
-          <div>
+          <div style={isPastDue ? disabledStyle : undefined}>
             <label className="block text-xs mb-1" style={{ color: 'var(--text-muted)' }}>
               Target Students (optional - leave empty for entire cohort)
             </label>
@@ -281,11 +317,12 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
                     key={student._id}
                     type="button"
                     onClick={() => toggleStudent(student._id)}
+                    disabled={isPastDue}
                     className="w-full text-left flex items-center gap-2 px-3 py-2 text-sm transition-colors"
                     style={{
                       borderBottom: '1px solid var(--border)',
                       backgroundColor: isSelected ? 'var(--bg-surface)' : 'transparent',
-                      cursor: 'pointer',
+                      cursor: isPastDue ? 'not-allowed' : 'pointer',
                     }}
                   >
                     <div
@@ -336,7 +373,9 @@ export default function AssignmentBuilder({ onClose, editingAssignment }: Assign
               ? 'Saving...'
               : editingAssignment
                 ? 'Save Changes'
-                : 'Create Assignment'}
+                : duplicatingFrom
+                  ? 'Create Copy'
+                  : 'Create Assignment'}
           </button>
           <button
             type="button"

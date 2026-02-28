@@ -3,9 +3,16 @@ import { Progress } from '../models/Progress.js';
 import { Exercise } from '../models/Exercise.js';
 import { User } from '../models/User.js';
 
-export async function listAssignments(role: string, cohortId: string | null) {
-  const filter: Record<string, unknown> = { isActive: true };
+export async function listAssignments(role: string, cohortId: string | null, includeArchived = false) {
+  const filter: Record<string, unknown> = {};
+  if (!includeArchived) {
+    filter.isActive = true;
+  }
   if (role === 'student' && cohortId) {
+    filter.cohortId = cohortId;
+    filter.isActive = true; // Students always see only active
+  }
+  if (role !== 'student' && cohortId) {
     filter.cohortId = cohortId;
   }
   const assignments = await Assignment.find(filter).sort({ createdAt: -1 }).lean();
@@ -103,6 +110,55 @@ export async function getAssignmentProgress(assignmentId: string) {
     totalExercises,
     students: studentProgress,
   };
+}
+
+export async function getAssignmentProgressSummaries(assignmentIds: string[]) {
+  const assignments = await Assignment.find({ _id: { $in: assignmentIds } }).lean();
+  const results: Record<string, { totalStudents: number; studentsCompleted: number }> = {};
+
+  for (const assignment of assignments) {
+    const aid = String(assignment._id);
+    const studentFilter: Record<string, unknown> = {
+      cohortId: assignment.cohortId,
+      role: 'student',
+      isActive: true,
+    };
+    if (assignment.targetStudentIds && assignment.targetStudentIds.length > 0) {
+      studentFilter._id = { $in: assignment.targetStudentIds };
+    }
+
+    const students = await User.find(studentFilter).select('_id').lean();
+    const totalStudents = students.length;
+    const studentIds = students.map((s) => s._id);
+    const totalExercises = assignment.exerciseIds.length;
+
+    if (totalStudents === 0 || totalExercises === 0) {
+      results[aid] = { totalStudents, studentsCompleted: 0 };
+      continue;
+    }
+
+    // Count students who completed ALL exercises
+    const progress = await Progress.find({
+      userId: { $in: studentIds },
+      exerciseId: { $in: assignment.exerciseIds },
+      status: 'completed',
+    }).lean();
+
+    const completionMap = new Map<string, number>();
+    for (const p of progress) {
+      const uid = String(p.userId);
+      completionMap.set(uid, (completionMap.get(uid) || 0) + 1);
+    }
+
+    let studentsCompleted = 0;
+    for (const count of completionMap.values()) {
+      if (count >= totalExercises) studentsCompleted++;
+    }
+
+    results[aid] = { totalStudents, studentsCompleted };
+  }
+
+  return results;
 }
 
 function toPlainAssignment(doc: Record<string, unknown>) {
