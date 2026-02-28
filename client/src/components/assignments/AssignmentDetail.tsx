@@ -20,6 +20,7 @@ export default function AssignmentDetail() {
   const progressItems = useAppSelector((s) => s.progress.items);
   const isInstructor = user?.role === 'instructor' || user?.role === 'ta';
 
+  // Fetch detail and conditionally fetch progress for instructor-only table
   useEffect(() => {
     if (id) {
       dispatch(fetchAssignmentDetail(id));
@@ -46,6 +47,7 @@ export default function AssignmentDetail() {
   const assignment = selectedDetail;
   const exercises = assignment.exercises || [];
   const totalExercises = exercises.length;
+  // Calculate current student's completion rate from exercise progress state
   const studentCompletedCount = exercises.filter(
     (ex) => progressItems[ex._id]?.status === 'completed',
   ).length;
@@ -112,6 +114,7 @@ export default function AssignmentDetail() {
             </div>
           ) : (
             <div>
+              {/* Render exercise list with student completion status */}
               {exercises.map((ex) => {
                 const prog = progressItems[ex._id];
                 const isComplete = prog?.status === 'completed';

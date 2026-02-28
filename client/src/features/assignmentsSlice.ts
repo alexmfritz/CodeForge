@@ -30,6 +30,7 @@ interface AssignmentProgressData {
   students: StudentProgressEntry[];
 }
 
+// Separate state for list, detail view, and progress to support independent loading
 interface AssignmentsState {
   assignments: Assignment[];
   loading: boolean;
@@ -48,6 +49,7 @@ const initialState: AssignmentsState = {
   progressLoading: false,
 };
 
+// Filter by optional cohortId for instructors viewing different cohorts
 export const fetchAssignments = createAsyncThunk(
   'assignments/fetchAll',
   async (cohortId: string | undefined, { rejectWithValue }) => {
@@ -60,6 +62,7 @@ export const fetchAssignments = createAsyncThunk(
   },
 );
 
+// Includes expanded exercise details for assignment detail view
 export const fetchAssignmentDetail = createAsyncThunk(
   'assignments/fetchDetail',
   async (id: string, { rejectWithValue }) => {
@@ -71,6 +74,7 @@ export const fetchAssignmentDetail = createAsyncThunk(
   },
 );
 
+// Instructor-only endpoint with aggregated student completion stats
 export const fetchAssignmentProgress = createAsyncThunk(
   'assignments/fetchProgress',
   async (id: string, { rejectWithValue }) => {
@@ -195,6 +199,7 @@ const assignmentsSlice = createSlice({
         state.assignments.unshift(action.payload);
       })
 
+      // Keep list and detail view in sync on updates
       .addCase(updateAssignment.fulfilled, (state, action) => {
         const idx = state.assignments.findIndex((a) => a._id === action.payload._id);
         if (idx !== -1) {

@@ -11,15 +11,16 @@ export interface IAssignment extends Document {
   createdBy: mongoose.Types.ObjectId;
 }
 
+// Define assignment document structure with cohort and optional student targeting
 const assignmentSchema = new Schema<IAssignment>(
   {
     title: { type: String, required: true, trim: true },
     description: { type: String, default: '' },
     cohortId: { type: Schema.Types.ObjectId, ref: 'Cohort', required: true },
     exerciseIds: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
-    targetStudentIds: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    targetStudentIds: [{ type: Schema.Types.ObjectId, ref: 'User' }], // Empty array means assigned to entire cohort
     dueDate: { type: Date, default: null },
-    isActive: { type: Boolean, default: true },
+    isActive: { type: Boolean, default: true }, // Soft delete via deactivation
     createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },
   { timestamps: true },
@@ -28,6 +29,7 @@ const assignmentSchema = new Schema<IAssignment>(
 assignmentSchema.index({ cohortId: 1, isActive: 1 });
 assignmentSchema.index({ createdBy: 1 });
 
+// Convert ObjectIds to strings for API serialization
 assignmentSchema.set('toJSON', {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transform(_doc: any, ret: any) {

@@ -3,9 +3,10 @@ interface AssignmentProgressProps {
   total: number;
 }
 
+// Reusable progress bar with completion percentage and visual feedback
 export default function AssignmentProgress({ completed, total }: AssignmentProgressProps) {
   const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
-  const isComplete = completed === total && total > 0;
+  const isComplete = completed === total && total > 0; // Full completion uses success color
 
   return (
     <div className="flex items-center gap-2">
