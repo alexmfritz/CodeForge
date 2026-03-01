@@ -11006,6 +11006,941 @@
           "description": "if statement"
         }
       ]
+    },
+    {
+      "id": 1050,
+      "title": "String: Length and Access",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "length",
+        "charAt",
+        "bracket-notation"
+      ],
+      "description": "Return the last character of a string using .length and bracket notation.",
+      "instructions": "Strings have a `.length` property that tells you how many characters they contain. You can access individual characters using bracket notation `str[index]` or the `.charAt(index)` method. Indices start at 0.\n\nWrite a function called `getLastChar` that takes a string and returns its last character.\n\nThe last character is at index `str.length - 1`.\n\nExample: `getLastChar(\"hello\")` returns `\"o\"`, `getLastChar(\"a\")` returns `\"a\"`.",
+      "starterCode": "// Strings have properties and methods you can call with dot notation.\n// .length gives the number of characters in a string.\n// Bracket notation str[index] accesses a character at a position.\n// Indices start at 0, so the last character is at str.length - 1.\n\n// Return the last character of the string\n\nfunction getLastChar(str) {\n  // Use str.length to find the last index\n  // Use bracket notation to access that character\n}\n",
+      "solution": "function getLastChar(str) {\n  return str[str.length - 1];\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getLastChar;')();\n  return [\n    { pass: fn('hello') === 'o', description: 'getLastChar(\"hello\") returns \"o\"', got: String(fn('hello')) },\n    { pass: fn('a') === 'a', description: 'getLastChar(\"a\") returns \"a\"', got: String(fn('a')) },\n    { pass: fn('JavaScript') === 't', description: 'getLastChar(\"JavaScript\") returns \"t\"', got: String(fn('JavaScript')) },\n    { pass: fn('12345') === '5', description: 'getLastChar(\"12345\") returns \"5\"', got: String(fn('12345')) },\n    { pass: fn('hi there') === 'e', description: 'getLastChar(\"hi there\") returns \"e\"', got: String(fn('hi there')) }\n  ];\n}",
+      "hints": [
+        "The `.length` property gives the total number of characters. Since indices start at 0, the last character is one less than the length.",
+        "Access the last character with `str[str.length - 1]`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1051,
+      "title": "String: toLowerCase",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "toLowerCase",
+        "case"
+      ],
+      "description": "Normalize an email address to lowercase and trimmed.",
+      "instructions": "Write a function called `normalizeEmail` that takes an email string and returns it lowercased with whitespace trimmed from both sides.\n\nUse `.toLowerCase()` and `.trim()`.\n\nExample: `normalizeEmail(\"  User@Email.COM  \")` returns `\"user@email.com\"`.",
+      "starterCode": "// Takes an email string that may have mixed case and extra whitespace\n// Returns the email lowercased and trimmed\n\nfunction normalizeEmail(email) {\n\n}\n",
+      "solution": "function normalizeEmail(email) {\n  return email.toLowerCase().trim();\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return normalizeEmail;')();\n  return [\n    { pass: fn('  User@Email.COM  ') === 'user@email.com', description: 'normalizeEmail(\"  User@Email.COM  \") returns \"user@email.com\"', got: String(fn('  User@Email.COM  ')) },\n    { pass: fn('ADMIN@SITE.ORG') === 'admin@site.org', description: 'normalizeEmail(\"ADMIN@SITE.ORG\") returns \"admin@site.org\"', got: String(fn('ADMIN@SITE.ORG')) },\n    { pass: fn('already@lower.com') === 'already@lower.com', description: 'normalizeEmail(\"already@lower.com\") unchanged', got: String(fn('already@lower.com')) },\n    { pass: fn('  Test@Test.com') === 'test@test.com', description: 'normalizeEmail(\"  Test@Test.com\") trims leading space', got: String(fn('  Test@Test.com')) },\n    { pass: fn('X@Y.Z  ') === 'x@y.z', description: 'normalizeEmail(\"X@Y.Z  \") trims trailing space', got: String(fn('X@Y.Z  ')) }\n  ];\n}",
+      "hints": [
+        "You can chain string methods — the result of one method becomes the input to the next.",
+        "Call `.toLowerCase()` to convert all characters, then `.trim()` to remove whitespace from both ends."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1052,
+      "title": "String: toUpperCase",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "toUpperCase",
+        "case"
+      ],
+      "description": "Convert a message to all uppercase letters.",
+      "instructions": "Write a function called `shoutMessage` that takes a string and returns it in all uppercase.\n\nExample: `shoutMessage(\"hello world\")` returns `\"HELLO WORLD\"`.",
+      "starterCode": "// Takes a message string\n// Returns the message in all uppercase\n\nfunction shoutMessage(message) {\n\n}\n",
+      "solution": "function shoutMessage(message) {\n  return message.toUpperCase();\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return shoutMessage;')();\n  return [\n    { pass: fn('hello world') === 'HELLO WORLD', description: 'shoutMessage(\"hello world\") returns \"HELLO WORLD\"', got: String(fn('hello world')) },\n    { pass: fn('quiet') === 'QUIET', description: 'shoutMessage(\"quiet\") returns \"QUIET\"', got: String(fn('quiet')) },\n    { pass: fn('ALREADY LOUD') === 'ALREADY LOUD', description: 'shoutMessage(\"ALREADY LOUD\") unchanged', got: String(fn('ALREADY LOUD')) },\n    { pass: fn('Mixed Case') === 'MIXED CASE', description: 'shoutMessage(\"Mixed Case\") returns \"MIXED CASE\"', got: String(fn('Mixed Case')) },\n    { pass: fn('abc 123') === 'ABC 123', description: 'shoutMessage(\"abc 123\") numbers unchanged', got: String(fn('abc 123')) }\n  ];\n}",
+      "hints": [
+        "The `.toUpperCase()` method returns a new string with all letters converted to uppercase. Numbers and symbols are unaffected.",
+        "Call `.toUpperCase()` on the message and return the result."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1053,
+      "title": "String: trim",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "trim",
+        "whitespace"
+      ],
+      "description": "Clean user input by trimming whitespace from both sides.",
+      "instructions": "Write a function called `cleanInput` that takes a string and returns it with leading and trailing whitespace removed.\n\nExample: `cleanInput(\"  hello  \")` returns `\"hello\"`.",
+      "starterCode": "// Takes a string that may have extra whitespace\n// Returns the string with leading and trailing whitespace removed\n\nfunction cleanInput(str) {\n\n}\n",
+      "solution": "function cleanInput(str) {\n  return str.trim();\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return cleanInput;')();\n  return [\n    { pass: fn('  hello  ') === 'hello', description: 'cleanInput(\"  hello  \") returns \"hello\"', got: String(fn('  hello  ')) },\n    { pass: fn('no spaces') === 'no spaces', description: 'cleanInput(\"no spaces\") unchanged', got: String(fn('no spaces')) },\n    { pass: fn('   leading') === 'leading', description: 'cleanInput(\"   leading\") trims left', got: String(fn('   leading')) },\n    { pass: fn('trailing   ') === 'trailing', description: 'cleanInput(\"trailing   \") trims right', got: String(fn('trailing   ')) },\n    { pass: fn('  inner space  ') === 'inner space', description: 'cleanInput(\"  inner space  \") keeps inner spaces', got: String(fn('  inner space  ')) }\n  ];\n}",
+      "hints": [
+        "The `.trim()` method removes whitespace from the beginning and end of a string, but not from the middle.",
+        "Call `.trim()` on the string and return the result."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1054,
+      "title": "String: trimStart",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "trimStart",
+        "whitespace"
+      ],
+      "description": "Remove only leading whitespace from a string.",
+      "instructions": "Write a function called `trimLeading` that takes a string and returns it with only the leading (left-side) whitespace removed. Trailing whitespace should remain.\n\nExample: `trimLeading(\"  hello  \")` returns `\"hello  \"`.",
+      "starterCode": "// Takes a string with possible leading whitespace\n// Returns the string with only leading whitespace removed\n// Trailing whitespace stays\n\nfunction trimLeading(str) {\n\n}\n",
+      "solution": "function trimLeading(str) {\n  return str.trimStart();\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return trimLeading;')();\n  return [\n    { pass: fn('  hello  ') === 'hello  ', description: 'trimLeading(\"  hello  \") returns \"hello  \"', got: JSON.stringify(fn('  hello  ')) },\n    { pass: fn('   test') === 'test', description: 'trimLeading(\"   test\") returns \"test\"', got: JSON.stringify(fn('   test')) },\n    { pass: fn('nochange') === 'nochange', description: 'trimLeading(\"nochange\") unchanged', got: JSON.stringify(fn('nochange')) },\n    { pass: fn('  keep trail  ') === 'keep trail  ', description: 'trimLeading(\"  keep trail  \") keeps trailing spaces', got: JSON.stringify(fn('  keep trail  ')) },\n    { pass: fn('trail  ') === 'trail  ', description: 'trimLeading(\"trail  \") no leading to trim', got: JSON.stringify(fn('trail  ')) }\n  ];\n}",
+      "hints": [
+        "`.trimStart()` only removes whitespace from the beginning of the string, leaving the end untouched.",
+        "Call `.trimStart()` on the string and return the result."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1055,
+      "title": "String: trimEnd",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "trimEnd",
+        "whitespace"
+      ],
+      "description": "Remove only trailing whitespace from a string.",
+      "instructions": "Write a function called `trimTrailing` that takes a string and returns it with only the trailing (right-side) whitespace removed. Leading whitespace should remain.\n\nExample: `trimTrailing(\"  hello  \")` returns `\"  hello\"`.",
+      "starterCode": "// Takes a string with possible trailing whitespace\n// Returns the string with only trailing whitespace removed\n// Leading whitespace stays\n\nfunction trimTrailing(str) {\n\n}\n",
+      "solution": "function trimTrailing(str) {\n  return str.trimEnd();\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return trimTrailing;')();\n  return [\n    { pass: fn('  hello  ') === '  hello', description: 'trimTrailing(\"  hello  \") returns \"  hello\"', got: JSON.stringify(fn('  hello  ')) },\n    { pass: fn('test   ') === 'test', description: 'trimTrailing(\"test   \") returns \"test\"', got: JSON.stringify(fn('test   ')) },\n    { pass: fn('nochange') === 'nochange', description: 'trimTrailing(\"nochange\") unchanged', got: JSON.stringify(fn('nochange')) },\n    { pass: fn('  keep lead  ') === '  keep lead', description: 'trimTrailing(\"  keep lead  \") keeps leading spaces', got: JSON.stringify(fn('  keep lead  ')) },\n    { pass: fn('  lead') === '  lead', description: 'trimTrailing(\"  lead\") no trailing to trim', got: JSON.stringify(fn('  lead')) }\n  ];\n}",
+      "hints": [
+        "`.trimEnd()` only removes whitespace from the end of the string, leaving the beginning untouched.",
+        "Call `.trimEnd()` on the string and return the result."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1056,
+      "title": "String: includes",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "includes",
+        "search"
+      ],
+      "description": "Check if a string contains a target word.",
+      "instructions": "Write a function called `containsWord` that takes a `text` string and a `word` string. Return `true` if the text contains the word, `false` otherwise.\n\nUse `.includes()` which returns a boolean.\n\nExample: `containsWord(\"hello world\", \"world\")` returns `true`.",
+      "starterCode": "// Takes a text string and a word to search for\n// Returns true if text contains the word, false otherwise\n\nfunction containsWord(text, word) {\n\n}\n",
+      "solution": "function containsWord(text, word) {\n  return text.includes(word);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return containsWord;')();\n  return [\n    { pass: fn('hello world', 'world') === true, description: 'containsWord(\"hello world\", \"world\") returns true', got: String(fn('hello world', 'world')) },\n    { pass: fn('hello world', 'planet') === false, description: 'containsWord(\"hello world\", \"planet\") returns false', got: String(fn('hello world', 'planet')) },\n    { pass: fn('JavaScript is fun', 'Script') === true, description: 'containsWord(\"JavaScript is fun\", \"Script\") returns true', got: String(fn('JavaScript is fun', 'Script')) },\n    { pass: fn('abc', 'abc') === true, description: 'containsWord(\"abc\", \"abc\") exact match returns true', got: String(fn('abc', 'abc')) },\n    { pass: fn('hello', 'Hello') === false, description: 'containsWord(\"hello\", \"Hello\") is case-sensitive', got: String(fn('hello', 'Hello')) }\n  ];\n}",
+      "hints": [
+        "`.includes()` checks if a string contains another string and returns `true` or `false`. It is case-sensitive.",
+        "Call `.includes()` on the text with the word as the argument and return the result."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Search",
+          "url": "https://www.w3schools.com/js/js_string_search.asp",
+          "description": "String search methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String search methods"
+        }
+      ]
+    },
+    {
+      "id": 1057,
+      "title": "String: startsWith",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "startsWith",
+        "search"
+      ],
+      "description": "Check if a URL starts with the HTTPS protocol.",
+      "instructions": "Write a function called `isHttps` that takes a `url` string and returns `true` if it starts with `\"https://\"`, `false` otherwise.\n\nExample: `isHttps(\"https://example.com\")` returns `true`, `isHttps(\"http://example.com\")` returns `false`.",
+      "starterCode": "// Takes a URL string\n// Returns true if it starts with \"https://\", false otherwise\n\nfunction isHttps(url) {\n\n}\n",
+      "solution": "function isHttps(url) {\n  return url.startsWith(\"https://\");\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return isHttps;')();\n  return [\n    { pass: fn('https://example.com') === true, description: 'isHttps(\"https://example.com\") returns true', got: String(fn('https://example.com')) },\n    { pass: fn('http://example.com') === false, description: 'isHttps(\"http://example.com\") returns false', got: String(fn('http://example.com')) },\n    { pass: fn('https://google.com/search') === true, description: 'isHttps(\"https://google.com/search\") returns true', got: String(fn('https://google.com/search')) },\n    { pass: fn('ftp://files.com') === false, description: 'isHttps(\"ftp://files.com\") returns false', got: String(fn('ftp://files.com')) },\n    { pass: fn('HTTPS://UPPER.COM') === false, description: 'isHttps(\"HTTPS://UPPER.COM\") case-sensitive, returns false', got: String(fn('HTTPS://UPPER.COM')) }\n  ];\n}",
+      "hints": [
+        "`.startsWith()` checks if a string begins with a specific sequence of characters. It is case-sensitive.",
+        "Call `.startsWith(\"https://\")` on the url and return the result."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Search",
+          "url": "https://www.w3schools.com/js/js_string_search.asp",
+          "description": "String search methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String search methods"
+        }
+      ]
+    },
+    {
+      "id": 1058,
+      "title": "String: endsWith",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "endsWith",
+        "search"
+      ],
+      "description": "Check if a filename ends with a given file extension.",
+      "instructions": "Write a function called `hasExtension` that takes a `filename` and an `ext` string (like `\".js\"`, `\".html\"`). Return `true` if the filename ends with that extension, `false` otherwise.\n\nExample: `hasExtension(\"app.js\", \".js\")` returns `true`, `hasExtension(\"style.css\", \".js\")` returns `false`.",
+      "starterCode": "// Takes a filename and an extension string\n// Returns true if the filename ends with the extension\n\nfunction hasExtension(filename, ext) {\n\n}\n",
+      "solution": "function hasExtension(filename, ext) {\n  return filename.endsWith(ext);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return hasExtension;')();\n  return [\n    { pass: fn('app.js', '.js') === true, description: 'hasExtension(\"app.js\", \".js\") returns true', got: String(fn('app.js', '.js')) },\n    { pass: fn('style.css', '.js') === false, description: 'hasExtension(\"style.css\", \".js\") returns false', got: String(fn('style.css', '.js')) },\n    { pass: fn('index.html', '.html') === true, description: 'hasExtension(\"index.html\", \".html\") returns true', got: String(fn('index.html', '.html')) },\n    { pass: fn('readme.md', '.txt') === false, description: 'hasExtension(\"readme.md\", \".txt\") returns false', got: String(fn('readme.md', '.txt')) },\n    { pass: fn('photo.JPG', '.jpg') === false, description: 'hasExtension(\"photo.JPG\", \".jpg\") case-sensitive', got: String(fn('photo.JPG', '.jpg')) }\n  ];\n}",
+      "hints": [
+        "`.endsWith()` checks if a string ends with a specific sequence of characters. It is case-sensitive.",
+        "Call `.endsWith()` on the filename with the extension as the argument."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Search",
+          "url": "https://www.w3schools.com/js/js_string_search.asp",
+          "description": "String search methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String search methods"
+        }
+      ]
+    },
+    {
+      "id": 1059,
+      "title": "String: indexOf",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "indexOf",
+        "search"
+      ],
+      "description": "Find the first position of a character in a string.",
+      "instructions": "Write a function called `findCharPosition` that takes a `str` and a `char`. Return the index of the first occurrence of `char` in `str`, or `-1` if not found.\n\n`.indexOf()` returns the position (starting at 0) of the first match, or `-1` if no match exists.\n\nExample: `findCharPosition(\"hello\", \"l\")` returns `2`, `findCharPosition(\"hello\", \"z\")` returns `-1`.",
+      "starterCode": "// Takes a string and a character to search for\n// Returns the index of the first occurrence, or -1 if not found\n\nfunction findCharPosition(str, char) {\n\n}\n",
+      "solution": "function findCharPosition(str, char) {\n  return str.indexOf(char);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return findCharPosition;')();\n  return [\n    { pass: fn('hello', 'l') === 2, description: 'findCharPosition(\"hello\", \"l\") returns 2', got: String(fn('hello', 'l')) },\n    { pass: fn('hello', 'z') === -1, description: 'findCharPosition(\"hello\", \"z\") returns -1', got: String(fn('hello', 'z')) },\n    { pass: fn('hello', 'h') === 0, description: 'findCharPosition(\"hello\", \"h\") returns 0', got: String(fn('hello', 'h')) },\n    { pass: fn('banana', 'a') === 1, description: 'findCharPosition(\"banana\", \"a\") returns 1 (first occurrence)', got: String(fn('banana', 'a')) },\n    { pass: fn('hello world', ' ') === 5, description: 'findCharPosition(\"hello world\", \" \") returns 5', got: String(fn('hello world', ' ')) }\n  ];\n}",
+      "hints": [
+        "`.indexOf()` searches from the beginning and returns the position of the first match. Positions start at 0.",
+        "Call `.indexOf()` on the string with the character as the argument and return the result."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Search",
+          "url": "https://www.w3schools.com/js/js_string_search.asp",
+          "description": "String search methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String search methods"
+        }
+      ]
+    },
+    {
+      "id": 1060,
+      "title": "String: lastIndexOf",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "lastIndexOf",
+        "search"
+      ],
+      "description": "Find the last position of a character in a string.",
+      "instructions": "Write a function called `findLastOccurrence` that takes a `str` and a `char`. Return the index of the last occurrence of `char` in `str`, or `-1` if not found.\n\n`.lastIndexOf()` searches from the end of the string backward.\n\nExample: `findLastOccurrence(\"banana\", \"a\")` returns `5`, `findLastOccurrence(\"hello\", \"z\")` returns `-1`.",
+      "starterCode": "// Takes a string and a character to search for\n// Returns the index of the last occurrence, or -1 if not found\n\nfunction findLastOccurrence(str, char) {\n\n}\n",
+      "solution": "function findLastOccurrence(str, char) {\n  return str.lastIndexOf(char);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return findLastOccurrence;')();\n  return [\n    { pass: fn('banana', 'a') === 5, description: 'findLastOccurrence(\"banana\", \"a\") returns 5', got: String(fn('banana', 'a')) },\n    { pass: fn('hello', 'l') === 3, description: 'findLastOccurrence(\"hello\", \"l\") returns 3', got: String(fn('hello', 'l')) },\n    { pass: fn('hello', 'z') === -1, description: 'findLastOccurrence(\"hello\", \"z\") returns -1', got: String(fn('hello', 'z')) },\n    { pass: fn('abcabc', 'c') === 5, description: 'findLastOccurrence(\"abcabc\", \"c\") returns 5', got: String(fn('abcabc', 'c')) },\n    { pass: fn('test', 't') === 3, description: 'findLastOccurrence(\"test\", \"t\") returns 3 (last t)', got: String(fn('test', 't')) }\n  ];\n}",
+      "hints": [
+        "`.lastIndexOf()` works like `.indexOf()` but searches backward from the end of the string.",
+        "Call `.lastIndexOf()` on the string with the character as the argument."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Search",
+          "url": "https://www.w3schools.com/js/js_string_search.asp",
+          "description": "String search methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String search methods"
+        }
+      ]
+    },
+    {
+      "id": 1061,
+      "title": "String: slice",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "slice",
+        "indexOf",
+        "extract"
+      ],
+      "description": "Extract the first name from a full name string.",
+      "instructions": "Write a function called `getFirstName` that takes a `fullName` string in the format `\"First Last\"` and returns just the first name.\n\nUse `.indexOf(\" \")` to find the space, then `.slice(0, spaceIndex)` to extract everything before it.\n\nExample: `getFirstName(\"John Smith\")` returns `\"John\"`.",
+      "starterCode": "// Takes a full name string like \"First Last\"\n// Returns just the first name (everything before the space)\n\nfunction getFirstName(fullName) {\n\n}\n",
+      "solution": "function getFirstName(fullName) {\n  return fullName.slice(0, fullName.indexOf(\" \"));\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getFirstName;')();\n  return [\n    { pass: fn('John Smith') === 'John', description: 'getFirstName(\"John Smith\") returns \"John\"', got: String(fn('John Smith')) },\n    { pass: fn('Jane Doe') === 'Jane', description: 'getFirstName(\"Jane Doe\") returns \"Jane\"', got: String(fn('Jane Doe')) },\n    { pass: fn('A B') === 'A', description: 'getFirstName(\"A B\") returns \"A\"', got: String(fn('A B')) },\n    { pass: fn('Mary Jane Watson') === 'Mary', description: 'getFirstName(\"Mary Jane Watson\") returns \"Mary\"', got: String(fn('Mary Jane Watson')) },\n    { pass: fn('CodeForge Student') === 'CodeForge', description: 'getFirstName(\"CodeForge Student\") returns \"CodeForge\"', got: String(fn('CodeForge Student')) }\n  ];\n}",
+      "hints": [
+        "First find where the space is using `.indexOf(\" \")`, then extract from the start up to that position.",
+        "Use `.slice(0, spaceIndex)` where `spaceIndex` comes from `.indexOf(\" \")`. You can chain or use a variable."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1062,
+      "title": "String: slice",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "slice",
+        "negative-index",
+        "extract"
+      ],
+      "description": "Extract the file extension from a filename using negative slice.",
+      "instructions": "Write a function called `getExtension` that takes a `filename` string and returns the file extension including the dot.\n\nUse `.lastIndexOf(\".\")` to find the dot, then `.slice()` from that position to the end.\n\nExample: `getExtension(\"app.js\")` returns `\".js\"`, `getExtension(\"photo.png\")` returns `\".png\"`.",
+      "starterCode": "// Takes a filename string\n// Returns the extension including the dot (e.g., \".js\", \".html\")\n\nfunction getExtension(filename) {\n\n}\n",
+      "solution": "function getExtension(filename) {\n  return filename.slice(filename.lastIndexOf(\".\"));\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getExtension;')();\n  return [\n    { pass: fn('app.js') === '.js', description: 'getExtension(\"app.js\") returns \".js\"', got: String(fn('app.js')) },\n    { pass: fn('photo.png') === '.png', description: 'getExtension(\"photo.png\") returns \".png\"', got: String(fn('photo.png')) },\n    { pass: fn('index.html') === '.html', description: 'getExtension(\"index.html\") returns \".html\"', got: String(fn('index.html')) },\n    { pass: fn('archive.tar.gz') === '.gz', description: 'getExtension(\"archive.tar.gz\") returns \".gz\" (last dot)', got: String(fn('archive.tar.gz')) },\n    { pass: fn('style.min.css') === '.css', description: 'getExtension(\"style.min.css\") returns \".css\"', got: String(fn('style.min.css')) }\n  ];\n}",
+      "hints": [
+        "`.lastIndexOf(\".\")` finds the position of the last dot. `.slice()` from that position extracts everything from the dot onward.",
+        "Call `.slice(dotIndex)` where `dotIndex` is `filename.lastIndexOf(\".\")`. When `.slice()` gets one argument, it extracts to the end."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1063,
+      "title": "String: replace",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "replace",
+        "repeat"
+      ],
+      "description": "Replace the first occurrence of a word with asterisks.",
+      "instructions": "Write a function called `censor` that takes a `text` string and a `word` to censor. Replace the first occurrence of the word with asterisks (`*`) of the same length.\n\nUse `.repeat()` to build the asterisk string and `.replace()` to swap it in.\n\nExample: `censor(\"oh snap that was bad\", \"snap\")` returns `\"oh **** that was bad\"`.",
+      "starterCode": "// Takes a text string and a word to censor\n// Replaces the first occurrence of the word with asterisks of matching length\n// Returns the censored text\n\nfunction censor(text, word) {\n\n}\n",
+      "solution": "function censor(text, word) {\n  return text.replace(word, \"*\".repeat(word.length));\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return censor;')();\n  return [\n    { pass: fn('oh snap that was bad', 'snap') === 'oh **** that was bad', description: 'censor(\"oh snap...\", \"snap\") replaces with ****', got: String(fn('oh snap that was bad', 'snap')) },\n    { pass: fn('hello world', 'world') === 'hello *****', description: 'censor(\"hello world\", \"world\") replaces with *****', got: String(fn('hello world', 'world')) },\n    { pass: fn('no match here', 'xyz') === 'no match here', description: 'censor with no match returns original', got: String(fn('no match here', 'xyz')) },\n    { pass: fn('ha ha ha', 'ha') === '** ha ha', description: 'censor(\"ha ha ha\", \"ha\") replaces only first', got: String(fn('ha ha ha', 'ha')) },\n    { pass: fn('ab', 'ab') === '**', description: 'censor(\"ab\", \"ab\") replaces entire string', got: String(fn('ab', 'ab')) }\n  ];\n}",
+      "hints": [
+        "`.replace()` swaps the first match with a replacement string. `.repeat(n)` creates a string of a character repeated n times.",
+        "Build the replacement with `\"*\".repeat(word.length)` then pass both to `.replace()`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1064,
+      "title": "String: replaceAll",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "replaceAll",
+        "repeat"
+      ],
+      "description": "Replace ALL occurrences of a word with asterisks.",
+      "instructions": "Write a function called `censorAll` that takes a `text` string and a `word` to censor. Replace every occurrence of the word with asterisks of matching length.\n\n`.replaceAll()` replaces all matches, unlike `.replace()` which only replaces the first.\n\nExample: `censorAll(\"ha ha ha\", \"ha\")` returns `\"** ** **\"`.",
+      "starterCode": "// Takes a text string and a word to censor\n// Replaces ALL occurrences of the word with asterisks\n// Returns the fully censored text\n\nfunction censorAll(text, word) {\n\n}\n",
+      "solution": "function censorAll(text, word) {\n  return text.replaceAll(word, \"*\".repeat(word.length));\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return censorAll;')();\n  return [\n    { pass: fn('ha ha ha', 'ha') === '** ** **', description: 'censorAll(\"ha ha ha\", \"ha\") returns \"** ** **\"', got: String(fn('ha ha ha', 'ha')) },\n    { pass: fn('bad bad day', 'bad') === '*** *** day', description: 'censorAll(\"bad bad day\", \"bad\") returns \"*** *** day\"', got: String(fn('bad bad day', 'bad')) },\n    { pass: fn('hello world', 'xyz') === 'hello world', description: 'censorAll with no match returns original', got: String(fn('hello world', 'xyz')) },\n    { pass: fn('aaa', 'a') === '***', description: 'censorAll(\"aaa\", \"a\") returns \"***\"', got: String(fn('aaa', 'a')) },\n    { pass: fn('one two one', 'one') === '*** two ***', description: 'censorAll(\"one two one\", \"one\") returns \"*** two ***\"', got: String(fn('one two one', 'one')) }\n  ];\n}",
+      "hints": [
+        "`.replaceAll()` works like `.replace()` but swaps every occurrence, not just the first.",
+        "Use `.replaceAll(word, \"*\".repeat(word.length))` to replace every match with the right number of asterisks."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1065,
+      "title": "String: repeat",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "repeat",
+        "build"
+      ],
+      "description": "Build a separator line of repeated characters.",
+      "instructions": "Write a function called `buildSeparator` that takes a `char` and a `count`. Return a string of that character repeated `count` times.\n\nExample: `buildSeparator(\"-\", 10)` returns `\"----------\"`, `buildSeparator(\"=\", 5)` returns `\"=====\"`.",
+      "starterCode": "// Takes a character and a count\n// Returns the character repeated count times\n\nfunction buildSeparator(char, count) {\n\n}\n",
+      "solution": "function buildSeparator(char, count) {\n  return char.repeat(count);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return buildSeparator;')();\n  return [\n    { pass: fn('-', 10) === '----------', description: 'buildSeparator(\"-\", 10) returns 10 dashes', got: String(fn('-', 10)) },\n    { pass: fn('=', 5) === '=====', description: 'buildSeparator(\"=\", 5) returns 5 equals', got: String(fn('=', 5)) },\n    { pass: fn('*', 3) === '***', description: 'buildSeparator(\"*\", 3) returns \"***\"', got: String(fn('*', 3)) },\n    { pass: fn('#', 1) === '#', description: 'buildSeparator(\"#\", 1) returns \"#\"', got: String(fn('#', 1)) },\n    { pass: fn('.', 0) === '', description: 'buildSeparator(\".\", 0) returns \"\"', got: JSON.stringify(fn('.', 0)) }\n  ];\n}",
+      "hints": [
+        "`.repeat(n)` creates a new string by repeating the original string n times.",
+        "Call `.repeat()` on the character with the count as the argument."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1066,
+      "title": "String: padStart",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "padStart",
+        "formatting"
+      ],
+      "description": "Pad a number string with leading zeros to a fixed width.",
+      "instructions": "Write a function called `padNumber` that takes a `numStr` (number as a string) and a `width`. Return the string padded with leading zeros so it is at least `width` characters long.\n\nExample: `padNumber(\"42\", 5)` returns `\"00042\"`, `padNumber(\"123\", 3)` returns `\"123\"`.",
+      "starterCode": "// Takes a number string and a target width\n// Returns the string padded with leading zeros to the target width\n\nfunction padNumber(numStr, width) {\n\n}\n",
+      "solution": "function padNumber(numStr, width) {\n  return numStr.padStart(width, \"0\");\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return padNumber;')();\n  return [\n    { pass: fn('42', 5) === '00042', description: 'padNumber(\"42\", 5) returns \"00042\"', got: String(fn('42', 5)) },\n    { pass: fn('123', 3) === '123', description: 'padNumber(\"123\", 3) already wide enough', got: String(fn('123', 3)) },\n    { pass: fn('7', 3) === '007', description: 'padNumber(\"7\", 3) returns \"007\"', got: String(fn('7', 3)) },\n    { pass: fn('1', 1) === '1', description: 'padNumber(\"1\", 1) exact width', got: String(fn('1', 1)) },\n    { pass: fn('99', 6) === '000099', description: 'padNumber(\"99\", 6) returns \"000099\"', got: String(fn('99', 6)) }\n  ];\n}",
+      "hints": [
+        "`.padStart(targetLength, padString)` adds characters to the beginning of a string until it reaches the target length.",
+        "Call `.padStart(width, \"0\")` on the number string to fill with leading zeros."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1067,
+      "title": "String: padEnd",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "padEnd",
+        "formatting"
+      ],
+      "description": "Pad a label with trailing dots to a fixed width.",
+      "instructions": "Write a function called `padLabel` that takes a `label` string and a `width`. Return the label padded with trailing dots (`.`) so it is at least `width` characters long.\n\nExample: `padLabel(\"Name\", 10)` returns `\"Name......\"`, `padLabel(\"Price\", 5)` returns `\"Price\"`.",
+      "starterCode": "// Takes a label string and a target width\n// Returns the label padded with trailing dots to the target width\n\nfunction padLabel(label, width) {\n\n}\n",
+      "solution": "function padLabel(label, width) {\n  return label.padEnd(width, \".\");\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return padLabel;')();\n  return [\n    { pass: fn('Name', 10) === 'Name......', description: 'padLabel(\"Name\", 10) returns \"Name......\"', got: String(fn('Name', 10)) },\n    { pass: fn('Price', 5) === 'Price', description: 'padLabel(\"Price\", 5) already wide enough', got: String(fn('Price', 5)) },\n    { pass: fn('A', 4) === 'A...', description: 'padLabel(\"A\", 4) returns \"A...\"', got: String(fn('A', 4)) },\n    { pass: fn('Total', 8) === 'Total...', description: 'padLabel(\"Total\", 8) returns \"Total...\"', got: String(fn('Total', 8)) },\n    { pass: fn('Hi', 2) === 'Hi', description: 'padLabel(\"Hi\", 2) exact width', got: String(fn('Hi', 2)) }\n  ];\n}",
+      "hints": [
+        "`.padEnd(targetLength, padString)` adds characters to the end of a string until it reaches the target length.",
+        "Call `.padEnd(width, \".\")` on the label to fill with trailing dots."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1068,
+      "title": "String: split",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "split",
+        "arrays"
+      ],
+      "description": "Split a string by spaces and return the word count.",
+      "instructions": "Write a function called `countWords` that takes a `text` string and returns the number of words. Words are separated by spaces.\n\n`.split(separator)` divides a string into an array. Use `.length` on the result to count.\n\nExample: `countWords(\"hello world\")` returns `2`, `countWords(\"one\")` returns `1`.",
+      "starterCode": "// Takes a text string\n// Splits by spaces and returns the number of words\n\nfunction countWords(text) {\n\n}\n",
+      "solution": "function countWords(text) {\n  return text.split(\" \").length;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return countWords;')();\n  return [\n    { pass: fn('hello world') === 2, description: 'countWords(\"hello world\") returns 2', got: String(fn('hello world')) },\n    { pass: fn('one') === 1, description: 'countWords(\"one\") returns 1', got: String(fn('one')) },\n    { pass: fn('the quick brown fox') === 4, description: 'countWords(\"the quick brown fox\") returns 4', got: String(fn('the quick brown fox')) },\n    { pass: fn('a b c d e') === 5, description: 'countWords(\"a b c d e\") returns 5', got: String(fn('a b c d e')) },\n    { pass: fn('JavaScript') === 1, description: 'countWords(\"JavaScript\") returns 1', got: String(fn('JavaScript')) }\n  ];\n}",
+      "hints": [
+        "`.split()` divides a string into an array using the separator you provide. The array has a `.length` property.",
+        "Call `.split(\" \")` to get an array of words, then access `.length` to count them."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1069,
+      "title": "String Methods: Combined",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "slice",
+        "combined"
+      ],
+      "description": "Format a 10-digit string as a phone number using concatenation and slice.",
+      "instructions": "Write a function called `formatPhone` that takes a 10-digit string and returns it formatted as `(###) ###-####`.\n\nUse string concatenation and `.slice()` to extract the area code, prefix, and line number.\n\nExample: `formatPhone(\"5551234567\")` returns `\"(555) 123-4567\"`.",
+      "starterCode": "// Takes a 10-digit string like \"5551234567\"\n// Returns formatted as \"(###) ###-####\"\n// Use concatenation + .slice() to build the result\n\nfunction formatPhone(digits) {\n\n}\n",
+      "solution": "function formatPhone(digits) {\n  return \"(\" + digits.slice(0, 3) + \") \" + digits.slice(3, 6) + \"-\" + digits.slice(6);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return formatPhone;')();\n  return [\n    { pass: fn('5551234567') === '(555) 123-4567', description: 'formatPhone(\"5551234567\") returns \"(555) 123-4567\"', got: String(fn('5551234567')) },\n    { pass: fn('8005551212') === '(800) 555-1212', description: 'formatPhone(\"8005551212\") returns \"(800) 555-1212\"', got: String(fn('8005551212')) },\n    { pass: fn('1234567890') === '(123) 456-7890', description: 'formatPhone(\"1234567890\") returns \"(123) 456-7890\"', got: String(fn('1234567890')) },\n    { pass: fn('0000000000') === '(000) 000-0000', description: 'formatPhone(\"0000000000\") returns \"(000) 000-0000\"', got: String(fn('0000000000')) },\n    { pass: fn('9876543210') === '(987) 654-3210', description: 'formatPhone(\"9876543210\") returns \"(987) 654-3210\"', got: String(fn('9876543210')) }\n  ];\n}",
+      "hints": [
+        "Break the 10 digits into three groups: first 3 (area code), next 3 (prefix), last 4 (line number). Use `.slice()` for each group.",
+        "Use `.slice(0, 3)` for area code, `.slice(3, 6)` for prefix, `.slice(6)` for the rest. Concatenate with parentheses, space, and dash."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1070,
+      "title": "reverseString",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "reverse"
+      ],
+      "description": "Reverse a string character by character using a loop.",
+      "instructions": "Write a function called `reverseString` that takes a string and returns it reversed.\n\nUse a `for` loop that iterates through the string from the last character to the first, building a new string.\n\nExample: `reverseString(\"hello\")` returns `\"olleh\"`, `reverseString(\"abc\")` returns `\"cba\"`.",
+      "starterCode": "// Takes a string\n// Returns the string reversed using a loop\n// Build a new string by reading characters from end to start\n\nfunction reverseString(str) {\n\n}\n",
+      "solution": "function reverseString(str) {\n  let result = \"\";\n  for (let i = str.length - 1; i >= 0; i--) {\n    result = result + str[i];\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return reverseString;')();\n  return [\n    { pass: fn('hello') === 'olleh', description: 'reverseString(\"hello\") returns \"olleh\"', got: String(fn('hello')) },\n    { pass: fn('abc') === 'cba', description: 'reverseString(\"abc\") returns \"cba\"', got: String(fn('abc')) },\n    { pass: fn('a') === 'a', description: 'reverseString(\"a\") returns \"a\"', got: String(fn('a')) },\n    { pass: fn('racecar') === 'racecar', description: 'reverseString(\"racecar\") returns \"racecar\" (palindrome)', got: String(fn('racecar')) },\n    { pass: fn('12345') === '54321', description: 'reverseString(\"12345\") returns \"54321\"', got: String(fn('12345')) },\n    { pass: fn('') === '', description: 'reverseString(\"\") returns \"\"', got: JSON.stringify(fn('')) }\n  ];\n}",
+      "hints": [
+        "Start with an empty result string and loop through the original string backward, appending each character.",
+        "Loop from `str.length - 1` down to `0`, adding `str[i]` to the result on each iteration."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        },
+        {
+          "label": "W3Schools: JavaScript For Loop",
+          "url": "https://www.w3schools.com/js/js_loop_for.asp",
+          "description": "For loops"
+        },
+        {
+          "label": "MDN: for",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for",
+          "description": "for statement"
+        }
+      ]
+    },
+    {
+      "id": 1071,
+      "title": "isPalindrome",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "palindrome"
+      ],
+      "description": "Check if a string reads the same forwards and backwards.",
+      "instructions": "Write a function called `isPalindrome` that takes a string and returns `true` if it reads the same forwards and backwards (case-insensitive), `false` otherwise.\n\nConvert to lowercase first, then compare characters from each end moving inward.\n\nExample: `isPalindrome(\"racecar\")` returns `true`, `isPalindrome(\"hello\")` returns `false`, `isPalindrome(\"Madam\")` returns `true`.",
+      "starterCode": "// Takes a string\n// Returns true if it reads the same forwards and backwards\n// Case-insensitive: \"Madam\" is a palindrome\n\nfunction isPalindrome(str) {\n\n}\n",
+      "solution": "function isPalindrome(str) {\n  let lower = str.toLowerCase();\n  for (let i = 0; i < lower.length / 2; i++) {\n    if (lower[i] !== lower[lower.length - 1 - i]) {\n      return false;\n    }\n  }\n  return true;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return isPalindrome;')();\n  return [\n    { pass: fn('racecar') === true, description: 'isPalindrome(\"racecar\") returns true', got: String(fn('racecar')) },\n    { pass: fn('hello') === false, description: 'isPalindrome(\"hello\") returns false', got: String(fn('hello')) },\n    { pass: fn('Madam') === true, description: 'isPalindrome(\"Madam\") returns true (case-insensitive)', got: String(fn('Madam')) },\n    { pass: fn('a') === true, description: 'isPalindrome(\"a\") returns true', got: String(fn('a')) },\n    { pass: fn('abba') === true, description: 'isPalindrome(\"abba\") returns true', got: String(fn('abba')) },\n    { pass: fn('AbBa') === true, description: 'isPalindrome(\"AbBa\") returns true (case-insensitive)', got: String(fn('AbBa')) },\n    { pass: fn('abc') === false, description: 'isPalindrome(\"abc\") returns false', got: String(fn('abc')) }\n  ];\n}",
+      "hints": [
+        "First convert to lowercase so the comparison is case-insensitive. Then compare characters from opposite ends of the string.",
+        "Use `.toLowerCase()` first. Loop from `0` to halfway, comparing `str[i]` with `str[str.length - 1 - i]`. If any pair differs, return false."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        },
+        {
+          "label": "W3Schools: JavaScript For Loop",
+          "url": "https://www.w3schools.com/js/js_loop_for.asp",
+          "description": "For loops"
+        },
+        {
+          "label": "MDN: for",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for",
+          "description": "for statement"
+        }
+      ]
+    },
+    {
+      "id": 1072,
+      "title": "countVowels",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "includes",
+        "counting"
+      ],
+      "description": "Count the number of vowels in a string.",
+      "instructions": "Write a function called `countVowels` that takes a string and returns the number of vowels (a, e, i, o, u) it contains. The check should be case-insensitive.\n\nExample: `countVowels(\"hello\")` returns `2`, `countVowels(\"rhythm\")` returns `0`.",
+      "starterCode": "// Takes a string\n// Returns the count of vowels (a, e, i, o, u), case-insensitive\n\nfunction countVowels(str) {\n\n}\n",
+      "solution": "function countVowels(str) {\n  let count = 0;\n  let lower = str.toLowerCase();\n  for (let i = 0; i < lower.length; i++) {\n    if (\"aeiou\".includes(lower[i])) {\n      count = count + 1;\n    }\n  }\n  return count;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return countVowels;')();\n  return [\n    { pass: fn('hello') === 2, description: 'countVowels(\"hello\") returns 2', got: String(fn('hello')) },\n    { pass: fn('rhythm') === 0, description: 'countVowels(\"rhythm\") returns 0', got: String(fn('rhythm')) },\n    { pass: fn('AEIOU') === 5, description: 'countVowels(\"AEIOU\") returns 5 (case-insensitive)', got: String(fn('AEIOU')) },\n    { pass: fn('aeiou') === 5, description: 'countVowels(\"aeiou\") returns 5', got: String(fn('aeiou')) },\n    { pass: fn('bcdfg') === 0, description: 'countVowels(\"bcdfg\") returns 0', got: String(fn('bcdfg')) },\n    { pass: fn('Beautiful') === 5, description: 'countVowels(\"Beautiful\") returns 5', got: String(fn('Beautiful')) }\n  ];\n}",
+      "hints": [
+        "Convert to lowercase first so the check works for both cases. Loop through each character and check if it is a vowel.",
+        "Use `.toLowerCase()` then loop through each character. Check `\"aeiou\".includes(char)` to test if it is a vowel."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        },
+        {
+          "label": "W3Schools: JavaScript For Loop",
+          "url": "https://www.w3schools.com/js/js_loop_for.asp",
+          "description": "For loops"
+        },
+        {
+          "label": "MDN: for",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for",
+          "description": "for statement"
+        }
+      ]
+    },
+    {
+      "id": 1073,
+      "title": "truncate",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "slice",
+        "conditionals"
+      ],
+      "description": "Truncate a string to a maximum length and append an ellipsis.",
+      "instructions": "Write a function called `truncate` that takes a `str` and a `maxLength`. If the string is longer than `maxLength`, return the first `maxLength` characters followed by `\"...\"`. Otherwise, return the string unchanged.\n\nExample: `truncate(\"Hello World\", 5)` returns `\"Hello...\"`, `truncate(\"Hi\", 10)` returns `\"Hi\"`.",
+      "starterCode": "// Takes a string and a maximum length\n// If longer than maxLength, cut to maxLength characters and add \"...\"\n// If not longer, return unchanged\n\nfunction truncate(str, maxLength) {\n\n}\n",
+      "solution": "function truncate(str, maxLength) {\n  if (str.length > maxLength) {\n    return str.slice(0, maxLength) + \"...\";\n  }\n  return str;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return truncate;')();\n  return [\n    { pass: fn('Hello World', 5) === 'Hello...', description: 'truncate(\"Hello World\", 5) returns \"Hello...\"', got: String(fn('Hello World', 5)) },\n    { pass: fn('Hi', 10) === 'Hi', description: 'truncate(\"Hi\", 10) returns \"Hi\" (no truncation)', got: String(fn('Hi', 10)) },\n    { pass: fn('abcdef', 3) === 'abc...', description: 'truncate(\"abcdef\", 3) returns \"abc...\"', got: String(fn('abcdef', 3)) },\n    { pass: fn('exact', 5) === 'exact', description: 'truncate(\"exact\", 5) returns \"exact\" (equal length)', got: String(fn('exact', 5)) },\n    { pass: fn('a long sentence here', 6) === 'a long...', description: 'truncate(\"a long sentence here\", 6) returns \"a long...\"', got: String(fn('a long sentence here', 6)) },\n    { pass: fn('x', 1) === 'x', description: 'truncate(\"x\", 1) returns \"x\" (single char)', got: String(fn('x', 1)) }\n  ];\n}",
+      "hints": [
+        "Check if the string is longer than the maximum. If so, use `.slice()` to take the first `maxLength` characters and add `\"...\"`.",
+        "Compare `str.length > maxLength`. If true, return `str.slice(0, maxLength) + \"...\"`. Otherwise return `str` as-is."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
+    },
+    {
+      "id": 1074,
+      "title": "maskCardString",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "slice",
+        "repeat",
+        "masking"
+      ],
+      "description": "Mask all but the last 4 digits of a credit card string with asterisks.",
+      "instructions": "Write a function called `maskCardString` that takes a credit card number as a string and returns it with all but the last 4 characters replaced by asterisks.\n\nUse `.slice()` to get the last 4 characters, and `\"*\".repeat()` to build the mask.\n\nExample: `maskCardString(\"4111111111111111\")` returns `\"************1111\"`.",
+      "starterCode": "// Takes a credit card number as a string\n// Returns the string with all but the last 4 characters masked with *\n\nfunction maskCardString(cardStr) {\n\n}\n",
+      "solution": "function maskCardString(cardStr) {\n  let lastFour = cardStr.slice(-4);\n  let masked = \"*\".repeat(cardStr.length - 4);\n  return masked + lastFour;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return maskCardString;')();\n  return [\n    { pass: fn('4111111111111111') === '************1111', description: 'maskCardString(\"4111111111111111\") returns \"************1111\"', got: String(fn('4111111111111111')) },\n    { pass: fn('1234567890') === '******7890', description: 'maskCardString(\"1234567890\") returns \"******7890\"', got: String(fn('1234567890')) },\n    { pass: fn('abcdef') === '**cdef', description: 'maskCardString(\"abcdef\") returns \"**cdef\"', got: String(fn('abcdef')) },\n    { pass: fn('5500000000000004') === '************0004', description: 'maskCardString(\"5500000000000004\") masks correctly', got: String(fn('5500000000000004')) },\n    { pass: fn('12345') === '*2345', description: 'maskCardString(\"12345\") returns \"*2345\"', got: String(fn('12345')) },\n    { pass: fn('abcd') === 'abcd', description: 'maskCardString(\"abcd\") returns \"abcd\" (exactly 4 chars)', got: String(fn('abcd')) }\n  ];\n}",
+      "hints": [
+        "Use `.slice(-4)` to grab the last 4 characters. Then build the asterisk mask using `.repeat()` with the right count.",
+        "Get the last 4 with `cardStr.slice(-4)`. Build the mask with `\"*\".repeat(cardStr.length - 4)`. Concatenate mask + last four."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript String Methods",
+          "url": "https://www.w3schools.com/js/js_string_methods.asp",
+          "description": "String methods"
+        },
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "String methods"
+        }
+      ]
     }
   ]
 }
