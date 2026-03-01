@@ -6603,80 +6603,6 @@
       ]
     },
     {
-      "id": 940,
-      "title": "Switch Statement",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "js-fundamentals",
-        "conditionals"
-      ],
-      "tags": [
-        "conditionals",
-        "switch",
-        "case",
-        "beginner"
-      ],
-      "description": "Use a switch statement to match a value to one of several cases.",
-      "instructions": "A `switch` statement compares a value against several `case` labels. When a match is found, the code for that case runs. The `default` case runs if nothing matches.\n\nWrite a function called `getActivity` that takes a string `day` and returns the matching activity:\n- `\"Monday\"` → `\"Gym\"`\n- `\"Tuesday\"` → `\"Study\"`\n- `\"Wednesday\"` → `\"Cook\"`\n- For any other day → `\"Rest\"`\n\nUse a `switch` statement (not if/else).\n\nExample: `getActivity(\"Monday\")` returns `\"Gym\"`\nExample: `getActivity(\"Friday\")` returns `\"Rest\"`",
-      "starterCode": "function getActivity(day) {\n  // Use a switch statement on day\n  // case \"Monday\": return \"Gym\"\n  // case \"Tuesday\": return \"Study\"\n  // case \"Wednesday\": return \"Cook\"\n  // default: return \"Rest\"\n\n}",
-      "solution": "function getActivity(day) {\n  switch (day) {\n    case \"Monday\":\n      return \"Gym\";\n    case \"Tuesday\":\n      return \"Study\";\n    case \"Wednesday\":\n      return \"Cook\";\n    default:\n      return \"Rest\";\n  }\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getActivity;')();\n  return [\n    { pass: fn('Monday') === 'Gym', description: 'getActivity(\"Monday\") returns \"Gym\"', got: fn('Monday') },\n    { pass: fn('Tuesday') === 'Study', description: 'getActivity(\"Tuesday\") returns \"Study\"', got: fn('Tuesday') },\n    { pass: fn('Wednesday') === 'Cook', description: 'getActivity(\"Wednesday\") returns \"Cook\"', got: fn('Wednesday') },\n    { pass: fn('Friday') === 'Rest', description: 'getActivity(\"Friday\") returns \"Rest\"', got: fn('Friday') },\n    { pass: code.includes('switch'), description: 'Uses a switch statement', got: code.includes('switch') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "A switch statement starts with `switch (value) {` and each case starts with `case \"value\":` followed by the code to run.",
-        "Write `switch (day) { case \"Monday\": return \"Gym\"; case \"Tuesday\": return \"Study\"; ... default: return \"Rest\"; }`."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: JavaScript Switch",
-          "url": "https://www.w3schools.com/js/js_switch.asp",
-          "description": "The switch statement"
-        },
-        {
-          "label": "MDN: switch",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch",
-          "description": "The switch statement"
-        }
-      ]
-    },
-    {
-      "id": 941,
-      "title": "Ternary Operator",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "js-fundamentals",
-        "conditionals"
-      ],
-      "tags": [
-        "conditionals",
-        "ternary",
-        "expressions",
-        "beginner"
-      ],
-      "description": "Use the ternary operator to choose between two values in one line.",
-      "instructions": "The ternary operator is a shorthand for if/else that fits on one line:\n\n`condition ? valueIfTrue : valueIfFalse`\n\nWrite a function called `classify` that takes a number `age` and returns `\"adult\"` if the age is 18 or older, otherwise `\"minor\"`.\n\nUse a ternary operator (not if/else).\n\nExample: `classify(21)` returns `\"adult\"`\nExample: `classify(15)` returns `\"minor\"`",
-      "starterCode": "function classify(age) {\n  // Use a ternary: condition ? valueIfTrue : valueIfFalse\n  // If age >= 18 return \"adult\", otherwise return \"minor\"\n\n}",
-      "solution": "function classify(age) {\n  return age >= 18 ? \"adult\" : \"minor\";\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return classify;')();\n  return [\n    { pass: fn(21) === 'adult', description: 'classify(21) returns \"adult\"', got: fn(21) },\n    { pass: fn(15) === 'minor', description: 'classify(15) returns \"minor\"', got: fn(15) },\n    { pass: fn(18) === 'adult', description: 'classify(18) returns \"adult\"', got: fn(18) },\n    { pass: fn(0) === 'minor', description: 'classify(0) returns \"minor\"', got: fn(0) },\n    { pass: code.includes('?') && code.includes(':'), description: 'Uses ternary operator (? :)', got: (code.includes('?') && code.includes(':')) ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "The ternary operator has three parts: the condition, then `?`, then the value for true, then `:`, then the value for false.",
-        "Write `return age >= 18 ? \"adult\" : \"minor\";` to return one value or the other based on the condition."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Ternary Operator",
-          "url": "https://www.w3schools.com/js/js_comparisons.asp",
-          "description": "Comparison and ternary operators"
-        },
-        {
-          "label": "MDN: Conditional (ternary) operator",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator",
-          "description": "The ternary operator"
-        }
-      ]
-    },
-    {
       "id": 942,
       "title": "Build a Map By Hand",
       "type": "js",
@@ -10555,6 +10481,529 @@
           "label": "MDN: for",
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for",
           "description": "for statement"
+        }
+      ]
+    },
+    {
+      "id": 1036,
+      "title": "Switch Statement",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "switch",
+        "conditionals"
+      ],
+      "description": "Return the name of a day using a switch statement.",
+      "instructions": "A `switch` statement compares a value against multiple `case` labels and runs the matching block. Each case needs a `break` (or `return`) to stop execution from continuing to the next case. A `default` case handles values that don't match any case.\n\nWrite a function called `getDayName` that takes a `dayNumber` (1-7) and returns the day name:\n- 1 = `\"Monday\"`, 2 = `\"Tuesday\"`, 3 = `\"Wednesday\"`, 4 = `\"Thursday\"`, 5 = `\"Friday\"`, 6 = `\"Saturday\"`, 7 = `\"Sunday\"`\n- Return `\"Invalid day\"` for any other number.\n\nExample: `getDayName(1)` returns `\"Monday\"`, `getDayName(6)` returns `\"Saturday\"`.",
+      "starterCode": "// A switch statement matches a value against multiple cases.\n// Syntax:\n//   switch (value) {\n//     case X:\n//       // code for case X\n//       return result;\n//     default:\n//       // code if no case matches\n//   }\n\n// Return the day name for dayNumber (1-7)\n// Return \"Invalid day\" for numbers outside 1-7\n\nfunction getDayName(dayNumber) {\n  // Use a switch statement on dayNumber\n  // Add a case for each day 1 through 7\n  // Include a default case for invalid numbers\n}\n",
+      "solution": "function getDayName(dayNumber) {\n  switch (dayNumber) {\n    case 1: return \"Monday\";\n    case 2: return \"Tuesday\";\n    case 3: return \"Wednesday\";\n    case 4: return \"Thursday\";\n    case 5: return \"Friday\";\n    case 6: return \"Saturday\";\n    case 7: return \"Sunday\";\n    default: return \"Invalid day\";\n  }\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getDayName;')();\n  return [\n    { pass: fn(1) === 'Monday', description: 'getDayName(1) returns \"Monday\"', got: String(fn(1)) },\n    { pass: fn(3) === 'Wednesday', description: 'getDayName(3) returns \"Wednesday\"', got: String(fn(3)) },\n    { pass: fn(5) === 'Friday', description: 'getDayName(5) returns \"Friday\"', got: String(fn(5)) },\n    { pass: fn(6) === 'Saturday', description: 'getDayName(6) returns \"Saturday\"', got: String(fn(6)) },\n    { pass: fn(7) === 'Sunday', description: 'getDayName(7) returns \"Sunday\"', got: String(fn(7)) },\n    { pass: fn(0) === 'Invalid day', description: 'getDayName(0) returns \"Invalid day\"', got: String(fn(0)) },\n    { pass: fn(8) === 'Invalid day', description: 'getDayName(8) returns \"Invalid day\"', got: String(fn(8)) },\n    { pass: code.includes('switch'), description: 'Uses a switch statement', got: code.includes('switch') ? 'Yes' : 'No' }\n  ];\n}",
+      "hints": [
+        "A switch compares one value against many possible matches. Think of it as a cleaner way to write many if/else-if checks.",
+        "Each `case` label is followed by a colon, then the code to run. Use `return` to exit the function from each case."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Switch",
+          "url": "https://www.w3schools.com/js/js_switch.asp",
+          "description": "Switch statement"
+        },
+        {
+          "label": "MDN: switch",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch",
+          "description": "The switch statement"
+        }
+      ]
+    },
+    {
+      "id": 1037,
+      "title": "Switch: Fall-Through",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "switch",
+        "fall-through",
+        "conditionals"
+      ],
+      "description": "Use switch fall-through to group days into weekday or weekend.",
+      "instructions": "When a `case` does not have a `break` or `return`, execution \"falls through\" to the next case. This lets you group multiple cases that share the same result.\n\nWrite a function called `getWeekdayType` that takes a `dayNumber` (1-7) and returns:\n- `\"weekday\"` for days 1-5\n- `\"weekend\"` for days 6-7\n- `\"Invalid day\"` for anything else\n\nExample: `getWeekdayType(3)` returns `\"weekday\"`, `getWeekdayType(6)` returns `\"weekend\"`.",
+      "starterCode": "// Takes a day number (1-7)\n// Returns \"weekday\" for 1-5, \"weekend\" for 6-7, \"Invalid day\" otherwise\n// Use fall-through to group cases that share the same result\n\nfunction getWeekdayType(dayNumber) {\n\n}\n",
+      "solution": "function getWeekdayType(dayNumber) {\n  switch (dayNumber) {\n    case 1:\n    case 2:\n    case 3:\n    case 4:\n    case 5:\n      return \"weekday\";\n    case 6:\n    case 7:\n      return \"weekend\";\n    default:\n      return \"Invalid day\";\n  }\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getWeekdayType;')();\n  return [\n    { pass: fn(1) === 'weekday', description: 'getWeekdayType(1) returns \"weekday\"', got: String(fn(1)) },\n    { pass: fn(3) === 'weekday', description: 'getWeekdayType(3) returns \"weekday\"', got: String(fn(3)) },\n    { pass: fn(5) === 'weekday', description: 'getWeekdayType(5) returns \"weekday\"', got: String(fn(5)) },\n    { pass: fn(6) === 'weekend', description: 'getWeekdayType(6) returns \"weekend\"', got: String(fn(6)) },\n    { pass: fn(7) === 'weekend', description: 'getWeekdayType(7) returns \"weekend\"', got: String(fn(7)) },\n    { pass: fn(0) === 'Invalid day', description: 'getWeekdayType(0) returns \"Invalid day\"', got: String(fn(0)) }\n  ];\n}",
+      "hints": [
+        "Fall-through means stacking cases without a break or return between them. All stacked cases run the same code.",
+        "List cases 1 through 5 one after another with no return until after case 5, then do the same for 6 and 7."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Switch",
+          "url": "https://www.w3schools.com/js/js_switch.asp",
+          "description": "Switch statement"
+        },
+        {
+          "label": "MDN: switch",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch",
+          "description": "The switch statement"
+        }
+      ]
+    },
+    {
+      "id": 1038,
+      "title": "Switch: Fall-Through",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "switch",
+        "fall-through",
+        "conditionals"
+      ],
+      "description": "Use switch fall-through to map months to fiscal quarters.",
+      "instructions": "Write a function called `getQuarter` that takes a `month` number (1-12) and returns the fiscal quarter:\n- Months 1-3: `\"Q1\"`\n- Months 4-6: `\"Q2\"`\n- Months 7-9: `\"Q3\"`\n- Months 10-12: `\"Q4\"`\n- Anything else: `\"Invalid month\"`\n\nUse fall-through to group three months per quarter.\n\nExample: `getQuarter(2)` returns `\"Q1\"`, `getQuarter(11)` returns `\"Q4\"`.",
+      "starterCode": "// Takes a month number (1-12)\n// Returns \"Q1\" through \"Q4\" based on the month\n// Returns \"Invalid month\" for numbers outside 1-12\n\nfunction getQuarter(month) {\n\n}\n",
+      "solution": "function getQuarter(month) {\n  switch (month) {\n    case 1: case 2: case 3: return \"Q1\";\n    case 4: case 5: case 6: return \"Q2\";\n    case 7: case 8: case 9: return \"Q3\";\n    case 10: case 11: case 12: return \"Q4\";\n    default: return \"Invalid month\";\n  }\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getQuarter;')();\n  return [\n    { pass: fn(1) === 'Q1', description: 'getQuarter(1) returns \"Q1\"', got: String(fn(1)) },\n    { pass: fn(3) === 'Q1', description: 'getQuarter(3) returns \"Q1\" (boundary)', got: String(fn(3)) },\n    { pass: fn(4) === 'Q2', description: 'getQuarter(4) returns \"Q2\" (boundary)', got: String(fn(4)) },\n    { pass: fn(6) === 'Q2', description: 'getQuarter(6) returns \"Q2\"', got: String(fn(6)) },\n    { pass: fn(9) === 'Q3', description: 'getQuarter(9) returns \"Q3\"', got: String(fn(9)) },\n    { pass: fn(12) === 'Q4', description: 'getQuarter(12) returns \"Q4\"', got: String(fn(12)) },\n    { pass: fn(0) === 'Invalid month', description: 'getQuarter(0) returns \"Invalid month\"', got: String(fn(0)) },\n    { pass: fn(13) === 'Invalid month', description: 'getQuarter(13) returns \"Invalid month\"', got: String(fn(13)) }\n  ];\n}",
+      "hints": [
+        "Group three months per quarter using fall-through. Each group of three shares one return statement.",
+        "Stack `case 1: case 2: case 3: return \"Q1\";` on one line, then repeat the pattern for each quarter."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Switch",
+          "url": "https://www.w3schools.com/js/js_switch.asp",
+          "description": "Switch statement"
+        },
+        {
+          "label": "MDN: switch",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch",
+          "description": "The switch statement"
+        }
+      ]
+    },
+    {
+      "id": 1039,
+      "title": "Switch: String Matching",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "switch",
+        "string-matching",
+        "conditionals"
+      ],
+      "description": "Use a switch statement to match string values to coin amounts.",
+      "instructions": "Switch statements can match strings, not just numbers.\n\nWrite a function called `getCoinValue` that takes a `coin` name and returns its value in cents:\n- `\"penny\"` → `1`\n- `\"nickel\"` → `5`\n- `\"dime\"` → `10`\n- `\"quarter\"` → `25`\n- Any other string → `0`\n\nExample: `getCoinValue(\"dime\")` returns `10`, `getCoinValue(\"dollar\")` returns `0`.",
+      "starterCode": "// Takes a coin name string\n// Returns the coin's value in cents\n// Returns 0 for unrecognized coin names\n\nfunction getCoinValue(coin) {\n\n}\n",
+      "solution": "function getCoinValue(coin) {\n  switch (coin) {\n    case \"penny\": return 1;\n    case \"nickel\": return 5;\n    case \"dime\": return 10;\n    case \"quarter\": return 25;\n    default: return 0;\n  }\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getCoinValue;')();\n  return [\n    { pass: fn('penny') === 1, description: 'getCoinValue(\"penny\") returns 1', got: String(fn('penny')) },\n    { pass: fn('nickel') === 5, description: 'getCoinValue(\"nickel\") returns 5', got: String(fn('nickel')) },\n    { pass: fn('dime') === 10, description: 'getCoinValue(\"dime\") returns 10', got: String(fn('dime')) },\n    { pass: fn('quarter') === 25, description: 'getCoinValue(\"quarter\") returns 25', got: String(fn('quarter')) },\n    { pass: fn('dollar') === 0, description: 'getCoinValue(\"dollar\") returns 0 (unknown)', got: String(fn('dollar')) },\n    { pass: fn('half-dollar') === 0, description: 'getCoinValue(\"half-dollar\") returns 0 (unknown)', got: String(fn('half-dollar')) }\n  ];\n}",
+      "hints": [
+        "Switch works the same with strings as with numbers — each case label is a string value to match against.",
+        "Write `case \"penny\": return 1;` for each coin. The default case handles anything that does not match."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Switch",
+          "url": "https://www.w3schools.com/js/js_switch.asp",
+          "description": "Switch statement"
+        },
+        {
+          "label": "MDN: switch",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch",
+          "description": "The switch statement"
+        }
+      ]
+    },
+    {
+      "id": 1040,
+      "title": "Switch: Default",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "switch",
+        "default",
+        "conditionals"
+      ],
+      "description": "Use a switch with a meaningful default case for HTTP status codes.",
+      "instructions": "Write a function called `getHttpStatus` that takes a status `code` and returns its description:\n- `200` → `\"OK\"`\n- `301` → `\"Moved Permanently\"`\n- `404` → `\"Not Found\"`\n- `500` → `\"Internal Server Error\"`\n- Any other code → `\"Unknown Status\"`\n\nThe `default` case handles all codes not explicitly listed.\n\nExample: `getHttpStatus(404)` returns `\"Not Found\"`, `getHttpStatus(418)` returns `\"Unknown Status\"`.",
+      "starterCode": "// Takes an HTTP status code number\n// Returns the status description string\n// Returns \"Unknown Status\" for codes not explicitly handled\n\nfunction getHttpStatus(code) {\n\n}\n",
+      "solution": "function getHttpStatus(code) {\n  switch (code) {\n    case 200: return \"OK\";\n    case 301: return \"Moved Permanently\";\n    case 404: return \"Not Found\";\n    case 500: return \"Internal Server Error\";\n    default: return \"Unknown Status\";\n  }\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getHttpStatus;')();\n  return [\n    { pass: fn(200) === 'OK', description: 'getHttpStatus(200) returns \"OK\"', got: String(fn(200)) },\n    { pass: fn(301) === 'Moved Permanently', description: 'getHttpStatus(301) returns \"Moved Permanently\"', got: String(fn(301)) },\n    { pass: fn(404) === 'Not Found', description: 'getHttpStatus(404) returns \"Not Found\"', got: String(fn(404)) },\n    { pass: fn(500) === 'Internal Server Error', description: 'getHttpStatus(500) returns \"Internal Server Error\"', got: String(fn(500)) },\n    { pass: fn(418) === 'Unknown Status', description: 'getHttpStatus(418) returns \"Unknown Status\"', got: String(fn(418)) },\n    { pass: fn(999) === 'Unknown Status', description: 'getHttpStatus(999) returns \"Unknown Status\"', got: String(fn(999)) }\n  ];\n}",
+      "hints": [
+        "The default case catches everything that does not match a specific case. Think of it like the final `else` in an if/else chain.",
+        "List the known status codes as cases with their descriptions, then use `default` for everything else."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Switch",
+          "url": "https://www.w3schools.com/js/js_switch.asp",
+          "description": "Switch statement"
+        },
+        {
+          "label": "MDN: switch",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch",
+          "description": "The switch statement"
+        }
+      ]
+    },
+    {
+      "id": 1041,
+      "title": "Ternary Operator",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "ternary",
+        "conditionals"
+      ],
+      "description": "Return the absolute value of a number using a ternary expression.",
+      "instructions": "The ternary operator is a shorthand for a simple if/else. It uses `?` and `:` to choose between two values based on a condition.\n\nSyntax: `condition ? valueIfTrue : valueIfFalse`\n\nWrite a function called `absolute` that takes a `number` and returns its absolute value (distance from zero). If the number is negative, negate it. Otherwise, return it unchanged.\n\nExample: `absolute(-5)` returns `5`, `absolute(3)` returns `3`.",
+      "starterCode": "// The ternary operator is shorthand for if/else.\n// Syntax: condition ? valueIfTrue : valueIfFalse\n//\n// Instead of:\n//   if (x < 0) { return -x; } else { return x; }\n// You can write:\n//   return x < 0 ? -x : x;\n\n// Return the absolute value of number using a ternary\n\nfunction absolute(number) {\n  // Check if number is negative\n  // If yes, return -number; if no, return number\n}\n",
+      "solution": "function absolute(number) {\n  return number < 0 ? -number : number;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return absolute;')();\n  return [\n    { pass: fn(5) === 5, description: 'absolute(5) returns 5', got: String(fn(5)) },\n    { pass: fn(-3) === 3, description: 'absolute(-3) returns 3', got: String(fn(-3)) },\n    { pass: fn(0) === 0, description: 'absolute(0) returns 0', got: String(fn(0)) },\n    { pass: fn(-100) === 100, description: 'absolute(-100) returns 100', got: String(fn(-100)) },\n    { pass: fn(0.5) === 0.5, description: 'absolute(0.5) returns 0.5', got: String(fn(0.5)) },\n    { pass: fn(-0.5) === 0.5, description: 'absolute(-0.5) returns 0.5', got: String(fn(-0.5)) }\n  ];\n}",
+      "hints": [
+        "The ternary has three parts: a condition, a value when true, and a value when false, separated by `?` and `:`.",
+        "The condition is `number < 0`. If true, return the negated number. If false, return the number as-is."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Comparisons",
+          "url": "https://www.w3schools.com/js/js_comparisons.asp",
+          "description": "Ternary operator"
+        },
+        {
+          "label": "MDN: Conditional operator",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator",
+          "description": "Ternary operator"
+        }
+      ]
+    },
+    {
+      "id": 1042,
+      "title": "Ternary: Inline",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "ternary",
+        "conditionals",
+        "strings"
+      ],
+      "description": "Use a ternary inside a string expression to format a price.",
+      "instructions": "Write a function called `feeOrFree` that takes a boolean `isMember` and a `price` number. Return:\n- `\"Free\"` if `isMember` is `true`\n- `\"$\"` followed by the price if `isMember` is `false`\n\nExample: `feeOrFree(true, 9.99)` returns `\"Free\"`, `feeOrFree(false, 25)` returns `\"$25\"`.",
+      "starterCode": "// Takes a boolean isMember and a number price\n// Returns \"Free\" if member, or \"$\" + price if not\n\nfunction feeOrFree(isMember, price) {\n\n}\n",
+      "solution": "function feeOrFree(isMember, price) {\n  return isMember ? \"Free\" : \"$\" + price;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return feeOrFree;')();\n  return [\n    { pass: fn(true, 9.99) === 'Free', description: 'feeOrFree(true, 9.99) returns \"Free\"', got: String(fn(true, 9.99)) },\n    { pass: fn(false, 9.99) === '$9.99', description: 'feeOrFree(false, 9.99) returns \"$9.99\"', got: String(fn(false, 9.99)) },\n    { pass: fn(false, 25) === '$25', description: 'feeOrFree(false, 25) returns \"$25\"', got: String(fn(false, 25)) },\n    { pass: fn(true, 0) === 'Free', description: 'feeOrFree(true, 0) returns \"Free\"', got: String(fn(true, 0)) },\n    { pass: fn(false, 100) === '$100', description: 'feeOrFree(false, 100) returns \"$100\"', got: String(fn(false, 100)) }\n  ];\n}",
+      "hints": [
+        "The ternary can be used anywhere a value is expected, including as the return value of a function.",
+        "Return `isMember ? \"Free\" : \"$\" + price` — the ternary picks which value to return."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Comparisons",
+          "url": "https://www.w3schools.com/js/js_comparisons.asp",
+          "description": "Ternary operator"
+        },
+        {
+          "label": "MDN: Conditional operator",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator",
+          "description": "Ternary operator"
+        }
+      ]
+    },
+    {
+      "id": 1043,
+      "title": "Ternary: Chained",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "ternary",
+        "chained-ternary",
+        "conditionals"
+      ],
+      "description": "Use a chained ternary to classify an age into three groups.",
+      "instructions": "Ternary expressions can be chained to handle more than two outcomes. The \"false\" branch of the first ternary becomes another ternary.\n\nPattern: `condition1 ? value1 : condition2 ? value2 : value3`\n\nWrite a function called `classifyAge` that takes an `age` and returns:\n- `\"child\"` if under 13\n- `\"teen\"` if 13-17\n- `\"adult\"` if 18 or older\n\nExample: `classifyAge(8)` returns `\"child\"`, `classifyAge(15)` returns `\"teen\"`.",
+      "starterCode": "// Takes an age number\n// Returns \"child\" (under 13), \"teen\" (13-17), or \"adult\" (18+)\n// Use a chained ternary expression\n\nfunction classifyAge(age) {\n\n}\n",
+      "solution": "function classifyAge(age) {\n  return age < 13 ? \"child\" : age < 18 ? \"teen\" : \"adult\";\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return classifyAge;')();\n  return [\n    { pass: fn(5) === 'child', description: 'classifyAge(5) returns \"child\"', got: String(fn(5)) },\n    { pass: fn(12) === 'child', description: 'classifyAge(12) returns \"child\" (boundary)', got: String(fn(12)) },\n    { pass: fn(13) === 'teen', description: 'classifyAge(13) returns \"teen\" (boundary)', got: String(fn(13)) },\n    { pass: fn(15) === 'teen', description: 'classifyAge(15) returns \"teen\"', got: String(fn(15)) },\n    { pass: fn(17) === 'teen', description: 'classifyAge(17) returns \"teen\" (boundary)', got: String(fn(17)) },\n    { pass: fn(18) === 'adult', description: 'classifyAge(18) returns \"adult\" (boundary)', got: String(fn(18)) },\n    { pass: fn(65) === 'adult', description: 'classifyAge(65) returns \"adult\"', got: String(fn(65)) }\n  ];\n}",
+      "hints": [
+        "Chain ternaries by placing another ternary in the \"false\" position of the first one.",
+        "The pattern reads left to right: `age < 13 ? \"child\" : age < 18 ? \"teen\" : \"adult\"`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Comparisons",
+          "url": "https://www.w3schools.com/js/js_comparisons.asp",
+          "description": "Ternary operator"
+        },
+        {
+          "label": "MDN: Conditional operator",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator",
+          "description": "Ternary operator"
+        }
+      ]
+    },
+    {
+      "id": 1044,
+      "title": "Ternary: Chained",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "ternary",
+        "chained-ternary",
+        "conditionals"
+      ],
+      "description": "Use a deeper chained ternary to classify a score into four labels.",
+      "instructions": "Write a function called `scoreLabel` that takes a `score` (0-100) and returns:\n- `\"excellent\"` if 90 or above\n- `\"good\"` if 70-89\n- `\"average\"` if 50-69\n- `\"poor\"` if below 50\n\nUse a single chained ternary expression.\n\nExample: `scoreLabel(95)` returns `\"excellent\"`, `scoreLabel(42)` returns `\"poor\"`.",
+      "starterCode": "// Takes a score (0-100)\n// Returns \"excellent\", \"good\", \"average\", or \"poor\"\n// Use a chained ternary with three conditions\n\nfunction scoreLabel(score) {\n\n}\n",
+      "solution": "function scoreLabel(score) {\n  return score >= 90 ? \"excellent\" : score >= 70 ? \"good\" : score >= 50 ? \"average\" : \"poor\";\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return scoreLabel;')();\n  return [\n    { pass: fn(95) === 'excellent', description: 'scoreLabel(95) returns \"excellent\"', got: String(fn(95)) },\n    { pass: fn(90) === 'excellent', description: 'scoreLabel(90) returns \"excellent\" (boundary)', got: String(fn(90)) },\n    { pass: fn(85) === 'good', description: 'scoreLabel(85) returns \"good\"', got: String(fn(85)) },\n    { pass: fn(70) === 'good', description: 'scoreLabel(70) returns \"good\" (boundary)', got: String(fn(70)) },\n    { pass: fn(55) === 'average', description: 'scoreLabel(55) returns \"average\"', got: String(fn(55)) },\n    { pass: fn(50) === 'average', description: 'scoreLabel(50) returns \"average\" (boundary)', got: String(fn(50)) },\n    { pass: fn(30) === 'poor', description: 'scoreLabel(30) returns \"poor\"', got: String(fn(30)) },\n    { pass: fn(0) === 'poor', description: 'scoreLabel(0) returns \"poor\"', got: String(fn(0)) }\n  ];\n}",
+      "hints": [
+        "Extend the chaining pattern: each \"false\" branch can be another condition-value pair, ending with the final fallback value.",
+        "Read left to right: `score >= 90 ? \"excellent\" : score >= 70 ? \"good\" : score >= 50 ? \"average\" : \"poor\"`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Comparisons",
+          "url": "https://www.w3schools.com/js/js_comparisons.asp",
+          "description": "Ternary operator"
+        },
+        {
+          "label": "MDN: Conditional operator",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator",
+          "description": "Ternary operator"
+        }
+      ]
+    },
+    {
+      "id": 1045,
+      "title": "Nested If",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "nested-if",
+        "conditionals",
+        "validation"
+      ],
+      "description": "Validate triangle sides and then classify the triangle type.",
+      "instructions": "A nested conditional places one `if` inside another. This is useful when you need to validate input before processing it.\n\nWrite a function called `classifyTriangle` that takes three side lengths `a`, `b`, and `c`.\n\nFirst, check if the sides form a valid triangle:\n- All sides must be positive\n- The sum of any two sides must be greater than the third\n\nIf invalid, return `\"invalid\"`.\n\nIf valid, classify:\n- All three sides equal → `\"equilateral\"`\n- Exactly two sides equal → `\"isosceles\"`\n- All sides different → `\"scalene\"`\n\nExample: `classifyTriangle(3, 3, 3)` returns `\"equilateral\"`, `classifyTriangle(1, 1, 5)` returns `\"invalid\"`.",
+      "starterCode": "// A nested if places one conditional inside another.\n// Useful for: validate first, then classify.\n//\n// Takes three side lengths: a, b, c\n// Step 1: Check if the triangle is valid\n//   - All sides must be positive\n//   - Sum of any two sides must be greater than the third\n// Step 2: If valid, classify as equilateral, isosceles, or scalene\n\nfunction classifyTriangle(a, b, c) {\n  // First check validity\n  // Then classify the triangle type\n}\n",
+      "solution": "function classifyTriangle(a, b, c) {\n  if (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {\n    return \"invalid\";\n  }\n  if (a === b && b === c) {\n    return \"equilateral\";\n  } else if (a === b || a === c || b === c) {\n    return \"isosceles\";\n  } else {\n    return \"scalene\";\n  }\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return classifyTriangle;')();\n  return [\n    { pass: fn(3, 3, 3) === 'equilateral', description: 'classifyTriangle(3, 3, 3) returns \"equilateral\"', got: String(fn(3, 3, 3)) },\n    { pass: fn(3, 3, 5) === 'isosceles', description: 'classifyTriangle(3, 3, 5) returns \"isosceles\"', got: String(fn(3, 3, 5)) },\n    { pass: fn(3, 4, 5) === 'scalene', description: 'classifyTriangle(3, 4, 5) returns \"scalene\"', got: String(fn(3, 4, 5)) },\n    { pass: fn(5, 3, 3) === 'isosceles', description: 'classifyTriangle(5, 3, 3) returns \"isosceles\" (order varies)', got: String(fn(5, 3, 3)) },\n    { pass: fn(1, 1, 5) === 'invalid', description: 'classifyTriangle(1, 1, 5) returns \"invalid\" (1+1 not > 5)', got: String(fn(1, 1, 5)) },\n    { pass: fn(0, 4, 5) === 'invalid', description: 'classifyTriangle(0, 4, 5) returns \"invalid\" (zero side)', got: String(fn(0, 4, 5)) },\n    { pass: fn(-1, 2, 3) === 'invalid', description: 'classifyTriangle(-1, 2, 3) returns \"invalid\" (negative side)', got: String(fn(-1, 2, 3)) }\n  ];\n}",
+      "hints": [
+        "Handle validation first — if the sides are not valid, return early before trying to classify.",
+        "Check validity with `a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a`. Then use equality checks for classification."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript if/else",
+          "url": "https://www.w3schools.com/js/js_if_else.asp",
+          "description": "Conditionals"
+        },
+        {
+          "label": "MDN: if...else",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else",
+          "description": "if statement"
+        }
+      ]
+    },
+    {
+      "id": 1046,
+      "title": "Nested If",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "nested-if",
+        "conditionals",
+        "math"
+      ],
+      "description": "Calculate pay with overtime and weekend multiplier rules.",
+      "instructions": "Write a function called `calculatePay` that takes `hours`, `rate`, and a boolean `isWeekend`.\n\nPay rules:\n- First 40 hours are paid at the regular `rate`\n- Hours over 40 are paid at 1.5x the regular `rate` (overtime)\n- If `isWeekend` is `true`, multiply the total pay by 1.5\n\nExample: `calculatePay(50, 20, false)` returns `1100` (800 regular + 300 overtime).\n`calculatePay(50, 20, true)` returns `1650` (1100 * 1.5 weekend).",
+      "starterCode": "// Takes hours, hourly rate, and a boolean isWeekend\n// First 40 hours at regular rate, overtime at 1.5x\n// Weekend multiplies total pay by 1.5\n// Returns the total pay\n\nfunction calculatePay(hours, rate, isWeekend) {\n\n}\n",
+      "solution": "function calculatePay(hours, rate, isWeekend) {\n  let pay;\n  if (hours <= 40) {\n    pay = hours * rate;\n  } else {\n    pay = 40 * rate + (hours - 40) * rate * 1.5;\n  }\n  if (isWeekend) {\n    pay = pay * 1.5;\n  }\n  return pay;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return calculatePay;')();\n  return [\n    { pass: fn(40, 20, false) === 800, description: 'calculatePay(40, 20, false) returns 800', got: String(fn(40, 20, false)) },\n    { pass: fn(40, 20, true) === 1200, description: 'calculatePay(40, 20, true) returns 1200 (weekend)', got: String(fn(40, 20, true)) },\n    { pass: fn(50, 20, false) === 1100, description: 'calculatePay(50, 20, false) returns 1100 (overtime)', got: String(fn(50, 20, false)) },\n    { pass: fn(50, 20, true) === 1650, description: 'calculatePay(50, 20, true) returns 1650 (overtime + weekend)', got: String(fn(50, 20, true)) },\n    { pass: fn(30, 15, false) === 450, description: 'calculatePay(30, 15, false) returns 450', got: String(fn(30, 15, false)) },\n    { pass: fn(45, 10, false) === 475, description: 'calculatePay(45, 10, false) returns 475 (400 + 75 overtime)', got: String(fn(45, 10, false)) }\n  ];\n}",
+      "hints": [
+        "Break the problem into two parts: first calculate base pay with possible overtime, then apply the weekend multiplier if needed.",
+        "Calculate regular pay for up to 40 hours, add overtime pay for hours beyond 40 at 1.5x, then multiply by 1.5 if isWeekend is true."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript if/else",
+          "url": "https://www.w3schools.com/js/js_if_else.asp",
+          "description": "Conditionals"
+        },
+        {
+          "label": "MDN: if...else",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else",
+          "description": "if statement"
+        }
+      ]
+    },
+    {
+      "id": 1047,
+      "title": "Complex If",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "conditionals",
+        "multi-factor",
+        "math"
+      ],
+      "description": "Calculate shipping cost from weight brackets and zone multipliers.",
+      "instructions": "Write a function called `getShippingRate` that takes a `weight` (in pounds) and a `zone` string.\n\nBase rate by weight:\n- Under 5 lbs: `$5`\n- 5 to 20 lbs: `$10`\n- Over 20 lbs: `$20`\n\nZone multiplier:\n- `\"local\"`: 1x\n- `\"domestic\"`: 2x\n- `\"international\"`: 5x\n\nReturn the base rate multiplied by the zone multiplier.\n\nExample: `getShippingRate(3, \"domestic\")` returns `10` ($5 base * 2x domestic).",
+      "starterCode": "// Takes weight in pounds and a zone string\n// Determine base rate from weight, then multiply by zone factor\n// Returns the shipping cost\n\nfunction getShippingRate(weight, zone) {\n\n}\n",
+      "solution": "function getShippingRate(weight, zone) {\n  let base;\n  if (weight < 5) {\n    base = 5;\n  } else if (weight <= 20) {\n    base = 10;\n  } else {\n    base = 20;\n  }\n  if (zone === \"local\") {\n    return base * 1;\n  } else if (zone === \"domestic\") {\n    return base * 2;\n  } else {\n    return base * 5;\n  }\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getShippingRate;')();\n  return [\n    { pass: fn(3, 'local') === 5, description: 'getShippingRate(3, \"local\") returns 5', got: String(fn(3, 'local')) },\n    { pass: fn(3, 'domestic') === 10, description: 'getShippingRate(3, \"domestic\") returns 10', got: String(fn(3, 'domestic')) },\n    { pass: fn(3, 'international') === 25, description: 'getShippingRate(3, \"international\") returns 25', got: String(fn(3, 'international')) },\n    { pass: fn(10, 'local') === 10, description: 'getShippingRate(10, \"local\") returns 10', got: String(fn(10, 'local')) },\n    { pass: fn(10, 'domestic') === 20, description: 'getShippingRate(10, \"domestic\") returns 20', got: String(fn(10, 'domestic')) },\n    { pass: fn(25, 'international') === 100, description: 'getShippingRate(25, \"international\") returns 100', got: String(fn(25, 'international')) },\n    { pass: fn(5, 'local') === 10, description: 'getShippingRate(5, \"local\") returns 10 (weight boundary)', got: String(fn(5, 'local')) },\n    { pass: fn(20, 'domestic') === 20, description: 'getShippingRate(20, \"domestic\") returns 20 (weight boundary)', got: String(fn(20, 'domestic')) }\n  ];\n}",
+      "hints": [
+        "Solve one dimension at a time: first determine the base rate from weight, then apply the zone multiplier.",
+        "Use if/else-if/else to set a base rate variable, then use another if/else chain to multiply by the zone factor."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript if/else",
+          "url": "https://www.w3schools.com/js/js_if_else.asp",
+          "description": "Conditionals"
+        },
+        {
+          "label": "MDN: if...else",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else",
+          "description": "if statement"
+        }
+      ]
+    },
+    {
+      "id": 1048,
+      "title": "Complex If",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "conditionals",
+        "validation",
+        "multi-criteria"
+      ],
+      "description": "Check multiple ride eligibility criteria and return specific failure reasons.",
+      "instructions": "Write a function called `canRide` that takes `height` (inches), `age`, and a boolean `hasHeartCondition`.\n\nCheck eligibility in this order:\n1. If `hasHeartCondition` is true → return `\"health restriction\"`\n2. If `height` is less than 48 → return `\"too short\"`\n3. If `age` is less than 8 → return `\"too young\"`\n4. If all checks pass → return `\"approved\"`\n\nExample: `canRide(52, 10, false)` returns `\"approved\"`, `canRide(45, 10, false)` returns `\"too short\"`.",
+      "starterCode": "// Takes height (inches), age, and hasHeartCondition boolean\n// Check criteria in order and return the first failure reason\n// Returns \"approved\" if all checks pass\n\nfunction canRide(height, age, hasHeartCondition) {\n\n}\n",
+      "solution": "function canRide(height, age, hasHeartCondition) {\n  if (hasHeartCondition) {\n    return \"health restriction\";\n  }\n  if (height < 48) {\n    return \"too short\";\n  }\n  if (age < 8) {\n    return \"too young\";\n  }\n  return \"approved\";\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return canRide;')();\n  return [\n    { pass: fn(52, 10, false) === 'approved', description: 'canRide(52, 10, false) returns \"approved\"', got: String(fn(52, 10, false)) },\n    { pass: fn(52, 10, true) === 'health restriction', description: 'canRide(52, 10, true) returns \"health restriction\"', got: String(fn(52, 10, true)) },\n    { pass: fn(45, 10, false) === 'too short', description: 'canRide(45, 10, false) returns \"too short\"', got: String(fn(45, 10, false)) },\n    { pass: fn(52, 6, false) === 'too young', description: 'canRide(52, 6, false) returns \"too young\"', got: String(fn(52, 6, false)) },\n    { pass: fn(48, 8, false) === 'approved', description: 'canRide(48, 8, false) returns \"approved\" (boundaries)', got: String(fn(48, 8, false)) },\n    { pass: fn(47, 12, false) === 'too short', description: 'canRide(47, 12, false) returns \"too short\"', got: String(fn(47, 12, false)) },\n    { pass: fn(50, 7, false) === 'too young', description: 'canRide(50, 7, false) returns \"too young\"', got: String(fn(50, 7, false)) }\n  ];\n}",
+      "hints": [
+        "Check each criterion one at a time and return immediately if it fails. The order matters — check the most critical restriction first.",
+        "Use separate `if` statements with early returns. If none of the failure conditions trigger, return \"approved\" at the end."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript if/else",
+          "url": "https://www.w3schools.com/js/js_if_else.asp",
+          "description": "Conditionals"
+        },
+        {
+          "label": "MDN: if...else",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else",
+          "description": "if statement"
+        }
+      ]
+    },
+    {
+      "id": 1049,
+      "title": "Conditionals: Combined",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "switch",
+        "ternary",
+        "conditionals",
+        "combined"
+      ],
+      "description": "Combine switch, ternary, and if/else to rate a service.",
+      "instructions": "Write a function called `rateService` that takes a `serviceType` string, a `score` (1-10), and a boolean `isPremium`.\n\n**Step 1 — Switch:** Map `serviceType` to a label:\n- `\"delivery\"` → `\"Delivery\"`\n- `\"support\"` → `\"Support\"`\n- `\"quality\"` → `\"Quality\"`\n- Anything else → `\"General\"`\n\n**Step 2 — Ternary:** If `isPremium` is true, add 2 to the score. Otherwise, keep the score as-is.\n\n**Step 3 — If/Else:** Classify the adjusted score:\n- 8 or above → `\"Excellent\"`\n- 5-7 → `\"Good\"`\n- Below 5 → `\"Needs Improvement\"`\n\nReturn the label and classification joined with `\": \"`.\n\nExample: `rateService(\"delivery\", 9, false)` returns `\"Delivery: Excellent\"`.\n`rateService(\"delivery\", 6, true)` returns `\"Delivery: Excellent\"` (6 + 2 = 8).",
+      "starterCode": "// Returns a label and rating like \"Delivery: Excellent\"\n\nfunction rateService(serviceType, score, isPremium) {\n  // 1. Switch on serviceType for the label\n  // 2. Ternary to adjust score for premium\n  // 3. If/else to classify the adjusted score\n}\n",
+      "solution": "function rateService(serviceType, score, isPremium) {\n  let label;\n  switch (serviceType) {\n    case \"delivery\": label = \"Delivery\"; break;\n    case \"support\": label = \"Support\"; break;\n    case \"quality\": label = \"Quality\"; break;\n    default: label = \"General\";\n  }\n  let adjusted = isPremium ? score + 2 : score;\n  let rating;\n  if (adjusted >= 8) {\n    rating = \"Excellent\";\n  } else if (adjusted >= 5) {\n    rating = \"Good\";\n  } else {\n    rating = \"Needs Improvement\";\n  }\n  return label + \": \" + rating;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return rateService;')();\n  return [\n    { pass: fn('delivery', 9, false) === 'Delivery: Excellent', description: 'rateService(\"delivery\", 9, false) returns \"Delivery: Excellent\"', got: String(fn('delivery', 9, false)) },\n    { pass: fn('support', 6, false) === 'Support: Good', description: 'rateService(\"support\", 6, false) returns \"Support: Good\"', got: String(fn('support', 6, false)) },\n    { pass: fn('quality', 3, false) === 'Quality: Needs Improvement', description: 'rateService(\"quality\", 3, false) returns \"Quality: Needs Improvement\"', got: String(fn('quality', 3, false)) },\n    { pass: fn('delivery', 6, true) === 'Delivery: Excellent', description: 'rateService(\"delivery\", 6, true) returns \"Delivery: Excellent\" (6+2=8)', got: String(fn('delivery', 6, true)) },\n    { pass: fn('support', 4, true) === 'Support: Good', description: 'rateService(\"support\", 4, true) returns \"Support: Good\" (4+2=6)', got: String(fn('support', 4, true)) },\n    { pass: fn('other', 10, false) === 'General: Excellent', description: 'rateService(\"other\", 10, false) returns \"General: Excellent\"', got: String(fn('other', 10, false)) },\n    { pass: fn('quality', 5, false) === 'Quality: Good', description: 'rateService(\"quality\", 5, false) returns \"Quality: Good\" (boundary)', got: String(fn('quality', 5, false)) },\n    { pass: fn('delivery', 3, true) === 'Delivery: Good', description: 'rateService(\"delivery\", 3, true) returns \"Delivery: Good\" (3+2=5)', got: String(fn('delivery', 3, true)) }\n  ];\n}",
+      "hints": [
+        "Break the problem into three distinct steps. Solve each one independently using the appropriate conditional tool.",
+        "Use `switch` to set a label variable, a ternary to calculate the adjusted score, and `if/else` to set a rating variable. Combine them at the end."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Switch",
+          "url": "https://www.w3schools.com/js/js_switch.asp",
+          "description": "Switch statement"
+        },
+        {
+          "label": "MDN: switch",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch",
+          "description": "The switch statement"
+        },
+        {
+          "label": "W3Schools: JavaScript Comparisons",
+          "url": "https://www.w3schools.com/js/js_comparisons.asp",
+          "description": "Ternary operator"
+        },
+        {
+          "label": "MDN: Conditional operator",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator",
+          "description": "Ternary operator"
+        },
+        {
+          "label": "W3Schools: JavaScript if/else",
+          "url": "https://www.w3schools.com/js/js_if_else.asp",
+          "description": "Conditionals"
+        },
+        {
+          "label": "MDN: if...else",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else",
+          "description": "if statement"
         }
       ]
     }
