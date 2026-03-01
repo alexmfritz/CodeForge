@@ -88,7 +88,7 @@ export function calculateScore(
 
 // ─── Hint Gates ─────────────────────────────────────────────────────────────
 
-export const HINT_GATES = [3, 6, 9] as const;
+export const HINT_GATES = [3, 6] as const;
 export const DEFAULT_SOLUTION_GATE = 10;
 
 export function getHintsAvailable(uniqueAttempts: number, totalHints: number): number {

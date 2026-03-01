@@ -814,7 +814,7 @@ export default function ExerciseWizard({ onClose, onCreated, editExercise }: Exe
         <div className="flex items-center justify-between mb-2">
           <label className="text-xs" style={{ color: 'var(--text-muted)' }}>
             Hints
-            <InfoTooltip text="Hints unlock progressively as students make more attempts (at 3, 6, and 9 attempts). Add them in order of increasing helpfulness." />
+            <InfoTooltip text="Hints unlock progressively as students make more attempts (at 3 and 6 attempts). Add them in order of increasing helpfulness." />
           </label>
           <button
             type="button"
