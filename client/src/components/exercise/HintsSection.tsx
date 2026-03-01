@@ -2,7 +2,7 @@ import { HINT_GATES } from '@codeforge/shared/constants';
 import MarkdownLite from '../shared/MarkdownLite';
 import LockProgress from './LockProgress';
 
-const HINT_LABELS = ['Hint 1', 'Hint 2', 'Hint 3'] as const;
+const HINT_LABELS = ['Hint 1', 'Hint 2'] as const;
 
 interface HintsSectionProps {
   hints: string[];
