@@ -4787,1821 +4787,6 @@
       ]
     },
     {
-      "id": 883,
-      "title": "Arrow Functions",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "functions",
-        "basics"
-      ],
-      "tags": [
-        "functions",
-        "arrow",
-        "expression",
-        "beginner"
-      ],
-      "description": "Write a function using arrow function syntax.",
-      "instructions": "Arrow functions are a shorter way to write functions. Instead of the `function` keyword, you use `=>` (an arrow).\n\nRegular: `function double(n) { return n * 2; }`\nArrow: `const double = (n) => { return n * 2; };`\n\nWrite an arrow function called `triple` that takes a number `n` and returns `n * 3`.\n\nExample: `triple(4)` should return `12`\nExample: `triple(0)` should return `0`",
-      "starterCode": "/**\n * Takes a number and returns it tripled using arrow function syntax.\n * Example: triple(4) → 12\n * Example: triple(0) → 0\n */\nconst triple = (n) => {\n\n};",
-      "solution": "const triple = (n) => {\n  return n * 3;\n};",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return triple;')();\n  return [\n    { pass: fn(4) === 12, description: 'triple(4) returns 12', got: String(fn(4)) },\n    { pass: fn(0) === 0, description: 'triple(0) returns 0', got: String(fn(0)) },\n    { pass: fn(-3) === -9, description: 'triple(-3) returns -9', got: String(fn(-3)) },\n    { pass: code.includes('=>'), description: 'Uses arrow function syntax (=>)', got: code.includes('=>') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "Arrow functions are stored in a variable using `const`. The arrow `=>` replaces the `function` keyword.",
-        "Inside the curly braces, use `return n * 3;` just like in a regular function."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Arrow Functions",
-          "url": "https://www.w3schools.com/js/js_arrow_function.asp",
-          "description": "Arrow function syntax"
-        },
-        {
-          "label": "MDN: Arrow functions",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
-          "description": "Arrow function expressions"
-        }
-      ]
-    },
-    {
-      "id": 884,
-      "title": "Block Scope",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "functions",
-        "scope"
-      ],
-      "tags": [
-        "scope",
-        "block-scope",
-        "let",
-        "beginner"
-      ],
-      "description": "Demonstrate how let variables are scoped to their block.",
-      "instructions": "Variables declared with `let` and `const` only exist inside the block `{ }` where they are declared. This is called block scope.\n\nWrite a function called `scopeTest` that:\n1. Declares `let message = \"outside\"` before the if block\n2. Inside an `if (true)` block, declares `let message = \"inside\"` (this is a separate variable!)\n3. Returns the outer `message` variable after the if block\n\nBecause `let` is block-scoped, the inner `message` does not affect the outer one. The function should return `\"outside\"`.",
-      "starterCode": "/**\n * Demonstrates block scope. Declares a \"message\" variable with \"outside\",\n * declares another \"message\" inside an if block with \"inside\",\n * then returns the outer message.\n * Example: scopeTest() → \"outside\"\n */\nfunction scopeTest() {\n\n}",
-      "solution": "function scopeTest() {\n  let message = \"outside\";\n  if (true) {\n    let message = \"inside\";\n  }\n  return message;\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return scopeTest;')();\n  const result = fn();\n  return [\n    { pass: result === 'outside', description: 'scopeTest() returns \"outside\"', got: String(result) },\n    { pass: code.includes('let message'), description: 'Uses let to declare message', got: code.includes('let message') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "When you declare a variable with `let` inside a block (like an `if` statement), it is completely separate from any variable with the same name outside that block.",
-        "Declare `let message = \"outside\";` before the `if`. Inside the `if`, declare `let message = \"inside\";`. After the `if`, return `message` — it will be the outer one."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: JavaScript Scope",
-          "url": "https://www.w3schools.com/js/js_scope.asp",
-          "description": "Understanding scope"
-        },
-        {
-          "label": "MDN: Block scope",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#description",
-          "description": "Block scoping with let"
-        }
-      ]
-    },
-    {
-      "id": 899,
-      "title": "Object with Method",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "data-structures",
-        "objects"
-      ],
-      "tags": [
-        "objects",
-        "methods",
-        "this",
-        "beginner"
-      ],
-      "description": "Add a method to an object that returns a formatted string.",
-      "instructions": "A method is a function stored as an object property. Inside a method, `this` refers to the object the method belongs to.\n\nWrite a function called `createDog` that returns an object with:\n- A `name` property set to `\"Rex\"`\n- A `breed` property set to `\"Labrador\"`\n- A `describe` method that returns `\"Rex is a Labrador\"` (using `this.name` and `this.breed`)\n\nExample: `createDog().describe()` should return `\"Rex is a Labrador\"`",
-      "starterCode": "/**\n * Returns a dog object with name \"Rex\", breed \"Labrador\",\n * and a describe() method that returns \"Rex is a Labrador\"\n * using this.name and this.breed.\n *\n * Example: createDog().describe() → \"Rex is a Labrador\"\n */\nfunction createDog() {\n\n}",
-      "solution": "function createDog() {\n  return {\n    name: \"Rex\",\n    breed: \"Labrador\",\n    describe: function() {\n      return this.name + \" is a \" + this.breed;\n    }\n  };\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return createDog;')();\n  const dog = fn();\n  return [\n    { pass: dog && dog.name === 'Rex', description: 'name is \"Rex\"', got: dog ? dog.name : 'undefined' },\n    { pass: dog && dog.breed === 'Labrador', description: 'breed is \"Labrador\"', got: dog ? dog.breed : 'undefined' },\n    { pass: dog && typeof dog.describe === 'function', description: 'describe is a method', got: dog ? typeof dog.describe : 'undefined' },\n    { pass: dog && dog.describe() === 'Rex is a Labrador', description: 'describe() returns \"Rex is a Labrador\"', got: dog ? dog.describe() : 'undefined' }\n  ];\n}",
-      "hints": [
-        "A method is a property whose value is a function. Inside that function, `this` refers to the object itself, so you can access other properties.",
-        "Add `describe: function() { return this.name + \" is a \" + this.breed; }` as a property in the object."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Object Methods",
-          "url": "https://www.w3schools.com/js/js_object_methods.asp",
-          "description": "Methods in objects"
-        },
-        {
-          "label": "MDN: this",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
-          "description": "The this keyword"
-        }
-      ]
-    },
-    {
-      "id": 900,
-      "title": "Bracket Notation",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "data-structures",
-        "objects"
-      ],
-      "tags": [
-        "objects",
-        "bracket-notation",
-        "dynamic",
-        "beginner"
-      ],
-      "description": "Access object properties using a variable with bracket notation.",
-      "instructions": "Bracket notation lets you access a property using a variable or string: `object[variableName]` or `object[\"propertyName\"]`.\n\nThis is useful when the property name is stored in a variable.\n\nWrite a function called `getProperty` that takes an object `obj` and a string `key`, and returns the value of that property.\n\nExample: `getProperty({ name: \"Alice\", age: 25 }, \"name\")` should return `\"Alice\"`\nExample: `getProperty({ name: \"Alice\", age: 25 }, \"age\")` should return `25`",
-      "starterCode": "/**\n * Returns the value of a property using a variable key (bracket notation).\n * Example: getProperty({ name: \"Alice\" }, \"name\") → \"Alice\"\n * Example: getProperty({ age: 25 }, \"age\") → 25\n */\nfunction getProperty(obj, key) {\n\n}",
-      "solution": "function getProperty(obj, key) {\n  return obj[key];\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getProperty;')();\n  const obj = { name: 'Alice', age: 25, city: 'Seattle' };\n  return [\n    { pass: fn(obj, 'name') === 'Alice', description: 'getProperty(obj, \"name\") returns \"Alice\"', got: String(fn(obj, 'name')) },\n    { pass: fn(obj, 'age') === 25, description: 'getProperty(obj, \"age\") returns 25', got: String(fn(obj, 'age')) },\n    { pass: fn(obj, 'city') === 'Seattle', description: 'getProperty(obj, \"city\") returns \"Seattle\"', got: String(fn(obj, 'city')) }\n  ];\n}",
-      "hints": [
-        "When the property name is stored in a variable, you cannot use dot notation. You need a different notation that uses square brackets.",
-        "Use `obj[key]` — the variable `key` holds the property name as a string, and bracket notation looks it up."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Object Properties",
-          "url": "https://www.w3schools.com/js/js_object_properties.asp",
-          "description": "Bracket notation"
-        },
-        {
-          "label": "MDN: Property accessors",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors",
-          "description": "Dot vs bracket notation"
-        }
-      ]
-    },
-    {
-      "id": 901,
-      "title": "Object.keys",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "data-structures",
-        "object-methods"
-      ],
-      "tags": [
-        "Object.keys",
-        "objects",
-        "iteration",
-        "beginner"
-      ],
-      "description": "Get all property names from an object as an array.",
-      "instructions": "`Object.keys(obj)` returns an array of all the property names (keys) in an object.\n\nWrite a function called `getKeys` that takes an object `obj` and returns an array of its keys.\n\nExample: `getKeys({ a: 1, b: 2, c: 3 })` should return `[\"a\", \"b\", \"c\"]`",
-      "starterCode": "/**\n * Returns an array of all property names in the object.\n * Example: getKeys({ a: 1, b: 2 }) → [\"a\", \"b\"]\n * Example: getKeys({}) → []\n */\nfunction getKeys(obj) {\n\n}",
-      "solution": "function getKeys(obj) {\n  return Object.keys(obj);\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getKeys;')();\n  const r1 = fn({ a: 1, b: 2, c: 3 });\n  const r2 = fn({ name: 'Alice' });\n  const r3 = fn({});\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify(['a', 'b', 'c']), description: 'getKeys({ a: 1, b: 2, c: 3 }) returns [\"a\", \"b\", \"c\"]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify(['name']), description: 'getKeys({ name: \"Alice\" }) returns [\"name\"]', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify([]), description: 'getKeys({}) returns []', got: JSON.stringify(r3) }\n  ];\n}",
-      "hints": [
-        "JavaScript has a built-in method on the `Object` class that extracts all property names from an object and returns them as an array.",
-        "Call `Object.keys(obj)` and return the result. It gives you an array like `[\"a\", \"b\", \"c\"]`."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Object.keys()",
-          "url": "https://www.w3schools.com/jsref/jsref_keys.asp",
-          "description": "Getting object keys"
-        },
-        {
-          "label": "MDN: Object.keys()",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys",
-          "description": "Object.keys method"
-        }
-      ]
-    },
-    {
-      "id": 902,
-      "title": "Object.values",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "data-structures",
-        "object-methods"
-      ],
-      "tags": [
-        "Object.values",
-        "objects",
-        "iteration",
-        "beginner"
-      ],
-      "description": "Get all property values from an object as an array.",
-      "instructions": "`Object.values(obj)` returns an array of all the values in an object (without the keys).\n\nWrite a function called `getValues` that takes an object `obj` and returns an array of its values.\n\nExample: `getValues({ a: 1, b: 2, c: 3 })` should return `[1, 2, 3]`",
-      "starterCode": "/**\n * Returns an array of all property values in the object.\n * Example: getValues({ a: 1, b: 2 }) → [1, 2]\n * Example: getValues({}) → []\n */\nfunction getValues(obj) {\n\n}",
-      "solution": "function getValues(obj) {\n  return Object.values(obj);\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getValues;')();\n  const r1 = fn({ a: 1, b: 2, c: 3 });\n  const r2 = fn({ name: 'Alice' });\n  const r3 = fn({});\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify([1, 2, 3]), description: 'getValues({ a: 1, b: 2, c: 3 }) returns [1, 2, 3]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify(['Alice']), description: 'getValues({ name: \"Alice\" }) returns [\"Alice\"]', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify([]), description: 'getValues({}) returns []', got: JSON.stringify(r3) }\n  ];\n}",
-      "hints": [
-        "Just like `Object.keys()` returns the names, there is a similar method that returns only the values.",
-        "Call `Object.values(obj)` to get an array of all the values in the object."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Object.values()",
-          "url": "https://www.w3schools.com/jsref/jsref_values.asp",
-          "description": "Getting object values"
-        },
-        {
-          "label": "MDN: Object.values()",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values",
-          "description": "Object.values method"
-        }
-      ]
-    },
-    {
-      "id": 903,
-      "title": "Access Nested Property",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "data-structures",
-        "nested-data"
-      ],
-      "tags": [
-        "nested",
-        "deep-access",
-        "objects",
-        "beginner"
-      ],
-      "description": "Access a property inside a nested object.",
-      "instructions": "Objects can contain other objects. To access deeply nested properties, chain dot notation: `obj.outer.inner`.\n\nWrite a function called `getCityName` that takes an object `user` with this structure:\n```\n{ name: \"Alice\", address: { city: \"Seattle\", state: \"WA\" } }\n```\nand returns the value of the `city` property.\n\nExample: `getCityName({ name: \"Alice\", address: { city: \"Seattle\", state: \"WA\" } })` should return `\"Seattle\"`",
-      "starterCode": "/**\n * Returns the city from a user's nested address object.\n * Example: getCityName({ name: \"Alice\", address: { city: \"Seattle\", state: \"WA\" } }) → \"Seattle\"\n */\nfunction getCityName(user) {\n\n}",
-      "solution": "function getCityName(user) {\n  return user.address.city;\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getCityName;')();\n  return [\n    { pass: fn({ name: 'Alice', address: { city: 'Seattle', state: 'WA' } }) === 'Seattle', description: 'Returns \"Seattle\" for Alice', got: fn({ name: 'Alice', address: { city: 'Seattle', state: 'WA' } }) },\n    { pass: fn({ name: 'Bob', address: { city: 'Portland', state: 'OR' } }) === 'Portland', description: 'Returns \"Portland\" for Bob', got: fn({ name: 'Bob', address: { city: 'Portland', state: 'OR' } }) }\n  ];\n}",
-      "hints": [
-        "When an object is nested inside another object, you can chain dots to go deeper level by level.",
-        "First access `user.address` to get the inner object, then `.city` to get the city: `user.address.city`."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Nested Objects",
-          "url": "https://www.w3schools.com/js/js_objects.asp",
-          "description": "Working with nested objects"
-        },
-        {
-          "label": "MDN: Property accessors",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors",
-          "description": "Chaining property access"
-        }
-      ]
-    },
-    {
-      "id": 904,
-      "title": "Object Destructuring",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "es6-plus",
-        "destructuring"
-      ],
-      "tags": [
-        "destructuring",
-        "es6",
-        "objects",
-        "beginner"
-      ],
-      "description": "Extract properties from an object into individual variables.",
-      "instructions": "Destructuring lets you unpack properties from an object into separate variables in one step:\n\n```\nconst { name, age } = person;\n```\n\nThis creates two variables, `name` and `age`, with values from the object.\n\nWrite a function called `introduce` that takes an object with `name` and `age` properties. Use destructuring to extract them, then return `\"I am name and I am age years old\"`.\n\nExample: `introduce({ name: \"Alice\", age: 25 })` should return `\"I am Alice and I am 25 years old\"`",
-      "starterCode": "/**\n * Uses object destructuring to extract name and age from person,\n * then returns \"I am [name] and I am [age] years old\".\n * Example: introduce({ name: \"Alice\", age: 25 }) → \"I am Alice and I am 25 years old\"\n */\nfunction introduce(person) {\n\n}",
-      "solution": "function introduce(person) {\n  const { name, age } = person;\n  return \"I am \" + name + \" and I am \" + age + \" years old\";\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return introduce;')();\n  return [\n    { pass: fn({ name: 'Alice', age: 25 }) === 'I am Alice and I am 25 years old', description: 'introduce({ name: \"Alice\", age: 25 }) returns correct string', got: fn({ name: 'Alice', age: 25 }) },\n    { pass: fn({ name: 'Bob', age: 30 }) === 'I am Bob and I am 30 years old', description: 'introduce({ name: \"Bob\", age: 30 }) returns correct string', got: fn({ name: 'Bob', age: 30 }) },\n    { pass: code.includes('{') && code.includes('}') && code.includes('name') && code.includes('age'), description: 'Uses destructuring syntax', got: 'Check code' }\n  ];\n}",
-      "hints": [
-        "Destructuring uses curly braces on the left side of an assignment. The variable names must match the property names in the object.",
-        "Write `const { name, age } = person;` to create two variables. Then use them in the return string."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Destructuring",
-          "url": "https://www.w3schools.com/js/js_destructuring.asp",
-          "description": "Destructuring assignment"
-        },
-        {
-          "label": "MDN: Destructuring assignment",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
-          "description": "Object destructuring"
-        }
-      ]
-    },
-    {
-      "id": 905,
-      "title": "Array Destructuring",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "es6-plus",
-        "destructuring"
-      ],
-      "tags": [
-        "destructuring",
-        "es6",
-        "arrays",
-        "beginner"
-      ],
-      "description": "Extract elements from an array into individual variables.",
-      "instructions": "Array destructuring works like object destructuring, but uses square brackets and assigns by position:\n\n```\nconst [first, second] = myArray;\n```\n\nWrite a function called `getFirstTwo` that takes an array `arr` and uses destructuring to extract the first two elements. Return them as a string: `\"first and second\"`.\n\nExample: `getFirstTwo([\"red\", \"blue\", \"green\"])` should return `\"red and blue\"`",
-      "starterCode": "/**\n * Uses array destructuring to extract the first two elements,\n * then returns \"[first] and [second]\".\n * Example: getFirstTwo([\"red\", \"blue\", \"green\"]) → \"red and blue\"\n */\nfunction getFirstTwo(arr) {\n\n}",
-      "solution": "function getFirstTwo(arr) {\n  const [first, second] = arr;\n  return first + \" and \" + second;\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getFirstTwo;')();\n  return [\n    { pass: fn(['red', 'blue', 'green']) === 'red and blue', description: 'getFirstTwo([\"red\", \"blue\", \"green\"]) returns \"red and blue\"', got: fn(['red', 'blue', 'green']) },\n    { pass: fn([1, 2, 3]) === '1 and 2', description: 'getFirstTwo([1, 2, 3]) returns \"1 and 2\"', got: fn([1, 2, 3]) },\n    { pass: fn(['a', 'b']) === 'a and b', description: 'getFirstTwo([\"a\", \"b\"]) returns \"a and b\"', got: fn(['a', 'b']) }\n  ];\n}",
-      "hints": [
-        "Array destructuring uses square brackets on the left side. Variables are assigned by position — the first variable gets the first element, and so on.",
-        "Write `const [first, second] = arr;` to extract the first two elements, then return them combined with \" and \"."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Destructuring",
-          "url": "https://www.w3schools.com/js/js_destructuring.asp",
-          "description": "Array destructuring"
-        },
-        {
-          "label": "MDN: Destructuring assignment",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
-          "description": "Array destructuring"
-        }
-      ]
-    },
-    {
-      "id": 909,
-      "title": "Multiple Methods",
-      "type": "js",
-      "tier": 3,
-      "category": [
-        "js-fundamentals",
-        "classes"
-      ],
-      "tags": [
-        "classes",
-        "methods",
-        "this",
-        "oop",
-        "beginner"
-      ],
-      "description": "Add multiple methods to a class that modify and read its state.",
-      "instructions": "Classes can have multiple methods that work together to manage the object's data.\n\nWrite a class called `Counter` with:\n- A constructor that sets `this.count` to `0`\n- An `increment` method that adds 1 to `this.count`\n- A `getCount` method that returns the current count\n\nExample:\n```\nconst c = new Counter();\nc.increment();\nc.increment();\nc.getCount(); // returns 2\n```",
-      "starterCode": "/**\n * Create a Counter class with:\n * - A constructor that sets count to 0\n * - An increment() method that adds 1 to count\n * - A getCount() method that returns the current count\n *\n * Example:\n *   const c = new Counter();\n *   c.increment(); c.increment(); c.increment();\n *   c.getCount() → 3\n */\n\n// Write your class below\n",
-      "solution": "class Counter {\n  constructor() {\n    this.count = 0;\n  }\n\n  increment() {\n    this.count = this.count + 1;\n  }\n\n  getCount() {\n    return this.count;\n  }\n}",
-      "testRunner": "(code) => {\n  const Cls = new Function(code + '; return Counter;')();\n  const c = new Cls();\n  const start = c.getCount();\n  c.increment();\n  c.increment();\n  c.increment();\n  const after3 = c.getCount();\n  return [\n    { pass: start === 0, description: 'getCount() returns 0 initially', got: String(start) },\n    { pass: after3 === 3, description: 'getCount() returns 3 after 3 increments', got: String(after3) },\n    { pass: typeof c.increment === 'function', description: 'increment is a method', got: typeof c.increment },\n    { pass: typeof c.getCount === 'function', description: 'getCount is a method', got: typeof c.getCount }\n  ];\n}",
-      "hints": [
-        "Each method is a separate named function inside the class. Methods can read and modify `this.count` just like the constructor can.",
-        "Write `increment() { this.count = this.count + 1; }` and `getCount() { return this.count; }` as two separate methods."
-      ],
-      "resources": [
-        {
-          "label": "MDN: Classes",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
-          "description": "JavaScript classes"
-        }
-      ]
-    },
-    {
-      "id": 910,
-      "title": "getElementById",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "dom-manipulation",
-        "selection"
-      ],
-      "tags": [
-        "dom",
-        "getElementById",
-        "selection",
-        "beginner"
-      ],
-      "description": "Select an element from the page by its ID.",
-      "instructions": "The `document.getElementById()` method finds a single element on the page by its `id` attribute.\n\nWrite a function called `getTitle` that uses `document.getElementById` to select the element with the id `\"title\"` and returns its `textContent`.\n\nThe page has this HTML:\n```html\n<h1 id=\"title\">Welcome</h1>\n<p id=\"subtitle\">Hello World</p>\n```\n\nExample: `getTitle()` should return `\"Welcome\"`",
-      "starterCode": "/**\n * Returns the text content of the element with id \"title\".\n * The page has: <h1 id=\"title\">Welcome</h1>\n */\nfunction getTitle() {\n\n}",
-      "solution": "function getTitle() {\n  const element = document.getElementById(\"title\");\n  return element.textContent;\n}",
-      "testRunner": "(code) => {\n  document.body.innerHTML = '<h1 id=\"title\">Welcome</h1><p id=\"subtitle\">Hello World</p>';\n  const fn = new Function(code + '; return getTitle;')();\n  const result = fn();\n  return [\n    { pass: result === 'Welcome', description: 'getTitle() returns \"Welcome\"', got: String(result) },\n    { pass: code.includes('getElementById'), description: 'Uses document.getElementById()', got: code.includes('getElementById') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "The `document` object represents the web page. It has a method that finds elements by their `id` attribute.",
-        "Call `document.getElementById(\"title\")` to get the element, then access `.textContent` to read its text."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: getElementById",
-          "url": "https://www.w3schools.com/jsref/met_document_getelementbyid.asp",
-          "description": "Finding elements by ID"
-        },
-        {
-          "label": "MDN: getElementById",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById",
-          "description": "The getElementById method"
-        }
-      ]
-    },
-    {
-      "id": 911,
-      "title": "querySelector",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "dom-manipulation",
-        "selection"
-      ],
-      "tags": [
-        "dom",
-        "querySelector",
-        "selection",
-        "beginner"
-      ],
-      "description": "Select an element using a CSS selector.",
-      "instructions": "`document.querySelector()` finds the first element that matches a CSS selector. You can use any CSS selector — class, id, tag name, etc.\n\nWrite a function called `getFirstParagraph` that uses `document.querySelector` to select the first `<p>` element and returns its `textContent`.\n\nThe page has this HTML:\n```html\n<h1>Title</h1>\n<p>First paragraph</p>\n<p>Second paragraph</p>\n```\n\nExample: `getFirstParagraph()` should return `\"First paragraph\"`",
-      "starterCode": "/**\n * Returns the text content of the first <p> element on the page.\n * The page has: <h1>Title</h1><p>First paragraph</p><p>Second paragraph</p>\n */\nfunction getFirstParagraph() {\n\n}",
-      "solution": "function getFirstParagraph() {\n  const el = document.querySelector(\"p\");\n  return el.textContent;\n}",
-      "testRunner": "(code) => {\n  document.body.innerHTML = '<h1>Title</h1><p>First paragraph</p><p>Second paragraph</p>';\n  const fn = new Function(code + '; return getFirstParagraph;')();\n  const result = fn();\n  return [\n    { pass: result === 'First paragraph', description: 'Returns \"First paragraph\"', got: String(result) },\n    { pass: code.includes('querySelector'), description: 'Uses document.querySelector()', got: code.includes('querySelector') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "Think of `querySelector` as using the same selectors you already know from CSS. A tag name like `\"p\"` selects the first paragraph.",
-        "Call `document.querySelector(\"p\")` to get the first `<p>` element, then read `.textContent` for its text."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: querySelector",
-          "url": "https://www.w3schools.com/jsref/met_document_queryselector.asp",
-          "description": "Finding elements with CSS selectors"
-        },
-        {
-          "label": "MDN: querySelector",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector",
-          "description": "The querySelector method"
-        }
-      ]
-    },
-    {
-      "id": 912,
-      "title": "querySelectorAll",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "dom-manipulation",
-        "selection"
-      ],
-      "tags": [
-        "dom",
-        "querySelectorAll",
-        "selection",
-        "beginner"
-      ],
-      "description": "Select multiple elements and count them.",
-      "instructions": "`document.querySelectorAll()` returns a list of ALL elements matching a CSS selector (not just the first one).\n\nWrite a function called `countListItems` that uses `document.querySelectorAll` to select all `<li>` elements and returns how many there are.\n\nThe page has this HTML:\n```html\n<ul>\n  <li>Apple</li>\n  <li>Banana</li>\n  <li>Cherry</li>\n</ul>\n```\n\nExample: `countListItems()` should return `3`",
-      "starterCode": "/**\n * Returns the number of <li> elements on the page.\n * The page has: <ul><li>Apple</li><li>Banana</li><li>Cherry</li></ul>\n */\nfunction countListItems() {\n\n}",
-      "solution": "function countListItems() {\n  const items = document.querySelectorAll(\"li\");\n  return items.length;\n}",
-      "testRunner": "(code) => {\n  document.body.innerHTML = '<ul><li>Apple</li><li>Banana</li><li>Cherry</li></ul>';\n  const fn = new Function(code + '; return countListItems;')();\n  const result = fn();\n  return [\n    { pass: result === 3, description: 'countListItems() returns 3', got: String(result) },\n    { pass: code.includes('querySelectorAll'), description: 'Uses document.querySelectorAll()', got: code.includes('querySelectorAll') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "While `querySelector` finds only the first match, there is a similar method that finds ALL matching elements and returns them as a list.",
-        "Call `document.querySelectorAll(\"li\")` to get a list of all `<li>` elements. The list has a `.length` property, just like an array."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: querySelectorAll",
-          "url": "https://www.w3schools.com/jsref/met_document_queryselectorall.asp",
-          "description": "Selecting multiple elements"
-        },
-        {
-          "label": "MDN: querySelectorAll",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll",
-          "description": "The querySelectorAll method"
-        }
-      ]
-    },
-    {
-      "id": 913,
-      "title": "Change Text",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "dom-manipulation",
-        "manipulation"
-      ],
-      "tags": [
-        "dom",
-        "textContent",
-        "manipulation",
-        "beginner"
-      ],
-      "description": "Change the text inside an element using JavaScript.",
-      "instructions": "The `textContent` property lets you read or change the text inside an element.\n\nWrite a function called `updateHeading` that selects the element with id `\"heading\"` and changes its text to `\"Updated!\"`.\n\nThe page has this HTML:\n```html\n<h1 id=\"heading\">Original</h1>\n```\n\nAfter calling `updateHeading()`, the heading should display \"Updated!\"",
-      "starterCode": "/**\n * Changes the text of the element with id \"heading\" to \"Updated!\".\n * The page has: <h1 id=\"heading\">Original</h1>\n */\nfunction updateHeading() {\n\n}",
-      "solution": "function updateHeading() {\n  const el = document.getElementById(\"heading\");\n  el.textContent = \"Updated!\";\n}",
-      "testRunner": "(code) => {\n  document.body.innerHTML = '<h1 id=\"heading\">Original</h1>';\n  const fn = new Function(code + '; return updateHeading;')();\n  fn();\n  const el = document.getElementById('heading');\n  return [\n    { pass: el && el.textContent === 'Updated!', description: 'Heading text is \"Updated!\"', got: el ? el.textContent : 'not found' },\n    { pass: code.includes('textContent'), description: 'Uses textContent property', got: code.includes('textContent') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "First select the element, then assign a new value to its `textContent` property to change what it displays.",
-        "Get the element with `document.getElementById(\"heading\")`, then set `.textContent = \"Updated!\";`."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: textContent",
-          "url": "https://www.w3schools.com/jsref/prop_node_textcontent.asp",
-          "description": "Changing element text"
-        },
-        {
-          "label": "MDN: textContent",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent",
-          "description": "The textContent property"
-        }
-      ]
-    },
-    {
-      "id": 914,
-      "title": "Change Style",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "dom-manipulation",
-        "manipulation"
-      ],
-      "tags": [
-        "dom",
-        "style",
-        "manipulation",
-        "beginner"
-      ],
-      "description": "Modify an element's inline styles using JavaScript.",
-      "instructions": "You can change CSS styles through JavaScript using the `element.style` property. CSS property names use camelCase in JavaScript (e.g., `background-color` becomes `backgroundColor`).\n\nWrite a function called `makeRed` that selects the element with id `\"box\"` and sets its `backgroundColor` to `\"red\"`.\n\nThe page has this HTML:\n```html\n<div id=\"box\">Color me!</div>\n```",
-      "starterCode": "/**\n * Sets the backgroundColor of the element with id \"box\" to \"red\".\n * The page has: <div id=\"box\">Color me!</div>\n */\nfunction makeRed() {\n\n}",
-      "solution": "function makeRed() {\n  const el = document.getElementById(\"box\");\n  el.style.backgroundColor = \"red\";\n}",
-      "testRunner": "(code) => {\n  document.body.innerHTML = '<div id=\"box\">Color me!</div>';\n  const fn = new Function(code + '; return makeRed;')();\n  fn();\n  const el = document.getElementById('box');\n  return [\n    { pass: el && el.style.backgroundColor === 'red', description: 'Box backgroundColor is \"red\"', got: el ? el.style.backgroundColor : 'not found' },\n    { pass: code.includes('backgroundColor'), description: 'Uses style.backgroundColor', got: code.includes('backgroundColor') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "The `style` property on an element lets you set individual CSS properties. In JavaScript, CSS property names are written in camelCase.",
-        "Select the element, then write `element.style.backgroundColor = \"red\";` to change its background color."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: JavaScript Style",
-          "url": "https://www.w3schools.com/jsref/prop_html_style.asp",
-          "description": "Changing styles with JS"
-        },
-        {
-          "label": "MDN: HTMLElement.style",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style",
-          "description": "The style property"
-        }
-      ]
-    },
-    {
-      "id": 915,
-      "title": "Add a Class",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "dom-manipulation",
-        "manipulation"
-      ],
-      "tags": [
-        "dom",
-        "classList",
-        "manipulation",
-        "beginner"
-      ],
-      "description": "Add a CSS class to an element using classList.",
-      "instructions": "The `classList` property provides methods to add, remove, and toggle CSS classes on an element. `classList.add()` adds a class.\n\nWrite a function called `highlight` that selects the element with id `\"message\"` and adds the class `\"active\"` to it.\n\nThe page has this HTML:\n```html\n<p id=\"message\">Hello</p>\n```\n\nAfter calling `highlight()`, the element should have the class \"active\".",
-      "starterCode": "/**\n * Adds the CSS class \"active\" to the element with id \"message\".\n * The page has: <p id=\"message\">Hello</p>\n */\nfunction highlight() {\n\n}",
-      "solution": "function highlight() {\n  const el = document.getElementById(\"message\");\n  el.classList.add(\"active\");\n}",
-      "testRunner": "(code) => {\n  document.body.innerHTML = '<p id=\"message\">Hello</p>';\n  const fn = new Function(code + '; return highlight;')();\n  fn();\n  const el = document.getElementById('message');\n  return [\n    { pass: el && el.classList.contains('active'), description: 'Element has class \"active\"', got: el ? el.className : 'not found' },\n    { pass: code.includes('classList'), description: 'Uses classList', got: code.includes('classList') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "Every element has a `classList` property with methods for managing CSS classes. One method adds a class to the element.",
-        "Select the element, then call `.classList.add(\"active\")` to give it the \"active\" class."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: classList",
-          "url": "https://www.w3schools.com/jsref/prop_element_classlist.asp",
-          "description": "Managing CSS classes"
-        },
-        {
-          "label": "MDN: classList",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element/classList",
-          "description": "The classList property"
-        }
-      ]
-    },
-    {
-      "id": 916,
-      "title": "Create Element",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "dom-manipulation",
-        "creation"
-      ],
-      "tags": [
-        "dom",
-        "createElement",
-        "appendChild",
-        "beginner"
-      ],
-      "description": "Create a new element and add it to the page.",
-      "instructions": "To add new content to a page, you:\n1. Create an element with `document.createElement(\"tag\")`\n2. Set its content with `.textContent`\n3. Add it to the page with `parent.appendChild(element)`\n\nWrite a function called `addParagraph` that creates a new `<p>` element with the text `\"New paragraph\"` and appends it to the `document.body`.\n\nThe page starts empty. After calling `addParagraph()`, it should have one `<p>` element.",
-      "starterCode": "/**\n * Creates a new <p> element with text \"New paragraph\"\n * and appends it to document.body.\n */\nfunction addParagraph() {\n\n}",
-      "solution": "function addParagraph() {\n  const p = document.createElement(\"p\");\n  p.textContent = \"New paragraph\";\n  document.body.appendChild(p);\n}",
-      "testRunner": "(code) => {\n  document.body.innerHTML = '';\n  const fn = new Function(code + '; return addParagraph;')();\n  fn();\n  const paragraphs = document.querySelectorAll('p');\n  return [\n    { pass: paragraphs.length === 1, description: 'One <p> element exists on the page', got: String(paragraphs.length) },\n    { pass: paragraphs[0] && paragraphs[0].textContent === 'New paragraph', description: 'Paragraph text is \"New paragraph\"', got: paragraphs[0] ? paragraphs[0].textContent : 'none' },\n    { pass: code.includes('createElement'), description: 'Uses document.createElement()', got: code.includes('createElement') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "Creating an element is a two-step process: first you make the element, then you place it somewhere on the page.",
-        "Use `document.createElement(\"p\")` to make the element. Set `.textContent` to add text. Then call `document.body.appendChild()` to add it to the page."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: createElement",
-          "url": "https://www.w3schools.com/jsref/met_document_createelement.asp",
-          "description": "Creating new elements"
-        },
-        {
-          "label": "MDN: createElement",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement",
-          "description": "The createElement method"
-        }
-      ]
-    },
-    {
-      "id": 917,
-      "title": "Click Handler",
-      "type": "js",
-      "tier": 3,
-      "category": [
-        "dom-manipulation",
-        "events"
-      ],
-      "tags": [
-        "events",
-        "addEventListener",
-        "click",
-        "beginner"
-      ],
-      "description": "Add a click event listener that changes an element's text.",
-      "instructions": "The `addEventListener` method attaches a function to an event on an element. When the event happens, the function runs.\n\nWrite a function called `setupClick` that:\n1. Selects the button with id `\"btn\"`\n2. Adds a `\"click\"` event listener\n3. When clicked, the button's text should change to `\"Clicked!\"`\n\nThe page has this HTML:\n```html\n<button id=\"btn\">Click me</button>\n```",
-      "starterCode": "/**\n * Set up the button with id \"btn\" so that clicking it\n * changes its text to \"Clicked!\".\n *\n * Page HTML: <button id=\"btn\">Click me</button>\n *\n * Write a function called setupClick that wires up the event.\n */\n\n// Write your code below\n",
-      "solution": "function setupClick() {\n  const btn = document.getElementById(\"btn\");\n  btn.addEventListener(\"click\", function() {\n    btn.textContent = \"Clicked!\";\n  });\n}",
-      "testRunner": "(code) => {\n  document.body.innerHTML = '<button id=\"btn\">Click me</button>';\n  const fn = new Function(code + '; return setupClick;')();\n  fn();\n  const btn = document.getElementById('btn');\n  const before = btn.textContent;\n  btn.click();\n  const after = btn.textContent;\n  return [\n    { pass: before === 'Click me', description: 'Button starts with \"Click me\"', got: before },\n    { pass: after === 'Clicked!', description: 'After click, text is \"Clicked!\"', got: after },\n    { pass: code.includes('addEventListener'), description: 'Uses addEventListener()', got: code.includes('addEventListener') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "Use `addEventListener` with two arguments: the event name (a string like `\"click\"`) and a function that should run when the event happens.",
-        "Select the button, then call `.addEventListener(\"click\", function() { ... });`. Inside the function, change the button's `textContent`."
-      ],
-      "resources": [
-        {
-          "label": "MDN: addEventListener",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener",
-          "description": "The addEventListener method"
-        }
-      ]
-    },
-    {
-      "id": 918,
-      "title": "Button Counter",
-      "type": "js",
-      "tier": 3,
-      "category": [
-        "dom-manipulation",
-        "events"
-      ],
-      "tags": [
-        "events",
-        "addEventListener",
-        "click",
-        "counter",
-        "beginner"
-      ],
-      "description": "Count button clicks and display the running total.",
-      "instructions": "Build a click counter that tracks how many times a button has been clicked and displays the count.\n\nWrite a function called `setupCounter` that:\n1. Selects the button with id `\"counter-btn\"`\n2. Selects the span with id `\"count\"`\n3. Keeps a running count starting at `0`\n4. Each click increases the count by 1 and updates the span's text\n\nThe page has this HTML:\n```html\n<button id=\"counter-btn\">Click</button>\n<span id=\"count\">0</span>\n```",
-      "starterCode": "/**\n * Set up a click counter: each click on the button increments\n * a count and updates the display.\n *\n * Page HTML:\n *   <button id=\"counter-btn\">Click</button>\n *   <span id=\"count\">0</span>\n *\n * Write a function called setupCounter that wires everything up.\n */\n\n// Write your code below\n",
-      "solution": "function setupCounter() {\n  const btn = document.getElementById(\"counter-btn\");\n  const display = document.getElementById(\"count\");\n  let count = 0;\n  btn.addEventListener(\"click\", function() {\n    count = count + 1;\n    display.textContent = count;\n  });\n}",
-      "testRunner": "(code) => {\n  document.body.innerHTML = '<button id=\"counter-btn\">Click</button><span id=\"count\">0</span>';\n  const fn = new Function(code + '; return setupCounter;')();\n  fn();\n  const btn = document.getElementById('counter-btn');\n  const display = document.getElementById('count');\n  btn.click();\n  const after1 = display.textContent;\n  btn.click();\n  btn.click();\n  const after3 = display.textContent;\n  return [\n    { pass: after1 === '1', description: 'After 1 click, count shows \"1\"', got: after1 },\n    { pass: after3 === '3', description: 'After 3 clicks, count shows \"3\"', got: after3 }\n  ];\n}",
-      "hints": [
-        "Declare a variable outside the event listener to keep track of the count. Inside the listener, increment it and update the display.",
-        "Declare `let count = 0;` before the listener. In the click handler, write `count = count + 1;` then `display.textContent = count;`."
-      ],
-      "resources": [
-        {
-          "label": "MDN: Events",
-          "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events",
-          "description": "Introduction to events"
-        }
-      ]
-    },
-    {
-      "id": 919,
-      "title": "Styled Heading",
-      "type": "html-css",
-      "tier": 1,
-      "category": [
-        "html",
-        "structure"
-      ],
-      "tags": [
-        "html-css",
-        "components",
-        "real-world",
-        "beginner"
-      ],
-      "description": "Create and style a page title with a custom font color and size.",
-      "instructions": "Create an `<h1>` element with the text `\"Welcome\"` and style it with CSS.\n\n**HTML requirements:**\n- An `<h1>` element containing `\"Welcome\"`\n\n**CSS requirements:**\n- Set the `h1` color to `#1e40af` (a blue)\n- Set the `h1` font-size to `36px`\n- Center the text with `text-align: center`",
-      "starterCode": "<!-- Add your h1 element -->\n",
-      "solution": "<h1>Welcome</h1>",
-      "testRunner": "",
-      "providedCss": "",
-      "testCases": [
-        {
-          "query": "h1",
-          "assertion": "exists",
-          "description": "Page has an h1 element"
-        },
-        {
-          "query": "h1",
-          "assertion": "textContains",
-          "value": "Welcome",
-          "description": "h1 contains \"Welcome\""
-        },
-        {
-          "query": "h1",
-          "assertion": "equals",
-          "property": "color",
-          "value": "rgb(30, 64, 175)",
-          "description": "h1 color is #1e40af"
-        },
-        {
-          "query": "h1",
-          "assertion": "equals",
-          "property": "font-size",
-          "value": "36px",
-          "description": "h1 font-size is 36px"
-        },
-        {
-          "query": "h1",
-          "assertion": "equals",
-          "property": "text-align",
-          "value": "center",
-          "description": "h1 text is centered"
-        }
-      ],
-      "hints": [
-        "Write the HTML element first, then add CSS rules targeting that element. Use the `h1` selector in CSS.",
-        "In the CSS panel, write `h1 { color: #1e40af; font-size: 36px; text-align: center; }` to apply all three styles."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: CSS Text",
-          "url": "https://www.w3schools.com/css/css_text.asp",
-          "description": "Styling text with CSS"
-        },
-        {
-          "label": "MDN: CSS color",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/color",
-          "description": "The color property"
-        }
-      ]
-    },
-    {
-      "id": 920,
-      "title": "Styled List",
-      "type": "html-css",
-      "tier": 1,
-      "category": [
-        "html",
-        "structure"
-      ],
-      "tags": [
-        "html-css",
-        "components",
-        "real-world",
-        "beginner"
-      ],
-      "description": "Build a bulleted list and style it with custom spacing and color.",
-      "instructions": "Create an unordered list with three items and style it.\n\n**HTML requirements:**\n- A `<ul>` element\n- Three `<li>` elements with the text: `\"HTML\"`, `\"CSS\"`, `\"JavaScript\"`\n\n**CSS requirements:**\n- Set `li` color to `#047857` (green)\n- Set `li` padding to `8px`\n- Set `li` font-size to `18px`",
-      "starterCode": "<!-- Add your list here -->\n",
-      "solution": "<ul>\n  <li>HTML</li>\n  <li>CSS</li>\n  <li>JavaScript</li>\n</ul>",
-      "testRunner": "",
-      "testCases": [
-        {
-          "query": "ul",
-          "assertion": "exists",
-          "description": "Page has a ul element"
-        },
-        {
-          "query": "li",
-          "assertion": "countAtLeast",
-          "value": 3,
-          "description": "List has at least 3 items"
-        },
-        {
-          "query": "li",
-          "assertion": "equals",
-          "property": "color",
-          "value": "rgb(4, 120, 87)",
-          "description": "li color is #047857"
-        },
-        {
-          "query": "li",
-          "assertion": "equals",
-          "property": "padding",
-          "value": "8px",
-          "description": "li padding is 8px"
-        },
-        {
-          "query": "li",
-          "assertion": "equals",
-          "property": "font-size",
-          "value": "18px",
-          "description": "li font-size is 18px"
-        }
-      ],
-      "hints": [
-        "Write the HTML list structure first with `<ul>` and `<li>` tags, then add CSS rules targeting the `li` selector.",
-        "In CSS, write `li { color: #047857; padding: 8px; font-size: 18px; }` to style all list items."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: CSS Lists",
-          "url": "https://www.w3schools.com/css/css_list.asp",
-          "description": "Styling lists"
-        },
-        {
-          "label": "MDN: list-style",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/list-style",
-          "description": "List styling"
-        }
-      ]
-    },
-    {
-      "id": 921,
-      "title": "Colored Card",
-      "type": "html-css",
-      "tier": 1,
-      "category": [
-        "css",
-        "visual"
-      ],
-      "tags": [
-        "html-css",
-        "components",
-        "card",
-        "real-world",
-        "beginner"
-      ],
-      "description": "Create a card component with padding, border, and background color.",
-      "instructions": "Build a simple card component using a `<div>` and style it.\n\n**HTML requirements:**\n- A `<div>` with the class `card`\n- Inside it, an `<h2>` with text `\"Card Title\"` and a `<p>` with text `\"Card content goes here.\"`\n\n**CSS requirements:**\n- `.card` background-color: `#f0f9ff` (light blue)\n- `.card` padding: `20px`\n- `.card` border: `1px solid #bae6fd`\n- `.card` border-radius: `8px`",
-      "starterCode": "<!-- Create a card div with an h2 and p inside -->\n",
-      "solution": "<div class=\"card\">\n  <h2>Card Title</h2>\n  <p>Card content goes here.</p>\n</div>",
-      "testRunner": "",
-      "testCases": [
-        {
-          "query": ".card",
-          "assertion": "exists",
-          "description": "Element with class card exists"
-        },
-        {
-          "query": ".card h2",
-          "assertion": "textContains",
-          "value": "Card Title",
-          "description": "Card has an h2 with \"Card Title\""
-        },
-        {
-          "query": ".card p",
-          "assertion": "exists",
-          "description": "Card contains a paragraph"
-        },
-        {
-          "query": ".card",
-          "assertion": "equals",
-          "property": "background-color",
-          "value": "rgb(240, 249, 255)",
-          "description": "Card background is #f0f9ff"
-        },
-        {
-          "query": ".card",
-          "assertion": "equals",
-          "property": "padding",
-          "value": "20px",
-          "description": "Card padding is 20px"
-        },
-        {
-          "query": ".card",
-          "assertion": "equals",
-          "property": "border-radius",
-          "value": "8px",
-          "description": "Card border-radius is 8px"
-        }
-      ],
-      "hints": [
-        "Create a `<div>` with `class=\"card\"`, put heading and paragraph inside it, then write CSS targeting the `.card` class.",
-        "In CSS, use `.card { background-color: #f0f9ff; padding: 20px; border: 1px solid #bae6fd; border-radius: 8px; }`."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: CSS Box Model",
-          "url": "https://www.w3schools.com/css/css_boxmodel.asp",
-          "description": "Padding, borders, and margins"
-        },
-        {
-          "label": "MDN: border-radius",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
-          "description": "Rounded corners"
-        }
-      ]
-    },
-    {
-      "id": 922,
-      "title": "Centered Content",
-      "type": "html-css",
-      "tier": 1,
-      "category": [
-        "css",
-        "layout"
-      ],
-      "tags": [
-        "layout",
-        "page-structure",
-        "real-world",
-        "beginner"
-      ],
-      "description": "Center a content block on the page using margin auto.",
-      "instructions": "Create a content container and center it horizontally on the page.\n\n**HTML requirements:**\n- A `<div>` with the class `container`\n- Inside it, an `<h1>` with text `\"Centered Page\"`\n- A `<p>` with any text you choose\n\n**CSS requirements:**\n- `.container` max-width: `600px`\n- `.container` margin-left and margin-right: `auto` (centers the block)\n- `.container` padding: `20px`",
-      "starterCode": "<!-- Create a centered container with h1 and p -->\n",
-      "solution": "<div class=\"container\">\n  <h1>Centered Page</h1>\n  <p>This content is centered on the page.</p>\n</div>",
-      "testRunner": "",
-      "testCases": [
-        {
-          "query": ".container",
-          "assertion": "exists",
-          "description": "Element with class container exists"
-        },
-        {
-          "query": ".container h1",
-          "assertion": "textContains",
-          "value": "Centered Page",
-          "description": "Container has h1 with \"Centered Page\""
-        },
-        {
-          "query": ".container p",
-          "assertion": "exists",
-          "description": "Container has a paragraph"
-        },
-        {
-          "query": ".container",
-          "assertion": "equals",
-          "property": "max-width",
-          "value": "600px",
-          "description": "Container max-width is 600px"
-        },
-        {
-          "query": ".container",
-          "assertion": "equals",
-          "property": "margin-left",
-          "value": "auto",
-          "description": "Container margin-left is auto"
-        },
-        {
-          "query": ".container",
-          "assertion": "equals",
-          "property": "padding",
-          "value": "20px",
-          "description": "Container padding is 20px"
-        }
-      ],
-      "hints": [
-        "A block element can be centered horizontally by setting a max-width and then using `auto` for left and right margins.",
-        "In CSS, write `.container { max-width: 600px; margin: 0 auto; padding: 20px; }` — the `auto` margins center it."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: CSS Layout",
-          "url": "https://www.w3schools.com/css/css_max-width.asp",
-          "description": "Max-width and centering"
-        },
-        {
-          "label": "MDN: margin",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
-          "description": "Using margin auto"
-        }
-      ]
-    },
-    {
-      "id": 923,
-      "title": "Styled Input",
-      "type": "html-css",
-      "tier": 1,
-      "category": [
-        "html",
-        "forms"
-      ],
-      "tags": [
-        "forms",
-        "styling",
-        "inputs",
-        "real-world",
-        "beginner"
-      ],
-      "description": "Style a text input with custom border, padding, and font size.",
-      "instructions": "Create a labeled text input and style it.\n\n**HTML requirements:**\n- A `<label>` with the text `\"Name:\"`\n- An `<input>` with `type=\"text\"` and `id=\"name-input\"`\n\n**CSS requirements:**\n- `input` padding: `10px`\n- `input` font-size: `16px`\n- `input` border: `2px solid #6366f1` (indigo)\n- `input` border-radius: `4px`",
-      "starterCode": "<!-- Add a label and text input -->\n",
-      "solution": "<label>Name:</label>\n<input type=\"text\" id=\"name-input\">",
-      "testRunner": "",
-      "testCases": [
-        {
-          "query": "label",
-          "assertion": "exists",
-          "description": "Page has a label element"
-        },
-        {
-          "query": "input[type='text']",
-          "assertion": "exists",
-          "description": "Page has a text input"
-        },
-        {
-          "query": "input",
-          "assertion": "equals",
-          "property": "padding",
-          "value": "10px",
-          "description": "Input padding is 10px"
-        },
-        {
-          "query": "input",
-          "assertion": "equals",
-          "property": "font-size",
-          "value": "16px",
-          "description": "Input font-size is 16px"
-        },
-        {
-          "query": "input",
-          "assertion": "equals",
-          "property": "border-radius",
-          "value": "4px",
-          "description": "Input border-radius is 4px"
-        },
-        {
-          "assertion": "sourceContains",
-          "value": "border",
-          "description": "CSS includes border property"
-        }
-      ],
-      "hints": [
-        "Write the HTML elements first, then add CSS targeting the `input` selector to apply visual styling.",
-        "In CSS: `input { padding: 10px; font-size: 16px; border: 2px solid #6366f1; border-radius: 4px; }`."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: CSS Forms",
-          "url": "https://www.w3schools.com/css/css_form.asp",
-          "description": "Styling form elements"
-        },
-        {
-          "label": "MDN: Styling forms",
-          "url": "https://developer.mozilla.org/en-US/docs/Learn/Forms/Styling_web_forms",
-          "description": "Form styling guide"
-        }
-      ]
-    },
-    {
-      "id": 924,
-      "title": "Spread Array",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "es6-plus",
-        "spread-rest"
-      ],
-      "tags": [
-        "es6",
-        "spread",
-        "arrays",
-        "beginner"
-      ],
-      "description": "Copy and merge arrays using the spread operator.",
-      "instructions": "The spread operator `...` expands an array into individual elements. It can be used to copy arrays or combine them.\n\nCopy: `const copy = [...original];`\nMerge: `const merged = [...arr1, ...arr2];`\n\nWrite a function called `mergeArrays` that takes two arrays `a` and `b` and returns a new array containing all elements from both, with `a`'s elements first.\n\nExample: `mergeArrays([1, 2], [3, 4])` should return `[1, 2, 3, 4]`",
-      "starterCode": "/**\n * Merges two arrays into one using the spread operator.\n * Example: mergeArrays([1, 2], [3, 4]) → [1, 2, 3, 4]\n * Example: mergeArrays([], [1]) → [1]\n */\nfunction mergeArrays(a, b) {\n\n}",
-      "solution": "function mergeArrays(a, b) {\n  return [...a, ...b];\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return mergeArrays;')();\n  const r1 = fn([1, 2], [3, 4]);\n  const r2 = fn(['a'], ['b', 'c']);\n  const r3 = fn([], [1]);\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify([1, 2, 3, 4]), description: 'mergeArrays([1, 2], [3, 4]) returns [1, 2, 3, 4]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify(['a', 'b', 'c']), description: 'mergeArrays([\"a\"], [\"b\", \"c\"]) returns [\"a\", \"b\", \"c\"]', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify([1]), description: 'mergeArrays([], [1]) returns [1]', got: JSON.stringify(r3) },\n    { pass: code.includes('...'), description: 'Uses spread operator (...)', got: code.includes('...') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "The spread operator `...` takes all the elements out of an array. Inside new square brackets, you can spread multiple arrays together.",
-        "Write `return [...a, ...b];` to create a new array with all elements from `a` followed by all elements from `b`."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Spread Operator",
-          "url": "https://www.w3schools.com/js/js_es6.asp",
-          "description": "ES6 spread syntax"
-        },
-        {
-          "label": "MDN: Spread syntax",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
-          "description": "The spread operator"
-        }
-      ]
-    },
-    {
-      "id": 925,
-      "title": "Spread Object",
-      "type": "js",
-      "tier": 2,
-      "category": [
-        "es6-plus",
-        "spread-rest"
-      ],
-      "tags": [
-        "es6",
-        "spread",
-        "objects",
-        "beginner"
-      ],
-      "description": "Copy and extend objects using the spread operator.",
-      "instructions": "The spread operator also works with objects. You can copy all properties from one object into a new one, and add or override properties.\n\nCopy: `const copy = { ...original };`\nExtend: `const extended = { ...original, newProp: value };`\n\nWrite a function called `addEmail` that takes an object `person` and a string `email`, and returns a new object with all of the person's properties plus an `email` property.\n\nExample: `addEmail({ name: \"Alice\" }, \"alice@test.com\")` should return `{ name: \"Alice\", email: \"alice@test.com\" }`",
-      "starterCode": "/**\n * Returns a new object with all of person's properties plus an email property.\n * Example: addEmail({ name: \"Alice\" }, \"alice@test.com\") → { name: \"Alice\", email: \"alice@test.com\" }\n */\nfunction addEmail(person, email) {\n\n}",
-      "solution": "function addEmail(person, email) {\n  return { ...person, email: email };\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return addEmail;')();\n  const r1 = fn({ name: 'Alice' }, 'alice@test.com');\n  const r2 = fn({ name: 'Bob', age: 30 }, 'bob@test.com');\n  return [\n    { pass: r1 && r1.name === 'Alice' && r1.email === 'alice@test.com', description: 'Returns object with name and email', got: JSON.stringify(r1) },\n    { pass: r2 && r2.name === 'Bob' && r2.age === 30 && r2.email === 'bob@test.com', description: 'Preserves existing properties and adds email', got: JSON.stringify(r2) },\n    { pass: code.includes('...'), description: 'Uses spread operator (...)', got: code.includes('...') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "The spread operator works with objects too — `...person` inside curly braces copies all of that object's properties into a new object.",
-        "Write `return { ...person, email: email };` to create a new object with everything from `person` plus the email."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Object Spread",
-          "url": "https://www.w3schools.com/js/js_object_rest.asp",
-          "description": "Spread with objects"
-        },
-        {
-          "label": "MDN: Spread syntax",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
-          "description": "Spread in object literals"
-        }
-      ]
-    },
-    {
-      "id": 926,
-      "title": "Try/Catch",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "error-handling",
-        "try-catch"
-      ],
-      "tags": [
-        "try-catch",
-        "errors",
-        "beginner"
-      ],
-      "description": "Wrap risky code in try/catch and handle the error gracefully.",
-      "instructions": "The `try/catch` statement lets you handle errors without crashing your program. Code in the `try` block runs normally. If an error occurs, execution jumps to the `catch` block.\n\n```\ntry {\n  // risky code\n} catch (error) {\n  // handle the error\n}\n```\n\nWrite a function called `safeParse` that takes a string `jsonStr` and tries to parse it with `JSON.parse()`. If parsing succeeds, return the parsed value. If it fails, return the string `\"Invalid JSON\"`.\n\nExample: `safeParse('{\"a\":1}')` should return `{ a: 1 }`\nExample: `safeParse('not json')` should return `\"Invalid JSON\"`",
-      "starterCode": "/**\n * Parses a JSON string safely. Returns the parsed value on success,\n * or \"Invalid JSON\" if parsing fails.\n *\n * Example: safeParse('{\"a\":1}') → { a: 1 }\n * Example: safeParse(\"not json\") → \"Invalid JSON\"\n * Example: safeParse('\"hello\"') → \"hello\"\n */\n",
-      "solution": "function safeParse(jsonStr) {\n  try {\n    return JSON.parse(jsonStr);\n  } catch (error) {\n    return \"Invalid JSON\";\n  }\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return safeParse;')();\n  const r1 = fn('{\"a\":1}');\n  const r2 = fn('not json');\n  const r3 = fn('\"hello\"');\n  return [\n    { pass: r1 && r1.a === 1, description: 'safeParse(\\'{\"a\":1}\\') returns { a: 1 }', got: JSON.stringify(r1) },\n    { pass: r2 === 'Invalid JSON', description: 'safeParse(\"not json\") returns \"Invalid JSON\"', got: String(r2) },\n    { pass: r3 === 'hello', description: 'safeParse(\\'\"hello\"\\') returns \"hello\"', got: String(r3) },\n    { pass: code.includes('try') && code.includes('catch'), description: 'Uses try/catch', got: code.includes('try') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "Put the code that might fail inside the `try` block. If an error happens, the `catch` block runs instead of crashing.",
-        "In the `try`, write `return JSON.parse(jsonStr);`. In the `catch`, write `return \"Invalid JSON\";`."
-      ],
-      "resources": [
-        {
-          "label": "MDN: try...catch",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch",
-          "description": "The try...catch statement"
-        }
-      ]
-    },
-    {
-      "id": 927,
-      "title": "Status Codes",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "server-concepts",
-        "http"
-      ],
-      "tags": [
-        "http",
-        "status-codes",
-        "beginner"
-      ],
-      "description": "Write a function that returns the meaning of common HTTP status codes.",
-      "instructions": "HTTP status codes tell the client what happened with their request. Common codes include:\n- `200`: OK (success)\n- `201`: Created (new resource made)\n- `404`: Not Found (resource doesn't exist)\n- `500`: Internal Server Error (something went wrong on the server)\n\nWrite a function called `getStatusMessage` that takes a number `code` and returns the matching message string.\n\nExample: `getStatusMessage(200)` should return `\"OK\"`\nExample: `getStatusMessage(404)` should return `\"Not Found\"`",
-      "starterCode": "/**\n * Given an HTTP status code, return its meaning.\n * 200 → \"OK\", 201 → \"Created\", 404 → \"Not Found\",\n * 500 → \"Internal Server Error\", anything else → \"Unknown\"\n *\n * Example: getStatusMessage(200) → \"OK\"\n * Example: getStatusMessage(999) → \"Unknown\"\n */\n",
-      "solution": "function getStatusMessage(code) {\n  if (code === 200) return \"OK\";\n  if (code === 201) return \"Created\";\n  if (code === 404) return \"Not Found\";\n  if (code === 500) return \"Internal Server Error\";\n  return \"Unknown\";\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getStatusMessage;')();\n  return [\n    { pass: fn(200) === 'OK', description: 'getStatusMessage(200) returns \"OK\"', got: fn(200) },\n    { pass: fn(201) === 'Created', description: 'getStatusMessage(201) returns \"Created\"', got: fn(201) },\n    { pass: fn(404) === 'Not Found', description: 'getStatusMessage(404) returns \"Not Found\"', got: fn(404) },\n    { pass: fn(500) === 'Internal Server Error', description: 'getStatusMessage(500) returns \"Internal Server Error\"', got: fn(500) },\n    { pass: fn(999) === 'Unknown', description: 'getStatusMessage(999) returns \"Unknown\"', got: fn(999) }\n  ];\n}",
-      "hints": [
-        "You can use a series of `if` statements or a `switch` to check the code and return the matching message.",
-        "Check each code with `if (code === 200) return \"OK\";` and so on. Add a final `return \"Unknown\";` for any unrecognized code."
-      ],
-      "resources": [
-        {
-          "label": "MDN: HTTP Status",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status",
-          "description": "HTTP response status codes"
-        }
-      ]
-    },
-    {
-      "id": 928,
-      "title": "HTTP Methods",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "server-concepts",
-        "http"
-      ],
-      "tags": [
-        "http",
-        "methods",
-        "crud",
-        "beginner"
-      ],
-      "description": "Identify which HTTP method matches each CRUD operation.",
-      "instructions": "HTTP methods tell the server what action to perform. The four main methods map to CRUD operations:\n- **C**reate → `POST`\n- **R**ead → `GET`\n- **U**pdate → `PUT`\n- **D**elete → `DELETE`\n\nWrite a function called `getHttpMethod` that takes a CRUD operation string and returns the matching HTTP method.\n\nExample: `getHttpMethod(\"create\")` should return `\"POST\"`\nExample: `getHttpMethod(\"read\")` should return `\"GET\"`",
-      "starterCode": "/**\n * Given a CRUD operation string, return the matching HTTP method.\n * \"create\" → \"POST\", \"read\" → \"GET\",\n * \"update\" → \"PUT\", \"delete\" → \"DELETE\"\n *\n * Example: getHttpMethod(\"create\") → \"POST\"\n * Example: getHttpMethod(\"read\") → \"GET\"\n */\n",
-      "solution": "function getHttpMethod(operation) {\n  if (operation === \"create\") return \"POST\";\n  if (operation === \"read\") return \"GET\";\n  if (operation === \"update\") return \"PUT\";\n  if (operation === \"delete\") return \"DELETE\";\n  return \"UNKNOWN\";\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getHttpMethod;')();\n  return [\n    { pass: fn('create') === 'POST', description: 'create -> \"POST\"', got: fn('create') },\n    { pass: fn('read') === 'GET', description: 'read -> \"GET\"', got: fn('read') },\n    { pass: fn('update') === 'PUT', description: 'update -> \"PUT\"', got: fn('update') },\n    { pass: fn('delete') === 'DELETE', description: 'delete -> \"DELETE\"', got: fn('delete') }\n  ];\n}",
-      "hints": [
-        "There are four standard HTTP methods that correspond to the four CRUD operations. Each operation has exactly one matching method.",
-        "Use `if` statements: `if (operation === \"create\") return \"POST\";` and continue for read/GET, update/PUT, delete/DELETE."
-      ],
-      "resources": [
-        {
-          "label": "MDN: HTTP Methods",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods",
-          "description": "HTTP request methods"
-        }
-      ]
-    },
-    {
-      "id": 929,
-      "title": "Request Object",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "server-concepts",
-        "http"
-      ],
-      "tags": [
-        "http",
-        "request",
-        "objects",
-        "beginner"
-      ],
-      "description": "Create an object representing an HTTP request.",
-      "instructions": "An HTTP request has several parts: the method (GET, POST, etc.), the path (URL), and optionally a body (data being sent).\n\nWrite a function called `createRequest` that takes `method`, `path`, and `body` parameters and returns an object with those three properties.\n\nExample: `createRequest(\"GET\", \"/users\", null)` should return `{ method: \"GET\", path: \"/users\", body: null }`",
-      "starterCode": "/**\n * Build an HTTP request object from method, path, and body parameters.\n *\n * Example: createRequest(\"GET\", \"/users\", null)\n *   → { method: \"GET\", path: \"/users\", body: null }\n * Example: createRequest(\"POST\", \"/users\", { name: \"Alice\" })\n *   → { method: \"POST\", path: \"/users\", body: { name: \"Alice\" } }\n */\n",
-      "solution": "function createRequest(method, path, body) {\n  return {\n    method: method,\n    path: path,\n    body: body\n  };\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return createRequest;')();\n  const r1 = fn('GET', '/users', null);\n  const r2 = fn('POST', '/users', { name: 'Alice' });\n  return [\n    { pass: r1 && r1.method === 'GET' && r1.path === '/users' && r1.body === null, description: 'GET /users with null body', got: JSON.stringify(r1) },\n    { pass: r2 && r2.method === 'POST' && r2.path === '/users' && r2.body && r2.body.name === 'Alice', description: 'POST /users with body { name: \"Alice\" }', got: JSON.stringify(r2) }\n  ];\n}",
-      "hints": [
-        "An object literal with matching property names can be returned directly from the function.",
-        "Write `return { method: method, path: path, body: body };` to create the request object."
-      ],
-      "resources": [
-        {
-          "label": "MDN: HTTP Messages",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages",
-          "description": "HTTP request structure"
-        }
-      ]
-    },
-    {
-      "id": 930,
-      "title": "Simple Router",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "server-concepts",
-        "routing"
-      ],
-      "tags": [
-        "routing",
-        "path-matching",
-        "beginner"
-      ],
-      "description": "Match a URL path to a handler function and return the result.",
-      "instructions": "A router matches URL paths to the right piece of code (handler). This is how servers know what to do with each request.\n\nWrite a function called `route` that takes a `path` string and returns:\n- `\"Home Page\"` for `\"/\"`\n- `\"About Page\"` for `\"/about\"`\n- `\"Contact Page\"` for `\"/contact\"`\n- `\"Not Found\"` for anything else\n\nExample: `route(\"/\")` should return `\"Home Page\"`\nExample: `route(\"/about\")` should return `\"About Page\"`",
-      "starterCode": "/**\n * Match a URL path to a page name.\n * \"/\" → \"Home Page\", \"/about\" → \"About Page\",\n * \"/contact\" → \"Contact Page\", anything else → \"Not Found\"\n *\n * Example: route(\"/\") → \"Home Page\"\n * Example: route(\"/xyz\") → \"Not Found\"\n */\n",
-      "solution": "function route(path) {\n  if (path === \"/\") return \"Home Page\";\n  if (path === \"/about\") return \"About Page\";\n  if (path === \"/contact\") return \"Contact Page\";\n  return \"Not Found\";\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return route;')();\n  return [\n    { pass: fn('/') === 'Home Page', description: 'route(\"/\") returns \"Home Page\"', got: fn('/') },\n    { pass: fn('/about') === 'About Page', description: 'route(\"/about\") returns \"About Page\"', got: fn('/about') },\n    { pass: fn('/contact') === 'Contact Page', description: 'route(\"/contact\") returns \"Contact Page\"', got: fn('/contact') },\n    { pass: fn('/xyz') === 'Not Found', description: 'route(\"/xyz\") returns \"Not Found\"', got: fn('/xyz') }\n  ];\n}",
-      "hints": [
-        "A router is just conditional logic — check the path against known values and return the matching response.",
-        "Use `if (path === \"/\") return \"Home Page\";` for each route. End with `return \"Not Found\";` as the default."
-      ],
-      "resources": [
-        {
-          "label": "MDN: HTTP routing concept",
-          "url": "https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes",
-          "description": "Routing concepts"
-        }
-      ]
-    },
-    {
-      "id": 931,
-      "title": "CRUD Functions",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "server-concepts",
-        "api-design"
-      ],
-      "tags": [
-        "rest",
-        "crud",
-        "api",
-        "beginner"
-      ],
-      "description": "Write create, read, update, and delete functions for an in-memory list.",
-      "instructions": "CRUD stands for Create, Read, Update, Delete — the four basic data operations.\n\nWrite four functions that manage an array called `items` (already declared for you):\n- `addItem(item)` — pushes the item to the array and returns the array\n- `getItems()` — returns the entire array\n- `updateItem(index, newValue)` — replaces the item at the given index and returns the array\n- `removeItem(index)` — removes the item at the given index using splice and returns the array\n\nExample: After `addItem(\"apple\")` and `addItem(\"banana\")`, `getItems()` returns `[\"apple\", \"banana\"]`",
-      "starterCode": "/**\n * Build four functions that manage an in-memory array of items:\n *\n * addItem(item) — pushes item to the array, returns the array\n * getItems() — returns the array\n * updateItem(index, newValue) — replaces item at index, returns the array\n * removeItem(index) — removes item at index, returns the array\n *\n * The array should be declared outside the functions so all four share it.\n */\n",
-      "solution": "const items = [];\n\nfunction addItem(item) {\n  items.push(item);\n  return items;\n}\n\nfunction getItems() {\n  return items;\n}\n\nfunction updateItem(index, newValue) {\n  items[index] = newValue;\n  return items;\n}\n\nfunction removeItem(index) {\n  items.splice(index, 1);\n  return items;\n}",
-      "testRunner": "(code) => {\n  const ctx = new Function(code + '; return { addItem, getItems, updateItem, removeItem };')();\n  ctx.addItem('apple');\n  ctx.addItem('banana');\n  const afterAdd = JSON.stringify(ctx.getItems());\n  ctx.updateItem(0, 'cherry');\n  const afterUpdate = JSON.stringify(ctx.getItems());\n  ctx.removeItem(1);\n  const afterRemove = JSON.stringify(ctx.getItems());\n  return [\n    { pass: afterAdd === JSON.stringify(['apple', 'banana']), description: 'After adding \"apple\" and \"banana\", getItems() returns both', got: afterAdd },\n    { pass: afterUpdate === JSON.stringify(['cherry', 'banana']), description: 'After updateItem(0, \"cherry\"), first item changed', got: afterUpdate },\n    { pass: afterRemove === JSON.stringify(['cherry']), description: 'After removeItem(1), \"banana\" is removed', got: afterRemove }\n  ];\n}",
-      "hints": [
-        "Each function performs one operation on the shared `items` array. `push` adds to the end, bracket assignment updates, and `splice` removes.",
-        "For `addItem`: `items.push(item)`. For `updateItem`: `items[index] = newValue`. For `removeItem`: `items.splice(index, 1)`."
-      ],
-      "resources": [
-        {
-          "label": "MDN: Array.splice()",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice",
-          "description": "Removing array elements"
-        }
-      ]
-    },
-    {
-      "id": 932,
-      "title": "Define a Schema",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "server-concepts",
-        "data-modeling"
-      ],
-      "tags": [
-        "schema",
-        "validation",
-        "types",
-        "beginner"
-      ],
-      "description": "Create an object describing the required fields and their types for a data model.",
-      "instructions": "A schema defines what shape your data should have — which fields are required and what types they should be.\n\nWrite a function called `getUserSchema` that returns an object describing a user's data shape:\n- `name`: `\"string\"`\n- `age`: `\"number\"`\n- `email`: `\"string\"`\n- `isActive`: `\"boolean\"`\n\nExample: `getUserSchema().name` should return `\"string\"`",
-      "starterCode": "/**\n * Return an object representing a user schema where keys are\n * field names and values are expected type strings.\n *\n * Fields: name (string), age (number), email (string), isActive (boolean)\n *\n * Example: getUserSchema().name → \"string\"\n * Example: getUserSchema().isActive → \"boolean\"\n */\n",
-      "solution": "function getUserSchema() {\n  return {\n    name: \"string\",\n    age: \"number\",\n    email: \"string\",\n    isActive: \"boolean\"\n  };\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getUserSchema;')();\n  const s = fn();\n  return [\n    { pass: s && s.name === 'string', description: 'name field is \"string\"', got: s ? s.name : 'undefined' },\n    { pass: s && s.age === 'number', description: 'age field is \"number\"', got: s ? s.age : 'undefined' },\n    { pass: s && s.email === 'string', description: 'email field is \"string\"', got: s ? s.email : 'undefined' },\n    { pass: s && s.isActive === 'boolean', description: 'isActive field is \"boolean\"', got: s ? s.isActive : 'undefined' }\n  ];\n}",
-      "hints": [
-        "A schema is just a plain object where the keys are field names and the values describe what type each field should be.",
-        "Return `{ name: \"string\", age: \"number\", email: \"string\", isActive: \"boolean\" }`."
-      ],
-      "resources": [
-        {
-          "label": "MDN: typeof",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof",
-          "description": "JavaScript types"
-        }
-      ]
-    },
-    {
-      "id": 933,
-      "title": "Validate Types",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "server-concepts",
-        "data-modeling"
-      ],
-      "tags": [
-        "schema",
-        "validation",
-        "types",
-        "beginner"
-      ],
-      "description": "Check if a data object's fields match the expected types from a schema.",
-      "instructions": "After defining a schema, you need to validate that real data matches it.\n\nWrite a function called `validateTypes` that takes a `data` object and a `schema` object. It should return `true` if every field in the schema exists in the data AND has the correct type, or `false` otherwise.\n\nUse `typeof` to check each field's type.\n\nExample:\n```\nconst schema = { name: \"string\", age: \"number\" };\nvalidateTypes({ name: \"Alice\", age: 25 }, schema) // true\nvalidateTypes({ name: \"Alice\", age: \"25\" }, schema) // false (age is string)\n```",
-      "starterCode": "/**\n * Check if every field in a data object matches the types\n * defined in a schema object. Return true if all match, false otherwise.\n *\n * Example: validateTypes({ name: \"Alice\", age: 25 }, { name: \"string\", age: \"number\" }) → true\n * Example: validateTypes({ name: \"Alice\", age: \"25\" }, { name: \"string\", age: \"number\" }) → false\n */\n",
-      "solution": "function validateTypes(data, schema) {\n  const keys = Object.keys(schema);\n  for (let i = 0; i < keys.length; i++) {\n    const key = keys[i];\n    if (typeof data[key] !== schema[key]) {\n      return false;\n    }\n  }\n  return true;\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return validateTypes;')();\n  const schema = { name: 'string', age: 'number' };\n  return [\n    { pass: fn({ name: 'Alice', age: 25 }, schema) === true, description: 'Valid data returns true', got: String(fn({ name: 'Alice', age: 25 }, schema)) },\n    { pass: fn({ name: 'Alice', age: '25' }, schema) === false, description: 'Wrong type (string age) returns false', got: String(fn({ name: 'Alice', age: '25' }, schema)) },\n    { pass: fn({ name: 'Alice' }, schema) === false, description: 'Missing field returns false', got: String(fn({ name: 'Alice' }, schema)) }\n  ];\n}",
-      "hints": [
-        "Loop through the schema keys and compare `typeof data[key]` with the expected type string in `schema[key]`.",
-        "If `typeof data[key] !== schema[key]`, return `false` immediately. If you finish the loop without returning false, return `true`."
-      ],
-      "resources": [
-        {
-          "label": "MDN: Object.keys()",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys",
-          "description": "Iterating object keys"
-        }
-      ]
-    },
-    {
-      "id": 934,
-      "title": "Render a Greeting",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "component-patterns",
-        "functional"
-      ],
-      "tags": [
-        "components",
-        "functions",
-        "render",
-        "beginner"
-      ],
-      "description": "Write a function that returns an element description object.",
-      "instructions": "In modern web frameworks, components are functions that return descriptions of what to display. Instead of directly creating DOM elements, they return plain objects.\n\nWrite a function called `Greeting` that returns an object with:\n- `tag`: `\"h1\"`\n- `text`: `\"Hello, World!\"`\n\nThis represents an `<h1>Hello, World!</h1>` element.\n\nExample: `Greeting()` should return `{ tag: \"h1\", text: \"Hello, World!\" }`",
-      "starterCode": "/**\n * Return an object describing an h1 element with text \"Hello, World!\".\n * Format: { tag: \"h1\", text: \"Hello, World!\" }\n *\n * Example: Greeting() → { tag: \"h1\", text: \"Hello, World!\" }\n */\n",
-      "solution": "function Greeting() {\n  return { tag: \"h1\", text: \"Hello, World!\" };\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return Greeting;')();\n  const r = fn();\n  return [\n    { pass: r && r.tag === 'h1', description: 'tag is \"h1\"', got: r ? r.tag : 'undefined' },\n    { pass: r && r.text === 'Hello, World!', description: 'text is \"Hello, World!\"', got: r ? r.text : 'undefined' },\n    { pass: typeof r === 'object' && !Array.isArray(r), description: 'Returns a plain object', got: typeof r }\n  ];\n}",
-      "hints": [
-        "A component is just a function that returns an object. The object describes what should appear on the page.",
-        "Return `{ tag: \"h1\", text: \"Hello, World!\" }` from the function."
-      ],
-      "resources": [
-        {
-          "label": "MDN: Functions",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
-          "description": "JavaScript functions"
-        }
-      ]
-    },
-    {
-      "id": 935,
-      "title": "Parameterized Render",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "component-patterns",
-        "functional"
-      ],
-      "tags": [
-        "components",
-        "functions",
-        "render",
-        "beginner"
-      ],
-      "description": "Write a component function that accepts data and returns a customized element.",
-      "instructions": "Real components accept data (called \"props\" in frameworks) and use it to customize their output.\n\nWrite a function called `UserCard` that takes a `name` parameter and returns an object with:\n- `tag`: `\"div\"`\n- `text`: `\"Welcome, \"` followed by the name\n\nExample: `UserCard(\"Alice\")` should return `{ tag: \"div\", text: \"Welcome, Alice\" }`",
-      "starterCode": "/**\n * Return an object describing a div element whose text is\n * \"Welcome, \" followed by the name parameter.\n *\n * Example: UserCard(\"Alice\") → { tag: \"div\", text: \"Welcome, Alice\" }\n * Example: UserCard(\"Bob\") → { tag: \"div\", text: \"Welcome, Bob\" }\n */\n",
-      "solution": "function UserCard(name) {\n  return { tag: \"div\", text: \"Welcome, \" + name };\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return UserCard;')();\n  const r1 = fn('Alice');\n  const r2 = fn('Bob');\n  return [\n    { pass: r1 && r1.tag === 'div', description: 'tag is \"div\"', got: r1 ? r1.tag : 'undefined' },\n    { pass: r1 && r1.text === 'Welcome, Alice', description: 'UserCard(\"Alice\") text is \"Welcome, Alice\"', got: r1 ? r1.text : 'undefined' },\n    { pass: r2 && r2.text === 'Welcome, Bob', description: 'UserCard(\"Bob\") text is \"Welcome, Bob\"', got: r2 ? r2.text : 'undefined' }\n  ];\n}",
-      "hints": [
-        "The function takes a parameter and uses it to build the text property of the returned object.",
-        "Return `{ tag: \"div\", text: \"Welcome, \" + name }` to combine the greeting with the parameter."
-      ],
-      "resources": [
-        {
-          "label": "MDN: Functions",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
-          "description": "Function parameters"
-        }
-      ]
-    },
-    {
-      "id": 936,
-      "title": "Props Object",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "component-patterns",
-        "props"
-      ],
-      "tags": [
-        "props",
-        "components",
-        "configuration",
-        "beginner"
-      ],
-      "description": "Write a component function that reads data from a props object.",
-      "instructions": "Instead of passing individual parameters, frameworks pass a single \"props\" object containing all the data a component needs.\n\nWrite a function called `ProfileCard` that takes a `props` object with `name` and `role` properties, and returns an object with:\n- `tag`: `\"div\"`\n- `text`: the name followed by ` - ` followed by the role\n\nExample: `ProfileCard({ name: \"Alice\", role: \"Developer\" })` should return `{ tag: \"div\", text: \"Alice - Developer\" }`",
-      "starterCode": "/**\n * Given a props object with name and role properties, return an\n * element description with tag \"div\" and text \"name - role\".\n *\n * Example: ProfileCard({ name: \"Alice\", role: \"Developer\" })\n *   → { tag: \"div\", text: \"Alice - Developer\" }\n */\n",
-      "solution": "function ProfileCard(props) {\n  return { tag: \"div\", text: props.name + \" - \" + props.role };\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return ProfileCard;')();\n  const r1 = fn({ name: 'Alice', role: 'Developer' });\n  const r2 = fn({ name: 'Bob', role: 'Designer' });\n  return [\n    { pass: r1 && r1.tag === 'div', description: 'tag is \"div\"', got: r1 ? r1.tag : 'undefined' },\n    { pass: r1 && r1.text === 'Alice - Developer', description: 'Text is \"Alice - Developer\"', got: r1 ? r1.text : 'undefined' },\n    { pass: r2 && r2.text === 'Bob - Designer', description: 'Text is \"Bob - Designer\" for Bob', got: r2 ? r2.text : 'undefined' }\n  ];\n}",
-      "hints": [
-        "The `props` parameter is a regular object. Access its properties with dot notation like `props.name` and `props.role`.",
-        "Return `{ tag: \"div\", text: props.name + \" - \" + props.role }` to build the text from props."
-      ],
-      "resources": [
-        {
-          "label": "MDN: Working with objects",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
-          "description": "Object property access"
-        }
-      ]
-    },
-    {
-      "id": 937,
-      "title": "State Object",
-      "type": "js",
-      "tier": 4,
-      "category": [
-        "component-patterns",
-        "state"
-      ],
-      "tags": [
-        "state",
-        "immutable",
-        "components",
-        "beginner"
-      ],
-      "description": "Create an initial state object and return a fresh copy each time.",
-      "instructions": "State represents the current data in your application. To avoid bugs, you should always work with copies of state rather than modifying the original directly.\n\nWrite a function called `getInitialState` that returns a NEW object each time it is called, with:\n- `count`: `0`\n- `items`: `[]` (empty array)\n- `isLoading`: `false`\n\nImportant: Each call should return a brand new object, not the same one.\n\nExample: `getInitialState().count` should return `0`\nExample: `getInitialState() !== getInitialState()` should be `true` (different objects)",
-      "starterCode": "/**\n * Return a fresh state object each time with:\n * - count: 0\n * - items: [] (empty array)\n * - isLoading: false\n *\n * Each call must return a NEW object (not the same reference).\n * Example: getInitialState().count → 0\n */\n",
-      "solution": "function getInitialState() {\n  return {\n    count: 0,\n    items: [],\n    isLoading: false\n  };\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getInitialState;')();\n  const s1 = fn();\n  const s2 = fn();\n  return [\n    { pass: s1 && s1.count === 0, description: 'count is 0', got: s1 ? String(s1.count) : 'undefined' },\n    { pass: s1 && Array.isArray(s1.items) && s1.items.length === 0, description: 'items is an empty array', got: s1 ? JSON.stringify(s1.items) : 'undefined' },\n    { pass: s1 && s1.isLoading === false, description: 'isLoading is false', got: s1 ? String(s1.isLoading) : 'undefined' },\n    { pass: s1 !== s2, description: 'Each call returns a new object', got: s1 === s2 ? 'Same object' : 'Different objects' }\n  ];\n}",
-      "hints": [
-        "If you create the object inside the function using a literal `{ }`, a new object is created each time the function is called.",
-        "Just return `{ count: 0, items: [], isLoading: false }` directly — since it is inside the function, it creates a fresh object each call."
-      ],
-      "resources": [
-        {
-          "label": "MDN: Object literals",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#object_literals",
-          "description": "Object literal syntax"
-        }
-      ]
-    },
-    {
-      "id": 938,
-      "title": "Declare with Let",
-      "type": "js",
-      "tier": 1,
-      "category": [
-        "js-fundamentals",
-        "variables"
-      ],
-      "tags": [
-        "variables",
-        "let",
-        "declaration",
-        "beginner"
-      ],
-      "description": "Declare five variables using the let keyword.",
-      "instructions": "The `let` keyword creates a variable that can be reassigned later. Use `let` when you expect the value might change.\n\nDeclare these five variables using `let`:\n1. `message` with the value `\"Hello, world!\"`\n2. `year` with the value `2026`\n3. `isOnline` with the value `true`\n4. `activeUsers` with the value `47`\n5. `emptyValue` with the value `null`\n\nExample: `let color = \"blue\";` creates a variable called `color`.",
-      "starterCode": "// The let keyword creates variables that can be reassigned later.\n// Syntax: let variableName = value;\n\n// 1. A greeting message (string)\n\n// 2. The current year (number)\n\n// 3. Whether the user is online (boolean)\n\n// 4. The number of active users (number)\n\n// 5. An empty value (null)\n",
-      "solution": "let message = \"Hello, world!\";\nlet year = 2026;\nlet isOnline = true;\nlet activeUsers = 47;\nlet emptyValue = null;",
-      "testRunner": "(code) => {\n  const r = new Function(code + '; return { message, year, isOnline, activeUsers, emptyValue };')();\n  return [\n    { pass: r.message === 'Hello, world!', description: 'message is \"Hello, world!\"', got: String(r.message) },\n    { pass: r.year === 2026, description: 'year is 2026', got: String(r.year) },\n    { pass: r.isOnline === true, description: 'isOnline is true', got: String(r.isOnline) },\n    { pass: r.activeUsers === 47, description: 'activeUsers is 47', got: String(r.activeUsers) },\n    { pass: r.emptyValue === null, description: 'emptyValue is null', got: String(r.emptyValue) },\n    { pass: typeof r.message === 'string', description: 'message is a string', got: typeof r.message },\n    { pass: typeof r.year === 'number', description: 'year is a number', got: typeof r.year }\n  ];\n}",
-      "hints": [
-        "Each variable needs the `let` keyword, a name, an equals sign, and a value. Strings need quotes, numbers and booleans do not.",
-        "The pattern is `let name = value;` — make sure each declaration ends with a semicolon."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: JavaScript Variables",
-          "url": "https://www.w3schools.com/js/js_variables.asp",
-          "description": "Declaring variables"
-        },
-        {
-          "label": "MDN: let",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let",
-          "description": "The let declaration"
-        }
-      ]
-    },
-    {
-      "id": 939,
-      "title": "Reassign a Variable",
-      "type": "js",
-      "tier": 1,
-      "category": [
-        "js-fundamentals",
-        "variables"
-      ],
-      "tags": [
-        "variables",
-        "let",
-        "reassignment",
-        "beginner"
-      ],
-      "description": "Reassign variables declared with let to new values.",
-      "instructions": "Variables declared with `let` can be reassigned. To reassign, use just the variable name (no keyword) followed by `=` and the new value.\n\nThe starter code declares six variables. Reassign each one:\n1. `status` from `\"pending\"` to `\"complete\"`\n2. `count` from `10` to `count + 5` (should be 15)\n3. `price` from `9.99` to `19.99`\n4. `isActive` from `true` to `false`\n5. `items` from `[\"a\",\"b\"]` to `[\"x\",\"y\",\"z\"]`\n6. `user` from `{name:\"Alex\"}` to `{name:\"Sam\",role:\"admin\"}`",
-      "starterCode": "// Reassignment changes the value of an existing variable.\n// Use the variable name (no keyword) followed by = and the new value.\n\nlet status = \"pending\";\n// Reassign status to \"complete\"\n\nlet count = 10;\n// Reassign count to count + 5\n\nlet price = 9.99;\n// Reassign price to 19.99\n\nlet isActive = true;\n// Reassign isActive to false\n\nlet items = [\"a\", \"b\"];\n// Reassign items to [\"x\", \"y\", \"z\"]\n\nlet user = { name: \"Alex\" };\n// Reassign user to { name: \"Sam\", role: \"admin\" }\n",
-      "solution": "let status = \"pending\";\nstatus = \"complete\";\n\nlet count = 10;\ncount = count + 5;\n\nlet price = 9.99;\nprice = 19.99;\n\nlet isActive = true;\nisActive = false;\n\nlet items = [\"a\", \"b\"];\nitems = [\"x\", \"y\", \"z\"];\n\nlet user = { name: \"Alex\" };\nuser = { name: \"Sam\", role: \"admin\" };",
-      "testRunner": "(code) => {\n  const r = new Function(code + '; return { status, count, price, isActive, items, user };')();\n  return [\n    { pass: r.status === 'complete', description: 'status is \"complete\"', got: String(r.status) },\n    { pass: r.count === 15, description: 'count is 15 (10 + 5)', got: String(r.count) },\n    { pass: r.price === 19.99, description: 'price is 19.99', got: String(r.price) },\n    { pass: r.isActive === false, description: 'isActive is false', got: String(r.isActive) },\n    { pass: JSON.stringify(r.items) === '[\"x\",\"y\",\"z\"]', description: 'items is [\"x\",\"y\",\"z\"]', got: JSON.stringify(r.items) },\n    { pass: r.user.name === 'Sam' && r.user.role === 'admin', description: 'user is {name:\"Sam\",role:\"admin\"}', got: JSON.stringify(r.user) }\n  ];\n}",
-      "hints": [
-        "To reassign, write just the name followed by `=` and the new value — do not use `let` again.",
-        "For count, write `count = count + 5;` which takes the current value and adds 5."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: JavaScript Variables",
-          "url": "https://www.w3schools.com/js/js_variables.asp",
-          "description": "Declaring variables"
-        },
-        {
-          "label": "MDN: let",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let",
-          "description": "The let declaration"
-        }
-      ]
-    },
-    {
-      "id": 942,
-      "title": "Build a Map By Hand",
-      "type": "js",
-      "tier": 1,
-      "category": [
-        "data-structures",
-        "array-iteration"
-      ],
-      "tags": [
-        "arrays",
-        "loops",
-        "transformation",
-        "beginner"
-      ],
-      "description": "Use a for loop to transform every element in an array into a new array.",
-      "instructions": "Before learning shortcut methods, practice the pattern they are built on.\n\nWrite a function called `doubleAll` that takes an array of numbers `nums` and returns a new array where every number is doubled.\n\nUse a `for` loop — do NOT use `.map()` or `.forEach()`.\n\nExample: `doubleAll([1, 2, 3])` returns `[2, 4, 6]`\nExample: `doubleAll([5])` returns `[10]`",
-      "starterCode": "function doubleAll(nums) {\n  // Step 1: Create an empty array called result\n\n  // Step 2: Loop through nums with a for loop\n\n    // Step 3: Push each number * 2 into result\n\n  // Step 4: Return result\n\n}",
-      "solution": "function doubleAll(nums) {\n  const result = [];\n  for (let i = 0; i < nums.length; i++) {\n    result.push(nums[i] * 2);\n  }\n  return result;\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return doubleAll;')();\n  const r1 = fn([1, 2, 3]);\n  const r2 = fn([5]);\n  const r3 = fn([]);\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify([2, 4, 6]), description: 'doubleAll([1, 2, 3]) returns [2, 4, 6]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify([10]), description: 'doubleAll([5]) returns [10]', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify([]), description: 'doubleAll([]) returns []', got: JSON.stringify(r3) },\n    { pass: Array.isArray(r1), description: 'Returns an array', got: typeof r1 }\n  ];\n}",
-      "hints": [
-        "Create an empty array first, then use a for loop to visit each element. Inside the loop, push the transformed value into the result array.",
-        "Declare `const result = [];` then loop with `for (let i = 0; i < nums.length; i++)` and inside use `result.push(nums[i] * 2);`."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Array push()",
-          "url": "https://www.w3schools.com/jsref/jsref_push.asp",
-          "description": "Adding elements to an array"
-        },
-        {
-          "label": "MDN: Array.push()",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push",
-          "description": "The push method"
-        }
-      ]
-    },
-    {
-      "id": 943,
-      "title": "Build a Filter By Hand",
-      "type": "js",
-      "tier": 1,
-      "category": [
-        "data-structures",
-        "array-iteration"
-      ],
-      "tags": [
-        "arrays",
-        "loops",
-        "filtering",
-        "beginner"
-      ],
-      "description": "Use a for loop to select only matching elements from an array.",
-      "instructions": "Filtering means keeping only the elements that pass a test.\n\nWrite a function called `getEvens` that takes an array of numbers `nums` and returns a new array containing only the even numbers.\n\nUse a `for` loop with an `if` statement — do NOT use `.filter()`.\n\nExample: `getEvens([1, 2, 3, 4, 5])` returns `[2, 4]`\nExample: `getEvens([7, 9])` returns `[]`",
-      "starterCode": "function getEvens(nums) {\n  // Step 1: Create an empty array called result\n\n  // Step 2: Loop through nums with a for loop\n\n    // Step 3: If the number is even (num % 2 === 0), push it into result\n\n  // Step 4: Return result\n\n}",
-      "solution": "function getEvens(nums) {\n  const result = [];\n  for (let i = 0; i < nums.length; i++) {\n    if (nums[i] % 2 === 0) {\n      result.push(nums[i]);\n    }\n  }\n  return result;\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getEvens;')();\n  const r1 = fn([1, 2, 3, 4, 5]);\n  const r2 = fn([7, 9]);\n  const r3 = fn([2, 4, 6]);\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify([2, 4]), description: 'getEvens([1, 2, 3, 4, 5]) returns [2, 4]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify([]), description: 'getEvens([7, 9]) returns []', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify([2, 4, 6]), description: 'getEvens([2, 4, 6]) returns [2, 4, 6]', got: JSON.stringify(r3) },\n    { pass: Array.isArray(r1), description: 'Returns an array', got: typeof r1 }\n  ];\n}",
-      "hints": [
-        "Use the modulo operator (`%`) to check if a number is even. If `num % 2 === 0`, the number is even.",
-        "Inside your for loop, add `if (nums[i] % 2 === 0) { result.push(nums[i]); }` to keep only even numbers."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: JavaScript For Loop",
-          "url": "https://www.w3schools.com/js/js_loop_for.asp",
-          "description": "The for loop"
-        },
-        {
-          "label": "MDN: Remainder (%)",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder",
-          "description": "The modulo operator"
-        }
-      ]
-    },
-    {
-      "id": 944,
-      "title": "Convert to Arrow Function",
-      "type": "js",
-      "tier": 1,
-      "category": [
-        "functions",
-        "basics"
-      ],
-      "tags": [
-        "functions",
-        "arrow",
-        "es6",
-        "conversion",
-        "beginner"
-      ],
-      "description": "Rewrite an ES5 function declaration as an arrow function.",
-      "instructions": "Arrow functions are a shorter way to write functions. Here is the conversion pattern:\n\n**ES5:** `function name(param) { return value; }`\n**Arrow:** `const name = (param) => { return value; };`\n\nThe function below is written in ES5 style:\n```js\nfunction double(n) {\n  return n * 2;\n}\n```\n\nRewrite it as an arrow function stored in a `const` called `double`.\n\nExample: `double(5)` should return `10`",
-      "starterCode": "// Rewrite this ES5 function as an arrow function:\n//\n//   function double(n) {\n//     return n * 2;\n//   }\n//\n// Step 1: Start with const double =\n// Step 2: Add (n) =>\n// Step 3: Add the function body { return n * 2; }\n\nconst double = ",
-      "solution": "const double = (n) => {\n  return n * 2;\n};",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return double;')();\n  return [\n    { pass: fn(5) === 10, description: 'double(5) returns 10', got: String(fn(5)) },\n    { pass: fn(0) === 0, description: 'double(0) returns 0', got: String(fn(0)) },\n    { pass: fn(-3) === -6, description: 'double(-3) returns -6', got: String(fn(-3)) },\n    { pass: code.includes('=>'), description: 'Uses arrow function syntax (=>)', got: code.includes('=>') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "Arrow functions replace the `function` keyword with `=>`. The function is stored in a variable using `const`.",
-        "Write `const double = (n) => { return n * 2; };` — the parameters go before the arrow, the body goes after."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Arrow Functions",
-          "url": "https://www.w3schools.com/js/js_arrow_function.asp",
-          "description": "Arrow function syntax"
-        },
-        {
-          "label": "MDN: Arrow functions",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
-          "description": "Arrow function expressions"
-        }
-      ]
-    },
-    {
-      "id": 945,
-      "title": "Convert Loop to forEach",
-      "type": "js",
-      "tier": 1,
-      "category": [
-        "data-structures",
-        "array-iteration"
-      ],
-      "tags": [
-        "forEach",
-        "loops",
-        "conversion",
-        "arrays",
-        "beginner"
-      ],
-      "description": "Rewrite a for loop as a forEach call.",
-      "instructions": "The `.forEach()` method does the same thing as a `for` loop — it visits every element in an array. Here is the conversion pattern:\n\n**For loop:**\n```js\nfor (let i = 0; i < words.length; i++) {\n  result.push(words[i].toUpperCase());\n}\n```\n\n**forEach:**\n```js\nwords.forEach(function(word) {\n  result.push(word.toUpperCase());\n});\n```\n\nRewrite the for loop inside `shoutAll` using `.forEach()` instead.\n\nExample: `shoutAll([\"hi\", \"bye\"])` returns `[\"HI\", \"BYE\"]`",
-      "starterCode": "function shoutAll(words) {\n  const result = [];\n\n  // The for loop below works, but rewrite it using .forEach()\n  //\n  //   for (let i = 0; i < words.length; i++) {\n  //     result.push(words[i].toUpperCase());\n  //   }\n  //\n  // Step 1: Call words.forEach()\n  // Step 2: Pass a function that takes one word\n  // Step 3: Inside, push word.toUpperCase() into result\n\n\n  return result;\n}",
-      "solution": "function shoutAll(words) {\n  const result = [];\n  words.forEach(function(word) {\n    result.push(word.toUpperCase());\n  });\n  return result;\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return shoutAll;')();\n  const r1 = fn(['hi', 'bye']);\n  const r2 = fn(['hello']);\n  const r3 = fn([]);\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify(['HI', 'BYE']), description: 'shoutAll([\"hi\", \"bye\"]) returns [\"HI\", \"BYE\"]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify(['HELLO']), description: 'shoutAll([\"hello\"]) returns [\"HELLO\"]', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify([]), description: 'shoutAll([]) returns []', got: JSON.stringify(r3) },\n    { pass: code.includes('.forEach'), description: 'Uses .forEach() method', got: code.includes('.forEach') ? 'Yes' : 'No' }\n  ];\n}",
-      "hints": [
-        "The `.forEach()` method takes a function as its argument. That function receives one element at a time, similar to how `words[i]` gives you one element.",
-        "Write `words.forEach(function(word) { result.push(word.toUpperCase()); });` — each `word` is like `words[i]` from the loop."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: Array forEach",
-          "url": "https://www.w3schools.com/jsref/jsref_foreach.asp",
-          "description": "The forEach method"
-        },
-        {
-          "label": "MDN: Array.forEach()",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach",
-          "description": "Array forEach method"
-        }
-      ]
-    },
-    {
-      "id": 946,
-      "title": "Array of Objects",
-      "type": "js",
-      "tier": 1,
-      "category": [
-        "data-structures",
-        "objects"
-      ],
-      "tags": [
-        "objects",
-        "arrays",
-        "literals",
-        "beginner"
-      ],
-      "description": "Create an array that contains multiple objects.",
-      "instructions": "Arrays can hold any type of value — including objects. An array of objects is one of the most common data structures in programming.\n\nWrite a function called `getBooks` that returns an array containing 3 book objects. Each book should have:\n- `title` (string)\n- `author` (string)\n- `year` (number)\n\nThe books should be:\n1. `\"1984\"` by `\"George Orwell\"`, `1949`\n2. `\"Dune\"` by `\"Frank Herbert\"`, `1965`\n3. `\"Neuromancer\"` by `\"William Gibson\"`, `1984`\n\nExample: `getBooks()[0].title` returns `\"1984\"`",
-      "starterCode": "function getBooks() {\n  // Return an array containing 3 book objects\n  // Each book has: title, author, year\n  //\n  // Book 1: \"1984\", \"George Orwell\", 1949\n  // Book 2: \"Dune\", \"Frank Herbert\", 1965\n  // Book 3: \"Neuromancer\", \"William Gibson\", 1984\n  //\n  // Step 1: Start with return [\n  // Step 2: Add each book as { title: \"...\", author: \"...\", year: ... }\n  // Step 3: Separate books with commas\n  // Step 4: Close with ]\n\n}",
-      "solution": "function getBooks() {\n  return [\n    { title: \"1984\", author: \"George Orwell\", year: 1949 },\n    { title: \"Dune\", author: \"Frank Herbert\", year: 1965 },\n    { title: \"Neuromancer\", author: \"William Gibson\", year: 1984 }\n  ];\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getBooks;')();\n  const r = fn();\n  return [\n    { pass: Array.isArray(r) && r.length === 3, description: 'Returns an array with 3 items', got: Array.isArray(r) ? 'Array(' + r.length + ')' : typeof r },\n    { pass: r && r[0] && r[0].title === '1984', description: 'First book title is \"1984\"', got: r && r[0] ? r[0].title : 'undefined' },\n    { pass: r && r[1] && r[1].author === 'Frank Herbert', description: 'Second book author is \"Frank Herbert\"', got: r && r[1] ? r[1].author : 'undefined' },\n    { pass: r && r[2] && r[2].year === 1984, description: 'Third book year is 1984', got: r && r[2] ? String(r[2].year) : 'undefined' }\n  ];\n}",
-      "hints": [
-        "An array of objects looks like `[ { key: value }, { key: value }, { key: value } ]`. Each object is separated by a comma inside the square brackets.",
-        "Return `[{ title: \"1984\", author: \"George Orwell\", year: 1949 }, { title: \"Dune\", ... }, { ... }]`."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: JavaScript Objects",
-          "url": "https://www.w3schools.com/js/js_objects.asp",
-          "description": "Introduction to objects"
-        },
-        {
-          "label": "MDN: Array",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
-          "description": "JavaScript arrays"
-        }
-      ]
-    },
-    {
-      "id": 947,
-      "title": "Nested Object",
-      "type": "js",
-      "tier": 1,
-      "category": [
-        "data-structures",
-        "objects"
-      ],
-      "tags": [
-        "objects",
-        "nested",
-        "literals",
-        "beginner"
-      ],
-      "description": "Create an object that contains another object as a property.",
-      "instructions": "An object property can hold any value — including another object. This is called nesting.\n\nWrite a function called `createStudent` that returns an object with:\n- `name`: `\"Maria\"`\n- `grade`: `10`\n- `address`: an object with:\n  - `city`: `\"Tacoma\"`\n  - `state`: `\"WA\"`\n  - `zip`: `\"98402\"`\n\nExample: `createStudent().address.city` returns `\"Tacoma\"`",
-      "starterCode": "function createStudent() {\n  // Return an object with name, grade, and a nested address object\n  //\n  // Step 1: Start with return {\n  // Step 2: Add name and grade properties\n  // Step 3: Add address as an object with city, state, zip\n  // Step 4: Close with }\n\n}",
-      "solution": "function createStudent() {\n  return {\n    name: \"Maria\",\n    grade: 10,\n    address: {\n      city: \"Tacoma\",\n      state: \"WA\",\n      zip: \"98402\"\n    }\n  };\n}",
-      "testRunner": "(code) => {\n  const fn = new Function(code + '; return createStudent;')();\n  const r = fn();\n  return [\n    { pass: r && r.name === 'Maria', description: 'name is \"Maria\"', got: r ? r.name : 'undefined' },\n    { pass: r && r.grade === 10, description: 'grade is 10', got: r ? String(r.grade) : 'undefined' },\n    { pass: r && r.address && r.address.city === 'Tacoma', description: 'address.city is \"Tacoma\"', got: r && r.address ? r.address.city : 'undefined' },\n    { pass: r && r.address && r.address.state === 'WA', description: 'address.state is \"WA\"', got: r && r.address ? r.address.state : 'undefined' },\n    { pass: r && r.address && r.address.zip === '98402', description: 'address.zip is \"98402\"', got: r && r.address ? r.address.zip : 'undefined' }\n  ];\n}",
-      "hints": [
-        "A nested object is just an object inside another object. The inner object uses the same `{ key: value }` syntax as a regular object.",
-        "Set `address` to `{ city: \"Tacoma\", state: \"WA\", zip: \"98402\" }` inside the main object."
-      ],
-      "resources": [
-        {
-          "label": "W3Schools: JavaScript Objects",
-          "url": "https://www.w3schools.com/js/js_objects.asp",
-          "description": "Introduction to objects"
-        },
-        {
-          "label": "MDN: Working with objects",
-          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
-          "description": "Guide to JavaScript objects"
-        }
-      ]
-    },
-    {
       "id": 948,
       "title": "Declare a String",
       "type": "js",
@@ -17766,6 +15951,677 @@
           "label": "MDN: Closures",
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures",
           "description": "Closures reference"
+        }
+      ]
+    },
+    {
+      "id": 1239,
+      "title": "Arrow Functions: Basics",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "arrow-functions",
+        "es6",
+        "functions",
+        "syntax"
+      ],
+      "description": "Write a higher-order function using arrow function syntax that applies a callback to each element of an array.",
+      "instructions": "Arrow functions are a shorter way to write functions. Instead of the `function` keyword, you use `=>`.\n\nFull body: `const fn = (x) => { return x * 2; };`\nConcise body (implicit return): `const fn = (x) => x * 2;`\nSingle parameter (no parens needed): `const fn = x => x * 2;`\n\nThroughout T3 you have been writing `function()` callbacks. Now you will learn the modern equivalent.\n\nWrite a function using arrow syntax that takes an array and a callback, applies the callback to each element, and returns a new array (see `@param`/`@returns` in the starter code).\n\nExample: `transformAll([1, 2, 3], x => x * 2)` returns `[2, 4, 6]`\nExample: `transformAll([\"a\", \"b\"], s => s + \"!\")` returns `[\"a!\", \"b!\"]`\nExample: `transformAll([], x => x)` returns `[]`",
+      "starterCode": "/**\n * Apply a callback to each element using arrow function syntax.\n *\n * @param {Array} arr - The input array\n * @param {Function} callback - Arrow function to apply to each element\n * @returns {Array} New array with callback applied to each element\n */\nconst transformAll = (arr, callback) => {\n\n};\n",
+      "solution": "const transformAll = (arr, callback) => {\n  const result = [];\n  for (let i = 0; i < arr.length; i++) {\n    result.push(callback(arr[i], i, arr));\n  }\n  return result;\n};",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return transformAll;')();\n  const r1 = fn([1, 2, 3], x => x * 2);\n  const r2 = fn([], x => x);\n  const r3 = fn(['a', 'b'], s => s + '!');\n  const r4 = fn([true, false], b => !b);\n  const r5 = fn([1, 2, 3], (n, i) => n + i);\n  const r6 = fn([10], n => n * n);\n  const r7 = fn([0, 0, 0], () => 1);\n  const input = [1, 2, 3];\n  const r8 = fn(input, n => n);\n  const r9 = fn([5, 10, 15], n => n > 8);\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify([2, 4, 6]), description: '[1,2,3] doubled → [2,4,6]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify([]), description: 'Empty array → []', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify(['a!', 'b!']), description: 'String transform: [\"a!\",\"b!\"]', got: JSON.stringify(r3) },\n    { pass: JSON.stringify(r4) === JSON.stringify([false, true]), description: 'Boolean negation: [false,true]', got: JSON.stringify(r4) },\n    { pass: JSON.stringify(r5) === JSON.stringify([1, 3, 5]), description: 'Callback receives index: [1+0, 2+1, 3+2]', got: JSON.stringify(r5) },\n    { pass: JSON.stringify(r6) === JSON.stringify([100]), description: 'Single element: [10] → [100]', got: JSON.stringify(r6) },\n    { pass: JSON.stringify(r7) === JSON.stringify([1, 1, 1]), description: 'Constant callback: [1,1,1]', got: JSON.stringify(r7) },\n    { pass: JSON.stringify(input) === JSON.stringify([1, 2, 3]), description: 'Does not mutate the original array', got: JSON.stringify(input) },\n    { pass: JSON.stringify(r9) === JSON.stringify([false, true, true]), description: 'Callback returns booleans: [false,true,true]', got: JSON.stringify(r9) },\n    { pass: code.includes('=>'), description: 'Uses arrow function syntax', got: code.includes('=>') ? 'Yes' : 'No' }\n  ];\n}",
+      "hints": [
+        "An arrow function uses `const name = (params) => { body };` instead of `function name(params) { body }`. Build a result array with a loop, pushing each callback result.",
+        "Use `const transformAll = (arr, callback) => { const result = []; for (let i = 0; i < arr.length; i++) { result.push(callback(arr[i])); } return result; };`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arrow function expressions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+          "description": "Arrow functions reference"
+        }
+      ]
+    },
+    {
+      "id": 1240,
+      "title": "Arrow Functions: Concise Body",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "arrow-functions",
+        "es6",
+        "concise-body",
+        "implicit-return"
+      ],
+      "description": "Use arrow functions with concise body (implicit return) to filter even numbers from an array.",
+      "starterCode": "/**\n * @param {number[]} nums - Array of numbers\n * @returns {number[]} Only the even numbers\n */\nconst getEvens = (nums) => {\n\n};\n",
+      "solution": "const getEvens = (nums) => nums.filter(n => n % 2 === 0);",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getEvens;')();\n  const r1 = fn([1, 2, 3, 4, 5, 6]);\n  const r2 = fn([]);\n  const r3 = fn([1, 3, 5]);\n  const r4 = fn([2, 4, 6]);\n  const r5 = fn([0, 1, 2]);\n  const r6 = fn([-2, -1, 0, 1, 2]);\n  const r7 = fn([7]);\n  const r8 = fn([100]);\n  const input = [1, 2, 3];\n  const r9 = fn(input);\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify([2, 4, 6]), description: '[1,2,3,4,5,6] → [2,4,6]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify([]), description: '[] → []', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify([]), description: 'All odd → []', got: JSON.stringify(r3) },\n    { pass: JSON.stringify(r4) === JSON.stringify([2, 4, 6]), description: 'All even → [2,4,6]', got: JSON.stringify(r4) },\n    { pass: JSON.stringify(r5) === JSON.stringify([0, 2]), description: 'Zero is even: [0,2]', got: JSON.stringify(r5) },\n    { pass: JSON.stringify(r6) === JSON.stringify([-2, 0, 2]), description: 'Negative evens: [-2,0,2]', got: JSON.stringify(r6) },\n    { pass: JSON.stringify(r7) === JSON.stringify([]), description: 'Single odd → []', got: JSON.stringify(r7) },\n    { pass: JSON.stringify(r8) === JSON.stringify([100]), description: 'Single even: [100]', got: JSON.stringify(r8) },\n    { pass: JSON.stringify(input) === JSON.stringify([1, 2, 3]), description: 'Does not mutate the original array', got: JSON.stringify(input) }\n  ];\n}",
+      "hints": [
+        "When an arrow function has a single expression, you can omit the curly braces and `return` keyword. The expression result is returned implicitly: `n => n % 2 === 0`.",
+        "Use `.filter()` with a concise arrow callback: `nums.filter(n => n % 2 === 0)`. Since this is one expression, you can write the entire function body as a single return."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arrow function expressions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+          "description": "Arrow functions reference"
+        }
+      ]
+    },
+    {
+      "id": 1241,
+      "title": "Arrow Functions: With Callbacks",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "arrow-functions",
+        "es6",
+        "callbacks",
+        "chaining"
+      ],
+      "description": "Use arrow functions as callbacks to filter positive numbers and sum them in a single chained expression.",
+      "starterCode": "/**\n * @param {number[]} nums - Array of numbers\n * @returns {number} Sum of all positive numbers (> 0)\n */\nconst sumPositives = (nums) => {\n\n};\n",
+      "solution": "const sumPositives = (nums) => nums.filter(n => n > 0).reduce((acc, n) => acc + n, 0);",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return sumPositives;')();\n  const r1 = fn([1, -2, 3, -4, 5]);\n  const r2 = fn([]);\n  const r3 = fn([-1, -2, -3]);\n  const r4 = fn([10, 20, 30]);\n  const r5 = fn([0, 1, 2]);\n  const r6 = fn([5]);\n  const r7 = fn([-5]);\n  const r8 = fn([0]);\n  const r9 = fn([1, -1, 2, -2, 3, -3]);\n  return [\n    { pass: r1 === 9, description: '[1,-2,3,-4,5] → 1+3+5 = 9', got: String(r1) },\n    { pass: r2 === 0, description: '[] → 0', got: String(r2) },\n    { pass: r3 === 0, description: 'All negative → 0', got: String(r3) },\n    { pass: r4 === 60, description: 'All positive: 10+20+30 = 60', got: String(r4) },\n    { pass: r5 === 3, description: 'Zero excluded: 1+2 = 3', got: String(r5) },\n    { pass: r6 === 5, description: 'Single positive: 5', got: String(r6) },\n    { pass: r7 === 0, description: 'Single negative → 0', got: String(r7) },\n    { pass: r8 === 0, description: 'Single zero → 0', got: String(r8) },\n    { pass: r9 === 6, description: '[1,-1,2,-2,3,-3] → 1+2+3 = 6', got: String(r9) }\n  ];\n}",
+      "hints": [
+        "Chain `.filter()` and `.reduce()` with arrow callbacks. Filter keeps numbers greater than 0, then reduce sums them with an initial value of 0.",
+        "Use `nums.filter(n => n > 0).reduce((acc, n) => acc + n, 0)`. Each callback is a concise arrow function with implicit return."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arrow function expressions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+          "description": "Arrow functions reference"
+        }
+      ]
+    },
+    {
+      "id": 1242,
+      "title": "Arrow Functions: ES5 to ES6",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "arrow-functions",
+        "es6",
+        "conversion",
+        "refactor"
+      ],
+      "description": "Rewrite four ES5-style utility functions as arrow functions with concise syntax.",
+      "starterCode": "/**\n * Rewrite each function below using arrow function syntax.\n * Use concise body (implicit return) where possible.\n *\n * Original ES5 versions:\n *   function double(n) { return n * 2; }\n *   function isEven(n) { return n % 2 === 0; }\n *   function toUpper(s) { return s.toUpperCase(); }\n *   function greet(name) { return \"Hello, \" + name + \"!\"; }\n */\n\n// Rewrite as arrow functions:\nconst double = null;\nconst isEven = null;\nconst toUpper = null;\nconst greet = null;\n",
+      "solution": "const double = n => n * 2;\nconst isEven = n => n % 2 === 0;\nconst toUpper = s => s.toUpperCase();\nconst greet = name => \"Hello, \" + name + \"!\";",
+      "testRunner": "(code) => {\n  const fns = new Function(code + '; return { double, isEven, toUpper, greet };')();\n  const r1 = fns.double(5);\n  const r2 = fns.double(0);\n  const r3 = fns.isEven(4);\n  const r4 = fns.isEven(3);\n  const r5 = fns.toUpper('hello');\n  const r6 = fns.toUpper('World');\n  const r7 = fns.greet('Alice');\n  const r8 = fns.greet('Bob');\n  const r9 = fns.double(-3);\n  return [\n    { pass: r1 === 10, description: 'double(5) → 10', got: String(r1) },\n    { pass: r2 === 0, description: 'double(0) → 0', got: String(r2) },\n    { pass: r3 === true, description: 'isEven(4) → true', got: String(r3) },\n    { pass: r4 === false, description: 'isEven(3) → false', got: String(r4) },\n    { pass: r5 === 'HELLO', description: 'toUpper(\"hello\") → \"HELLO\"', got: r5 },\n    { pass: r6 === 'WORLD', description: 'toUpper(\"World\") → \"WORLD\"', got: r6 },\n    { pass: r7 === 'Hello, Alice!', description: 'greet(\"Alice\") → \"Hello, Alice!\"', got: r7 },\n    { pass: r8 === 'Hello, Bob!', description: 'greet(\"Bob\") → \"Hello, Bob!\"', got: r8 },\n    { pass: r9 === -6, description: 'double(-3) → -6', got: String(r9) },\n    { pass: code.includes('=>'), description: 'Uses arrow function syntax', got: code.includes('=>') ? 'Yes' : 'No' }\n  ];\n}",
+      "hints": [
+        "Each function takes one parameter and returns one expression — perfect for concise arrow syntax. For a single parameter, parentheses are optional: `n => n * 2`.",
+        "Replace `function name(param) { return expr; }` with `const name = param => expr;`. For example: `const double = n => n * 2;`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arrow function expressions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+          "description": "Arrow functions reference"
+        }
+      ]
+    },
+    {
+      "id": 1243,
+      "title": "Arrow Functions: Lexical This",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "arrow-functions",
+        "es6",
+        "this",
+        "lexical-scope"
+      ],
+      "description": "Create a counter object where methods use arrow functions to correctly reference the object via lexical this.",
+      "starterCode": "/**\n * Create an object with a values array and an addMultiple method.\n * addMultiple takes an array of numbers and pushes each one\n * added to a base value into the values array.\n *\n * Arrow functions inherit `this` from the enclosing scope,\n * while function() creates its own `this`.\n *\n * @param {number} base - Value to add to each number\n * @returns {{ values: number[], addMultiple: Function }}\n *   addMultiple(nums) - for each n in nums, pushes (base + n) into values\n */\nconst createAdder = (base) => {\n\n};\n",
+      "solution": "const createAdder = (base) => {\n  const obj = {\n    values: [],\n    addMultiple: function(nums) {\n      nums.forEach(n => {\n        this.values.push(base + n);\n      });\n    }\n  };\n  return obj;\n};",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return createAdder;')();\n  const a1 = fn(10);\n  a1.addMultiple([1, 2, 3]);\n  const r1 = JSON.stringify(a1.values);\n  const a2 = fn(0);\n  a2.addMultiple([5, 10]);\n  const r2 = JSON.stringify(a2.values);\n  const a3 = fn(100);\n  a3.addMultiple([]);\n  const r3 = JSON.stringify(a3.values);\n  const a4 = fn(-5);\n  a4.addMultiple([5, 10, 15]);\n  const r4 = JSON.stringify(a4.values);\n  a1.addMultiple([4]);\n  const r5 = JSON.stringify(a1.values);\n  const a5 = fn(1);\n  a5.addMultiple([0]);\n  const r6 = JSON.stringify(a5.values);\n  const a6 = fn(0);\n  a6.addMultiple([1, -1]);\n  const r7 = JSON.stringify(a6.values);\n  const a7 = fn(50);\n  a7.addMultiple([50]);\n  const r8 = JSON.stringify(a7.values);\n  const a8 = fn(0);\n  a8.addMultiple([0, 0, 0]);\n  const r9 = JSON.stringify(a8.values);\n  return [\n    { pass: r1 === JSON.stringify([11, 12, 13]), description: 'base 10 + [1,2,3] → [11,12,13]', got: r1 },\n    { pass: r2 === JSON.stringify([5, 10]), description: 'base 0 + [5,10] → [5,10]', got: r2 },\n    { pass: r3 === JSON.stringify([]), description: 'Empty nums → []', got: r3 },\n    { pass: r4 === JSON.stringify([0, 5, 10]), description: 'base -5 + [5,10,15] → [0,5,10]', got: r4 },\n    { pass: r5 === JSON.stringify([11, 12, 13, 14]), description: 'Calling addMultiple again appends: [11,12,13,14]', got: r5 },\n    { pass: r6 === JSON.stringify([1]), description: 'base 1 + [0] → [1]', got: r6 },\n    { pass: r7 === JSON.stringify([1, -1]), description: 'base 0 + [1,-1] → [1,-1]', got: r7 },\n    { pass: r8 === JSON.stringify([100]), description: 'base 50 + [50] → [100]', got: r8 },\n    { pass: r9 === JSON.stringify([0, 0, 0]), description: 'base 0 + [0,0,0] → [0,0,0]', got: r9 }\n  ];\n}",
+      "hints": [
+        "Inside a `.forEach()` callback, a regular `function()` creates its own `this`, which will not point to the object. An arrow function `=>` inherits `this` from the enclosing method, where `this` is the object.",
+        "Define `addMultiple` as a regular method (`function(nums) { ... }`) so it gets the correct `this`. Inside it, use an arrow callback with `.forEach(n => { this.values.push(base + n); })` — the arrow inherits `this` from the method."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arrow function expressions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+          "description": "Arrow functions reference"
+        }
+      ]
+    },
+    {
+      "id": 1244,
+      "title": "Template Literals: Advanced",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "template-literals",
+        "es6",
+        "strings",
+        "formatting"
+      ],
+      "description": "Use template literals with expressions to format an array of objects into a text table.",
+      "instructions": "You already know basic template literal interpolation from T1 (backticks and `${}`). At T3, you will use template literals for complex formatting tasks.\n\nTemplate literals support expressions inside `${}` — not just variables but any JavaScript expression: `${score >= 60 ? \"PASS\" : \"FAIL\"}`, `${items.length}`, `${name.toUpperCase()}`.\n\nWrite a function that takes an array of `{name, score}` objects and returns a formatted string with one line per entry: `\"name: score\"`, joined by newlines (see `@param`/`@returns` in the starter code).\n\nExample: `formatTable([{name: \"Alice\", score: 95}])` returns `\"Alice: 95\"`\nExample: `formatTable([{name: \"A\", score: 1}, {name: \"B\", score: 2}])` returns `\"A: 1\\nB: 2\"`\nExample: `formatTable([])` returns `\"\"`",
+      "starterCode": "/**\n * Format an array of {name, score} objects into a text table.\n * Each line should be \"name: score\", joined by newlines.\n *\n * @param {Object[]} entries - Array of {name: string, score: number}\n * @returns {string} Formatted text with one entry per line\n */\nconst formatTable = (entries) => {\n\n};\n",
+      "solution": "const formatTable = (entries) => entries.map(e => `${e.name}: ${e.score}`).join('\\n');",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return formatTable;')();\n  const r1 = fn([{name: 'Alice', score: 95}]);\n  const r2 = fn([{name: 'A', score: 1}, {name: 'B', score: 2}]);\n  const r3 = fn([]);\n  const r4 = fn([{name: 'X', score: 0}]);\n  const r5 = fn([{name: 'A', score: 10}, {name: 'B', score: 20}, {name: 'C', score: 30}]);\n  const r6 = fn([{name: 'Long Name', score: 100}]);\n  const r7 = fn([{name: 'A', score: -5}]);\n  const r8 = fn([{name: '', score: 0}]);\n  const r9 = fn([{name: 'Z', score: 99}, {name: 'A', score: 1}]);\n  return [\n    { pass: r1 === 'Alice: 95', description: 'Single entry: \"Alice: 95\"', got: r1 },\n    { pass: r2 === 'A: 1\\nB: 2', description: 'Two entries joined by newline', got: JSON.stringify(r2) },\n    { pass: r3 === '', description: 'Empty array → \"\"', got: JSON.stringify(r3) },\n    { pass: r4 === 'X: 0', description: 'Zero score: \"X: 0\"', got: r4 },\n    { pass: r5 === 'A: 10\\nB: 20\\nC: 30', description: 'Three entries on three lines', got: JSON.stringify(r5) },\n    { pass: r6 === 'Long Name: 100', description: 'Name with space: \"Long Name: 100\"', got: r6 },\n    { pass: r7 === 'A: -5', description: 'Negative score: \"A: -5\"', got: r7 },\n    { pass: r8 === ': 0', description: 'Empty name: \": 0\"', got: JSON.stringify(r8) },\n    { pass: r9 === 'Z: 99\\nA: 1', description: 'Order preserved: Z first, A second', got: JSON.stringify(r9) }\n  ];\n}",
+      "hints": [
+        "Use `.map()` to transform each object into a formatted string using a template literal: `` `${e.name}: ${e.score}` ``. Then `.join(\"\\n\")` to combine lines.",
+        "The full solution is a single expression: `entries.map(e => \\`${e.name}: ${e.score}\\`).join(\"\\n\")`. Template literals handle the interpolation, `.join()` handles the newlines."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literals reference"
+        }
+      ]
+    },
+    {
+      "id": 1245,
+      "title": "Template Literals: Tagged Templates",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "template-literals",
+        "es6",
+        "tagged-templates",
+        "strings"
+      ],
+      "description": "Write a tagged template function that wraps each interpolated value in square brackets.",
+      "starterCode": "/**\n * A tagged template function that wraps interpolated values in [ ].\n * Called as: highlight`Hello ${name}, you scored ${score}`\n * Returns: \"Hello [Alice], you scored [95]\"\n *\n * @param {string[]} strings - The static string parts\n * @param {...*} values - The interpolated values\n * @returns {string} Combined string with values wrapped in brackets\n */\nconst highlight = (strings, ...values) => {\n\n};\n",
+      "solution": "const highlight = (strings, ...values) => {\n  let result = '';\n  strings.forEach((str, i) => {\n    result += str;\n    if (i < values.length) {\n      result += '[' + values[i] + ']';\n    }\n  });\n  return result;\n};",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return highlight;')();\n  const r1 = fn(['Hello ', ', you scored ', ''], 'Alice', 95);\n  const r2 = fn(['Value: ', ''], 42);\n  const r3 = fn(['No interpolation'], );\n  const r4 = fn(['', ' and ', ''], 'A', 'B');\n  const r5 = fn(['Start ', ' middle ', ' end'], 1, 2);\n  const r6 = fn(['', ''], 'only');\n  const r7 = fn(['a', 'b', 'c'], 1, 2);\n  const r8 = fn(['Hello ', '!'], 'World');\n  const r9 = fn(['', ' + ', ' = ', ''], 1, 2, 3);\n  return [\n    { pass: r1 === 'Hello [Alice], you scored [95]', description: 'Two values: \"Hello [Alice], you scored [95]\"', got: r1 },\n    { pass: r2 === 'Value: [42]', description: 'Single value: \"Value: [42]\"', got: r2 },\n    { pass: r3 === 'No interpolation', description: 'No values: \"No interpolation\"', got: r3 },\n    { pass: r4 === '[A] and [B]', description: 'Values at edges: \"[A] and [B]\"', got: r4 },\n    { pass: r5 === 'Start [1] middle [2] end', description: 'Two values in middle', got: r5 },\n    { pass: r6 === '[only]', description: 'Value with empty strings around it: \"[only]\"', got: r6 },\n    { pass: r7 === 'a[1]b[2]c', description: 'Interleaved: \"a[1]b[2]c\"', got: r7 },\n    { pass: r8 === 'Hello [World]!', description: '\"Hello [World]!\"', got: r8 },\n    { pass: r9 === '[1] + [2] = [3]', description: 'Three values: \"[1] + [2] = [3]\"', got: r9 }\n  ];\n}",
+      "hints": [
+        "A tagged template receives an array of string parts and the interpolated values as separate arguments. Loop through the strings, and after each one (except the last), insert the corresponding value wrapped in brackets.",
+        "Use `.forEach((str, i) => { result += str; if (i < values.length) result += \"[\" + values[i] + \"]\"; })`. The strings array always has one more element than the values array."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literals reference"
+        }
+      ]
+    },
+    {
+      "id": 1246,
+      "title": "Template Literals: Builder",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "template-literals",
+        "es6",
+        "html",
+        "string-building"
+      ],
+      "description": "Use template literals to build an HTML string from an array of tag/content objects.",
+      "starterCode": "/**\n * @param {Object[]} elements - Array of {tag: string, content: string}\n * @returns {string} HTML string with each element wrapped in its tag\n */\nconst buildHTML = (elements) => {\n\n};\n",
+      "solution": "const buildHTML = (elements) => elements.map(el => `<${el.tag}>${el.content}</${el.tag}>`).join('\\n');",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return buildHTML;')();\n  const r1 = fn([{tag: 'p', content: 'Hello'}]);\n  const r2 = fn([{tag: 'h1', content: 'Title'}, {tag: 'p', content: 'Body'}]);\n  const r3 = fn([]);\n  const r4 = fn([{tag: 'div', content: ''}]);\n  const r5 = fn([{tag: 'span', content: 'A'}, {tag: 'span', content: 'B'}, {tag: 'span', content: 'C'}]);\n  const r6 = fn([{tag: 'li', content: 'Item 1'}, {tag: 'li', content: 'Item 2'}]);\n  const r7 = fn([{tag: 'strong', content: 'Bold'}]);\n  const r8 = fn([{tag: 'a', content: 'Click'}]);\n  const r9 = fn([{tag: 'h2', content: 'Sub'}, {tag: 'p', content: 'Text'}, {tag: 'p', content: 'More'}]);\n  return [\n    { pass: r1 === '<p>Hello</p>', description: 'Single p tag: \"<p>Hello</p>\"', got: r1 },\n    { pass: r2 === '<h1>Title</h1>\\n<p>Body</p>', description: 'h1 + p joined by newline', got: JSON.stringify(r2) },\n    { pass: r3 === '', description: 'Empty array → \"\"', got: JSON.stringify(r3) },\n    { pass: r4 === '<div></div>', description: 'Empty content: \"<div></div>\"', got: r4 },\n    { pass: r5 === '<span>A</span>\\n<span>B</span>\\n<span>C</span>', description: 'Three spans', got: JSON.stringify(r5) },\n    { pass: r6 === '<li>Item 1</li>\\n<li>Item 2</li>', description: 'Two list items', got: JSON.stringify(r6) },\n    { pass: r7 === '<strong>Bold</strong>', description: 'Strong tag', got: r7 },\n    { pass: r8 === '<a>Click</a>', description: 'Anchor tag', got: r8 },\n    { pass: r9 === '<h2>Sub</h2>\\n<p>Text</p>\\n<p>More</p>', description: 'Three mixed tags', got: JSON.stringify(r9) }\n  ];\n}",
+      "hints": [
+        "Use `.map()` with a template literal to wrap each element: `` `<${el.tag}>${el.content}</${el.tag}>` ``. Join the results with newlines.",
+        "The full expression is: ``elements.map(el => `<${el.tag}>${el.content}</${el.tag}>`).join(\"\\n\")``."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literals reference"
+        }
+      ]
+    },
+    {
+      "id": 1247,
+      "title": "Destructuring: Function Parameters",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "destructuring",
+        "es6",
+        "parameters",
+        "objects"
+      ],
+      "description": "Destructure an object directly in the function parameter list with default values.",
+      "instructions": "Destructuring lets you unpack values from objects or arrays directly into variables. At T3, the most common pattern is destructuring in function parameters.\n\nInstead of: `const formatUser = (user) => { return user.name + \", \" + user.age; };`\nYou write: `const formatUser = ({name, age}) => { return name + \", \" + age; };`\n\nYou can also set defaults for missing properties: `({name, age = 0, city = \"Unknown\"})`.\n\nWrite a function that destructures a user object in the parameter list and returns a formatted string (see `@param`/`@returns` in the starter code).\n\nExample: `formatUser({name: \"Alice\", age: 30, city: \"Seattle\"})` returns `\"Alice (30) - Seattle\"`\nExample: `formatUser({name: \"Bob\"})` returns `\"Bob (0) - Unknown\"`",
+      "starterCode": "/**\n * Format a user object into a string.\n * Destructure {name, age, city} in the parameter with defaults:\n *   age defaults to 0, city defaults to \"Unknown\"\n *\n * @param {Object} user - {name: string, age?: number, city?: string}\n * @returns {string} \"name (age) - city\"\n */\nconst formatUser = () => {\n\n};\n",
+      "solution": "const formatUser = ({name, age = 0, city = \"Unknown\"}) => `${name} (${age}) - ${city}`;",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return formatUser;')();\n  const r1 = fn({name: 'Alice', age: 30, city: 'Seattle'});\n  const r2 = fn({name: 'Bob'});\n  const r3 = fn({name: 'Charlie', age: 25});\n  const r4 = fn({name: 'Diana', city: 'Portland'});\n  const r5 = fn({name: 'Eve', age: 0, city: ''});\n  const r6 = fn({name: 'A', age: 100, city: 'B'});\n  const r7 = fn({name: 'Test', age: 1, city: 'C'});\n  const r8 = fn({name: '', age: 5, city: 'D'});\n  const r9 = fn({name: 'X'});\n  return [\n    { pass: r1 === 'Alice (30) - Seattle', description: 'All fields: \"Alice (30) - Seattle\"', got: r1 },\n    { pass: r2 === 'Bob (0) - Unknown', description: 'Defaults: \"Bob (0) - Unknown\"', got: r2 },\n    { pass: r3 === 'Charlie (25) - Unknown', description: 'Missing city: \"Charlie (25) - Unknown\"', got: r3 },\n    { pass: r4 === 'Diana (0) - Portland', description: 'Missing age: \"Diana (0) - Portland\"', got: r4 },\n    { pass: r5 === 'Eve (0) - ', description: 'Empty string city (not missing): \"Eve (0) - \"', got: r5 },\n    { pass: r6 === 'A (100) - B', description: 'Short names: \"A (100) - B\"', got: r6 },\n    { pass: r7 === 'Test (1) - C', description: '\"Test (1) - C\"', got: r7 },\n    { pass: r8 === ' (5) - D', description: 'Empty name: \" (5) - D\"', got: r8 },\n    { pass: r9 === 'X (0) - Unknown', description: 'Only name provided: \"X (0) - Unknown\"', got: r9 }\n  ];\n}",
+      "hints": [
+        "Put the destructuring pattern directly in the parameter list: `({name, age = 0, city = \"Unknown\"})`. Default values apply when the property is `undefined`, not when it is an empty string.",
+        "The full solution is: `const formatUser = ({name, age = 0, city = \"Unknown\"}) => \\`${name} (${age}) - ${city}\\``. Combine destructured defaults with a template literal."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+          "description": "Destructuring reference"
+        }
+      ]
+    },
+    {
+      "id": 1248,
+      "title": "Destructuring: Nested Objects",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "destructuring",
+        "es6",
+        "nested",
+        "objects"
+      ],
+      "description": "Destructure nested objects to extract deeply nested values in a function parameter.",
+      "starterCode": "/**\n * @param {Object} user - {name: string, address: {city: string, zip: string}}\n * @returns {string} \"name lives in city (zip)\"\n */\nconst formatAddress = ({name, address: {city, zip}}) => {\n\n};\n",
+      "solution": "const formatAddress = ({name, address: {city, zip}}) => `${name} lives in ${city} (${zip})`;",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return formatAddress;')();\n  const r1 = fn({name: 'Alice', address: {city: 'Seattle', zip: '98101'}});\n  const r2 = fn({name: 'Bob', address: {city: 'Portland', zip: '97201'}});\n  const r3 = fn({name: 'C', address: {city: 'D', zip: '00000'}});\n  const r4 = fn({name: 'Eve', address: {city: 'NYC', zip: '10001'}});\n  const r5 = fn({name: 'Test', address: {city: '', zip: ''}});\n  const r6 = fn({name: 'Long Name', address: {city: 'San Francisco', zip: '94102'}});\n  const r7 = fn({name: 'A', address: {city: 'B', zip: '12345'}});\n  const r8 = fn({name: 'X', address: {city: 'Y', zip: '99999'}});\n  const r9 = fn({name: 'Z', address: {city: 'W', zip: '55555'}});\n  return [\n    { pass: r1 === 'Alice lives in Seattle (98101)', description: '\"Alice lives in Seattle (98101)\"', got: r1 },\n    { pass: r2 === 'Bob lives in Portland (97201)', description: '\"Bob lives in Portland (97201)\"', got: r2 },\n    { pass: r3 === 'C lives in D (00000)', description: 'Short values', got: r3 },\n    { pass: r4 === 'Eve lives in NYC (10001)', description: '\"Eve lives in NYC (10001)\"', got: r4 },\n    { pass: r5 === 'Test lives in  ()', description: 'Empty strings preserved', got: r5 },\n    { pass: r6 === 'Long Name lives in San Francisco (94102)', description: 'Multi-word values', got: r6 },\n    { pass: r7 === 'A lives in B (12345)', description: 'Single char values', got: r7 },\n    { pass: r8 === 'X lives in Y (99999)', description: '\"X lives in Y (99999)\"', got: r8 },\n    { pass: r9 === 'Z lives in W (55555)', description: '\"Z lives in W (55555)\"', got: r9 }\n  ];\n}",
+      "hints": [
+        "Nested destructuring follows the object shape: `{name, address: {city, zip}}` pulls `city` and `zip` from the nested `address` object. The `address` variable itself is not created.",
+        "The destructuring pattern mirrors the object structure. Use: `({name, address: {city, zip}}) => \\`${name} lives in ${city} (${zip})\\``."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+          "description": "Destructuring reference"
+        }
+      ]
+    },
+    {
+      "id": 1249,
+      "title": "Destructuring: Array Swap and Rest",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "destructuring",
+        "es6",
+        "arrays",
+        "rest"
+      ],
+      "description": "Use array destructuring with rest syntax to split an array into its first element and the remaining elements.",
+      "starterCode": "/**\n * @param {Array} arr - An array with at least one element\n * @returns {{ head: *, tail: Array }} The first element and the rest\n */\nconst headAndTail = (arr) => {\n\n};\n",
+      "solution": "const headAndTail = (arr) => {\n  const [head, ...tail] = arr;\n  return { head, tail };\n};",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return headAndTail;')();\n  const r1 = fn([1, 2, 3]);\n  const r2 = fn(['a']);\n  const r3 = fn([true, false, true]);\n  const r4 = fn([10, 20, 30, 40, 50]);\n  const r5 = fn(['x', 'y']);\n  const r6 = fn([0]);\n  const r7 = fn([null, 1, 2]);\n  const r8 = fn(['first', 'second', 'third']);\n  const input = [1, 2, 3];\n  const r9 = fn(input);\n  return [\n    { pass: r1.head === 1 && JSON.stringify(r1.tail) === JSON.stringify([2, 3]), description: '[1,2,3] → head:1, tail:[2,3]', got: JSON.stringify(r1) },\n    { pass: r2.head === 'a' && JSON.stringify(r2.tail) === JSON.stringify([]), description: '[\"a\"] → head:\"a\", tail:[]', got: JSON.stringify(r2) },\n    { pass: r3.head === true && r3.tail.length === 2, description: '[true,false,true] → head:true, tail has 2 elements', got: JSON.stringify(r3) },\n    { pass: r4.head === 10 && r4.tail.length === 4, description: '5-element array → head:10, tail has 4', got: JSON.stringify(r4) },\n    { pass: r5.head === 'x' && JSON.stringify(r5.tail) === JSON.stringify(['y']), description: '[\"x\",\"y\"] → head:\"x\", tail:[\"y\"]', got: JSON.stringify(r5) },\n    { pass: r6.head === 0 && JSON.stringify(r6.tail) === JSON.stringify([]), description: '[0] → head:0, tail:[]', got: JSON.stringify(r6) },\n    { pass: r7.head === null && JSON.stringify(r7.tail) === JSON.stringify([1, 2]), description: '[null,1,2] → head:null, tail:[1,2]', got: JSON.stringify(r7) },\n    { pass: r8.head === 'first' && r8.tail.length === 2, description: '3 strings → head:\"first\", tail has 2', got: JSON.stringify(r8) },\n    { pass: JSON.stringify(input) === JSON.stringify([1, 2, 3]), description: 'Does not mutate the original array', got: JSON.stringify(input) }\n  ];\n}",
+      "hints": [
+        "Array destructuring with rest: `const [head, ...tail] = arr;` assigns the first element to `head` and collects the rest into a new array `tail`.",
+        "Use `const [head, ...tail] = arr; return { head, tail };`. The `...tail` rest syntax creates a new array from all remaining elements. Shorthand property `{ head, tail }` works when variable names match key names."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+          "description": "Destructuring reference"
+        }
+      ]
+    },
+    {
+      "id": 1250,
+      "title": "Destructuring: Combined",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "destructuring",
+        "es6",
+        "defaults",
+        "renaming",
+        "combined"
+      ],
+      "description": "Destructure a config object with nested defaults, renaming, and rest collection.",
+      "starterCode": "/**\n * @param {Object} config - Configuration object\n *   config.host (string, default \"localhost\")\n *   config.port (number, default 3000)\n *   config.debug (boolean, default false)\n * @returns {{ host: string, port: number, debug: boolean, extra: Object }}\n *   extra contains all other properties not explicitly destructured\n */\nconst parseConfig = (config) => {\n\n};\n",
+      "solution": "const parseConfig = ({host = \"localhost\", port = 3000, debug = false, ...extra}) => ({\n  host,\n  port,\n  debug,\n  extra\n});",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return parseConfig;')();\n  const r1 = fn({host: 'example.com', port: 8080, debug: true});\n  const r2 = fn({});\n  const r3 = fn({host: 'test.io'});\n  const r4 = fn({port: 5000, verbose: true});\n  const r5 = fn({host: 'a', port: 1, debug: false, foo: 'bar', baz: 42});\n  const r6 = fn({debug: true});\n  const r7 = fn({host: '', port: 0, debug: false});\n  const r8 = fn({extra1: 'a', extra2: 'b'});\n  const r9 = fn({host: 'h', port: 9, debug: true, x: 1});\n  return [\n    { pass: r1.host === 'example.com' && r1.port === 8080 && r1.debug === true && JSON.stringify(r1.extra) === '{}', description: 'All provided, no extras', got: JSON.stringify(r1) },\n    { pass: r2.host === 'localhost' && r2.port === 3000 && r2.debug === false && JSON.stringify(r2.extra) === '{}', description: 'Empty → all defaults', got: JSON.stringify(r2) },\n    { pass: r3.host === 'test.io' && r3.port === 3000 && r3.debug === false, description: 'Only host provided, others default', got: JSON.stringify(r3) },\n    { pass: r4.port === 5000 && JSON.stringify(r4.extra) === JSON.stringify({verbose: true}), description: 'Extra property collected: {verbose: true}', got: JSON.stringify(r4) },\n    { pass: JSON.stringify(r5.extra) === JSON.stringify({foo: 'bar', baz: 42}), description: 'Multiple extras collected: {foo, baz}', got: JSON.stringify(r5) },\n    { pass: r6.host === 'localhost' && r6.port === 3000 && r6.debug === true, description: 'Only debug provided', got: JSON.stringify(r6) },\n    { pass: r7.host === '' && r7.port === 0 && r7.debug === false, description: 'Falsy values not replaced by defaults', got: JSON.stringify(r7) },\n    { pass: r8.host === 'localhost' && Object.keys(r8.extra).length === 2, description: 'All props are extra: defaults + 2 extras', got: JSON.stringify(r8) },\n    { pass: r9.host === 'h' && JSON.stringify(r9.extra) === JSON.stringify({x: 1}), description: 'One extra property: {x: 1}', got: JSON.stringify(r9) }\n  ];\n}",
+      "hints": [
+        "Combine defaults and rest in one destructuring: `({host = \"localhost\", port = 3000, debug = false, ...extra})`. The `...extra` collects all properties not explicitly named.",
+        "Return using shorthand properties: `({ host, port, debug, extra })`. Parentheses around the object literal are needed for concise arrow body: `=> ({ ... })`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+          "description": "Destructuring reference"
+        }
+      ]
+    },
+    {
+      "id": 1251,
+      "title": "Rest Parameters: Collect Arguments",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "rest",
+        "es6",
+        "parameters",
+        "variadic"
+      ],
+      "description": "Use rest parameters to write a function that sums any number of arguments.",
+      "instructions": "In Section 2, you used the `arguments` object and a `for` loop to collect variable arguments (in `composeAll` and `pipeAll`). Rest parameters are the modern replacement.\n\nWith rest: `const sum = (...nums) => { }` — `nums` is a real array containing all arguments.\nWith arguments: `function sum() { var nums = []; for (var i = 0; i < arguments.length; i++) nums.push(arguments[i]); }`\n\nRest parameters are cleaner, work with arrow functions, and give you a real array with all array methods available.\n\nWrite a function using rest parameters that sums any number of arguments (see `@param`/`@returns` in the starter code).\n\nExample: `sum(1, 2, 3)` returns `6`\nExample: `sum()` returns `0`\nExample: `sum(10)` returns `10`",
+      "starterCode": "/**\n * Sum any number of arguments using rest parameters.\n *\n * @param {...number} nums - Any number of numeric arguments\n * @returns {number} The sum of all arguments\n */\nconst sum = (...nums) => {\n\n};\n",
+      "solution": "const sum = (...nums) => nums.reduce((acc, n) => acc + n, 0);",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return sum;')();\n  const r1 = fn(1, 2, 3);\n  const r2 = fn();\n  const r3 = fn(10);\n  const r4 = fn(1, -1, 1, -1);\n  const r5 = fn(0, 0, 0);\n  const r6 = fn(100, 200, 300);\n  const r7 = fn(-5, -10);\n  const r8 = fn(1.5, 2.5);\n  const r9 = fn(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);\n  return [\n    { pass: r1 === 6, description: 'sum(1,2,3) → 6', got: String(r1) },\n    { pass: r2 === 0, description: 'sum() → 0', got: String(r2) },\n    { pass: r3 === 10, description: 'sum(10) → 10', got: String(r3) },\n    { pass: r4 === 0, description: 'sum(1,-1,1,-1) → 0', got: String(r4) },\n    { pass: r5 === 0, description: 'sum(0,0,0) → 0', got: String(r5) },\n    { pass: r6 === 600, description: 'sum(100,200,300) → 600', got: String(r6) },\n    { pass: r7 === -15, description: 'sum(-5,-10) → -15', got: String(r7) },\n    { pass: r8 === 4, description: 'sum(1.5,2.5) → 4', got: String(r8) },\n    { pass: r9 === 55, description: 'sum(1..10) → 55', got: String(r9) }\n  ];\n}",
+      "hints": [
+        "Rest parameters (`...nums`) collect all arguments into a real array. You can immediately use `.reduce()` on it since it is a proper array.",
+        "Use `nums.reduce((acc, n) => acc + n, 0)`. The rest parameter gives you a real array, so all array methods work directly — no need for the `arguments` workaround."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Spread syntax",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+          "description": "Spread syntax reference"
+        },
+        {
+          "label": "MDN: Rest parameters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters",
+          "description": "Rest parameters reference"
+        }
+      ]
+    },
+    {
+      "id": 1252,
+      "title": "Spread: Shallow Clone and Merge",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "spread",
+        "es6",
+        "objects",
+        "immutable"
+      ],
+      "description": "Use the spread operator to merge a defaults object with user config, where user values override defaults.",
+      "starterCode": "/**\n * @param {Object} defaults - Default configuration values\n * @param {Object} config - User-provided overrides\n * @returns {Object} Merged object where config values override defaults\n */\nconst mergeDefaults = (defaults, config) => {\n\n};\n",
+      "solution": "const mergeDefaults = (defaults, config) => ({ ...defaults, ...config });",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return mergeDefaults;')();\n  const r1 = fn({a: 1, b: 2}, {b: 3, c: 4});\n  const r2 = fn({}, {a: 1});\n  const r3 = fn({a: 1}, {});\n  const r4 = fn({}, {});\n  const r5 = fn({x: 10, y: 20}, {y: 99});\n  const r6 = fn({theme: 'light', lang: 'en'}, {theme: 'dark'});\n  const r7 = fn({a: 1, b: 2, c: 3}, {a: 10, c: 30});\n  const d = {x: 1};\n  const c = {y: 2};\n  const r8 = fn(d, c);\n  const r9 = fn({a: 'old'}, {a: 'new'});\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify({a: 1, b: 3, c: 4}), description: 'Config overrides b, adds c', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify({a: 1}), description: 'Empty defaults, config wins', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify({a: 1}), description: 'Empty config, defaults preserved', got: JSON.stringify(r3) },\n    { pass: JSON.stringify(r4) === JSON.stringify({}), description: 'Both empty → {}', got: JSON.stringify(r4) },\n    { pass: r5.x === 10 && r5.y === 99, description: 'y overridden: {x:10, y:99}', got: JSON.stringify(r5) },\n    { pass: r6.theme === 'dark' && r6.lang === 'en', description: 'theme overridden, lang default kept', got: JSON.stringify(r6) },\n    { pass: r7.a === 10 && r7.b === 2 && r7.c === 30, description: 'Multiple overrides, b stays default', got: JSON.stringify(r7) },\n    { pass: JSON.stringify(d) === JSON.stringify({x: 1}) && JSON.stringify(c) === JSON.stringify({y: 2}), description: 'Does not mutate original objects', got: JSON.stringify(d) + ' ' + JSON.stringify(c) },\n    { pass: r9.a === 'new', description: 'String value overridden: \"new\"', got: JSON.stringify(r9) }\n  ];\n}",
+      "hints": [
+        "Object spread creates a shallow copy with all properties. When two objects spread into the same literal, later properties override earlier ones: `{...defaults, ...config}`.",
+        "The entire function body is: `({ ...defaults, ...config })`. Wrap in parentheses for implicit arrow return. Properties from `config` overwrite matching properties from `defaults`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Spread syntax",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+          "description": "Spread syntax reference"
+        },
+        {
+          "label": "MDN: Rest parameters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters",
+          "description": "Rest parameters reference"
+        }
+      ]
+    },
+    {
+      "id": 1253,
+      "title": "Spread: Array Operations",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "spread",
+        "es6",
+        "arrays",
+        "immutable"
+      ],
+      "description": "Use spread to insert elements into an array at a given index without mutation.",
+      "starterCode": "/**\n * @param {Array} arr - The original array\n * @param {number} index - Position to insert at\n * @param {...*} items - Items to insert\n * @returns {Array} New array with items inserted at index\n */\nconst insertAt = (arr, index, ...items) => {\n\n};\n",
+      "solution": "const insertAt = (arr, index, ...items) => [\n  ...arr.slice(0, index),\n  ...items,\n  ...arr.slice(index)\n];",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return insertAt;')();\n  const r1 = fn([1, 2, 3], 1, 10);\n  const r2 = fn([1, 2, 3], 0, 0);\n  const r3 = fn([1, 2, 3], 3, 4);\n  const r4 = fn([], 0, 1, 2);\n  const r5 = fn([1, 4], 1, 2, 3);\n  const r6 = fn(['a', 'c'], 1, 'b');\n  const r7 = fn([1, 2, 3], 2, 'x', 'y');\n  const input = [1, 2, 3];\n  const r8 = fn(input, 1, 99);\n  const r9 = fn([10], 0, 5);\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify([1, 10, 2, 3]), description: 'Insert 10 at index 1: [1,10,2,3]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify([0, 1, 2, 3]), description: 'Insert at start: [0,1,2,3]', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify([1, 2, 3, 4]), description: 'Insert at end: [1,2,3,4]', got: JSON.stringify(r3) },\n    { pass: JSON.stringify(r4) === JSON.stringify([1, 2]), description: 'Insert into empty: [1,2]', got: JSON.stringify(r4) },\n    { pass: JSON.stringify(r5) === JSON.stringify([1, 2, 3, 4]), description: 'Insert multiple: [1,2,3,4]', got: JSON.stringify(r5) },\n    { pass: JSON.stringify(r6) === JSON.stringify(['a', 'b', 'c']), description: 'Insert string: [\"a\",\"b\",\"c\"]', got: JSON.stringify(r6) },\n    { pass: JSON.stringify(r7) === JSON.stringify([1, 2, 'x', 'y', 3]), description: 'Insert mixed types at index 2', got: JSON.stringify(r7) },\n    { pass: JSON.stringify(input) === JSON.stringify([1, 2, 3]), description: 'Does not mutate original array', got: JSON.stringify(input) },\n    { pass: JSON.stringify(r9) === JSON.stringify([5, 10]), description: 'Insert before single element: [5,10]', got: JSON.stringify(r9) }\n  ];\n}",
+      "hints": [
+        "Use `.slice()` to split the array at the insertion point, then spread all three parts into a new array: the before portion, the new items, and the after portion.",
+        "The pattern is: `[...arr.slice(0, index), ...items, ...arr.slice(index)]`. This creates a new array without modifying the original. Rest params in the function signature collect the items to insert."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Spread syntax",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+          "description": "Spread syntax reference"
+        },
+        {
+          "label": "MDN: Rest parameters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters",
+          "description": "Rest parameters reference"
+        }
+      ]
+    },
+    {
+      "id": 1254,
+      "title": "Rest and Spread: Combined",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "rest",
+        "spread",
+        "es6",
+        "combined",
+        "computed-properties"
+      ],
+      "description": "Use rest to separate the first argument from the rest, then spread to build the result object.",
+      "starterCode": "/**\n * @param {string} key - The property name\n * @param {...*} values - The values to collect\n * @returns {Object} An object with {[key]: [...values]}\n */\nconst groupFirst = (key, ...values) => {\n\n};\n",
+      "solution": "const groupFirst = (key, ...values) => ({ [key]: [...values] });",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return groupFirst;')();\n  const r1 = fn('colors', 'red', 'blue', 'green');\n  const r2 = fn('nums', 1, 2, 3);\n  const r3 = fn('empty');\n  const r4 = fn('one', 42);\n  const r5 = fn('mixed', 1, 'two', true);\n  const r6 = fn('a', 'x');\n  const r7 = fn('data', 10, 20);\n  const r8 = fn('items', null, undefined);\n  const r9 = fn('test', 0, false, '');\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify({colors: ['red', 'blue', 'green']}), description: 'groupFirst(\"colors\",\"red\",\"blue\",\"green\") → {colors: [...]}', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === JSON.stringify({nums: [1, 2, 3]}), description: '{nums: [1,2,3]}', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify({empty: []}), description: 'No values: {empty: []}', got: JSON.stringify(r3) },\n    { pass: JSON.stringify(r4) === JSON.stringify({one: [42]}), description: 'Single value: {one: [42]}', got: JSON.stringify(r4) },\n    { pass: JSON.stringify(r5) === JSON.stringify({mixed: [1, 'two', true]}), description: 'Mixed types in values', got: JSON.stringify(r5) },\n    { pass: JSON.stringify(r6) === JSON.stringify({a: ['x']}), description: '{a: [\"x\"]}', got: JSON.stringify(r6) },\n    { pass: JSON.stringify(r7) === JSON.stringify({data: [10, 20]}), description: '{data: [10,20]}', got: JSON.stringify(r7) },\n    { pass: JSON.stringify(r8) === JSON.stringify({items: [null, null]}), description: 'null and undefined in values', got: JSON.stringify(r8) },\n    { pass: r9.test.length === 3 && r9.test[0] === 0 && r9.test[1] === false && r9.test[2] === '', description: 'Falsy values preserved: [0, false, \"\"]', got: JSON.stringify(r9) }\n  ];\n}",
+      "hints": [
+        "Rest parameters collect extra arguments: `(key, ...values)`. Computed property names let you use a variable as a key: `{ [key]: value }`. Combine both to build the object.",
+        "The concise solution is: `({ [key]: [...values] })`. The `[key]` uses computed property syntax, `...values` spreads the rest-collected arguments into a new array. Wrap in parens for implicit arrow return."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Spread syntax",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+          "description": "Spread syntax reference"
+        },
+        {
+          "label": "MDN: Rest parameters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters",
+          "description": "Rest parameters reference"
+        }
+      ]
+    },
+    {
+      "id": 1255,
+      "title": "ES6 Refactor: Callback Methods",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "es6",
+        "refactor",
+        "arrow-functions",
+        "destructuring",
+        "conversion"
+      ],
+      "description": "Rewrite a data pipeline using arrow functions, destructuring, and template literals.",
+      "instructions": "Now you will put it all together. Rewrite familiar patterns from Sections 1 and 2 using the ES6 features you have learned.\n\nThis exercise takes an array of `{name, score}` objects and returns a summary string. Filter to passing scores (>= 60), extract the names, and join them with commas.\n\nUse arrow functions for callbacks, destructuring in parameters, and a template literal for the result string (see `@param`/`@returns` in the starter code).\n\nExample: `processScores([{name: \"A\", score: 90}, {name: \"B\", score: 40}, {name: \"C\", score: 75}])` returns `\"Passing: A, C\"`\nExample: `processScores([{name: \"A\", score: 50}])` returns `\"Passing: none\"`",
+      "starterCode": "/**\n * Filter passing scores (>= 60), extract names, and format a summary.\n * Use arrow functions, destructuring, and template literals.\n *\n * @param {Object[]} students - Array of {name: string, score: number}\n * @returns {string} \"Passing: name1, name2\" or \"Passing: none\"\n */\nconst processScores = (students) => {\n\n};\n",
+      "solution": "const processScores = (students) => {\n  const passing = students\n    .filter(({score}) => score >= 60)\n    .map(({name}) => name);\n  return `Passing: ${passing.length > 0 ? passing.join(\", \") : \"none\"}`;\n};",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return processScores;')();\n  const r1 = fn([{name: 'A', score: 90}, {name: 'B', score: 40}, {name: 'C', score: 75}]);\n  const r2 = fn([{name: 'A', score: 50}]);\n  const r3 = fn([]);\n  const r4 = fn([{name: 'X', score: 60}]);\n  const r5 = fn([{name: 'A', score: 100}, {name: 'B', score: 100}]);\n  const r6 = fn([{name: 'A', score: 59}, {name: 'B', score: 60}]);\n  const r7 = fn([{name: 'Solo', score: 95}]);\n  const r8 = fn([{name: 'A', score: 0}, {name: 'B', score: 0}]);\n  const r9 = fn([{name: 'A', score: 60}, {name: 'B', score: 70}, {name: 'C', score: 80}]);\n  return [\n    { pass: r1 === 'Passing: A, C', description: 'Two passing: \"Passing: A, C\"', got: r1 },\n    { pass: r2 === 'Passing: none', description: 'None passing: \"Passing: none\"', got: r2 },\n    { pass: r3 === 'Passing: none', description: 'Empty array: \"Passing: none\"', got: r3 },\n    { pass: r4 === 'Passing: X', description: 'Exactly 60: \"Passing: X\"', got: r4 },\n    { pass: r5 === 'Passing: A, B', description: 'All passing: \"Passing: A, B\"', got: r5 },\n    { pass: r6 === 'Passing: B', description: '59 fails, 60 passes: \"Passing: B\"', got: r6 },\n    { pass: r7 === 'Passing: Solo', description: 'Single passing: \"Passing: Solo\"', got: r7 },\n    { pass: r8 === 'Passing: none', description: 'All zeros: \"Passing: none\"', got: r8 },\n    { pass: r9 === 'Passing: A, B, C', description: 'Three passing: \"Passing: A, B, C\"', got: r9 }\n  ];\n}",
+      "hints": [
+        "Chain `.filter()` and `.map()` with arrow callbacks that destructure the parameter: `.filter(({score}) => score >= 60).map(({name}) => name)`. Use a template literal for the result.",
+        "Store the filtered names in a variable, then return `` `Passing: ${names.length > 0 ? names.join(\", \") : \"none\"}` ``. Destructure only what you need in each callback."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arrow function expressions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+          "description": "Arrow functions reference"
+        },
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+          "description": "Destructuring reference"
+        }
+      ]
+    },
+    {
+      "id": 1256,
+      "title": "ES6 Refactor: Closure Pattern",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "es6",
+        "refactor",
+        "closures",
+        "arrow-functions",
+        "const-let"
+      ],
+      "description": "Rewrite the createCounter closure from Section 2 using const/let, arrow functions, and shorthand methods.",
+      "starterCode": "/**\n * Rewrite createCounter using ES6 features:\n *   - const/let instead of var\n *   - Arrow functions or shorthand methods\n *   - Shorthand property names if applicable\n *\n * @returns {{ increment: Function, decrement: Function, getCount: Function }}\n */\nconst createCounterES6 = () => {\n\n};\n",
+      "solution": "const createCounterES6 = () => {\n  let count = 0;\n  const increment = () => { count += 1; };\n  const decrement = () => { count -= 1; };\n  const getCount = () => count;\n  return { increment, decrement, getCount };\n};",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return createCounterES6;')();\n  const c1 = fn();\n  const r1 = c1.getCount();\n  c1.increment();\n  const r2 = c1.getCount();\n  c1.increment();\n  c1.increment();\n  const r3 = c1.getCount();\n  c1.decrement();\n  const r4 = c1.getCount();\n  const c2 = fn();\n  const r5 = c2.getCount();\n  c2.decrement();\n  c2.decrement();\n  const r6 = c2.getCount();\n  c1.increment();\n  const r7 = c1.getCount();\n  const r8 = c2.getCount();\n  const c3 = fn();\n  c3.increment();\n  c3.decrement();\n  c3.increment();\n  const r9 = c3.getCount();\n  return [\n    { pass: r1 === 0, description: 'Starts at 0', got: String(r1) },\n    { pass: r2 === 1, description: 'After increment: 1', got: String(r2) },\n    { pass: r3 === 3, description: 'After three increments: 3', got: String(r3) },\n    { pass: r4 === 2, description: 'After decrement: 2', got: String(r4) },\n    { pass: r5 === 0, description: 'Second counter starts at 0', got: String(r5) },\n    { pass: r6 === -2, description: 'Can go negative: -2', got: String(r6) },\n    { pass: r7 === 3, description: 'First counter independent: 3', got: String(r7) },\n    { pass: r8 === -2, description: 'Second counter independent: -2', got: String(r8) },\n    { pass: r9 === 1, description: 'Mixed operations: +1 -1 +1 = 1', got: String(r9) },\n    { pass: !code.includes('var '), description: 'Uses const/let instead of var', got: code.includes('var ') ? 'Found var' : 'No var' }\n  ];\n}",
+      "hints": [
+        "Replace `var` with `let` for the mutable counter and `const` for the methods. Arrow functions work for the methods since they do not need their own `this`. Use shorthand property names in the return object.",
+        "Use `let count = 0;` then `const increment = () => { count += 1; };` and similar for the others. Return `{ increment, decrement, getCount }` — shorthand for `{ increment: increment, ... }`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arrow function expressions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+          "description": "Arrow functions reference"
+        },
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+          "description": "Destructuring reference"
+        }
+      ]
+    },
+    {
+      "id": 1257,
+      "title": "ES6 Refactor: Composition",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "es6",
+        "refactor",
+        "composition",
+        "rest",
+        "arrow-functions"
+      ],
+      "description": "Rewrite pipeAll from Section 2 using rest parameters and arrow functions instead of arguments and var.",
+      "starterCode": "/**\n * Rewrite pipeAll using ES6:\n *   - Rest parameters instead of arguments object\n *   - Arrow functions instead of function()\n *   - const instead of var\n *\n * @param {...Function} fns - Functions to pipe left-to-right\n * @returns {Function} Composed function\n */\nconst pipeES6 = (...fns) => {\n\n};\n",
+      "solution": "const pipeES6 = (...fns) => (x) => fns.reduce((acc, fn) => fn(acc), x);",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return pipeES6;')();\n  const double = n => n * 2;\n  const addOne = n => n + 1;\n  const square = n => n * n;\n  const negate = n => -n;\n  const r1 = fn(addOne, double)(3);\n  const r2 = fn(double, addOne)(3);\n  const r3 = fn(square, addOne, double)(3);\n  const r4 = fn(addOne)(5);\n  const r5 = fn(double, double, double)(1);\n  const r6 = fn(double, addOne, negate)(4);\n  const r7 = fn(negate, square)(3);\n  const r8 = fn(addOne, addOne, addOne, addOne)(0);\n  const identity = x => x;\n  const r9 = fn(addOne, double, identity)(2);\n  return [\n    { pass: r1 === 8, description: 'pipeES6(addOne, double)(3) → 8', got: String(r1) },\n    { pass: r2 === 7, description: 'pipeES6(double, addOne)(3) → 7', got: String(r2) },\n    { pass: r3 === 20, description: 'Three fns: square→addOne→double: 9→10→20', got: String(r3) },\n    { pass: r4 === 6, description: 'Single function: addOne(5) → 6', got: String(r4) },\n    { pass: r5 === 8, description: 'Three doubles: 1→2→4→8', got: String(r5) },\n    { pass: r6 === -9, description: 'double→addOne→negate: 8→9→-9', got: String(r6) },\n    { pass: r7 === 9, description: 'negate→square: -3→9', got: String(r7) },\n    { pass: r8 === 4, description: 'Four addOnes: 0→1→2→3→4', got: String(r8) },\n    { pass: r9 === 6, description: 'addOne→double→identity: 3→6→6', got: String(r9) },\n    { pass: !code.includes('arguments'), description: 'Uses rest params instead of arguments', got: code.includes('arguments') ? 'Found arguments' : 'No arguments' }\n  ];\n}",
+      "hints": [
+        "With rest parameters, `...fns` is already a real array — no need to copy from `arguments`. Return an arrow function that reduces over `fns`.",
+        "The entire solution is one line: `const pipeES6 = (...fns) => (x) => fns.reduce((acc, fn) => fn(acc), x);`. Compare with the ES5 version that needed 5+ lines with `arguments` and `var`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arrow function expressions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+          "description": "Arrow functions reference"
+        },
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+          "description": "Destructuring reference"
+        }
+      ]
+    },
+    {
+      "id": 1258,
+      "title": "ES6 Refactor: Module Pattern",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "es6-plus",
+        "modern-syntax"
+      ],
+      "tags": [
+        "es6",
+        "refactor",
+        "module-pattern",
+        "arrow-functions",
+        "combined"
+      ],
+      "description": "Rewrite a task manager module using const/let, arrow functions, destructuring, and shorthand properties.",
+      "starterCode": "/**\n * Rewrite createTaskManager using all ES6 features:\n *   - const/let, arrow functions, shorthand properties\n *   - Destructuring in callbacks where useful\n *\n * @returns {{ addTask: Function, completeTask: Function, getTasks: Function, getPending: Function }}\n *   addTask(name) - adds {name, done: false}\n *   completeTask(name) - marks first matching undone task as done\n *   getTasks() - returns copy of all tasks\n *   getPending() - returns names of undone tasks\n */\nconst createStoreES6 = () => {\n\n};\n",
+      "solution": "const createStoreES6 = () => {\n  const tasks = [];\n\n  const addTask = (name) => {\n    tasks.push({ name, done: false });\n  };\n\n  const completeTask = (name) => {\n    const task = tasks.find(({name: n, done}) => n === name && !done);\n    if (task) task.done = true;\n  };\n\n  const getTasks = () => tasks.map(({name, done}) => ({ name, done }));\n\n  const getPending = () => tasks\n    .filter(({done}) => !done)\n    .map(({name}) => name);\n\n  return { addTask, completeTask, getTasks, getPending };\n};",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return createStoreES6;')();\n  const tm = fn();\n  const r1 = tm.getTasks();\n  tm.addTask('Write code');\n  tm.addTask('Run tests');\n  const r2 = tm.getTasks();\n  const r3 = tm.getPending();\n  tm.completeTask('Write code');\n  const r4 = tm.getPending();\n  const r5 = tm.getTasks();\n  tm.completeTask('not found');\n  const r6 = tm.getPending();\n  tm.addTask('Deploy');\n  const r7 = tm.getPending();\n  tm.completeTask('Run tests');\n  tm.completeTask('Deploy');\n  const r8 = tm.getPending();\n  const tm2 = fn();\n  tm2.addTask('Solo');\n  const r9 = tm2.getPending();\n  return [\n    { pass: JSON.stringify(r1) === JSON.stringify([]), description: 'Starts empty', got: JSON.stringify(r1) },\n    { pass: r2.length === 2 && r2[0].name === 'Write code' && r2[1].name === 'Run tests', description: 'Two tasks added', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === JSON.stringify(['Write code', 'Run tests']), description: 'Both pending', got: JSON.stringify(r3) },\n    { pass: JSON.stringify(r4) === JSON.stringify(['Run tests']), description: 'After completing \"Write code\": [\"Run tests\"]', got: JSON.stringify(r4) },\n    { pass: r5[0].done === true && r5[1].done === false, description: 'getTasks shows done status', got: JSON.stringify(r5) },\n    { pass: JSON.stringify(r6) === JSON.stringify(['Run tests']), description: 'Completing non-existent is no-op', got: JSON.stringify(r6) },\n    { pass: JSON.stringify(r7) === JSON.stringify(['Run tests', 'Deploy']), description: 'New task pending', got: JSON.stringify(r7) },\n    { pass: JSON.stringify(r8) === JSON.stringify([]), description: 'All completed: empty pending', got: JSON.stringify(r8) },\n    { pass: JSON.stringify(r9) === JSON.stringify(['Solo']), description: 'Second store is independent', got: JSON.stringify(r9) },\n    { pass: !code.includes('var ') && !code.includes('function(') && !code.includes('function ('), description: 'Uses ES6 syntax: no var, no function keyword', got: 'Checked' }\n  ];\n}",
+      "hints": [
+        "This is the same logic as `createTaskManager` from Section 2, but rewritten with ES6. Use `.find()` with destructuring instead of a `for` loop for `completeTask`. Use shorthand `{ name, done: false }` and `{ addTask, completeTask, getTasks, getPending }`.",
+        "For `completeTask`, use `tasks.find(({name: n, done}) => n === name && !done)` to find the first matching undone task. Rename the destructured `name` to `n` to avoid shadowing the parameter."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arrow function expressions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+          "description": "Arrow functions reference"
+        },
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+          "description": "Destructuring reference"
         }
       ]
     }
