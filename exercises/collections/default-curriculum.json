@@ -11941,6 +11941,663 @@
           "description": "String methods"
         }
       ]
+    },
+    {
+      "id": 1075,
+      "title": "Array: Nested Access",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "nested",
+        "bracket-notation",
+        "access"
+      ],
+      "description": "Return an element from a two-dimensional array using chained bracket notation.",
+      "instructions": "Arrays can contain other arrays, creating a two-dimensional grid (often called a matrix). To access an element, chain bracket notation: `matrix[row][col]`.\n\nWrite a function called `getCell` that takes a 2D array, a row index, and a column index, and returns the element at that position.\n\nExample: `getCell([[1,2],[3,4]], 1, 0)` returns `3`.",
+      "starterCode": "// Arrays can hold other arrays, creating a 2D grid.\n// Access elements by chaining brackets: matrix[row][col]\n// The first bracket picks the inner array (row),\n// the second bracket picks the element within it (col).\n\n// Return the element at the given row and column\nfunction getCell(matrix, row, col) {\n\n}\n",
+      "solution": "function getCell(matrix, row, col) {\n  return matrix[row][col];\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getCell;')();\n  const m1 = [[1,2,3],[4,5,6],[7,8,9]];\n  const m2 = [['a','b'],['c','d']];\n  const m3 = [[true, false],[false, true]];\n  return [\n    { pass: fn(m1, 0, 0) === 1, description: 'getCell([[1,2,3],[4,5,6],[7,8,9]], 0, 0) returns 1', got: String(fn(m1, 0, 0)) },\n    { pass: fn(m1, 1, 2) === 6, description: 'getCell(matrix, 1, 2) returns 6', got: String(fn(m1, 1, 2)) },\n    { pass: fn(m1, 2, 1) === 8, description: 'getCell(matrix, 2, 1) returns 8', got: String(fn(m1, 2, 1)) },\n    { pass: fn(m2, 0, 1) === 'b', description: 'getCell([[\"a\",\"b\"],[\"c\",\"d\"]], 0, 1) returns \"b\"', got: String(fn(m2, 0, 1)) },\n    { pass: fn(m2, 1, 0) === 'c', description: 'getCell(string matrix, 1, 0) returns \"c\"', got: String(fn(m2, 1, 0)) },\n    { pass: fn(m3, 0, 0) === true, description: 'getCell(boolean matrix, 0, 0) returns true', got: String(fn(m3, 0, 0)) }\n  ];\n}",
+      "hints": [
+        "A 2D array is just an array of arrays. The first bracket selects which inner array (row), and the second bracket selects the element within that row.",
+        "Chain two bracket accesses together: `matrix[row][col]` — the first picks the row, the second picks the column."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Arrays",
+          "url": "https://www.w3schools.com/js/js_arrays.asp",
+          "description": "Array basics and access"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "Array reference"
+        }
+      ]
+    },
+    {
+      "id": 1076,
+      "title": "Array: Deep Access",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "nested",
+        "deep-access",
+        "bracket-notation"
+      ],
+      "description": "Navigate three levels of nested arrays to retrieve a deeply nested value.",
+      "instructions": "When arrays are nested three or more levels deep, you chain additional brackets to reach the target. Each bracket digs one level deeper.\n\nWrite a function called `getDeepValue` that takes a 3D array and three indices (`i`, `j`, `k`), and returns `data[i][j][k]`.\n\nExample: `getDeepValue([[[1,2],[3,4]],[[5,6],[7,8]]], 1, 0, 1)` returns `6`.",
+      "starterCode": "// Arrays can be nested multiple levels deep.\n// Each level of nesting requires another bracket to access.\n// data[i] gets the first-level array\n// data[i][j] gets the second-level array\n// data[i][j][k] gets the actual value\n\n// Return the value at data[i][j][k]\nfunction getDeepValue(data, i, j, k) {\n\n}\n",
+      "solution": "function getDeepValue(data, i, j, k) {\n  return data[i][j][k];\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getDeepValue;')();\n  const d1 = [[[1,2],[3,4]],[[5,6],[7,8]]];\n  const d2 = [[['a','b','c'],['d','e','f']],[['g','h','i'],['j','k','l']]];\n  return [\n    { pass: fn(d1, 0, 0, 0) === 1, description: 'getDeepValue(nums, 0, 0, 0) returns 1', got: String(fn(d1, 0, 0, 0)) },\n    { pass: fn(d1, 0, 1, 1) === 4, description: 'getDeepValue(nums, 0, 1, 1) returns 4', got: String(fn(d1, 0, 1, 1)) },\n    { pass: fn(d1, 1, 0, 1) === 6, description: 'getDeepValue(nums, 1, 0, 1) returns 6', got: String(fn(d1, 1, 0, 1)) },\n    { pass: fn(d1, 1, 1, 0) === 7, description: 'getDeepValue(nums, 1, 1, 0) returns 7', got: String(fn(d1, 1, 1, 0)) },\n    { pass: fn(d2, 0, 0, 2) === 'c', description: 'getDeepValue(letters, 0, 0, 2) returns \"c\"', got: String(fn(d2, 0, 0, 2)) },\n    { pass: fn(d2, 1, 1, 1) === 'k', description: 'getDeepValue(letters, 1, 1, 1) returns \"k\"', got: String(fn(d2, 1, 1, 1)) }\n  ];\n}",
+      "hints": [
+        "Each pair of brackets accesses one level deeper. With three levels of nesting, you need three pairs of brackets chained together.",
+        "Access the value step by step: `data[i]` gets the outer array, `data[i][j]` gets the middle array, and `data[i][j][k]` gets the final value."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Arrays",
+          "url": "https://www.w3schools.com/js/js_arrays.asp",
+          "description": "Array basics and access"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "Array reference"
+        }
+      ]
+    },
+    {
+      "id": 1077,
+      "title": "Array: Length and Last",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "length",
+        "dynamic-access"
+      ],
+      "description": "Use the .length property to dynamically access the last element of an array.",
+      "instructions": "Every array has a `.length` property that tells you how many elements it contains. Since array indices start at 0, the last element is always at index `arr.length - 1`.\n\nWrite a function called `getLastElement` that takes an array and returns its last element without hardcoding the index.\n\nExample: `getLastElement([10, 20, 30])` returns `30`.",
+      "starterCode": "// Every array has a .length property.\n// Since indices start at 0, the last element is at arr.length - 1.\n// This works regardless of how many elements the array has.\n\n// Return the last element of the array\nfunction getLastElement(arr) {\n\n}\n",
+      "solution": "function getLastElement(arr) {\n  return arr[arr.length - 1];\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getLastElement;')();\n  return [\n    { pass: fn([10, 20, 30]) === 30, description: 'getLastElement([10, 20, 30]) returns 30', got: String(fn([10, 20, 30])) },\n    { pass: fn([1]) === 1, description: 'getLastElement([1]) returns 1 (single element)', got: String(fn([1])) },\n    { pass: fn(['a', 'b', 'c', 'd', 'e']) === 'e', description: 'getLastElement([\"a\",\"b\",\"c\",\"d\",\"e\"]) returns \"e\"', got: String(fn(['a', 'b', 'c', 'd', 'e'])) },\n    { pass: fn([true, false, true]) === true, description: 'getLastElement([true, false, true]) returns true', got: String(fn([true, false, true])) },\n    { pass: fn([100, 200, 300, 400, 500]) === 500, description: 'getLastElement([100,200,300,400,500]) returns 500', got: String(fn([100, 200, 300, 400, 500])) }\n  ];\n}",
+      "hints": [
+        "The `.length` property gives you the total count of elements. Since indices start at 0, the last index is always one less than the length.",
+        "Access the last element with `arr[arr.length - 1]` — this works for any array size."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array Length",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array length property"
+        },
+        {
+          "label": "MDN: Array.length",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length",
+          "description": "Array length reference"
+        }
+      ]
+    },
+    {
+      "id": 1078,
+      "title": "Array: push",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "push",
+        "mutating"
+      ],
+      "description": "Add elements to the end of an array using the .push() method.",
+      "instructions": "The `.push()` method adds one or more elements to the end of an array and returns the new length. It mutates (changes) the original array.\n\nWrite a function called `addToEnd` that takes an array and an item, pushes the item onto the array, and returns the updated array.\n\nExample: `addToEnd([1, 2], 3)` returns `[1, 2, 3]`.",
+      "starterCode": "// .push() adds elements to the END of an array.\n// It mutates the original array (changes it in place).\n// It returns the new length, not the array itself.\n\n// Push the item onto the array and return the updated array\nfunction addToEnd(arr, item) {\n\n}\n",
+      "solution": "function addToEnd(arr, item) {\n  arr.push(item);\n  return arr;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return addToEnd;')();\n  return [\n    { pass: JSON.stringify(fn([1, 2], 3)) === '[1,2,3]', description: 'addToEnd([1, 2], 3) returns [1, 2, 3]', got: JSON.stringify(fn([1, 2], 3)) },\n    { pass: JSON.stringify(fn([], 'hello')) === '[\"hello\"]', description: 'addToEnd([], \"hello\") returns [\"hello\"]', got: JSON.stringify(fn([], 'hello')) },\n    { pass: JSON.stringify(fn(['a', 'b'], 'c')) === '[\"a\",\"b\",\"c\"]', description: 'addToEnd([\"a\",\"b\"], \"c\") returns [\"a\",\"b\",\"c\"]', got: JSON.stringify(fn(['a', 'b'], 'c')) },\n    { pass: JSON.stringify(fn([10], 20)) === '[10,20]', description: 'addToEnd([10], 20) returns [10, 20]', got: JSON.stringify(fn([10], 20)) },\n    { pass: JSON.stringify(fn([true, false], true)) === '[true,false,true]', description: 'addToEnd([true, false], true) returns [true, false, true]', got: JSON.stringify(fn([true, false], true)) }\n  ];\n}",
+      "hints": [
+        "The `.push()` method adds an element to the end of the array. Remember that it changes the original array in place.",
+        "Call `arr.push(item)` to add the item, then return `arr` — push modifies the array but returns the new length, not the array."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array push()",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array push method"
+        },
+        {
+          "label": "MDN: Array.push()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push",
+          "description": "Array push reference"
+        }
+      ]
+    },
+    {
+      "id": 1079,
+      "title": "Array: pop",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "pop",
+        "mutating"
+      ],
+      "description": "Remove the last element from an array using the .pop() method and return it.",
+      "instructions": "The `.pop()` method removes the last element from an array and returns that removed element. It mutates the original array.\n\nWrite a function called `removeFromEnd` that takes an array, removes the last element, and returns an object with `removed` (the removed element) and `array` (the updated array).\n\nExample: `removeFromEnd([1, 2, 3])` returns `{ removed: 3, array: [1, 2] }`.",
+      "starterCode": "// .pop() removes the LAST element from an array.\n// It mutates the original array (changes it in place).\n// It returns the removed element.\n\n// Remove the last element and return both the removed item and the array\nfunction removeFromEnd(arr) {\n\n}\n",
+      "solution": "function removeFromEnd(arr) {\n  const removed = arr.pop();\n  return { removed: removed, array: arr };\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return removeFromEnd;')();\n  const r1 = fn([1, 2, 3]);\n  const r2 = fn(['a', 'b', 'c']);\n  const r3 = fn([42]);\n  const r4 = fn([true, false]);\n  const r5 = fn([10, 20, 30, 40]);\n  return [\n    { pass: r1.removed === 3 && JSON.stringify(r1.array) === '[1,2]', description: 'removeFromEnd([1,2,3]) returns { removed: 3, array: [1,2] }', got: JSON.stringify(r1) },\n    { pass: r2.removed === 'c' && JSON.stringify(r2.array) === '[\"a\",\"b\"]', description: 'removeFromEnd([\"a\",\"b\",\"c\"]) returns { removed: \"c\", array: [\"a\",\"b\"] }', got: JSON.stringify(r2) },\n    { pass: r3.removed === 42 && JSON.stringify(r3.array) === '[]', description: 'removeFromEnd([42]) returns { removed: 42, array: [] }', got: JSON.stringify(r3) },\n    { pass: r4.removed === false && JSON.stringify(r4.array) === '[true]', description: 'removeFromEnd([true, false]) returns { removed: false, array: [true] }', got: JSON.stringify(r4) },\n    { pass: r5.removed === 40 && JSON.stringify(r5.array) === '[10,20,30]', description: 'removeFromEnd([10,20,30,40]) returns { removed: 40, array: [10,20,30] }', got: JSON.stringify(r5) }\n  ];\n}",
+      "hints": [
+        "The `.pop()` method removes and returns the last element. Save its return value to a variable before returning your result.",
+        "Call `const removed = arr.pop()` to capture the removed element, then return an object with both `removed` and `array`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array pop()",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array pop method"
+        },
+        {
+          "label": "MDN: Array.pop()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop",
+          "description": "Array pop reference"
+        }
+      ]
+    },
+    {
+      "id": 1080,
+      "title": "Array: push and pop",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "push",
+        "pop",
+        "mutating",
+        "combined"
+      ],
+      "description": "Combine push and pop to rotate elements through a fixed-size queue.",
+      "instructions": "When push and pop are used together, you can create a fixed-size queue: remove the oldest element (pop from front would use shift, but here we pop from end) and add a new one.\n\nWrite a function called `rotatePush` that takes an array and a new item. It should remove the first element using a combination of techniques, push the new item to the end, and return an object with `removed` (the old first element) and `array` (the updated array).\n\nHint: You can remove the first element by saving it, then rebuilding with slice and push, or use shift.\n\nExample: `rotatePush([1, 2, 3], 4)` returns `{ removed: 1, array: [2, 3, 4] }`.",
+      "starterCode": "// Combining array methods lets you manage collections.\n// Here, remove the first element and add a new one to the end,\n// keeping the array the same length — like a sliding window.\n\n// Remove the first element, push the new item, return both\nfunction rotatePush(arr, newItem) {\n\n}\n",
+      "solution": "function rotatePush(arr, newItem) {\n  const removed = arr.shift();\n  arr.push(newItem);\n  return { removed: removed, array: arr };\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return rotatePush;')();\n  const r1 = fn([1, 2, 3], 4);\n  const r2 = fn(['a', 'b', 'c'], 'd');\n  const r3 = fn([10], 20);\n  const r4 = fn([true, false, true], false);\n  const r5 = fn([100, 200, 300, 400], 500);\n  return [\n    { pass: r1.removed === 1 && JSON.stringify(r1.array) === '[2,3,4]', description: 'rotatePush([1,2,3], 4) returns { removed: 1, array: [2,3,4] }', got: JSON.stringify(r1) },\n    { pass: r2.removed === 'a' && JSON.stringify(r2.array) === '[\"b\",\"c\",\"d\"]', description: 'rotatePush([\"a\",\"b\",\"c\"], \"d\") returns { removed: \"a\", array: [\"b\",\"c\",\"d\"] }', got: JSON.stringify(r2) },\n    { pass: r3.removed === 10 && JSON.stringify(r3.array) === '[20]', description: 'rotatePush([10], 20) returns { removed: 10, array: [20] }', got: JSON.stringify(r3) },\n    { pass: r4.removed === true && JSON.stringify(r4.array) === '[false,true,false]', description: 'rotatePush([true,false,true], false) returns { removed: true, array: [false,true,false] }', got: JSON.stringify(r4) },\n    { pass: r5.removed === 100 && JSON.stringify(r5.array) === '[200,300,400,500]', description: 'rotatePush([100,200,300,400], 500) returns { removed: 100, array: [200,300,400,500] }', got: JSON.stringify(r5) }\n  ];\n}",
+      "hints": [
+        "Think about which method removes from the front (shift) and which adds to the end (push). Combine them to rotate elements through the array.",
+        "Use `arr.shift()` to remove the first element, then `arr.push(newItem)` to add the new one at the end."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array Methods",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array methods overview"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "Array reference"
+        }
+      ]
+    },
+    {
+      "id": 1081,
+      "title": "Array: unshift",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "unshift",
+        "mutating"
+      ],
+      "description": "Add elements to the beginning of an array using the .unshift() method.",
+      "instructions": "The `.unshift()` method adds one or more elements to the beginning of an array and returns the new length. It mutates the original array.\n\nWrite a function called `addToFront` that takes an array and an item, adds the item to the front, and returns the updated array.\n\nExample: `addToFront([2, 3], 1)` returns `[1, 2, 3]`.",
+      "starterCode": "// .unshift() adds elements to the BEGINNING of an array.\n// It mutates the original array (changes it in place).\n// It returns the new length, not the array itself.\n\n// Add the item to the front and return the updated array\nfunction addToFront(arr, item) {\n\n}\n",
+      "solution": "function addToFront(arr, item) {\n  arr.unshift(item);\n  return arr;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return addToFront;')();\n  return [\n    { pass: JSON.stringify(fn([2, 3], 1)) === '[1,2,3]', description: 'addToFront([2, 3], 1) returns [1, 2, 3]', got: JSON.stringify(fn([2, 3], 1)) },\n    { pass: JSON.stringify(fn([], 'first')) === '[\"first\"]', description: 'addToFront([], \"first\") returns [\"first\"]', got: JSON.stringify(fn([], 'first')) },\n    { pass: JSON.stringify(fn(['b', 'c'], 'a')) === '[\"a\",\"b\",\"c\"]', description: 'addToFront([\"b\",\"c\"], \"a\") returns [\"a\",\"b\",\"c\"]', got: JSON.stringify(fn(['b', 'c'], 'a')) },\n    { pass: JSON.stringify(fn([20, 30], 10)) === '[10,20,30]', description: 'addToFront([20, 30], 10) returns [10, 20, 30]', got: JSON.stringify(fn([20, 30], 10)) },\n    { pass: JSON.stringify(fn([false], true)) === '[true,false]', description: 'addToFront([false], true) returns [true, false]', got: JSON.stringify(fn([false], true)) }\n  ];\n}",
+      "hints": [
+        "The `.unshift()` method is like `.push()` but adds to the beginning instead of the end. It also mutates the original array.",
+        "Call `arr.unshift(item)` to add the item to the front, then return `arr` — unshift returns the new length, not the array."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array unshift()",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array unshift method"
+        },
+        {
+          "label": "MDN: Array.unshift()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift",
+          "description": "Array unshift reference"
+        }
+      ]
+    },
+    {
+      "id": 1082,
+      "title": "Array: shift",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "shift",
+        "mutating"
+      ],
+      "description": "Remove the first element from an array using the .shift() method and return it.",
+      "instructions": "The `.shift()` method removes the first element from an array and returns that removed element. It mutates the original array.\n\nWrite a function called `removeFromFront` that takes an array, removes the first element, and returns an object with `removed` (the removed element) and `array` (the updated array).\n\nExample: `removeFromFront([1, 2, 3])` returns `{ removed: 1, array: [2, 3] }`.",
+      "starterCode": "// .shift() removes the FIRST element from an array.\n// It mutates the original array (changes it in place).\n// It returns the removed element.\n\n// Remove the first element and return both the removed item and the array\nfunction removeFromFront(arr) {\n\n}\n",
+      "solution": "function removeFromFront(arr) {\n  const removed = arr.shift();\n  return { removed: removed, array: arr };\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return removeFromFront;')();\n  const r1 = fn([1, 2, 3]);\n  const r2 = fn(['x', 'y', 'z']);\n  const r3 = fn([99]);\n  const r4 = fn([false, true]);\n  const r5 = fn([10, 20, 30, 40, 50]);\n  return [\n    { pass: r1.removed === 1 && JSON.stringify(r1.array) === '[2,3]', description: 'removeFromFront([1,2,3]) returns { removed: 1, array: [2,3] }', got: JSON.stringify(r1) },\n    { pass: r2.removed === 'x' && JSON.stringify(r2.array) === '[\"y\",\"z\"]', description: 'removeFromFront([\"x\",\"y\",\"z\"]) returns { removed: \"x\", array: [\"y\",\"z\"] }', got: JSON.stringify(r2) },\n    { pass: r3.removed === 99 && JSON.stringify(r3.array) === '[]', description: 'removeFromFront([99]) returns { removed: 99, array: [] }', got: JSON.stringify(r3) },\n    { pass: r4.removed === false && JSON.stringify(r4.array) === '[true]', description: 'removeFromFront([false, true]) returns { removed: false, array: [true] }', got: JSON.stringify(r4) },\n    { pass: r5.removed === 10 && JSON.stringify(r5.array) === '[20,30,40,50]', description: 'removeFromFront([10,20,30,40,50]) returns { removed: 10, array: [20,30,40,50] }', got: JSON.stringify(r5) }\n  ];\n}",
+      "hints": [
+        "The `.shift()` method is like `.pop()` but removes from the beginning instead of the end. Save its return value before building your result.",
+        "Call `const removed = arr.shift()` to capture the removed element, then return an object with both `removed` and `array`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array shift()",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array shift method"
+        },
+        {
+          "label": "MDN: Array.shift()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift",
+          "description": "Array shift reference"
+        }
+      ]
+    },
+    {
+      "id": 1083,
+      "title": "Array: shift and unshift",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "shift",
+        "unshift",
+        "mutating",
+        "combined"
+      ],
+      "description": "Combine shift and unshift to cycle array elements forward by one position.",
+      "instructions": "By combining shift and unshift, you can rotate elements in an array. Shifting removes from the front, and unshifting adds to the front.\n\nWrite a function called `cycleForward` that takes an array, removes the last element, and inserts it at the beginning — cycling all elements forward by one position.\n\nExample: `cycleForward([1, 2, 3, 4])` returns `[4, 1, 2, 3]`.",
+      "starterCode": "// Combining shift and unshift (or pop and unshift) lets you\n// rotate elements through an array like a circular conveyor belt.\n// Think about which end you remove from and which end you add to.\n\n// Move the last element to the front, shifting everything else forward\nfunction cycleForward(arr) {\n\n}\n",
+      "solution": "function cycleForward(arr) {\n  const last = arr.pop();\n  arr.unshift(last);\n  return arr;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return cycleForward;')();\n  return [\n    { pass: JSON.stringify(fn([1, 2, 3, 4])) === '[4,1,2,3]', description: 'cycleForward([1,2,3,4]) returns [4,1,2,3]', got: JSON.stringify(fn([1, 2, 3, 4])) },\n    { pass: JSON.stringify(fn(['a', 'b', 'c'])) === '[\"c\",\"a\",\"b\"]', description: 'cycleForward([\"a\",\"b\",\"c\"]) returns [\"c\",\"a\",\"b\"]', got: JSON.stringify(fn(['a', 'b', 'c'])) },\n    { pass: JSON.stringify(fn([10, 20])) === '[20,10]', description: 'cycleForward([10, 20]) returns [20, 10]', got: JSON.stringify(fn([10, 20])) },\n    { pass: JSON.stringify(fn([42])) === '[42]', description: 'cycleForward([42]) returns [42] (single element)', got: JSON.stringify(fn([42])) },\n    { pass: JSON.stringify(fn([true, false, true, false])) === '[false,true,false,true]', description: 'cycleForward([true,false,true,false]) returns [false,true,false,true]', got: JSON.stringify(fn([true, false, true, false])) }\n  ];\n}",
+      "hints": [
+        "To cycle forward, you need to take the last element and put it at the beginning. Think about which method removes from the end and which adds to the beginning.",
+        "Use `arr.pop()` to grab the last element, then `arr.unshift(last)` to put it at the front."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array Methods",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array methods overview"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "Array reference"
+        }
+      ]
+    },
+    {
+      "id": 1084,
+      "title": "Array: includes",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "includes",
+        "search"
+      ],
+      "description": "Check whether an array contains a specific value using the .includes() method.",
+      "instructions": "The `.includes()` method checks if an array contains a certain value and returns `true` or `false`. It uses strict equality (`===`) for comparison.\n\nWrite a function called `hasItem` that takes an array and a target value, and returns whether the array contains that value.\n\nExample: `hasItem([1, 2, 3], 2)` returns `true`, `hasItem([1, 2, 3], 5)` returns `false`.",
+      "starterCode": "// .includes() checks if a value exists in an array.\n// Returns true if found, false if not.\n// Uses strict equality (===), so types must match.\n\n// Return whether the array contains the target value\nfunction hasItem(arr, target) {\n\n}\n",
+      "solution": "function hasItem(arr, target) {\n  return arr.includes(target);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return hasItem;')();\n  return [\n    { pass: fn([1, 2, 3], 2) === true, description: 'hasItem([1,2,3], 2) returns true', got: String(fn([1, 2, 3], 2)) },\n    { pass: fn([1, 2, 3], 5) === false, description: 'hasItem([1,2,3], 5) returns false', got: String(fn([1, 2, 3], 5)) },\n    { pass: fn(['apple', 'banana', 'cherry'], 'banana') === true, description: 'hasItem(fruits, \"banana\") returns true', got: String(fn(['apple', 'banana', 'cherry'], 'banana')) },\n    { pass: fn(['apple', 'banana'], 'grape') === false, description: 'hasItem(fruits, \"grape\") returns false', got: String(fn(['apple', 'banana'], 'grape')) },\n    { pass: fn([1, 2, 3], '2') === false, description: 'hasItem([1,2,3], \"2\") returns false (strict equality)', got: String(fn([1, 2, 3], '2')) },\n    { pass: fn([], 1) === false, description: 'hasItem([], 1) returns false (empty array)', got: String(fn([], 1)) }\n  ];\n}",
+      "hints": [
+        "The `.includes()` method returns a boolean — `true` if the value is found, `false` otherwise. No loops or conditionals needed.",
+        "Simply return the result of `arr.includes(target)` directly — it already gives you a boolean."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array includes()",
+          "url": "https://www.w3schools.com/js/js_array_search.asp",
+          "description": "Array includes method"
+        },
+        {
+          "label": "MDN: Array.includes()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes",
+          "description": "Array includes reference"
+        }
+      ]
+    },
+    {
+      "id": 1085,
+      "title": "Array: indexOf",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "indexOf",
+        "search"
+      ],
+      "description": "Find the first position of a value in an array using the .indexOf() method.",
+      "instructions": "The `.indexOf()` method returns the first index at which a value is found, or `-1` if the value is not in the array. It searches from left to right.\n\nWrite a function called `findFirstPosition` that takes an array and a target, and returns the index of the first occurrence. Return `-1` if not found.\n\nExample: `findFirstPosition([10, 20, 30, 20], 20)` returns `1`.",
+      "starterCode": "// .indexOf() returns the FIRST index where a value is found.\n// Returns -1 if the value is not in the array.\n// Searches from left to right.\n\n// Return the first index of the target, or -1 if not found\nfunction findFirstPosition(arr, target) {\n\n}\n",
+      "solution": "function findFirstPosition(arr, target) {\n  return arr.indexOf(target);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return findFirstPosition;')();\n  return [\n    { pass: fn([10, 20, 30, 20], 20) === 1, description: 'findFirstPosition([10,20,30,20], 20) returns 1', got: String(fn([10, 20, 30, 20], 20)) },\n    { pass: fn([10, 20, 30], 30) === 2, description: 'findFirstPosition([10,20,30], 30) returns 2', got: String(fn([10, 20, 30], 30)) },\n    { pass: fn([10, 20, 30], 50) === -1, description: 'findFirstPosition([10,20,30], 50) returns -1 (not found)', got: String(fn([10, 20, 30], 50)) },\n    { pass: fn(['a', 'b', 'c', 'b'], 'b') === 1, description: 'findFirstPosition([\"a\",\"b\",\"c\",\"b\"], \"b\") returns 1', got: String(fn(['a', 'b', 'c', 'b'], 'b')) },\n    { pass: fn([5, 5, 5], 5) === 0, description: 'findFirstPosition([5,5,5], 5) returns 0 (first occurrence)', got: String(fn([5, 5, 5], 5)) },\n    { pass: fn([], 1) === -1, description: 'findFirstPosition([], 1) returns -1 (empty array)', got: String(fn([], 1)) }\n  ];\n}",
+      "hints": [
+        "The `.indexOf()` method searches from left to right and returns the position of the first match. If no match is found, it returns -1.",
+        "Return the result of `arr.indexOf(target)` directly — it handles both the found and not-found cases."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array indexOf()",
+          "url": "https://www.w3schools.com/js/js_array_search.asp",
+          "description": "Array indexOf method"
+        },
+        {
+          "label": "MDN: Array.indexOf()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf",
+          "description": "Array indexOf reference"
+        }
+      ]
+    },
+    {
+      "id": 1086,
+      "title": "Array: lastIndexOf",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "lastIndexOf",
+        "search"
+      ],
+      "description": "Find the last position of a value in an array using the .lastIndexOf() method.",
+      "instructions": "The `.lastIndexOf()` method returns the last index at which a value is found, or `-1` if not present. It searches from right to left.\n\nWrite a function called `findLastPosition` that takes an array and a target, and returns the index of the last occurrence.\n\nExample: `findLastPosition([10, 20, 30, 20], 20)` returns `3`.",
+      "starterCode": "// .lastIndexOf() returns the LAST index where a value is found.\n// Returns -1 if the value is not in the array.\n// Searches from right to left.\n\n// Return the last index of the target, or -1 if not found\nfunction findLastPosition(arr, target) {\n\n}\n",
+      "solution": "function findLastPosition(arr, target) {\n  return arr.lastIndexOf(target);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return findLastPosition;')();\n  return [\n    { pass: fn([10, 20, 30, 20], 20) === 3, description: 'findLastPosition([10,20,30,20], 20) returns 3', got: String(fn([10, 20, 30, 20], 20)) },\n    { pass: fn([1, 2, 3, 2, 1], 1) === 4, description: 'findLastPosition([1,2,3,2,1], 1) returns 4', got: String(fn([1, 2, 3, 2, 1], 1)) },\n    { pass: fn([5, 5, 5], 5) === 2, description: 'findLastPosition([5,5,5], 5) returns 2 (last occurrence)', got: String(fn([5, 5, 5], 5)) },\n    { pass: fn(['a', 'b', 'a'], 'a') === 2, description: 'findLastPosition([\"a\",\"b\",\"a\"], \"a\") returns 2', got: String(fn(['a', 'b', 'a'], 'a')) },\n    { pass: fn([10, 20, 30], 50) === -1, description: 'findLastPosition([10,20,30], 50) returns -1 (not found)', got: String(fn([10, 20, 30], 50)) },\n    { pass: fn([7], 7) === 0, description: 'findLastPosition([7], 7) returns 0 (single element)', got: String(fn([7], 7)) }\n  ];\n}",
+      "hints": [
+        "The `.lastIndexOf()` method works like `.indexOf()` but searches from right to left, returning the position of the last match.",
+        "Return `arr.lastIndexOf(target)` directly — it gives -1 when not found, just like indexOf."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array Search",
+          "url": "https://www.w3schools.com/js/js_array_search.asp",
+          "description": "Array search methods"
+        },
+        {
+          "label": "MDN: Array.lastIndexOf()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf",
+          "description": "Array lastIndexOf reference"
+        }
+      ]
+    },
+    {
+      "id": 1087,
+      "title": "Array: Search Combined",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "indexOf",
+        "search",
+        "loop",
+        "combined"
+      ],
+      "description": "Use indexOf in a loop to find all positions of a value in an array.",
+      "instructions": "Neither `.indexOf()` nor `.lastIndexOf()` return all positions of a value. To find every occurrence, use `.indexOf()` in a loop with a starting index.\n\n`.indexOf(target, fromIndex)` accepts an optional second argument that tells it where to start searching.\n\nWrite a function called `findAllPositions` that takes an array and a target, and returns an array of all indices where the target appears. Return an empty array if not found.\n\nExample: `findAllPositions([1, 2, 3, 2, 4, 2], 2)` returns `[1, 3, 5]`.",
+      "starterCode": "// .indexOf(target, fromIndex) can start searching from a specific index.\n// Use this in a loop to find ALL positions of a value.\n// Start searching from index 0, then from the position after each find.\n\n// Return an array of all indices where the target appears\nfunction findAllPositions(arr, target) {\n\n}\n",
+      "solution": "function findAllPositions(arr, target) {\n  const positions = [];\n  let index = arr.indexOf(target);\n  while (index !== -1) {\n    positions.push(index);\n    index = arr.indexOf(target, index + 1);\n  }\n  return positions;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return findAllPositions;')();\n  return [\n    { pass: JSON.stringify(fn([1,2,3,2,4,2], 2)) === '[1,3,5]', description: 'findAllPositions([1,2,3,2,4,2], 2) returns [1,3,5]', got: JSON.stringify(fn([1,2,3,2,4,2], 2)) },\n    { pass: JSON.stringify(fn([5,5,5,5], 5)) === '[0,1,2,3]', description: 'findAllPositions([5,5,5,5], 5) returns [0,1,2,3]', got: JSON.stringify(fn([5,5,5,5], 5)) },\n    { pass: JSON.stringify(fn([1,2,3], 4)) === '[]', description: 'findAllPositions([1,2,3], 4) returns [] (not found)', got: JSON.stringify(fn([1,2,3], 4)) },\n    { pass: JSON.stringify(fn(['a','b','a','b','a'], 'a')) === '[0,2,4]', description: 'findAllPositions([\"a\",\"b\",\"a\",\"b\",\"a\"], \"a\") returns [0,2,4]', got: JSON.stringify(fn(['a','b','a','b','a'], 'a')) },\n    { pass: JSON.stringify(fn([10, 20, 30], 20)) === '[1]', description: 'findAllPositions([10,20,30], 20) returns [1] (single occurrence)', got: JSON.stringify(fn([10, 20, 30], 20)) },\n    { pass: JSON.stringify(fn([], 1)) === '[]', description: 'findAllPositions([], 1) returns [] (empty array)', got: JSON.stringify(fn([], 1)) }\n  ];\n}",
+      "hints": [
+        "Use `.indexOf(target, fromIndex)` where `fromIndex` starts after the last found position. Keep searching until indexOf returns -1.",
+        "Start with `let index = arr.indexOf(target)`. In a while loop, push the index to your results array, then search again from `index + 1`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array indexOf()",
+          "url": "https://www.w3schools.com/js/js_array_search.asp",
+          "description": "Array indexOf with fromIndex"
+        },
+        {
+          "label": "MDN: Array.indexOf()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf",
+          "description": "Array indexOf reference"
+        }
+      ]
+    },
+    {
+      "id": 1088,
+      "title": "Array: slice",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "slice",
+        "non-mutating"
+      ],
+      "description": "Extract a portion of an array without changing the original using .slice().",
+      "instructions": "The `.slice(start, end)` method returns a shallow copy of a portion of an array. It does NOT mutate the original. The `start` index is included, and the `end` index is excluded.\n\nWrite a function called `getSubArray` that takes an array, a start index, and an end index, and returns the extracted portion.\n\nExample: `getSubArray([10, 20, 30, 40, 50], 1, 4)` returns `[20, 30, 40]`.",
+      "starterCode": "// .slice(start, end) extracts a portion of an array.\n// It does NOT change the original array — it returns a new one.\n// start is included, end is excluded (just like string slice).\n\n// Return the portion of the array from start to end\nfunction getSubArray(arr, start, end) {\n\n}\n",
+      "solution": "function getSubArray(arr, start, end) {\n  return arr.slice(start, end);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getSubArray;')();\n  return [\n    { pass: JSON.stringify(fn([10,20,30,40,50], 1, 4)) === '[20,30,40]', description: 'getSubArray([10,20,30,40,50], 1, 4) returns [20,30,40]', got: JSON.stringify(fn([10,20,30,40,50], 1, 4)) },\n    { pass: JSON.stringify(fn([1,2,3,4,5], 0, 2)) === '[1,2]', description: 'getSubArray([1,2,3,4,5], 0, 2) returns [1,2]', got: JSON.stringify(fn([1,2,3,4,5], 0, 2)) },\n    { pass: JSON.stringify(fn(['a','b','c','d'], 2, 4)) === '[\"c\",\"d\"]', description: 'getSubArray([\"a\",\"b\",\"c\",\"d\"], 2, 4) returns [\"c\",\"d\"]', got: JSON.stringify(fn(['a','b','c','d'], 2, 4)) },\n    { pass: JSON.stringify(fn([1,2,3], 0, 3)) === '[1,2,3]', description: 'getSubArray([1,2,3], 0, 3) returns [1,2,3] (full copy)', got: JSON.stringify(fn([1,2,3], 0, 3)) },\n    { pass: JSON.stringify(fn([10,20,30,40], 1, 1)) === '[]', description: 'getSubArray([10,20,30,40], 1, 1) returns [] (same start/end)', got: JSON.stringify(fn([10,20,30,40], 1, 1)) },\n    { pass: (function(){ const orig = [1,2,3]; fn(orig, 0, 2); return JSON.stringify(orig) === '[1,2,3]'; })(), description: 'Original array is not modified (non-mutating)', got: 'verified' }\n  ];\n}",
+      "hints": [
+        "Think of `.slice(start, end)` as \"from here, up to but not including there.\" The original array stays untouched.",
+        "Return `arr.slice(start, end)` directly — it creates and returns a new array with the extracted elements."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array slice()",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array slice method"
+        },
+        {
+          "label": "MDN: Array.slice()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice",
+          "description": "Array slice reference"
+        }
+      ]
+    },
+    {
+      "id": 1089,
+      "title": "Array: splice",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "splice",
+        "mutating"
+      ],
+      "description": "Insert an element at a specific position in an array using .splice().",
+      "instructions": "The `.splice(index, deleteCount, ...items)` method changes an array by removing, replacing, or adding elements at a specific position. It mutates the original array.\n\nWrite a function called `insertAtIndex` that takes an array, an index, and an item. It should insert the item at that index without removing anything, and return the updated array.\n\nExample: `insertAtIndex([1, 2, 4, 5], 2, 3)` returns `[1, 2, 3, 4, 5]`.",
+      "starterCode": "// .splice(index, deleteCount, ...items) modifies an array in place.\n// Setting deleteCount to 0 inserts without removing.\n// The items after the index shift to make room.\n\n// Insert the item at the given index and return the updated array\nfunction insertAtIndex(arr, index, item) {\n\n}\n",
+      "solution": "function insertAtIndex(arr, index, item) {\n  arr.splice(index, 0, item);\n  return arr;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return insertAtIndex;')();\n  return [\n    { pass: JSON.stringify(fn([1,2,4,5], 2, 3)) === '[1,2,3,4,5]', description: 'insertAtIndex([1,2,4,5], 2, 3) returns [1,2,3,4,5]', got: JSON.stringify(fn([1,2,4,5], 2, 3)) },\n    { pass: JSON.stringify(fn(['a','c'], 1, 'b')) === '[\"a\",\"b\",\"c\"]', description: 'insertAtIndex([\"a\",\"c\"], 1, \"b\") returns [\"a\",\"b\",\"c\"]', got: JSON.stringify(fn(['a','c'], 1, 'b')) },\n    { pass: JSON.stringify(fn([2,3], 0, 1)) === '[1,2,3]', description: 'insertAtIndex([2,3], 0, 1) returns [1,2,3] (insert at beginning)', got: JSON.stringify(fn([2,3], 0, 1)) },\n    { pass: JSON.stringify(fn([1,2], 2, 3)) === '[1,2,3]', description: 'insertAtIndex([1,2], 2, 3) returns [1,2,3] (insert at end)', got: JSON.stringify(fn([1,2], 2, 3)) },\n    { pass: JSON.stringify(fn([], 0, 'first')) === '[\"first\"]', description: 'insertAtIndex([], 0, \"first\") returns [\"first\"]', got: JSON.stringify(fn([], 0, 'first')) }\n  ];\n}",
+      "hints": [
+        "The `.splice()` method takes three arguments here: the position to insert at, how many elements to remove (0 for pure insert), and the new element.",
+        "Call `arr.splice(index, 0, item)` — the 0 means \"delete nothing, just insert.\" Then return the modified array."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array splice()",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array splice method"
+        },
+        {
+          "label": "MDN: Array.splice()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice",
+          "description": "Array splice reference"
+        }
+      ]
+    },
+    {
+      "id": 1090,
+      "title": "Array: concat",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "concat",
+        "non-mutating"
+      ],
+      "description": "Combine two arrays into a new array using the .concat() method.",
+      "instructions": "The `.concat()` method merges two or more arrays into a new array. It does NOT mutate the originals.\n\nWrite a function called `mergeArrays` that takes two arrays and returns a new array containing all elements from both, with the first array's elements appearing first.\n\nExample: `mergeArrays([1, 2], [3, 4])` returns `[1, 2, 3, 4]`.",
+      "starterCode": "// .concat() merges arrays into a NEW array.\n// The original arrays are not changed.\n// Elements appear in the order they are concatenated.\n\n// Return a new array with all elements from both arrays\nfunction mergeArrays(arr1, arr2) {\n\n}\n",
+      "solution": "function mergeArrays(arr1, arr2) {\n  return arr1.concat(arr2);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return mergeArrays;')();\n  return [\n    { pass: JSON.stringify(fn([1,2], [3,4])) === '[1,2,3,4]', description: 'mergeArrays([1,2], [3,4]) returns [1,2,3,4]', got: JSON.stringify(fn([1,2], [3,4])) },\n    { pass: JSON.stringify(fn([], [1,2,3])) === '[1,2,3]', description: 'mergeArrays([], [1,2,3]) returns [1,2,3]', got: JSON.stringify(fn([], [1,2,3])) },\n    { pass: JSON.stringify(fn(['a','b'], ['c'])) === '[\"a\",\"b\",\"c\"]', description: 'mergeArrays([\"a\",\"b\"], [\"c\"]) returns [\"a\",\"b\",\"c\"]', got: JSON.stringify(fn(['a','b'], ['c'])) },\n    { pass: JSON.stringify(fn([1], [])) === '[1]', description: 'mergeArrays([1], []) returns [1]', got: JSON.stringify(fn([1], [])) },\n    { pass: (function(){ const a=[1,2]; const b=[3]; fn(a,b); return JSON.stringify(a)==='[1,2]' && JSON.stringify(b)==='[3]'; })(), description: 'Original arrays are not modified (non-mutating)', got: 'verified' },\n    { pass: JSON.stringify(fn([true, false], [1, 'a'])) === '[true,false,1,\"a\"]', description: 'mergeArrays([true,false], [1,\"a\"]) returns [true,false,1,\"a\"]', got: JSON.stringify(fn([true, false], [1, 'a'])) }\n  ];\n}",
+      "hints": [
+        "The `.concat()` method returns a brand new array without changing either original. Think of it as gluing two arrays end-to-end.",
+        "Return `arr1.concat(arr2)` directly — it creates a new array with arr1's elements followed by arr2's elements."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array concat()",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array concat method"
+        },
+        {
+          "label": "MDN: Array.concat()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat",
+          "description": "Array concat reference"
+        }
+      ]
+    },
+    {
+      "id": 1091,
+      "title": "Array: reverse",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "reverse",
+        "slice",
+        "non-mutating"
+      ],
+      "description": "Reverse an array without mutating the original using slice and reverse.",
+      "instructions": "The `.reverse()` method reverses an array in place — but what if you need to keep the original intact? By combining `.slice()` (to make a copy) with `.reverse()`, you can reverse without mutation.\n\nWrite a function called `reverseArray` that takes an array and returns a new reversed array without changing the original.\n\nExample: `reverseArray([1, 2, 3])` returns `[3, 2, 1]`.",
+      "starterCode": "// .reverse() reverses an array but MUTATES the original.\n// To reverse without mutating, first make a copy with .slice().\n// .slice() with no arguments copies the entire array.\n\n// Return a new reversed array without modifying the original\nfunction reverseArray(arr) {\n\n}\n",
+      "solution": "function reverseArray(arr) {\n  return arr.slice().reverse();\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return reverseArray;')();\n  return [\n    { pass: JSON.stringify(fn([1,2,3])) === '[3,2,1]', description: 'reverseArray([1,2,3]) returns [3,2,1]', got: JSON.stringify(fn([1,2,3])) },\n    { pass: JSON.stringify(fn(['a','b','c','d'])) === '[\"d\",\"c\",\"b\",\"a\"]', description: 'reverseArray([\"a\",\"b\",\"c\",\"d\"]) returns [\"d\",\"c\",\"b\",\"a\"]', got: JSON.stringify(fn(['a','b','c','d'])) },\n    { pass: JSON.stringify(fn([42])) === '[42]', description: 'reverseArray([42]) returns [42] (single element)', got: JSON.stringify(fn([42])) },\n    { pass: JSON.stringify(fn([true, false])) === '[false,true]', description: 'reverseArray([true, false]) returns [false, true]', got: JSON.stringify(fn([true, false])) },\n    { pass: (function(){ const orig = [1,2,3]; fn(orig); return JSON.stringify(orig) === '[1,2,3]'; })(), description: 'Original array is not modified (non-mutating)', got: 'verified' },\n    { pass: JSON.stringify(fn([5,10,15,20,25])) === '[25,20,15,10,5]', description: 'reverseArray([5,10,15,20,25]) returns [25,20,15,10,5]', got: JSON.stringify(fn([5,10,15,20,25])) }\n  ];\n}",
+      "hints": [
+        "The `.reverse()` method mutates the original array. To avoid this, make a copy first. `.slice()` with no arguments returns a full copy.",
+        "Chain `.slice().reverse()` — slice creates the copy, then reverse works on the copy instead of the original."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array reverse()",
+          "url": "https://www.w3schools.com/js/js_array_sort.asp",
+          "description": "Array reverse method"
+        },
+        {
+          "label": "MDN: Array.reverse()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse",
+          "description": "Array reverse reference"
+        }
+      ]
+    },
+    {
+      "id": 1092,
+      "title": "Array: join",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "join",
+        "strings"
+      ],
+      "description": "Join array elements into a formatted string with commas and \"and\" before the last item.",
+      "instructions": "The `.join(separator)` method combines all elements of an array into a single string, with the separator between each element.\n\nWrite a function called `formatList` that takes an array of strings and returns a natural-language list. If there's one item, return it. If there are two, join with \" and \". If three or more, join all but the last with \", \" and add \" and \" before the last item.\n\nExamples:\n- `formatList([\"apple\"])` returns `\"apple\"`\n- `formatList([\"apple\", \"banana\"])` returns `\"apple and banana\"`\n- `formatList([\"apple\", \"banana\", \"cherry\"])` returns `\"apple, banana and cherry\"`",
+      "starterCode": "// .join(separator) combines array elements into a string.\n// For a natural-language list, you need different logic\n// depending on the number of items:\n// 1 item: just return it\n// 2 items: join with \" and \"\n// 3+ items: join all but last with \", \", then add \" and \" + last item\n\n// Return a formatted natural-language list string\nfunction formatList(items) {\n\n}\n",
+      "solution": "function formatList(items) {\n  if (items.length === 1) {\n    return items[0];\n  }\n  if (items.length === 2) {\n    return items[0] + ' and ' + items[1];\n  }\n  return items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1];\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return formatList;')();\n  return [\n    { pass: fn(['apple']) === 'apple', description: 'formatList([\"apple\"]) returns \"apple\"', got: String(fn(['apple'])) },\n    { pass: fn(['apple', 'banana']) === 'apple and banana', description: 'formatList([\"apple\",\"banana\"]) returns \"apple and banana\"', got: String(fn(['apple', 'banana'])) },\n    { pass: fn(['apple', 'banana', 'cherry']) === 'apple, banana and cherry', description: 'formatList([\"apple\",\"banana\",\"cherry\"]) returns \"apple, banana and cherry\"', got: String(fn(['apple', 'banana', 'cherry'])) },\n    { pass: fn(['red', 'green', 'blue', 'yellow']) === 'red, green, blue and yellow', description: 'formatList([\"red\",\"green\",\"blue\",\"yellow\"]) returns \"red, green, blue and yellow\"', got: String(fn(['red', 'green', 'blue', 'yellow'])) },\n    { pass: fn(['one', 'two', 'three', 'four', 'five']) === 'one, two, three, four and five', description: 'formatList(5 items) returns comma-separated with \"and\" before last', got: String(fn(['one', 'two', 'three', 'four', 'five'])) }\n  ];\n}",
+      "hints": [
+        "Handle the three cases separately: one item (return it), two items (join with \" and \"), and three or more (join all but last with \", \" then add \" and \" + last).",
+        "For 3+ items, use `items.slice(0, -1).join(\", \")` to get everything except the last item as a comma string, then concatenate `\" and \" + items[items.length - 1]`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Array join()",
+          "url": "https://www.w3schools.com/js/js_array_methods.asp",
+          "description": "Array join method"
+        },
+        {
+          "label": "MDN: Array.join()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join",
+          "description": "Array join reference"
+        }
+      ]
     }
   ]
 }
