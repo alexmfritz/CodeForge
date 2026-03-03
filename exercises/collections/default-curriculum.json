@@ -18966,6 +18966,207 @@
           "description": "Error object reference"
         }
       ]
+    },
+    {
+      "id": 1325,
+      "title": "Parallel Fetch All",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "async",
+        "promise-combinators"
+      ],
+      "tags": [
+        "promise",
+        "promise-all",
+        "parallel",
+        "async",
+        "await"
+      ],
+      "description": "Create a function called `fetchAll` that takes an array of async functions (each returns a Promise) and runs them all in parallel using `Promise.all`. Return an array of all resolved values. If any single promise rejects, the entire operation should reject with that error.",
+      "starterCode": "",
+      "solution": "async function fetchAll(asyncFns) {\n  const promises = asyncFns.map(function(fn) { return fn(); });\n  return Promise.all(promises);\n}",
+      "testRunner": "async (code) => {\n  const fn = new Function(code + '; return fetchAll;')();\n  const results = [];\n\n  const r1 = await fn([\n    async function() { return 1; },\n    async function() { return 2; },\n    async function() { return 3; }\n  ]);\n  results.push({ pass: JSON.stringify(r1) === '[1,2,3]', description: 'Three resolving functions → [1, 2, 3]', got: JSON.stringify(r1) });\n\n  const r2 = await fn([async function() { return 'only'; }]);\n  results.push({ pass: JSON.stringify(r2) === '[\"only\"]', description: 'Single function → [\"only\"]', got: JSON.stringify(r2) });\n\n  const r3 = await fn([]);\n  results.push({ pass: JSON.stringify(r3) === '[]', description: 'Empty array → []', got: JSON.stringify(r3) });\n\n  let err4 = '';\n  try {\n    await fn([\n      async function() { return 'ok'; },\n      async function() { throw new Error('boom'); },\n      async function() { return 'also ok'; }\n    ]);\n  } catch (e) { err4 = e.message; }\n  results.push({ pass: err4 === 'boom', description: 'One rejection causes entire call to reject with \"boom\"', got: err4 });\n\n  const r5 = await fn([\n    async function() { return null; },\n    async function() { return 0; },\n    async function() { return false; }\n  ]);\n  results.push({ pass: JSON.stringify(r5) === '[null,0,false]', description: 'Falsy values resolve correctly → [null, 0, false]', got: JSON.stringify(r5) });\n\n  const r6 = await fn([\n    async function() { return { a: 1 }; },\n    async function() { return [1, 2]; }\n  ]);\n  results.push({ pass: r6[0].a === 1 && JSON.stringify(r6[1]) === '[1,2]', description: 'Objects and arrays resolve correctly', got: JSON.stringify(r6) });\n\n  let order = [];\n  await fn([\n    async function() { order.push('a'); return 'a'; },\n    async function() { order.push('b'); return 'b'; },\n    async function() { order.push('c'); return 'c'; }\n  ]);\n  results.push({ pass: order.length === 3, description: 'All functions are invoked (3 calls)', got: String(order.length) });\n\n  let err8 = '';\n  try {\n    await fn([\n      async function() { throw new Error('first'); },\n      async function() { throw new Error('second'); }\n    ]);\n  } catch (e) { err8 = e.message; }\n  results.push({ pass: err8 === 'first', description: 'Multiple rejections: first error propagates', got: err8 });\n\n  return results;\n}",
+      "hint1": "You need to call each function to get its Promise, then pass all Promises to a method that waits for all of them to complete simultaneously.",
+      "hint2": "Map over the array to invoke each function, collecting the Promises. Then use a built-in Promise method that resolves when every Promise in the array resolves.",
+      "resources": [
+        {
+          "label": "MDN: Promise.all()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all",
+          "description": "Promise.all reference"
+        }
+      ]
+    },
+    {
+      "id": 1326,
+      "title": "Race to Finish",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "async",
+        "promise-combinators"
+      ],
+      "tags": [
+        "promise",
+        "promise-race",
+        "async",
+        "await",
+        "timeout"
+      ],
+      "description": "Create a function called `raceToFinish` that takes an array of Promises and returns the value of whichever Promise settles first (resolves or rejects). If the first to settle is a rejection, the returned Promise should reject with that error.",
+      "starterCode": "",
+      "solution": "async function raceToFinish(promises) {\n  return Promise.race(promises);\n}",
+      "testRunner": "async (code) => {\n  const fn = new Function(code + '; return raceToFinish;')();\n  const results = [];\n\n  const r1 = await fn([Promise.resolve('fast'), new Promise(function(r) { setTimeout(function() { r('slow'); }, 100); })]);\n  results.push({ pass: r1 === 'fast', description: 'Already-resolved beats delayed → \"fast\"', got: String(r1) });\n\n  const r2 = await fn([\n    new Promise(function(r) { setTimeout(function() { r('a'); }, 50); }),\n    new Promise(function(r) { setTimeout(function() { r('b'); }, 10); })\n  ]);\n  results.push({ pass: r2 === 'b', description: '10ms beats 50ms → \"b\"', got: String(r2) });\n\n  let err3 = '';\n  try {\n    await fn([\n      Promise.reject(new Error('quick fail')),\n      new Promise(function(r) { setTimeout(function() { r('slow success'); }, 100); })\n    ]);\n  } catch (e) { err3 = e.message; }\n  results.push({ pass: err3 === 'quick fail', description: 'Rejection settles first → rejects with \"quick fail\"', got: err3 });\n\n  const r4 = await fn([\n    new Promise(function(_, rej) { setTimeout(function() { rej(new Error('late')); }, 100); }),\n    new Promise(function(r) { setTimeout(function() { r('early'); }, 10); })\n  ]);\n  results.push({ pass: r4 === 'early', description: 'Resolve beats rejection → \"early\"', got: String(r4) });\n\n  const r5 = await fn([Promise.resolve(42)]);\n  results.push({ pass: r5 === 42, description: 'Single promise → 42', got: String(r5) });\n\n  const r6 = await fn([Promise.resolve(null), Promise.resolve('second')]);\n  results.push({ pass: r6 === null, description: 'First resolves with null → null wins', got: String(r6) });\n\n  const r7 = await fn([\n    new Promise(function(r) { setTimeout(function() { r(1); }, 20); }),\n    new Promise(function(r) { setTimeout(function() { r(2); }, 20); }),\n    new Promise(function(r) { setTimeout(function() { r(3); }, 5); })\n  ]);\n  results.push({ pass: r7 === 3, description: 'Fastest of three (5ms) → 3', got: String(r7) });\n\n  let err8 = '';\n  try {\n    await fn([\n      Promise.reject(new Error('a')),\n      Promise.reject(new Error('b'))\n    ]);\n  } catch (e) { err8 = e.message; }\n  results.push({ pass: err8 === 'a', description: 'Both reject: first rejection wins → \"a\"', got: err8 });\n\n  return results;\n}",
+      "hint1": "There is a built-in Promise method that resolves or rejects as soon as the first Promise in the array settles. You just need to pass the array to it.",
+      "hint2": "The method you need returns a Promise that adopts the state of the first Promise to settle — whether it resolves or rejects.",
+      "resources": [
+        {
+          "label": "MDN: Promise.race()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race",
+          "description": "Promise.race reference"
+        }
+      ]
+    },
+    {
+      "id": 1327,
+      "title": "Collect All Outcomes",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "async",
+        "promise-combinators"
+      ],
+      "tags": [
+        "promise",
+        "promise-allsettled",
+        "async",
+        "await"
+      ],
+      "description": "Create a function called `collectOutcomes` that takes an array of Promises and returns an array of result objects. Each result should be `{ status: \"fulfilled\", value: ... }` for resolved Promises or `{ status: \"rejected\", reason: ... }` for rejected Promises. Never reject — always return all outcomes.",
+      "starterCode": "",
+      "solution": "async function collectOutcomes(promises) {\n  const settled = await Promise.allSettled(promises);\n  return settled.map(function(result) {\n    if (result.status === \"fulfilled\") {\n      return { status: \"fulfilled\", value: result.value };\n    }\n    return { status: \"rejected\", reason: result.reason.message || String(result.reason) };\n  });\n}",
+      "testRunner": "async (code) => {\n  const fn = new Function(code + '; return collectOutcomes;')();\n  const results = [];\n\n  const r1 = await fn([Promise.resolve(1), Promise.resolve(2)]);\n  results.push({ pass: r1.length === 2 && r1[0].status === 'fulfilled' && r1[0].value === 1 && r1[1].value === 2, description: 'Two resolves → both fulfilled with values', got: JSON.stringify(r1) });\n\n  const r2 = await fn([Promise.reject(new Error('fail'))]);\n  results.push({ pass: r2[0].status === 'rejected' && r2[0].reason === 'fail', description: 'Single reject → { status: \"rejected\", reason: \"fail\" }', got: JSON.stringify(r2) });\n\n  const r3 = await fn([\n    Promise.resolve('ok'),\n    Promise.reject(new Error('bad')),\n    Promise.resolve('fine')\n  ]);\n  results.push({ pass: r3[0].status === 'fulfilled' && r3[1].status === 'rejected' && r3[2].status === 'fulfilled', description: 'Mixed: fulfilled, rejected, fulfilled', got: JSON.stringify(r3.map(function(r) { return r.status; })) });\n  results.push({ pass: r3[0].value === 'ok' && r3[1].reason === 'bad' && r3[2].value === 'fine', description: 'Mixed values: \"ok\", \"bad\", \"fine\"', got: JSON.stringify(r3) });\n\n  const r5 = await fn([]);\n  results.push({ pass: JSON.stringify(r5) === '[]', description: 'Empty array → []', got: JSON.stringify(r5) });\n\n  const r6 = await fn([Promise.reject(new Error('a')), Promise.reject(new Error('b'))]);\n  results.push({ pass: r6[0].reason === 'a' && r6[1].reason === 'b', description: 'All rejected: reasons preserved in order', got: JSON.stringify(r6) });\n\n  const r7 = await fn([Promise.resolve(null), Promise.resolve(0), Promise.resolve(false)]);\n  results.push({ pass: r7[0].value === null && r7[1].value === 0 && r7[2].value === false, description: 'Falsy resolved values preserved correctly', got: JSON.stringify(r7) });\n\n  let didReject = false;\n  try {\n    await fn([Promise.reject(new Error('x')), Promise.reject(new Error('y'))]);\n  } catch (e) { didReject = true; }\n  results.push({ pass: didReject === false, description: 'Never rejects even when all inputs reject', got: didReject ? 'rejected' : 'resolved' });\n\n  return results;\n}",
+      "hint1": "There is a Promise method that waits for ALL Promises to settle (both resolve and reject) and returns an array of outcome objects. It never rejects itself.",
+      "hint2": "The outcome objects from this method have `status`, `value` (for fulfilled), and `reason` (for rejected). You may need to extract `reason.message` if the reason is an Error object.",
+      "resources": [
+        {
+          "label": "MDN: Promise.allSettled()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled",
+          "description": "Promise.allSettled reference"
+        }
+      ]
+    },
+    {
+      "id": 1328,
+      "title": "Async Find First",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "async",
+        "async-patterns"
+      ],
+      "tags": [
+        "async",
+        "await",
+        "iteration",
+        "find",
+        "early-exit"
+      ],
+      "description": "Create a function called `asyncFind` that takes an array of values and an async predicate function. It should test each value sequentially (one at a time, in order) using the predicate, and return the first value for which the predicate resolves to `true`. If no value passes, return `undefined`. Do not test remaining values after finding a match.",
+      "starterCode": "",
+      "solution": "async function asyncFind(values, predicate) {\n  for (let i = 0; i < values.length; i++) {\n    const result = await predicate(values[i]);\n    if (result) return values[i];\n  }\n  return undefined;\n}",
+      "testRunner": "async (code) => {\n  const fn = new Function(code + '; return asyncFind;')();\n  const results = [];\n\n  const isEven = async function(n) { return n % 2 === 0; };\n  const r1 = await fn([1, 3, 4, 6], isEven);\n  results.push({ pass: r1 === 4, description: 'First even in [1,3,4,6] → 4', got: String(r1) });\n\n  const r2 = await fn([1, 3, 5], isEven);\n  results.push({ pass: r2 === undefined, description: 'No even in [1,3,5] → undefined', got: String(r2) });\n\n  const r3 = await fn([], isEven);\n  results.push({ pass: r3 === undefined, description: 'Empty array → undefined', got: String(r3) });\n\n  const isLong = async function(s) { return s.length > 5; };\n  const r4 = await fn(['hi', 'hey', 'hello!', 'goodbye'], isLong);\n  results.push({ pass: r4 === 'hello!', description: 'First string > 5 chars → \"hello!\"', got: String(r4) });\n\n  let tested = [];\n  const trackingPred = async function(v) { tested.push(v); return v > 10; };\n  const r5 = await fn([1, 5, 15, 20], trackingPred);\n  results.push({ pass: r5 === 15 && tested.length === 3, description: 'Stops after finding 15 (tested 3 values, not 4)', got: 'found=' + r5 + ', tested=' + tested.length });\n\n  let tested2 = [];\n  const trackAll = async function(v) { tested2.push(v); return false; };\n  await fn([1, 2, 3], trackAll);\n  results.push({ pass: tested2.length === 3, description: 'Tests all values when none match', got: String(tested2.length) });\n\n  const r7 = await fn([0, '', null, 'found'], async function(v) { return v === 'found'; });\n  results.push({ pass: r7 === 'found', description: 'Skips falsy values, finds \"found\"', got: String(r7) });\n\n  const r8 = await fn([null, undefined, 0], async function(v) { return v === null; });\n  results.push({ pass: r8 === null, description: 'Can find null as matching value', got: String(r8) });\n\n  return results;\n}",
+      "hint1": "You cannot use `.find()` here because the predicate is async. Instead, loop through the values one at a time, awaiting the predicate for each, and return immediately when you find a match.",
+      "hint2": "Use a `for` loop (not `.forEach` or `.map` — those do not support `await` correctly). Inside: `const result = await predicate(values[i]);` then check `if (result)` and return early.",
+      "resources": [
+        {
+          "label": "MDN: async function",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+          "description": "async function reference"
+        },
+        {
+          "label": "MDN: Promise",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+          "description": "Promise reference"
+        }
+      ]
+    },
+    {
+      "id": 1329,
+      "title": "Aggregate Async Errors",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "async",
+        "async-patterns"
+      ],
+      "tags": [
+        "async",
+        "await",
+        "error-handling",
+        "aggregation",
+        "promise"
+      ],
+      "description": "Create a function called `aggregateErrors` that takes an array of async functions and runs them all in parallel. Return an object with `{ successes: [...values], errors: [...errorMessages] }`. Every function should be attempted regardless of failures — never short-circuit. Preserve the order of successes and errors relative to the original array.",
+      "starterCode": "",
+      "solution": "async function aggregateErrors(asyncFns) {\n  const settled = await Promise.allSettled(asyncFns.map(function(fn) { return fn(); }));\n  const successes = [];\n  const errors = [];\n  settled.forEach(function(result) {\n    if (result.status === \"fulfilled\") {\n      successes.push(result.value);\n    } else {\n      errors.push(result.reason.message || String(result.reason));\n    }\n  });\n  return { successes: successes, errors: errors };\n}",
+      "testRunner": "async (code) => {\n  const fn = new Function(code + '; return aggregateErrors;')();\n  const results = [];\n\n  const r1 = await fn([\n    async function() { return 1; },\n    async function() { return 2; },\n    async function() { return 3; }\n  ]);\n  results.push({ pass: JSON.stringify(r1.successes) === '[1,2,3]' && r1.errors.length === 0, description: 'All succeed → successes [1,2,3], no errors', got: JSON.stringify(r1) });\n\n  const r2 = await fn([\n    async function() { throw new Error('a'); },\n    async function() { throw new Error('b'); }\n  ]);\n  results.push({ pass: r2.successes.length === 0 && JSON.stringify(r2.errors) === '[\"a\",\"b\"]', description: 'All fail → no successes, errors [\"a\",\"b\"]', got: JSON.stringify(r2) });\n\n  const r3 = await fn([\n    async function() { return 'ok'; },\n    async function() { throw new Error('fail'); },\n    async function() { return 'fine'; }\n  ]);\n  results.push({ pass: JSON.stringify(r3.successes) === '[\"ok\",\"fine\"]' && JSON.stringify(r3.errors) === '[\"fail\"]', description: 'Mixed: successes [\"ok\",\"fine\"], errors [\"fail\"]', got: JSON.stringify(r3) });\n\n  const r4 = await fn([]);\n  results.push({ pass: r4.successes.length === 0 && r4.errors.length === 0, description: 'Empty array → empty successes and errors', got: JSON.stringify(r4) });\n\n  const r5 = await fn([\n    async function() { return null; },\n    async function() { return 0; },\n    async function() { return false; }\n  ]);\n  results.push({ pass: JSON.stringify(r5.successes) === '[null,0,false]', description: 'Falsy values are valid successes', got: JSON.stringify(r5.successes) });\n\n  const r6 = await fn([\n    async function() { throw new Error('x'); },\n    async function() { return 'middle'; },\n    async function() { throw new Error('z'); }\n  ]);\n  results.push({ pass: JSON.stringify(r6.successes) === '[\"middle\"]' && JSON.stringify(r6.errors) === '[\"x\",\"z\"]', description: 'Error ordering preserved: [\"x\",\"z\"]', got: JSON.stringify(r6) });\n\n  let didReject = false;\n  try {\n    await fn([async function() { throw new Error('should not reject outer'); }]);\n  } catch (e) { didReject = true; }\n  results.push({ pass: didReject === false, description: 'Never rejects — always returns result object', got: didReject ? 'rejected' : 'resolved' });\n\n  const r8 = await fn([\n    async function() { return { data: [1, 2] }; },\n    async function() { throw new Error('network'); },\n    async function() { return { data: [3] }; },\n    async function() { throw new Error('timeout'); }\n  ]);\n  results.push({ pass: r8.successes.length === 2 && r8.errors.length === 2 && r8.errors[0] === 'network' && r8.errors[1] === 'timeout', description: 'Complex mix: 2 successes, 2 errors in order', got: JSON.stringify(r8) });\n\n  return results;\n}",
+      "hint1": "You need a way to run all functions in parallel but NOT short-circuit on failure. There is a Promise combinator that waits for everything to settle regardless of outcome.",
+      "hint2": "Map over the functions to invoke them (getting Promises), then use the combinator that collects all outcomes. Loop through the results and separate fulfilled values from rejected reasons.",
+      "resources": [
+        {
+          "label": "MDN: Promise.allSettled()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled",
+          "description": "Promise.allSettled reference"
+        },
+        {
+          "label": "MDN: async function",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+          "description": "async function reference"
+        },
+        {
+          "label": "MDN: Promise",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+          "description": "Promise reference"
+        }
+      ]
+    },
+    {
+      "id": 1330,
+      "title": "Parallel with Timeout",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "async",
+        "async-patterns"
+      ],
+      "tags": [
+        "async",
+        "await",
+        "promise",
+        "race",
+        "timeout",
+        "parallel",
+        "combined"
+      ],
+      "description": "Create a function called `fetchWithTimeout` that takes an array of async functions and a timeout in milliseconds. Run all functions in parallel, but if the entire batch does not complete within the timeout, reject with an Error whose message is \"Timeout after Nms\" (where N is the timeout value). If all functions complete in time, return their resolved values as an array.",
+      "starterCode": "",
+      "solution": "async function fetchWithTimeout(asyncFns, timeoutMs) {\n  const dataPromise = Promise.all(asyncFns.map(function(fn) { return fn(); }));\n  const timeoutPromise = new Promise(function(_, reject) {\n    setTimeout(function() {\n      reject(new Error(\"Timeout after \" + timeoutMs + \"ms\"));\n    }, timeoutMs);\n  });\n  return Promise.race([dataPromise, timeoutPromise]);\n}",
+      "testRunner": "async (code) => {\n  const fn = new Function(code + '; return fetchWithTimeout;')();\n  const results = [];\n\n  const r1 = await fn([\n    async function() { return 'a'; },\n    async function() { return 'b'; }\n  ], 1000);\n  results.push({ pass: JSON.stringify(r1) === '[\"a\",\"b\"]', description: 'Instant resolve within 1000ms → [\"a\",\"b\"]', got: JSON.stringify(r1) });\n\n  let err2 = '';\n  try {\n    await fn([\n      async function() { return new Promise(function(r) { setTimeout(function() { r('slow'); }, 200); }); }\n    ], 50);\n  } catch (e) { err2 = e.message; }\n  results.push({ pass: err2 === 'Timeout after 50ms', description: '200ms task with 50ms timeout → \"Timeout after 50ms\"', got: err2 });\n\n  const r3 = await fn([\n    async function() { return new Promise(function(r) { setTimeout(function() { r(1); }, 10); }); },\n    async function() { return new Promise(function(r) { setTimeout(function() { r(2); }, 20); }); }\n  ], 500);\n  results.push({ pass: JSON.stringify(r3) === '[1,2]', description: 'Both finish within 500ms → [1,2]', got: JSON.stringify(r3) });\n\n  const r4 = await fn([], 100);\n  results.push({ pass: JSON.stringify(r4) === '[]', description: 'Empty array resolves immediately → []', got: JSON.stringify(r4) });\n\n  let err5 = '';\n  try {\n    await fn([\n      async function() { return 'fast'; },\n      async function() { return new Promise(function(r) { setTimeout(function() { r('slow'); }, 300); }); }\n    ], 100);\n  } catch (e) { err5 = e.message; }\n  results.push({ pass: err5 === 'Timeout after 100ms', description: 'One fast + one slow: slow causes timeout', got: err5 });\n\n  let err6 = '';\n  try {\n    await fn([\n      async function() { throw new Error('boom'); }\n    ], 1000);\n  } catch (e) { err6 = e.message; }\n  results.push({ pass: err6 === 'boom', description: 'Rejection within timeout propagates original error', got: err6 });\n\n  const r7 = await fn([\n    async function() { return new Promise(function(r) { setTimeout(function() { r('just in time'); }, 40); }); }\n  ], 100);\n  results.push({ pass: r7[0] === 'just in time', description: '40ms task within 100ms timeout → succeeds', got: JSON.stringify(r7) });\n\n  let err8 = '';\n  try {\n    await fn([\n      async function() { return new Promise(function(r) { setTimeout(function() { r('a'); }, 500); }); },\n      async function() { return new Promise(function(r) { setTimeout(function() { r('b'); }, 500); }); },\n      async function() { return new Promise(function(r) { setTimeout(function() { r('c'); }, 500); }); }\n    ], 200);\n  } catch (e) { err8 = e.message; }\n  results.push({ pass: err8 === 'Timeout after 200ms', description: 'Three slow tasks with short timeout → rejects', got: err8 });\n\n  return results;\n}",
+      "hint1": "Create two competing Promises: one that resolves when all the async functions complete (parallel), and one that rejects after the timeout. Then race them against each other.",
+      "hint2": "Use one combinator to run all functions in parallel (resolves when all complete). Create a timeout Promise with `setTimeout` that rejects with the error message. Then use another combinator that returns whichever settles first.",
+      "resources": [
+        {
+          "label": "MDN: Promise.all()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all",
+          "description": "Promise.all reference"
+        },
+        {
+          "label": "MDN: Promise.race()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race",
+          "description": "Promise.race reference"
+        }
+      ]
     }
   ]
 }
