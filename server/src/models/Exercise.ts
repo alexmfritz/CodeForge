@@ -42,7 +42,7 @@ const exerciseSchema = new Schema<IExercise>(
     category: [{ type: String }],
     tags: [{ type: String }],
     description: { type: String, required: true },
-    instructions: { type: String, required: true },
+    instructions: { type: String, default: '' },
     starterCode: { type: String, default: '' },
     solution: { type: String, required: true },
     testRunner: { type: String, default: '' },
