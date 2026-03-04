@@ -1,10 +1,10 @@
 {
   "id": "turing-foundations",
   "name": "Turing Foundations",
-  "description": "Exercises sourced from Turing School repositories: Mythical Creatures, two-class and multi-class composition, scope, context, and dataset manipulation.",
+  "description": "64 exercises adapted from Turing School of Software & Design's open-source curriculum. Covers class design through mythical creatures, multi-class composition, command-query patterns, scope and context mechanics, callback iteration patterns, nested data traversal, and dataset manipulation. Adapted to JavaScript under the MIT License.",
   "color": "#f59e0b",
-  "source": "Turing School",
-  "attribution": "Exercises covering mythical creatures, class composition, scope, context, and dataset manipulation. Sourced from [Turing School of Software & Design](https://github.com/turingschool-examples) public repositories and [jsFun](https://github.com/alexmfritz/jsFun).",
+  "source": "Turing School of Software & Design (turing.edu)",
+  "attribution": "Built from three Turing School repositories, all available on GitHub under the turingschool-examples organization (github.com/turingschool-examples): ruby-exercises (MIT License) provided mythical creatures, command-query, iteration patterns, and nested data exercises; jsFun (github.com/turingschool-examples/jsFun) provided scope, context, and prototype/dataset challenges. All exercises were adapted from Ruby or restructured from JavaScript into the CodeForge format. Turing School of Software & Design (turing.edu) is an accredited online programming school that trained over 2,500 students before pausing enrollment in 2025.",
   "exerciseIds": [
     535,
     536,
