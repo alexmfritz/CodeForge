@@ -54,7 +54,22 @@
     580,
     581,
     582,
-    583
+    583,
+    584,
+    585,
+    586,
+    587,
+    588,
+    589,
+    590,
+    591,
+    592,
+    593,
+    594,
+    595,
+    596,
+    597,
+    598
   ],
   "exercises": [
     {
@@ -2057,6 +2072,512 @@
       ],
       "solutionGate": 6,
       "basePoints": 100
+    },
+    {
+      "id": 584,
+      "title": "Mythical Creature: Centaur",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "classes",
+        "state-management",
+        "methods"
+      ],
+      "description": "Build a Centaur class with actions, stamina management, cranky behavior, standing/laying states, sleep mechanics, and potion drinking.",
+      "instructions": "Create a `Centaur` class with the following behavior:\n\n**Constructor**: Takes `name` and `breed`. Initializes with `cranky: false`, `standing: true`, `actions: 0`.\n\n**Methods**:\n- `shoot()` — Returns `'Twang!!!'` and increments actions by 1. If cranky, returns `'NO!'` instead.\n- `run()` — Returns `'Clop clop clop clop!'` and increments actions by 1. If cranky, returns `'NO!'` instead.\n- `layDown()` — Sets `standing` to false.\n- `standUp()` — Sets `standing` to true.\n- `sleep()` — If standing, returns `'NO!'`. If laying down, resets `actions` to 0 and `cranky` to false, returns `'Zzz...'`.\n- `drinkPotion()` — Resets `cranky` to false and returns `'Aaah...'`.\n\n**Cranky Rule**: After 3 or more actions, `cranky` becomes true.",
+      "starterCode": "/**\n * Centaur — mythical half-human, half-horse creature\n *\n * Properties: name, breed, cranky, standing, actions\n * Methods: shoot, run, layDown, standUp, sleep, drinkPotion\n * Gets cranky after 3+ actions. Can only sleep when laying down.\n */\n",
+      "solution": "class Centaur {\n  constructor(name, breed) {\n    this.name = name;\n    this.breed = breed;\n    this.cranky = false;\n    this.standing = true;\n    this.actions = 0;\n  }\n\n  shoot() {\n    if (this.cranky) return 'NO!';\n    this.actions++;\n    if (this.actions >= 3) this.cranky = true;\n    return 'Twang!!!';\n  }\n\n  run() {\n    if (this.cranky) return 'NO!';\n    this.actions++;\n    if (this.actions >= 3) this.cranky = true;\n    return 'Clop clop clop clop!';\n  }\n\n  layDown() {\n    this.standing = false;\n  }\n\n  standUp() {\n    this.standing = true;\n  }\n\n  sleep() {\n    if (this.standing) return 'NO!';\n    this.actions = 0;\n    this.cranky = false;\n    return 'Zzz...';\n  }\n\n  drinkPotion() {\n    this.cranky = false;\n    return 'Aaah...';\n  }\n}",
+      "testRunner": "(code) => {\n  const Centaur = new Function(code + '; return Centaur;')();\n  const results = [];\n\n  let c = new Centaur('Apollo', 'Palomino');\n  results.push({ pass: c.name === 'Apollo' && c.breed === 'Palomino', description: 'Has name and breed properties', got: c.name + ', ' + c.breed });\n  results.push({ pass: c.cranky === false && c.standing === true, description: 'Starts not cranky and standing', got: 'cranky: ' + c.cranky + ', standing: ' + c.standing });\n\n  results.push({ pass: c.shoot() === 'Twang!!!' && c.run() === 'Clop clop clop clop!', description: 'shoot returns Twang!!!, run returns Clop clop clop clop!', got: 'shoot/run work' });\n\n  c = new Centaur('Apollo', 'Palomino');\n  c.shoot(); c.shoot(); c.shoot();\n  results.push({ pass: c.cranky === true, description: 'Becomes cranky after 3 actions', got: 'cranky: ' + c.cranky });\n  results.push({ pass: c.shoot() === 'NO!' && c.run() === 'NO!', description: 'Refuses to act when cranky', got: 'Returns NO!' });\n\n  c = new Centaur('Apollo', 'Palomino');\n  results.push({ pass: c.sleep() === 'NO!', description: 'Cannot sleep while standing', got: c.sleep() });\n\n  c.shoot(); c.shoot(); c.shoot();\n  c.layDown();\n  const sleepResult = c.sleep();\n  results.push({ pass: sleepResult === 'Zzz...' && c.cranky === false && c.actions === 0, description: 'Sleeping while laying resets cranky and actions', got: sleepResult + ', cranky: ' + c.cranky });\n\n  c = new Centaur('Apollo', 'Palomino');\n  c.shoot(); c.shoot(); c.shoot();\n  results.push({ pass: c.drinkPotion() === 'Aaah...' && c.cranky === false, description: 'Potion cures crankiness', got: 'cranky: ' + c.cranky });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "Track an `actions` counter that increments on `shoot()` and `run()`. Check `if (this.actions >= 3) this.cranky = true` after each increment.",
+        "For `sleep()`, check `this.standing` first and return early if true. Otherwise reset both `actions` and `cranky`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes"
+        }
+      ],
+      "solutionGate": 8,
+      "basePoints": 50
+    },
+    {
+      "id": 585,
+      "title": "Mythical Creature: Medusa",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "classes",
+        "two-class",
+        "arrays",
+        "state-management"
+      ],
+      "description": "Build Medusa and Person classes where Medusa turns people to stone, with a maximum of 3 statues that cycle when exceeded.",
+      "instructions": "Create two classes: `Person` and `Medusa`.\n\n**Person**:\n- Constructor takes `name`. Starts with `stoned: false`.\n\n**Medusa**:\n- Constructor takes `name`. Starts with `statues: []` (empty array).\n- `stare(person)` — Sets the person's `stoned` to true and adds them to `statues`.\n  - If Medusa already has 3 statues, the **oldest** statue's `stoned` is set back to false (freed), removed from the array, and the new person is added.\n- `galesOfStone()` — Returns the array of `name` strings from all current statues.",
+      "starterCode": "/**\n * Medusa — turns people to stone with her gaze\n * Person — can be turned to stone by Medusa\n *\n * Medusa can hold max 3 statues. Adding a 4th frees the oldest.\n * galesOfStone() returns names of current statues.\n */\n",
+      "solution": "class Person {\n  constructor(name) {\n    this.name = name;\n    this.stoned = false;\n  }\n}\n\nclass Medusa {\n  constructor(name) {\n    this.name = name;\n    this.statues = [];\n  }\n\n  stare(person) {\n    if (this.statues.length >= 3) {\n      const freed = this.statues.shift();\n      freed.stoned = false;\n    }\n    person.stoned = true;\n    this.statues.push(person);\n  }\n\n  galesOfStone() {\n    return this.statues.map(p => p.name);\n  }\n}",
+      "testRunner": "(code) => {\n  const { Person, Medusa } = new Function(code + '; return { Person, Medusa };')();\n  const results = [];\n\n  const medusa = new Medusa('Medusa');\n  const p1 = new Person('Alex');\n  results.push({ pass: p1.stoned === false, description: 'Person starts not stoned', got: 'stoned: ' + p1.stoned });\n\n  medusa.stare(p1);\n  results.push({ pass: p1.stoned === true, description: 'Person is stoned after being stared at', got: 'stoned: ' + p1.stoned });\n  results.push({ pass: medusa.statues.length === 1, description: 'Medusa has 1 statue after staring', got: 'statues: ' + medusa.statues.length });\n\n  const p2 = new Person('Bob');\n  const p3 = new Person('Carol');\n  medusa.stare(p2);\n  medusa.stare(p3);\n  results.push({ pass: medusa.statues.length === 3, description: 'Medusa can hold 3 statues', got: 'statues: ' + medusa.statues.length });\n\n  results.push({ pass: JSON.stringify(medusa.galesOfStone()) === JSON.stringify(['Alex', 'Bob', 'Carol']), description: 'galesOfStone returns names of statues', got: JSON.stringify(medusa.galesOfStone()) });\n\n  const p4 = new Person('Diana');\n  medusa.stare(p4);\n  results.push({ pass: p1.stoned === false, description: 'Oldest statue (Alex) is freed when 4th added', got: 'Alex stoned: ' + p1.stoned });\n  results.push({ pass: medusa.statues.length === 3 && p4.stoned === true, description: 'Still has 3 statues with newest added', got: JSON.stringify(medusa.galesOfStone()) });\n\n  const p5 = new Person('Eve');\n  medusa.stare(p5);\n  results.push({ pass: p2.stoned === false && JSON.stringify(medusa.galesOfStone()) === JSON.stringify(['Carol', 'Diana', 'Eve']), description: 'Bob freed when 5th added, statues cycle correctly', got: JSON.stringify(medusa.galesOfStone()) });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "Use an array as a queue for `statues`. When it reaches length 3 and a new person is stared at, use `.shift()` to remove (and free) the oldest before `.push()`ing the new one.",
+        "The `galesOfStone()` method should map statues to their names: `this.statues.map(p => p.name)`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.shift()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift"
+        }
+      ],
+      "solutionGate": 8,
+      "basePoints": 50
+    },
+    {
+      "id": 586,
+      "title": "Mythical Creature: Ogre",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "classes",
+        "two-class",
+        "state-management",
+        "methods"
+      ],
+      "description": "Build Ogre and Human classes with encounter tracking, pattern-based detection, swing mechanics, and revival.",
+      "instructions": "Create two classes: `Human` and `Ogre`.\n\n**Human**:\n- Constructor takes optional `name` (default `'Jane'`). Starts with `encounters: 0`, `knockedOut: false`.\n- `encounter()` — Increments encounters by 1.\n- `noticesOgre()` — Returns `true` every 3rd encounter (3, 6, 9...), `false` otherwise.\n- `swpigsAtOgre()` — Should auto-trigger when the human notices the ogre. Returns `'pigswig!'`.\n\n**Ogre**:\n- Constructor takes `name` and `home` (e.g., `'Swamp'`).\n- `encounter(human)` — Triggers `human.encounter()`. If the human notices the ogre (every 3rd), the human swings. Every 2nd swing knocks the human out (sets `knockedOut: true`).\n- `apologize(human)` — Sets `human.knockedOut` back to false.\n\nTrack swing count on the ogre to determine every-2nd-swing knockout.",
+      "starterCode": "/**\n * Ogre and Human — encounter-based interaction\n *\n * Human notices ogre every 3rd encounter. Human swings when noticing.\n * Every 2nd swing knocks human out. Ogre can apologize to revive.\n */\n",
+      "solution": "class Human {\n  constructor(name = 'Jane') {\n    this.name = name;\n    this.encounters = 0;\n    this.knockedOut = false;\n  }\n\n  encounter() {\n    this.encounters++;\n  }\n\n  noticesOgre() {\n    return this.encounters % 3 === 0;\n  }\n\n  swingsAtOgre() {\n    return 'pigswig!';\n  }\n}\n\nclass Ogre {\n  constructor(name, home) {\n    this.name = name;\n    this.home = home;\n    this.swpigsCount = 0;\n  }\n\n  encounter(human) {\n    human.encounter();\n    if (human.noticesOgre()) {\n      human.swingsAtOgre();\n      this.swpigsCount++;\n      if (this.swpigsCount % 2 === 0) {\n        human.knockedOut = true;\n      }\n    }\n  }\n\n  apologize(human) {\n    human.knockedOut = false;\n  }\n}",
+      "testRunner": "(code) => {\n  const { Human, Ogre } = new Function(code + '; return { Human, Ogre };')();\n  const results = [];\n\n  const h = new Human();\n  results.push({ pass: h.name === 'Jane', description: 'Human defaults to name Jane', got: h.name });\n\n  const h2 = new Human('Bob');\n  results.push({ pass: h2.name === 'Bob' && h2.encounters === 0 && h2.knockedOut === false, description: 'Human takes custom name, starts with 0 encounters', got: h2.name + ', encounters: ' + h2.encounters });\n\n  const ogre = new Ogre('Shrek', 'Swamp');\n  results.push({ pass: ogre.name === 'Shrek' && ogre.home === 'Swamp', description: 'Ogre has name and home', got: ogre.name + ', ' + ogre.home });\n\n  const human = new Human('Tim');\n  ogre.encounter(human);\n  ogre.encounter(human);\n  results.push({ pass: human.encounters === 2 && human.knockedOut === false, description: 'Human has 2 encounters, not knocked out', got: 'encounters: ' + human.encounters + ', knockedOut: ' + human.knockedOut });\n\n  ogre.encounter(human);\n  results.push({ pass: human.encounters === 3, description: 'After 3rd encounter, human notices ogre', got: 'encounters: ' + human.encounters });\n\n  results.push({ pass: human.knockedOut === false, description: 'First swing does not knock out (only every 2nd)', got: 'knockedOut: ' + human.knockedOut });\n\n  ogre.encounter(human); ogre.encounter(human); ogre.encounter(human);\n  results.push({ pass: human.knockedOut === true, description: 'Knocked out after 2nd swing (6th encounter)', got: 'knockedOut: ' + human.knockedOut });\n\n  ogre.apologize(human);\n  results.push({ pass: human.knockedOut === false, description: 'Apologize revives the human', got: 'knockedOut: ' + human.knockedOut });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "The human notices the ogre every 3rd encounter — use `this.encounters % 3 === 0`. The ogre tracks a swing counter that increments each time the human notices.",
+        "Every 2nd swing knocks the human out: `this.swingCount % 2 === 0`. Track this on the Ogre, not the Human."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Default parameters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters"
+        }
+      ],
+      "solutionGate": 8,
+      "basePoints": 50
+    },
+    {
+      "id": 587,
+      "title": "Mythical Creature: Direwolf",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "classes",
+        "two-class",
+        "state-management",
+        "complex"
+      ],
+      "description": "Build Direwolf and Stark classes with location-based bonding, protection limits, and the leave/return mechanic.",
+      "instructions": "Create two classes: `Stark` and `Direwolf`.\n\n**Stark**:\n- Constructor takes `name` and `location` (default `'Winterfell'`). Starts with `direwpigsolf: null`, `isAlive: true`.\n\n**Direwolf**:\n- Constructor takes `name`, `home`, and `size`. Starts with `starpigsksToProtect: []`, `hunting: true`.\n- `protect(stark)` — If the Direwolf is in the same location as the Stark AND has fewer than 2 Starks already protected, add the Stark and set the Stark's `direwpigsolf` to this Direwolf. Also sets `hunting` to false.\n- `leave(stark)` — Removes the Stark from `starpigsksToProtect`, sets the Stark's `direwpigsolf` back to null. If no Starks remain, sets `hunting` to true.\n- `goHome()` — Sets `home` as current location and leaves all current Starks.\n\nWhen a Direwolf is protecting, `hunting` is false. When no Starks are protected, `hunting` is true.",
+      "starterCode": "",
+      "solution": "class Stark {\n  constructor(name, location = 'Winterfell') {\n    this.name = name;\n    this.location = location;\n    this.direwolf = null;\n    this.isAlive = true;\n  }\n}\n\nclass Direwolf {\n  constructor(name, home, size) {\n    this.name = name;\n    this.home = home;\n    this.size = size;\n    this.location = home;\n    this.starksToProtect = [];\n    this.hunting = true;\n  }\n\n  protect(stark) {\n    if (this.location === stark.location && this.starksToProtect.length < 2) {\n      this.starksToProtect.push(stark);\n      stark.direwolf = this;\n      this.hunting = false;\n    }\n  }\n\n  leave(stark) {\n    this.starksToProtect = this.starksToProtect.filter(s => s !== stark);\n    stark.direwolf = null;\n    if (this.starksToProtect.length === 0) {\n      this.hunting = true;\n    }\n  }\n\n  goHome() {\n    for (const stark of [...this.starksToProtect]) {\n      this.leave(stark);\n    }\n    this.location = this.home;\n  }\n}",
+      "testRunner": "(code) => {\n  const { Stark, Direwolf } = new Function(code + '; return { Stark, Direwolf };')();\n  const results = [];\n\n  const wolf = new Direwolf('Ghost', 'Winterfell', 'large');\n  results.push({ pass: wolf.name === 'Ghost' && wolf.home === 'Winterfell' && wolf.size === 'large', description: 'Direwolf has name, home, and size', got: wolf.name + ', ' + wolf.home + ', ' + wolf.size });\n  results.push({ pass: wolf.hunting === true && wolf.starksToProtect.length === 0, description: 'Starts hunting with no Starks', got: 'hunting: ' + wolf.hunting });\n\n  const jon = new Stark('Jon');\n  results.push({ pass: jon.location === 'Winterfell' && jon.direwolf === null, description: 'Stark defaults to Winterfell, no direwolf', got: jon.location + ', direwolf: ' + jon.direwolf });\n\n  wolf.protect(jon);\n  results.push({ pass: wolf.starksToProtect.length === 1 && jon.direwolf === wolf && wolf.hunting === false, description: 'Wolf protects Stark in same location, stops hunting', got: 'protecting: ' + wolf.starksToProtect.length + ', hunting: ' + wolf.hunting });\n\n  const arya = new Stark('Arya');\n  wolf.protect(arya);\n  const sansa = new Stark('Sansa');\n  wolf.protect(sansa);\n  results.push({ pass: wolf.starksToProtect.length === 2, description: 'Max 2 Starks protected, 3rd rejected', got: 'protecting: ' + wolf.starksToProtect.length });\n\n  const farWolf = new Direwolf('Nymeria', 'Riverlands', 'medium');\n  const robb = new Stark('Robb');\n  farWolf.protect(robb);\n  results.push({ pass: farWolf.starksToProtect.length === 0, description: 'Cannot protect Stark in different location', got: 'protecting: ' + farWolf.starksToProtect.length });\n\n  wolf.leave(jon);\n  results.push({ pass: jon.direwolf === null && wolf.starksToProtect.length === 1, description: 'Leave removes Stark and clears their direwolf', got: 'direwolf: ' + jon.direwolf + ', protecting: ' + wolf.starksToProtect.length });\n\n  wolf.goHome();\n  results.push({ pass: wolf.starksToProtect.length === 0 && wolf.hunting === true && arya.direwolf === null, description: 'goHome leaves all Starks and resumes hunting', got: 'hunting: ' + wolf.hunting + ', protecting: ' + wolf.starksToProtect.length });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "The protect method needs two guards: same location check (`this.location === stark.location`) AND a capacity check (`this.starksToProtect.length < 2`).",
+        "For `goHome()`, iterate over a copy of the array (spread into a new array first) since `leave()` modifies the original."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.filter()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
+        }
+      ],
+      "solutionGate": 6,
+      "basePoints": 100
+    },
+    {
+      "id": 588,
+      "title": "Command-Query: Student & Clock",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "classes",
+        "state-management",
+        "command-query"
+      ],
+      "description": "Build Student and Clock classes that demonstrate command (mutate state) vs query (return state) method patterns.",
+      "instructions": "Create two classes:\n\n**Student**:\n- Constructor takes `name`. Starts with `grade: 'C'`.\n- `study()` — Raises grade by one letter: F->D->C->B->A. Cannot go above A.\n- `slackOff()` — Lowers grade by one letter: A->B->C->D->F. Cannot go below F.\n- `isPassing()` — Returns `true` if grade is C or above.\n\n**Clock**:\n- Constructor takes no arguments. Starts at `hours: 6`.\n- `wait()` — Increments hours by 1. Wraps from 12 back to 1 (12-hour clock).\n- `time()` — Returns the current hours as a string like `'6:00'`.",
+      "starterCode": "class Student {\n  constructor(name) {\n    // your code here\n  }\n\n  study() {\n    // your code here\n  }\n\n  slackOff() {\n    // your code here\n  }\n\n  isPassing() {\n    // your code here\n  }\n}\n\nclass Clock {\n  constructor() {\n    // your code here\n  }\n\n  wait() {\n    // your code here\n  }\n\n  time() {\n    // your code here\n  }\n}",
+      "solution": "class Student {\n  constructor(name) {\n    this.name = name;\n    this.grade = 'C';\n  }\n\n  study() {\n    const grades = ['F', 'D', 'C', 'B', 'A'];\n    const idx = grades.indexOf(this.grade);\n    if (idx < grades.length - 1) this.grade = grades[idx + 1];\n  }\n\n  slackOff() {\n    const grades = ['F', 'D', 'C', 'B', 'A'];\n    const idx = grades.indexOf(this.grade);\n    if (idx > 0) this.grade = grades[idx - 1];\n  }\n\n  isPassing() {\n    return ['A', 'B', 'C'].includes(this.grade);\n  }\n}\n\nclass Clock {\n  constructor() {\n    this.hours = 6;\n  }\n\n  wait() {\n    this.hours = this.hours === 12 ? 1 : this.hours + 1;\n  }\n\n  time() {\n    return this.hours + ':00';\n  }\n}",
+      "testRunner": "(code) => {\n  const { Student, Clock } = new Function(code + '; return { Student, Clock };')();\n  const results = [];\n\n  const s = new Student('Alex');\n  results.push({ pass: s.grade === 'C', description: 'Student starts at grade C', got: s.grade });\n\n  s.study();\n  results.push({ pass: s.grade === 'B', description: 'study() raises grade from C to B', got: s.grade });\n\n  s.study();\n  s.study();\n  results.push({ pass: s.grade === 'A', description: 'study() caps at A', got: s.grade });\n\n  s.slackOff(); s.slackOff(); s.slackOff(); s.slackOff();\n  results.push({ pass: s.grade === 'F' && s.isPassing() === false, description: 'slackOff() lowers to F, isPassing returns false', got: 'grade: ' + s.grade + ', passing: ' + s.isPassing() });\n\n  const s2 = new Student('Bob');\n  results.push({ pass: s2.isPassing() === true, description: 'C grade is passing', got: 'passing: ' + s2.isPassing() });\n\n  const c = new Clock();\n  results.push({ pass: c.time() === '6:00', description: 'Clock starts at 6:00', got: c.time() });\n\n  c.wait(); c.wait(); c.wait();\n  results.push({ pass: c.time() === '9:00', description: 'After 3 waits, clock shows 9:00', got: c.time() });\n\n  c.wait(); c.wait(); c.wait(); c.wait();\n  results.push({ pass: c.time() === '1:00', description: 'Clock wraps from 12 to 1', got: c.time() });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "Store grades in an ordered array like `[\"F\", \"D\", \"C\", \"B\", \"A\"]` and use `indexOf` to find the current position. Moving up or down is just changing the index.",
+        "For the Clock, use a ternary: if hours equals 12, reset to 1; otherwise increment by 1."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.indexOf()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 589,
+      "title": "Command-Query: Threshold Trackers",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "classes",
+        "state-management",
+        "command-query"
+      ],
+      "description": "Build three small classes that track consumption and toggle a boolean state when a threshold is crossed.",
+      "instructions": "Create three classes:\n\n**Santa**:\n- Constructor takes no arguments. Starts with `cookies: 0`.\n- `eatCookie()` — Increments cookies by 1.\n- `fpigsitsDown ChpigsimneypigsliquidSeparatorThresh()` — Returns `false` once 3 or more cookies have been eaten. Returns `true` otherwise.\n\nActually, the methods are:\n- `eatCookie()` — Increments cookies by 1.\n- `fitsDownChimney()` — Returns `true` if fewer than 3 cookies eaten, `false` otherwise.\n\n**Adult**:\n- Constructor takes no arguments. Starts with `drinks: 0`.\n- `drink()` — Increments drinks by 1.\n- `isSober()` — Returns `true` if fewer than 3 drinks, `false` otherwise.\n\n**Kid**:\n- Constructor takes no arguments. Starts with `sugar: 0`.\n- `eatCandy()` — Adds 5 grams of sugar.\n- `isHyperactive()` — Returns `true` if sugar is 60 or more, `false` otherwise.",
+      "starterCode": "class Santa {\n  constructor() {\n    // your code here\n  }\n\n  eatCookie() {\n    // your code here\n  }\n\n  fitsDownChimney() {\n    // your code here\n  }\n}\n\nclass Adult {\n  constructor() {\n    // your code here\n  }\n\n  drink() {\n    // your code here\n  }\n\n  isSober() {\n    // your code here\n  }\n}\n\nclass Kid {\n  constructor() {\n    // your code here\n  }\n\n  eatCandy() {\n    // your code here\n  }\n\n  isHyperactive() {\n    // your code here\n  }\n}",
+      "solution": "class Santa {\n  constructor() {\n    this.cookies = 0;\n  }\n\n  eatCookie() {\n    this.cookies++;\n  }\n\n  fitsDownChimney() {\n    return this.cookies < 3;\n  }\n}\n\nclass Adult {\n  constructor() {\n    this.drinks = 0;\n  }\n\n  drink() {\n    this.drinks++;\n  }\n\n  isSober() {\n    return this.drinks < 3;\n  }\n}\n\nclass Kid {\n  constructor() {\n    this.sugar = 0;\n  }\n\n  eatCandy() {\n    this.sugar += 5;\n  }\n\n  isHyperactive() {\n    return this.sugar >= 60;\n  }\n}",
+      "testRunner": "(code) => {\n  const { Santa, Adult, Kid } = new Function(code + '; return { Santa, Adult, Kid };')();\n  const results = [];\n\n  const santa = new Santa();\n  results.push({ pass: santa.fitsDownChimney() === true, description: 'Santa fits before eating', got: String(santa.fitsDownChimney()) });\n\n  santa.eatCookie(); santa.eatCookie();\n  results.push({ pass: santa.fitsDownChimney() === true, description: 'Santa still fits after 2 cookies', got: String(santa.fitsDownChimney()) });\n\n  santa.eatCookie();\n  results.push({ pass: santa.fitsDownChimney() === false, description: 'Santa does not fit after 3 cookies', got: String(santa.fitsDownChimney()) });\n\n  const adult = new Adult();\n  results.push({ pass: adult.isSober() === true, description: 'Adult starts sober', got: String(adult.isSober()) });\n\n  adult.drink(); adult.drink(); adult.drink();\n  results.push({ pass: adult.isSober() === false, description: 'Adult not sober after 3 drinks', got: String(adult.isSober()) });\n\n  const kid = new Kid();\n  results.push({ pass: kid.isHyperactive() === false, description: 'Kid starts not hyperactive', got: String(kid.isHyperactive()) });\n\n  for (let i = 0; i < 11; i++) kid.eatCandy();\n  results.push({ pass: kid.isHyperactive() === false, description: 'Kid not hyperactive at 55g sugar', got: 'sugar: ' + kid.sugar });\n\n  kid.eatCandy();\n  results.push({ pass: kid.isHyperactive() === true, description: 'Kid is hyperactive at 60g sugar', got: 'sugar: ' + kid.sugar });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "Each class follows the same pattern: a counter property, a command method that increments it, and a query method that checks a threshold.",
+        "Santa and Adult threshold is `< 3` (returns true when under). Kid threshold is `>= 60` (returns true when at or above)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Comparison operators",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 590,
+      "title": "Command-Query: Wallet",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "classes",
+        "state-management",
+        "rest-parameters"
+      ],
+      "description": "Build a Wallet class with coin management using rest parameters for withdrawals.",
+      "instructions": "Create a `Wallet` class:\n\n**Constructor**: No arguments. Starts with `coins: []` and defines coin values:\n- penny = 1, nickel = 5, dime = 10, quarter = 25\n\n**Methods**:\n- `addPenny()` — Pushes 1 to coins.\n- `addNickel()` — Pushes 5 to coins.\n- `addDime()` — Pushes 10 to coins.\n- `addQuarter()` — Pushes 25 to coins.\n- `total()` — Returns the sum of all coins in cents.\n- `take(...coinNames)` — Takes a rest parameter of coin name strings (e.g., `'penny'`, `'dime'`). For each name, remove the first matching coin value from the array. Returns the total value removed.\n\nExample: `wallet.take('penny', 'quarter')` removes one 1 and one 25, returns 26.",
+      "starterCode": "/**\n * Wallet — manages a collection of coins\n *\n * Coin values: penny=1, nickel=5, dime=10, quarter=25\n * add methods push coin values, take removes by name\n * total() returns sum of all coins\n */\n",
+      "solution": "class Wallet {\n  constructor() {\n    this.coins = [];\n    this.coinValues = { penny: 1, nickel: 5, dime: 10, quarter: 25 };\n  }\n\n  addPenny() { this.coins.push(1); }\n  addNickel() { this.coins.push(5); }\n  addDime() { this.coins.push(10); }\n  addQuarter() { this.coins.push(25); }\n\n  total() {\n    return this.coins.reduce((sum, c) => sum + c, 0);\n  }\n\n  take(...coinNames) {\n    let removed = 0;\n    for (const name of coinNames) {\n      const value = this.coinValues[name];\n      const idx = this.coins.indexOf(value);\n      if (idx !== -1) {\n        this.coins.splice(idx, 1);\n        removed += value;\n      }\n    }\n    return removed;\n  }\n}",
+      "testRunner": "(code) => {\n  const Wallet = new Function(code + '; return Wallet;')();\n  const results = [];\n\n  const w = new Wallet();\n  results.push({ pass: w.total() === 0, description: 'Wallet starts empty', got: String(w.total()) });\n\n  w.addPenny();\n  w.addNickel();\n  w.addDime();\n  w.addQuarter();\n  results.push({ pass: w.total() === 41, description: 'Total after adding one of each coin is 41', got: String(w.total()) });\n\n  w.addQuarter();\n  w.addDime();\n  results.push({ pass: w.total() === 76, description: 'Total after adding another quarter and dime is 76', got: String(w.total()) });\n\n  const taken = w.take('penny', 'quarter');\n  results.push({ pass: taken === 26, description: 'take penny and quarter returns 26', got: String(taken) });\n  results.push({ pass: w.total() === 50, description: 'Wallet total is 50 after taking penny+quarter', got: String(w.total()) });\n\n  const taken2 = w.take('dime', 'dime', 'nickel');\n  results.push({ pass: taken2 === 25, description: 'take 2 dimes and nickel returns 25', got: String(taken2) });\n\n  results.push({ pass: w.total() === 25, description: 'Wallet has 25 remaining (one quarter)', got: String(w.total()) });\n\n  const taken3 = w.take('penny');\n  results.push({ pass: taken3 === 0, description: 'Taking a coin not in wallet returns 0', got: String(taken3) });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "Map coin names to values using an object like `{ penny: 1, nickel: 5, dime: 10, quarter: 25 }`. The `take` method looks up each name, finds its value in the coins array with `indexOf`, and removes it with `splice`.",
+        "Use `...coinNames` rest parameter syntax. Loop through the names, and for each one, only remove if `indexOf` returns a valid index (not -1)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Rest parameters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters"
+        }
+      ],
+      "solutionGate": 8,
+      "basePoints": 50
+    },
+    {
+      "id": 591,
+      "title": "Command-Query: RollCall & Appointments",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "classes",
+        "arrays",
+        "command-query"
+      ],
+      "description": "Build RollCall and Appointments classes that collect items and query for extremes.",
+      "instructions": "Create two classes:\n\n**RollCall**:\n- Constructor takes no arguments. Starts with `names: []`.\n- `addName(name)` — Adds a name string to the array.\n- `longestName()` — Returns the longest name. If tied, return the first one found.\n\n**Appointments**:\n- Constructor takes no arguments. Starts with `times: []`.\n- `at(time)` — Adds a time string (e.g., `'9:00'`, `'14:30'`) to the array.\n- `earliest()` — Returns the earliest time string. Compare by converting to minutes (hours * 60 + minutes).",
+      "starterCode": "class RollCall {\n  constructor() {\n    // your code here\n  }\n\n  addName(name) {\n    // your code here\n  }\n\n  longestName() {\n    // your code here\n  }\n}\n\nclass Appointments {\n  constructor() {\n    // your code here\n  }\n\n  at(time) {\n    // your code here\n  }\n\n  earliest() {\n    // your code here\n  }\n}",
+      "solution": "class RollCall {\n  constructor() {\n    this.names = [];\n  }\n\n  addName(name) {\n    this.names.push(name);\n  }\n\n  longestName() {\n    return this.names.reduce((longest, name) =>\n      name.length > longest.length ? name : longest\n    );\n  }\n}\n\nclass Appointments {\n  constructor() {\n    this.times = [];\n  }\n\n  at(time) {\n    this.times.push(time);\n  }\n\n  earliest() {\n    return this.times.reduce((earliest, time) => {\n      const toMin = t => {\n        const [h, m] = t.split(':').map(Number);\n        return h * 60 + m;\n      };\n      return toMin(time) < toMin(earliest) ? time : earliest;\n    });\n  }\n}",
+      "testRunner": "(code) => {\n  const { RollCall, Appointments } = new Function(code + '; return { RollCall, Appointments };')();\n  const results = [];\n\n  const rc = new RollCall();\n  rc.addName('Al');\n  rc.addName('Alexander');\n  rc.addName('Bob');\n  results.push({ pass: rc.names.length === 3, description: 'RollCall has 3 names after adding 3', got: String(rc.names.length) });\n  results.push({ pass: rc.longestName() === 'Alexander', description: 'Longest name is Alexander', got: rc.longestName() });\n\n  const rc2 = new RollCall();\n  rc2.addName('Ann');\n  rc2.addName('Bob');\n  results.push({ pass: rc2.longestName() === 'Ann', description: 'Tied length returns first found', got: rc2.longestName() });\n\n  const appts = new Appointments();\n  appts.at('14:30');\n  appts.at('9:00');\n  appts.at('11:15');\n  results.push({ pass: appts.times.length === 3, description: 'Appointments has 3 times after adding 3', got: String(appts.times.length) });\n  results.push({ pass: appts.earliest() === '9:00', description: 'Earliest appointment is 9:00', got: appts.earliest() });\n\n  appts.at('8:45');\n  results.push({ pass: appts.earliest() === '8:45', description: 'Earliest updates to 8:45', got: appts.earliest() });\n\n  const appts2 = new Appointments();\n  appts2.at('23:59');\n  appts2.at('0:01');\n  results.push({ pass: appts2.earliest() === '0:01', description: 'Handles midnight times correctly', got: appts2.earliest() });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "For `longestName`, use `reduce` comparing `name.length > longest.length`. If the current name is longer, it becomes the new longest.",
+        "For `earliest`, split each time string on \":\" to get hours and minutes. Convert to total minutes (hours * 60 + minutes) for comparison."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 592,
+      "title": "Command-Query: Collection Queries",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "classes",
+        "two-class",
+        "arrays",
+        "command-query"
+      ],
+      "description": "Build four pairs of container/item classes that collect items and query for specific properties.",
+      "instructions": "Create eight classes (four container/item pairs):\n\n**Child** + **Children**:\n- `Child(name, age)` stores name and age\n- `Children()` starts with `kids: []`\n- `add(child)` — pushes child to kids\n- `eldest()` — returns the Child with the highest age\n\n**Product** + **Catalog**:\n- `Product(name, price)` stores name and price\n- `Catalog()` starts with `products: []`\n- `add(product)` — pushes product\n- `cheapest()` — returns the Product with the lowest price\n\n**Cupcake** + **Cupcakes**:\n- `Cupcake(flavor, sugar)` stores flavor and sugar (number)\n- `Cupcakes()` starts with `items: []`\n- `add(cupcake)` — pushes cupcake\n- `sweetest()` — returns the Cupcake with the highest sugar\n\n**Item** + **Clearance**:\n- `Item(name, price, discount)` stores name, price (number), discount (decimal like 0.30)\n- `Clearance()` starts with `items: []`\n- `add(item)` — pushes item\n- `bestDeal()` — returns the Item with the highest discount percentage",
+      "starterCode": "/**\n * Four container/item class pairs with collection queries\n *\n * Each container: add(item) to collect, query() to find extreme\n * Children->eldest, Catalog->cheapest, Cupcakes->sweetest, Clearance->bestDeal\n */\n",
+      "solution": "class Child {\n  constructor(name, age) {\n    this.name = name;\n    this.age = age;\n  }\n}\n\nclass Children {\n  constructor() {\n    this.kids = [];\n  }\n  add(child) { this.kids.push(child); }\n  eldest() {\n    return this.kids.reduce((max, kid) => kid.age > max.age ? kid : max);\n  }\n}\n\nclass Product {\n  constructor(name, price) {\n    this.name = name;\n    this.price = price;\n  }\n}\n\nclass Catalog {\n  constructor() {\n    this.products = [];\n  }\n  add(product) { this.products.push(product); }\n  cheapest() {\n    return this.products.reduce((min, p) => p.price < min.price ? p : min);\n  }\n}\n\nclass Cupcake {\n  constructor(flavor, sugar) {\n    this.flavor = flavor;\n    this.sugar = sugar;\n  }\n}\n\nclass Cupcakes {\n  constructor() {\n    this.items = [];\n  }\n  add(cupcake) { this.items.push(cupcake); }\n  sweetest() {\n    return this.items.reduce((max, c) => c.sugar > max.sugar ? c : max);\n  }\n}\n\nclass Item {\n  constructor(name, price, discount) {\n    this.name = name;\n    this.price = price;\n    this.discount = discount;\n  }\n}\n\nclass Clearance {\n  constructor() {\n    this.items = [];\n  }\n  add(item) { this.items.push(item); }\n  bestDeal() {\n    return this.items.reduce((best, item) => item.discount > best.discount ? item : best);\n  }\n}",
+      "testRunner": "(code) => {\n  const { Child, Children, Product, Catalog, Cupcake, Cupcakes, Item, Clearance } = new Function(code + '; return { Child, Children, Product, Catalog, Cupcake, Cupcakes, Item, Clearance };')();\n  const results = [];\n\n  const kids = new Children();\n  kids.add(new Child('Alice', 8));\n  kids.add(new Child('Bob', 12));\n  kids.add(new Child('Carol', 5));\n  results.push({ pass: kids.eldest().name === 'Bob', description: 'Children: eldest is Bob (age 12)', got: kids.eldest().name });\n\n  const catalog = new Catalog();\n  catalog.add(new Product('Widget', 29.99));\n  catalog.add(new Product('Gadget', 9.99));\n  catalog.add(new Product('Doohickey', 49.99));\n  results.push({ pass: catalog.cheapest().name === 'Gadget', description: 'Catalog: cheapest is Gadget ($9.99)', got: catalog.cheapest().name });\n\n  const tray = new Cupcakes();\n  tray.add(new Cupcake('Vanilla', 20));\n  tray.add(new Cupcake('Chocolate', 35));\n  tray.add(new Cupcake('Red Velvet', 28));\n  results.push({ pass: tray.sweetest().flavor === 'Chocolate', description: 'Cupcakes: sweetest is Chocolate (35g)', got: tray.sweetest().flavor });\n\n  const rack = new Clearance();\n  rack.add(new Item('Shirt', 40, 0.10));\n  rack.add(new Item('Pants', 60, 0.50));\n  rack.add(new Item('Hat', 20, 0.30));\n  results.push({ pass: rack.bestDeal().name === 'Pants', description: 'Clearance: bestDeal is Pants (50% off)', got: rack.bestDeal().name });\n\n  kids.add(new Child('Diana', 15));\n  results.push({ pass: kids.eldest().name === 'Diana', description: 'Children: eldest updates to Diana (age 15)', got: kids.eldest().name });\n\n  catalog.add(new Product('Thingamajig', 4.99));\n  results.push({ pass: catalog.cheapest().name === 'Thingamajig', description: 'Catalog: cheapest updates to Thingamajig ($4.99)', got: catalog.cheapest().name });\n\n  tray.add(new Cupcake('Caramel', 50));\n  results.push({ pass: tray.sweetest().flavor === 'Caramel', description: 'Cupcakes: sweetest updates to Caramel (50g)', got: tray.sweetest().flavor });\n\n  rack.add(new Item('Jacket', 100, 0.75));\n  results.push({ pass: rack.bestDeal().name === 'Jacket', description: 'Clearance: bestDeal updates to Jacket (75% off)', got: rack.bestDeal().name });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "All four query methods follow the same `reduce` pattern: compare a property of the current item against the accumulator and keep the one with the extreme value (max or min).",
+        "For `cheapest`, use `p.price < min.price`. For `bestDeal`, use `item.discount > best.discount`. The pattern is identical — only the comparison direction and property change."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
+        }
+      ],
+      "solutionGate": 8,
+      "basePoints": 50
+    },
+    {
+      "id": 593,
+      "title": "Iteration Pattern: Map",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "functions",
+        "callback-methods"
+      ],
+      "tags": [
+        "map",
+        "arrays",
+        "objects",
+        "transform"
+      ],
+      "description": "Implement five transform functions that alternate between array and object mapping patterns.",
+      "instructions": "Create five functions:\n\n1. `capitalizeNames(names)` — Takes an array of lowercase name strings. Returns a new array with each name capitalized (first letter uppercase, rest lowercase).\n\n2. `doubleValues(obj)` — Takes an object with numeric values. Returns a new object with the same keys but all values doubled.\n\n3. `squareNumbers(nums)` — Takes an array of numbers. Returns a new array with each number squared.\n\n4. `nameLengths(obj)` — Takes an object where values are name strings. Returns a new object with the same keys but values replaced by the string lengths.\n\n5. `reverseStrings(strings)` — Takes an array of strings. Returns a new array with each string reversed.",
+      "starterCode": "/**\n * Map Pattern — transforming collections element by element\n *\n * Arrays: capitalizeNames, squareNumbers, reverseStrings\n * Objects: doubleValues, nameLengths\n */\n",
+      "solution": "function capitalizeNames(names) {\n  return names.map(name => name[0].toUpperCase() + name.slice(1).toLowerCase());\n}\n\nfunction doubleValues(obj) {\n  const result = {};\n  for (const [key, val] of Object.entries(obj)) {\n    result[key] = val * 2;\n  }\n  return result;\n}\n\nfunction squareNumbers(nums) {\n  return nums.map(n => n * n);\n}\n\nfunction nameLengths(obj) {\n  const result = {};\n  for (const [key, val] of Object.entries(obj)) {\n    result[key] = val.length;\n  }\n  return result;\n}\n\nfunction reverseStrings(strings) {\n  return strings.map(s => s.split('').reverse().join(''));\n}",
+      "testRunner": "(code) => {\n  const { capitalizeNames, doubleValues, squareNumbers, nameLengths, reverseStrings } = new Function(code + '; return { capitalizeNames, doubleValues, squareNumbers, nameLengths, reverseStrings };')();\n  const results = [];\n\n  const cap = capitalizeNames(['alice', 'bob', 'carol']);\n  results.push({ pass: JSON.stringify(cap) === JSON.stringify(['Alice', 'Bob', 'Carol']), description: 'capitalizeNames capitalizes first letters', got: JSON.stringify(cap) });\n\n  const dbl = doubleValues({ a: 5, b: 10, c: 3 });\n  results.push({ pass: dbl.a === 10 && dbl.b === 20 && dbl.c === 6, description: 'doubleValues doubles all object values', got: JSON.stringify(dbl) });\n\n  const sq = squareNumbers([2, 3, 4, 5]);\n  results.push({ pass: JSON.stringify(sq) === JSON.stringify([4, 9, 16, 25]), description: 'squareNumbers squares each number', got: JSON.stringify(sq) });\n\n  const nl = nameLengths({ first: 'Alexander', last: 'Hamilton', middle: 'James' });\n  results.push({ pass: nl.first === 9 && nl.last === 8 && nl.middle === 5, description: 'nameLengths returns string lengths', got: JSON.stringify(nl) });\n\n  const rev = reverseStrings(['hello', 'world', 'abc']);\n  results.push({ pass: JSON.stringify(rev) === JSON.stringify(['olleh', 'dlrow', 'cba']), description: 'reverseStrings reverses each string', got: JSON.stringify(rev) });\n\n  const cap2 = capitalizeNames(['DAVE', 'EVE']);\n  results.push({ pass: JSON.stringify(cap2) === JSON.stringify(['Dave', 'Eve']), description: 'capitalizeNames handles uppercase input', got: JSON.stringify(cap2) });\n\n  const dbl2 = doubleValues({ x: -3, y: 0 });\n  results.push({ pass: dbl2.x === -6 && dbl2.y === 0, description: 'doubleValues handles negatives and zero', got: JSON.stringify(dbl2) });\n\n  const rev2 = reverseStrings(['racecar', 'a']);\n  results.push({ pass: JSON.stringify(rev2) === JSON.stringify(['racecar', 'a']), description: 'reverseStrings handles palindromes and single chars', got: JSON.stringify(rev2) });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "For arrays, use `.map()` to transform each element. For objects, use `Object.entries()` to get key-value pairs, then build a new object.",
+        "To capitalize: `name[0].toUpperCase() + name.slice(1).toLowerCase()`. To reverse a string: `str.split(\"\").reverse().join(\"\")`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Object.entries()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries"
+        }
+      ],
+      "solutionGate": 8,
+      "basePoints": 50
+    },
+    {
+      "id": 594,
+      "title": "Iteration Pattern: Select",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "functions",
+        "callback-methods"
+      ],
+      "tags": [
+        "filter",
+        "arrays",
+        "objects",
+        "select"
+      ],
+      "description": "Implement five filtering functions that alternate between array and object selection patterns.",
+      "instructions": "Create five functions:\n\n1. `evenNumbers(nums)` — Takes an array of numbers. Returns only the even ones.\n\n2. `longWords(obj)` — Takes an object where values are strings. Returns a new object containing only entries where the string length is greater than 4.\n\n3. `containsChar(strings, char)` — Takes an array of strings and a character. Returns only strings that include that character.\n\n4. `highValues(obj, threshold)` — Takes an object with numeric values and a threshold. Returns a new object with only entries where the value exceeds the threshold.\n\n5. `floatsOnly(nums)` — Takes an array of numbers. Returns only the ones that are not whole numbers (have a decimal part).",
+      "starterCode": "/**\n * Select Pattern — filtering collections by a condition\n *\n * Arrays: evenNumbers, containsChar, floatsOnly\n * Objects: longWords, highValues\n */\n",
+      "solution": "function evenNumbers(nums) {\n  return nums.filter(n => n % 2 === 0);\n}\n\nfunction longWords(obj) {\n  const result = {};\n  for (const [key, val] of Object.entries(obj)) {\n    if (val.length > 4) result[key] = val;\n  }\n  return result;\n}\n\nfunction containsChar(strings, char) {\n  return strings.filter(s => s.includes(char));\n}\n\nfunction highValues(obj, threshold) {\n  const result = {};\n  for (const [key, val] of Object.entries(obj)) {\n    if (val > threshold) result[key] = val;\n  }\n  return result;\n}\n\nfunction floatsOnly(nums) {\n  return nums.filter(n => n % 1 !== 0);\n}",
+      "testRunner": "(code) => {\n  const { evenNumbers, longWords, containsChar, highValues, floatsOnly } = new Function(code + '; return { evenNumbers, longWords, containsChar, highValues, floatsOnly };')();\n  const results = [];\n\n  const evens = evenNumbers([1, 2, 3, 4, 5, 6]);\n  results.push({ pass: JSON.stringify(evens) === JSON.stringify([2, 4, 6]), description: 'evenNumbers returns only even numbers', got: JSON.stringify(evens) });\n\n  const long = longWords({ a: 'hi', b: 'hello', c: 'world', d: 'hey' });\n  results.push({ pass: Object.keys(long).length === 2 && long.b === 'hello' && long.c === 'world', description: 'longWords keeps only strings longer than 4', got: JSON.stringify(long) });\n\n  const has = containsChar(['apple', 'banana', 'cherry', 'date'], 'a');\n  results.push({ pass: JSON.stringify(has) === JSON.stringify(['apple', 'banana', 'date']), description: \"containsChar('a') filters correctly\", got: JSON.stringify(has) });\n\n  const high = highValues({ temp: 72, humidity: 45, pressure: 30 }, 40);\n  results.push({ pass: Object.keys(high).length === 2 && high.temp === 72 && high.humidity === 45, description: 'highValues keeps values above threshold', got: JSON.stringify(high) });\n\n  const floats = floatsOnly([1, 2.5, 3, 4.1, 5, 6.7]);\n  results.push({ pass: JSON.stringify(floats) === JSON.stringify([2.5, 4.1, 6.7]), description: 'floatsOnly returns non-whole numbers', got: JSON.stringify(floats) });\n\n  const evens2 = evenNumbers([0, -2, -3, 7]);\n  results.push({ pass: JSON.stringify(evens2) === JSON.stringify([0, -2]), description: 'evenNumbers handles zero and negatives', got: JSON.stringify(evens2) });\n\n  const has2 = containsChar(['xyz', 'abc'], 'z');\n  results.push({ pass: JSON.stringify(has2) === JSON.stringify(['xyz']), description: \"containsChar('z') finds only xyz\", got: JSON.stringify(has2) });\n\n  const high2 = highValues({ a: 10, b: 10 }, 10);\n  results.push({ pass: Object.keys(high2).length === 0, description: 'highValues excludes values equal to threshold', got: JSON.stringify(high2) });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "For arrays, use `.filter()` with a condition. For objects, iterate with `Object.entries()` and only add matching entries to a new object.",
+        "To check for floats: `n % 1 !== 0` returns true for numbers with decimal parts. For `containsChar`, use `.includes(char)`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.filter()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
+        }
+      ],
+      "solutionGate": 8,
+      "basePoints": 50
+    },
+    {
+      "id": 595,
+      "title": "Iteration Pattern: Reduce",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "functions",
+        "callback-methods"
+      ],
+      "tags": [
+        "reduce",
+        "arrays",
+        "objects",
+        "accumulation"
+      ],
+      "description": "Implement five accumulation functions using reduce patterns on arrays and objects.",
+      "instructions": "Create five functions:\n\n1. `totalCalories(meals)` — Takes an array of meal objects `{ name, calories }`. Returns the total calories across all meals.\n\n2. `averageGrade(students)` — Takes an array of student objects `{ name, grade }`. Returns the average grade rounded down with `Math.floor`.\n\n3. `arrayToObject(pairs)` — Takes an array of `[key, value]` pairs. Returns an object built from those pairs.\n\n4. `menuString(items)` — Takes an array of menu item objects `{ dish, price }`. Returns a formatted string like `'Burger: $10, Fries: $5, Soda: $3'`.\n\n5. `productOfDifferences(nums)` — Takes an array of numbers. Returns the product of the differences between consecutive elements. Example: `[10, 3, 5]` → `(10-3) * (3-5)` → `7 * -2` → `-14`.",
+      "starterCode": "/**\n * Reduce Pattern — accumulating values from a collection\n *\n * totalCalories, averageGrade, arrayToObject, menuString, productOfDifferences\n * Each builds a single result from a collection of items.\n */\n",
+      "solution": "function totalCalories(meals) {\n  return meals.reduce((sum, meal) => sum + meal.calories, 0);\n}\n\nfunction averageGrade(students) {\n  const total = students.reduce((sum, s) => sum + s.grade, 0);\n  return Math.floor(total / students.length);\n}\n\nfunction arrayToObject(pairs) {\n  return pairs.reduce((obj, [key, value]) => {\n    obj[key] = value;\n    return obj;\n  }, {});\n}\n\nfunction menuString(items) {\n  return items.map(item => item.dish + ': $' + item.price).join(', ');\n}\n\nfunction productOfDifferences(nums) {\n  let product = 1;\n  for (let i = 0; i < nums.length - 1; i++) {\n    product *= nums[i] - nums[i + 1];\n  }\n  return product;\n}",
+      "testRunner": "(code) => {\n  const { totalCalories, averageGrade, arrayToObject, menuString, productOfDifferences } = new Function(code + '; return { totalCalories, averageGrade, arrayToObject, menuString, productOfDifferences };')();\n  const results = [];\n\n  const cal = totalCalories([{ name: 'Breakfast', calories: 400 }, { name: 'Lunch', calories: 600 }, { name: 'Dinner', calories: 800 }]);\n  results.push({ pass: cal === 1800, description: 'totalCalories sums to 1800', got: String(cal) });\n\n  const avg = averageGrade([{ name: 'Al', grade: 85 }, { name: 'Bo', grade: 92 }, { name: 'Cal', grade: 78 }]);\n  results.push({ pass: avg === 85, description: 'averageGrade returns 85 (floor of 85)', got: String(avg) });\n\n  const obj = arrayToObject([['name', 'Alex'], ['age', 25], ['city', 'Denver']]);\n  results.push({ pass: obj.name === 'Alex' && obj.age === 25 && obj.city === 'Denver', description: 'arrayToObject builds correct object', got: JSON.stringify(obj) });\n\n  const menu = menuString([{ dish: 'Burger', price: 10 }, { dish: 'Fries', price: 5 }, { dish: 'Soda', price: 3 }]);\n  results.push({ pass: menu === 'Burger: $10, Fries: $5, Soda: $3', description: 'menuString formats correctly', got: menu });\n\n  const prod = productOfDifferences([10, 3, 5]);\n  results.push({ pass: prod === -14, description: 'productOfDifferences([10,3,5]) returns -14', got: String(prod) });\n\n  const cal2 = totalCalories([{ name: 'Snack', calories: 150 }]);\n  results.push({ pass: cal2 === 150, description: 'totalCalories works with single meal', got: String(cal2) });\n\n  const avg2 = averageGrade([{ name: 'X', grade: 89 }, { name: 'Y', grade: 90 }]);\n  results.push({ pass: avg2 === 89, description: 'averageGrade floors 89.5 to 89', got: String(avg2) });\n\n  const prod2 = productOfDifferences([5, 2, 1, 4]);\n  results.push({ pass: prod2 === -9, description: 'productOfDifferences([5,2,1,4]) returns -9', got: String(prod2) });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "Most of these follow the `array.reduce((accumulator, item) => ..., initialValue)` pattern. Start `totalCalories` with 0 and add each `meal.calories`.",
+        "For `productOfDifferences`, iterate from index 0 to length-2, multiplying the running product by `nums[i] - nums[i+1]`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
+        }
+      ],
+      "solutionGate": 8,
+      "basePoints": 50
+    },
+    {
+      "id": 596,
+      "title": "Iteration Pattern: Group By",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "functions",
+        "callback-methods"
+      ],
+      "tags": [
+        "reduce",
+        "objects",
+        "grouping"
+      ],
+      "description": "Implement five grouping functions that categorize collection elements by computed keys.",
+      "instructions": "Create five functions:\n\n1. `groupByLength(words)` — Takes an array of strings. Returns an object where keys are string lengths and values are arrays of strings with that length.\n   Example: `['hi', 'hey', 'yo']` → `{ 2: ['hi', 'yo'], 3: ['hey'] }`\n\n2. `groupByParity(nums)` — Takes an array of numbers. Returns `{ odd: [...], even: [...] }`.\n\n3. `groupByFirstLetter(words)` — Takes an array of strings. Returns an object grouped by lowercase first letter.\n\n4. `groupByUniqueness(arrays)` — Takes an array of arrays. Returns `{ unique: [...], duplicate: [...] }` where `unique` contains arrays with all distinct elements and `duplicate` contains arrays with at least one repeat.\n\n5. `groupByMagnitude(nums)` — Takes an array of numbers. Returns `{ small: [...], medium: [...], large: [...] }` where small is < 10, medium is 10-99, large is >= 100.",
+      "starterCode": "/**\n * Group By Pattern — categorizing items into buckets\n *\n * groupByLength, groupByParity, groupByFirstLetter,\n * groupByUniqueness, groupByMagnitude\n */\n",
+      "solution": "function groupByLength(words) {\n  return words.reduce((groups, word) => {\n    const key = word.length;\n    if (!groups[key]) groups[key] = [];\n    groups[key].push(word);\n    return groups;\n  }, {});\n}\n\nfunction groupByParity(nums) {\n  return nums.reduce((groups, n) => {\n    const key = n % 2 === 0 ? 'even' : 'odd';\n    groups[key].push(n);\n    return groups;\n  }, { odd: [], even: [] });\n}\n\nfunction groupByFirstLetter(words) {\n  return words.reduce((groups, word) => {\n    const key = word[0].toLowerCase();\n    if (!groups[key]) groups[key] = [];\n    groups[key].push(word);\n    return groups;\n  }, {});\n}\n\nfunction groupByUniqueness(arrays) {\n  return arrays.reduce((groups, arr) => {\n    const isUnique = new Set(arr).size === arr.length;\n    groups[isUnique ? 'unique' : 'duplicate'].push(arr);\n    return groups;\n  }, { unique: [], duplicate: [] });\n}\n\nfunction groupByMagnitude(nums) {\n  return nums.reduce((groups, n) => {\n    const key = n < 10 ? 'small' : n < 100 ? 'medium' : 'large';\n    groups[key].push(n);\n    return groups;\n  }, { small: [], medium: [], large: [] });\n}",
+      "testRunner": "(code) => {\n  const { groupByLength, groupByParity, groupByFirstLetter, groupByUniqueness, groupByMagnitude } = new Function(code + '; return { groupByLength, groupByParity, groupByFirstLetter, groupByUniqueness, groupByMagnitude };')();\n  const results = [];\n\n  const len = groupByLength(['hi', 'hey', 'yo', 'hello', 'cat']);\n  results.push({ pass: JSON.stringify(len[2]) === JSON.stringify(['hi', 'yo']) && JSON.stringify(len[3]) === JSON.stringify(['hey', 'cat']), description: 'groupByLength groups strings by length', got: JSON.stringify(len) });\n\n  const par = groupByParity([1, 2, 3, 4, 5, 6]);\n  results.push({ pass: JSON.stringify(par.odd) === JSON.stringify([1, 3, 5]) && JSON.stringify(par.even) === JSON.stringify([2, 4, 6]), description: 'groupByParity separates odd and even', got: JSON.stringify(par) });\n\n  const fl = groupByFirstLetter(['Apple', 'avocado', 'Banana', 'blueberry']);\n  results.push({ pass: fl.a.length === 2 && fl.b.length === 2, description: 'groupByFirstLetter groups by lowercase first letter', got: JSON.stringify(fl) });\n\n  const uniq = groupByUniqueness([[1, 2, 3], [1, 1, 2], [4, 5, 6], [3, 3, 3]]);\n  results.push({ pass: uniq.unique.length === 2 && uniq.duplicate.length === 2, description: 'groupByUniqueness separates unique and duplicate arrays', got: 'unique: ' + uniq.unique.length + ', duplicate: ' + uniq.duplicate.length });\n\n  const mag = groupByMagnitude([5, 50, 500, 3, 33, 333]);\n  results.push({ pass: JSON.stringify(mag.small) === JSON.stringify([5, 3]) && JSON.stringify(mag.medium) === JSON.stringify([50, 33]) && JSON.stringify(mag.large) === JSON.stringify([500, 333]), description: 'groupByMagnitude sorts into small/medium/large', got: JSON.stringify(mag) });\n\n  const len2 = groupByLength(['a', 'bb', 'ccc', 'dd', 'e']);\n  results.push({ pass: len2[1].length === 2 && len2[2].length === 2 && len2[3].length === 1, description: 'groupByLength handles mixed lengths', got: JSON.stringify(len2) });\n\n  const par2 = groupByParity([0, -1, -2]);\n  results.push({ pass: par2.even.length === 2 && par2.odd.length === 1, description: 'groupByParity handles zero and negatives', got: JSON.stringify(par2) });\n\n  const mag2 = groupByMagnitude([10, 99, 100, 9]);\n  results.push({ pass: mag2.small.length === 1 && mag2.medium.length === 2 && mag2.large.length === 1, description: 'groupByMagnitude: 10 is medium, 100 is large', got: JSON.stringify(mag2) });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "The group-by pattern uses `reduce` with an object accumulator. For each item, compute a key, ensure the key exists as an array in the accumulator, then push the item.",
+        "For `groupByUniqueness`, compare `new Set(arr).size === arr.length` — if the Set is smaller, the array has duplicates."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Set",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set"
+        }
+      ],
+      "solutionGate": 8,
+      "basePoints": 50
+    },
+    {
+      "id": 597,
+      "title": "Nested Data: Collections",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "arrays",
+        "nested-data",
+        "access"
+      ],
+      "description": "Access and traverse nested arrays and objects including 2D arrays, objects-with-arrays, and multi-level structures.",
+      "instructions": "Write the following functions to practice accessing nested data:\n\n1. `getCell(grid, row, col)` — Takes a 2D array and returns the value at `grid[row][col]`.\n\n2. `getStudentGrades(students, name)` — Takes an object where keys are student names and values are arrays of grades. Returns the grades array for the given name.\n\n3. `getHighTemp(forecast, dayIndex)` — Takes an array of forecast objects `{ day, high, low }` and an index. Returns the `high` value for that day.\n\n4. `totalInventory(store)` — Takes an object where keys are department names and values are arrays of item objects `{ name, quantity }`. Returns the total quantity across all departments.\n\n5. `flattenContacts(groups)` — Takes an object where keys are group names and values are arrays of name strings. Returns a single flat array of all names.",
+      "starterCode": "function getCell(grid, row, col) {\n  // your code here\n}\n\nfunction getStudentGrades(students, name) {\n  // your code here\n}\n\nfunction getHighTemp(forecast, dayIndex) {\n  // your code here\n}\n\nfunction totalInventory(store) {\n  // your code here\n}\n\nfunction flattenContacts(groups) {\n  // your code here\n}",
+      "solution": "function getCell(grid, row, col) {\n  return grid[row][col];\n}\n\nfunction getStudentGrades(students, name) {\n  return students[name];\n}\n\nfunction getHighTemp(forecast, dayIndex) {\n  return forecast[dayIndex].high;\n}\n\nfunction totalInventory(store) {\n  let total = 0;\n  for (const dept of Object.values(store)) {\n    for (const item of dept) {\n      total += item.quantity;\n    }\n  }\n  return total;\n}\n\nfunction flattenContacts(groups) {\n  return Object.values(groups).flat();\n}",
+      "testRunner": "(code) => {\n  const { getCell, getStudentGrades, getHighTemp, totalInventory, flattenContacts } = new Function(code + '; return { getCell, getStudentGrades, getHighTemp, totalInventory, flattenContacts };')();\n  const results = [];\n\n  const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];\n  results.push({ pass: getCell(grid, 1, 2) === 6, description: 'getCell(grid, 1, 2) returns 6', got: String(getCell(grid, 1, 2)) });\n\n  const students = { Alice: [90, 85, 92], Bob: [78, 82, 88] };\n  results.push({ pass: JSON.stringify(getStudentGrades(students, 'Alice')) === JSON.stringify([90, 85, 92]), description: \"getStudentGrades returns Alice's grades\", got: JSON.stringify(getStudentGrades(students, 'Alice')) });\n\n  const forecast = [\n    { day: 'Mon', high: 75, low: 55 },\n    { day: 'Tue', high: 80, low: 60 },\n    { day: 'Wed', high: 68, low: 50 }\n  ];\n  results.push({ pass: getHighTemp(forecast, 1) === 80, description: 'getHighTemp returns 80 for Tuesday', got: String(getHighTemp(forecast, 1)) });\n\n  const store = {\n    produce: [{ name: 'Apples', quantity: 50 }, { name: 'Bananas', quantity: 30 }],\n    dairy: [{ name: 'Milk', quantity: 20 }, { name: 'Cheese', quantity: 15 }],\n    bakery: [{ name: 'Bread', quantity: 25 }]\n  };\n  results.push({ pass: totalInventory(store) === 140, description: 'totalInventory sums to 140', got: String(totalInventory(store)) });\n\n  const groups = { family: ['Mom', 'Dad'], friends: ['Alice', 'Bob', 'Carol'], work: ['Dave'] };\n  const flat = flattenContacts(groups);\n  results.push({ pass: flat.length === 6 && flat.includes('Alice') && flat.includes('Dave'), description: 'flattenContacts returns 6 names in flat array', got: JSON.stringify(flat) });\n\n  results.push({ pass: getCell([[10]], 0, 0) === 10, description: 'getCell works with 1x1 grid', got: String(getCell([[10]], 0, 0)) });\n\n  const store2 = { a: [{ name: 'X', quantity: 0 }] };\n  results.push({ pass: totalInventory(store2) === 0, description: 'totalInventory handles zero quantity', got: String(totalInventory(store2)) });\n\n  results.push({ pass: flattenContacts({ solo: ['Just Me'] }).length === 1, description: 'flattenContacts works with single group', got: String(flattenContacts({ solo: ['Just Me'] }).length) });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "For 2D arrays, chain bracket notation: `grid[row][col]`. For objects-with-arrays, use `obj[key]` to get the array, then index or iterate it.",
+        "For `totalInventory`, use nested loops: outer loop over `Object.values(store)` (departments), inner loop over items in each department. For `flattenContacts`, `Object.values(groups).flat()` combines all arrays into one."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.flat()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 598,
+      "title": "Nested Data: Restaurant Analysis",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-wrangling",
+        "nested-data"
+      ],
+      "tags": [
+        "objects",
+        "arrays",
+        "nested-data",
+        "reduce",
+        "map",
+        "filter"
+      ],
+      "description": "Traverse a deeply nested restaurant dataset to extract employee, dish, and ingredient information.",
+      "instructions": "You are given a `stores` array of restaurant objects. Each has:\n- `store`: name string\n- `employees`: array of `{ name, position }`\n- `dishes`: array of `{ name, ingredients, price }` where ingredients is an array of strings\n\nWrite these functions:\n\n1. `allEmployeeNames(stores)` — Returns a flat array of all employee names across all stores.\n\n2. `findChefs(stores)` — Returns an array of names of employees whose position is `'chef'`.\n\n3. `mostExpensiveDish(stores)` — Returns the single dish object with the highest price across all stores.\n\n4. `allIngredients(stores)` — Returns a sorted array of all unique ingredient strings across all dishes in all stores.\n\n5. `storeRevenue(stores)` — Returns an object where keys are store names and values are the sum of all dish prices at that store.",
+      "starterCode": "/**\n * Restaurant Analysis — deeply nested data traversal\n *\n * stores: [{ store, employees: [{name, position}], dishes: [{name, ingredients, price}] }]\n * Extract, filter, and aggregate across multiple nesting levels.\n */\n",
+      "solution": "function allEmployeeNames(stores) {\n  return stores.flatMap(s => s.employees.map(e => e.name));\n}\n\nfunction findChefs(stores) {\n  return stores.flatMap(s => s.employees.filter(e => e.position === 'chef').map(e => e.name));\n}\n\nfunction mostExpensiveDish(stores) {\n  return stores.flatMap(s => s.dishes).reduce((max, dish) => dish.price > max.price ? dish : max);\n}\n\nfunction allIngredients(stores) {\n  const ingredients = new Set();\n  for (const store of stores) {\n    for (const dish of store.dishes) {\n      for (const ing of dish.ingredients) {\n        ingredients.add(ing);\n      }\n    }\n  }\n  return [...ingredients].sort();\n}\n\nfunction storeRevenue(stores) {\n  const result = {};\n  for (const store of stores) {\n    result[store.store] = store.dishes.reduce((sum, d) => sum + d.price, 0);\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const { allEmployeeNames, findChefs, mostExpensiveDish, allIngredients, storeRevenue } = new Function(code + '; return { allEmployeeNames, findChefs, mostExpensiveDish, allIngredients, storeRevenue };')();\n  const results = [];\n\n  const stores = [\n    {\n      store: \"Pasta Palace\",\n      employees: [\n        { name: \"Marco\", position: \"chef\" },\n        { name: \"Lisa\", position: \"server\" },\n        { name: \"Tony\", position: \"chef\" }\n      ],\n      dishes: [\n        { name: \"Spaghetti\", ingredients: [\"pasta\", \"tomato\", \"garlic\"], price: 12 },\n        { name: \"Alfredo\", ingredients: [\"pasta\", \"cream\", \"parmesan\"], price: 14 }\n      ]\n    },\n    {\n      store: \"Burger Barn\",\n      employees: [\n        { name: \"Jake\", position: \"chef\" },\n        { name: \"Sara\", position: \"manager\" }\n      ],\n      dishes: [\n        { name: \"Classic Burger\", ingredients: [\"beef\", \"bun\", \"lettuce\", \"tomato\"], price: 10 },\n        { name: \"Deluxe Burger\", ingredients: [\"beef\", \"bun\", \"cheese\", \"bacon\", \"lettuce\"], price: 15 }\n      ]\n    },\n    {\n      store: \"Sushi Spot\",\n      employees: [\n        { name: \"Yuki\", position: \"chef\" },\n        { name: \"Ken\", position: \"server\" }\n      ],\n      dishes: [\n        { name: \"Dragon Roll\", ingredients: [\"rice\", \"eel\", \"avocado\"], price: 18 },\n        { name: \"Salmon Nigiri\", ingredients: [\"rice\", \"salmon\"], price: 8 }\n      ]\n    }\n  ];\n\n  const names = allEmployeeNames(stores);\n  results.push({ pass: names.length === 7 && names.includes('Marco') && names.includes('Ken'), description: 'allEmployeeNames returns all 7 names', got: JSON.stringify(names) });\n\n  const chefs = findChefs(stores);\n  results.push({ pass: chefs.length === 3 && chefs.includes('Marco') && chefs.includes('Jake') && chefs.includes('Yuki'), description: 'findChefs returns 3 chefs', got: JSON.stringify(chefs) });\n\n  const expensive = mostExpensiveDish(stores);\n  results.push({ pass: expensive.name === 'Dragon Roll' && expensive.price === 18, description: 'mostExpensiveDish is Dragon Roll at $18', got: expensive.name + ': $' + expensive.price });\n\n  const ings = allIngredients(stores);\n  results.push({ pass: ings[0] === 'avocado' && ings[ings.length - 1] === 'tomato', description: 'allIngredients is sorted alphabetically', got: ings[0] + ' ... ' + ings[ings.length - 1] });\n  results.push({ pass: ings.length === new Set(ings).size, description: 'allIngredients has no duplicates', got: 'unique count: ' + ings.length });\n\n  const rev = storeRevenue(stores);\n  results.push({ pass: rev['Pasta Palace'] === 26, description: 'Pasta Palace revenue is $26', got: String(rev['Pasta Palace']) });\n  results.push({ pass: rev['Burger Barn'] === 25, description: 'Burger Barn revenue is $25', got: String(rev['Burger Barn']) });\n  results.push({ pass: rev['Sushi Spot'] === 26, description: 'Sushi Spot revenue is $26', got: String(rev['Sushi Spot']) });\n\n  return results;\n}",
+      "testCases": [],
+      "hints": [
+        "Use `.flatMap()` to flatten nested arrays in one step: `stores.flatMap(s => s.employees.map(e => e.name))` gives all employee names across all stores.",
+        "For `allIngredients`, use a `Set` to collect unique values. Triple-nested loop: stores -> dishes -> ingredients. Convert to array and `.sort()` at the end."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.flatMap()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap"
+        }
+      ],
+      "solutionGate": 8,
+      "basePoints": 50
     }
   ]
 }
