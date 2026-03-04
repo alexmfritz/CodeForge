@@ -3,7 +3,7 @@
   "name": "Exercism",
   "description": "52 exercises adapted from the Exercism JavaScript track, an open-source platform with coding challenges across 70+ languages. Covers string manipulation, number theory, algorithm design, data structures, ciphers, bitwise operations, pattern generation, and language parsing. All exercises licensed under the MIT License.",
   "color": "#c084fc",
-  "source": "Exercism (exercism.org)",
+  "source": "Exercism",
   "attribution": "Adapted from the Exercism JavaScript track (github.com/exercism/javascript), licensed under the MIT License. Exercism is a free, open-source platform (exercism.org) offering coding practice across 70+ programming languages with mentored and self-directed learning tracks. Exercises were adapted to the CodeForge format with tier-appropriate scaffolding, 2-hint model, and adjusted difficulty ratings.",
   "exerciseIds": [
     599,
