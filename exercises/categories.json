@@ -4,38 +4,68 @@
     "color": "#34d399",
     "children": {
       "variables": { "label": "Variables & Types" },
+      "data-types": { "label": "Data Types" },
       "operators": { "label": "Operators" },
+      "math": { "label": "Math" },
       "conditionals": { "label": "Conditionals" },
       "loops": { "label": "Loops" },
-      "classes": { "label": "Classes & OOP" }
-    }
-  },
-  "data-structures": {
-    "label": "Data Structures",
-    "color": "#60a5fa",
-    "children": {
       "arrays": { "label": "Arrays" },
+      "strings": { "label": "Strings" },
       "objects": { "label": "Objects" },
-      "strings": { "label": "Strings" }
+      "classes": { "label": "Classes & OOP" }
     }
   },
   "functions": {
     "label": "Functions",
     "color": "#c084fc",
     "children": {
-      "scope": { "label": "Scope & Closures" },
-      "higher-order": { "label": "Higher-Order Functions" },
-      "callbacks": { "label": "Callbacks" }
+      "basics": { "label": "Function Basics" },
+      "callback-methods": { "label": "Callback Methods" },
+      "advanced-functions": { "label": "Advanced Functions" },
+      "array-toolkit": { "label": "Array Toolkit" },
+      "data-pipeline": { "label": "Data Pipeline" }
     }
   },
-  "es6-plus": {
-    "label": "ES6+",
-    "color": "#fb923c",
+  "css": {
+    "label": "CSS",
+    "color": "#22d3ee",
     "children": {
-      "destructuring": { "label": "Destructuring & Spread" },
-      "async": { "label": "Promises & Async" },
-      "template-literals": { "label": "Template Literals" },
-      "modules": { "label": "Module Patterns" }
+      "applying-styles": { "label": "Applying Styles" },
+      "selectors": { "label": "Selectors" },
+      "colors": { "label": "Colors" },
+      "units": { "label": "Units" },
+      "box-model": { "label": "Box Model" },
+      "display": { "label": "Display" },
+      "layout": { "label": "Layout" },
+      "flexbox": { "label": "Flexbox" },
+      "typography": { "label": "Typography" },
+      "positioning": { "label": "Positioning" },
+      "responsive": { "label": "Responsive Design" },
+      "custom-properties": { "label": "Custom Properties" },
+      "visual": { "label": "Visual Effects" },
+      "cascade": { "label": "Cascade & Specificity" }
+    }
+  },
+  "capstone": {
+    "label": "Capstone Projects",
+    "color": "#fbbf24",
+    "children": {
+      "applications": { "label": "Applications" },
+      "data-processing": { "label": "Data Processing" },
+      "dom-integration": { "label": "DOM Integration" },
+      "async-integration": { "label": "Async Integration" },
+      "classes": { "label": "Classes" },
+      "functions": { "label": "Functions" },
+      "expression-evaluator": { "label": "Expression Evaluator" },
+      "reactive-store": { "label": "Reactive Store" },
+      "task-scheduler": { "label": "Task Scheduler" },
+      "data-pipeline": { "label": "Data Pipeline" },
+      "matrix-operations": { "label": "Matrix Operations" },
+      "framework": { "label": "Framework" },
+      "rpg-combat": { "label": "RPG Combat" },
+      "markdown-parser": { "label": "Markdown Parser" },
+      "social-feed": { "label": "Social Feed" },
+      "regex-engine": { "label": "Regex Engine" }
     }
   },
   "html": {
@@ -43,82 +73,136 @@
     "color": "#f472b6",
     "children": {
       "structure": { "label": "Page Structure" },
-      "semantics": { "label": "Semantic Elements" },
-      "forms": { "label": "Forms & Inputs" }
+      "text-content": { "label": "Text Content" },
+      "lists": { "label": "Lists" },
+      "links": { "label": "Links" },
+      "media": { "label": "Media" },
+      "tables": { "label": "Tables" },
+      "forms": { "label": "Forms & Inputs" },
+      "semantics": { "label": "Semantic Elements" }
     }
   },
-  "css": {
-    "label": "CSS",
-    "color": "#22d3ee",
+  "es6-plus": {
+    "label": "ES6+",
+    "color": "#fb923c",
     "children": {
-      "selectors": { "label": "Selectors" },
-      "box-model": { "label": "Box Model" },
-      "layout": { "label": "Layout" },
-      "flexbox": { "label": "Flexbox" },
-      "typography": { "label": "Typography" },
-      "positioning": { "label": "Positioning" },
-      "transitions": { "label": "Transitions & Animation" },
-      "custom-properties": { "label": "Custom Properties" },
-      "functions": { "label": "CSS Functions" },
-      "modern-selectors": { "label": "Modern Selectors" },
-      "visual": { "label": "Visual Effects" },
-      "container-queries": { "label": "Container Queries" },
-      "nesting": { "label": "CSS Nesting" },
-      "cascade": { "label": "Cascade & Specificity" }
+      "modern-syntax": { "label": "Modern Syntax" }
     }
   },
-  "syntax-translation": {
-    "label": "Syntax Translation",
-    "color": "#f97316",
+  "dom-manipulation": {
+    "label": "DOM & Events",
+    "color": "#e879f9",
     "children": {
-      "es5-to-es6": { "label": "ES5 → ES6" },
-      "es6-to-es5": { "label": "ES6 → ES5" },
-      "refactoring": { "label": "Refactoring Patterns" }
+      "selection": { "label": "Selection" },
+      "manipulation": { "label": "Manipulation" },
+      "creation": { "label": "Creation" },
+      "events": { "label": "Events" },
+      "event-delegation": { "label": "Event Delegation" },
+      "interactive-components": { "label": "Interactive Components" },
+      "form-validation": { "label": "Form Validation" }
     }
   },
-  "algorithms": {
-    "label": "Algorithms",
-    "color": "#f43f5e",
+  "error-handling": {
+    "label": "Error Handling",
+    "color": "#fb7185",
     "children": {
-      "sorting": { "label": "Sorting" },
-      "searching": { "label": "Searching" },
-      "recursion": { "label": "Recursion" },
-      "patterns": { "label": "Patterns" },
-      "performance": { "label": "Performance & Big O" }
+      "fundamentals": { "label": "Fundamentals" },
+      "rethrow": { "label": "Rethrow" },
+      "error-collection": { "label": "Error Collection" },
+      "defensive-programming": { "label": "Defensive Programming" },
+      "pipeline": { "label": "Error Pipeline" }
+    }
+  },
+  "async": {
+    "label": "Async JavaScript",
+    "color": "#818cf8",
+    "children": {
+      "promises": { "label": "Promises" },
+      "async-await": { "label": "Async/Await" },
+      "promise-combinators": { "label": "Promise Combinators" },
+      "async-patterns": { "label": "Async Patterns" }
     }
   },
   "regex": {
     "label": "Regex",
     "color": "#a3e635",
     "children": {
-      "basics": { "label": "Basics" },
-      "patterns": { "label": "Patterns" },
-      "extraction": { "label": "Extraction" }
+      "validation": { "label": "Validation" },
+      "extraction": { "label": "Extraction" },
+      "word-boundary": { "label": "Word Boundaries" },
+      "formatting": { "label": "Formatting" },
+      "replacement": { "label": "Replacement" },
+      "parsing": { "label": "Parsing" },
+      "text-processing": { "label": "Text Processing" },
+      "lookahead": { "label": "Lookahead" },
+      "html-parsing": { "label": "HTML Parsing" },
+      "template": { "label": "Template Engine" }
     }
   },
-  "dom-manipulation": {
-    "label": "DOM Manipulation",
-    "color": "#e879f9",
+  "algorithms": {
+    "label": "Algorithms",
+    "color": "#f43f5e",
     "children": {
-      "selection": { "label": "Selection" },
-      "events": { "label": "Events" },
-      "manipulation": { "label": "Manipulation" }
+      "searching": { "label": "Searching" },
+      "sorting": { "label": "Sorting" },
+      "patterns": { "label": "Patterns" },
+      "dynamic-programming": { "label": "Dynamic Programming" }
+    }
+  },
+  "data-structures": {
+    "label": "Data Structures",
+    "color": "#60a5fa",
+    "children": {
+      "stack": { "label": "Stack" },
+      "queue": { "label": "Queue" },
+      "linked-list": { "label": "Linked List" },
+      "hash-map": { "label": "Hash Map" },
+      "binary-search-tree": { "label": "Binary Search Tree" },
+      "graph": { "label": "Graph" },
+      "class-hierarchy": { "label": "Class Hierarchy" },
+      "multi-class": { "label": "Multi-Class System" }
+    }
+  },
+  "data-wrangling": {
+    "label": "Data Wrangling",
+    "color": "#2dd4bf",
+    "children": {
+      "flatten-aggregate": { "label": "Flatten & Aggregate" },
+      "group-aggregate": { "label": "Group & Aggregate" },
+      "deep-access": { "label": "Deep Access" },
+      "tree-traversal": { "label": "Tree Traversal" },
+      "join": { "label": "Cross-Reference" },
+      "deep-nesting": { "label": "Deep Nesting" },
+      "reshape": { "label": "Reshape" },
+      "pipeline": { "label": "Pipeline" }
+    }
+  },
+  "design-patterns": {
+    "label": "Design Patterns",
+    "color": "#f97316",
+    "children": {
+      "singleton": { "label": "Singleton" },
+      "observer": { "label": "Observer" },
+      "strategy": { "label": "Strategy" },
+      "decorator": { "label": "Decorator" },
+      "mixin": { "label": "Mixin" }
+    }
+  },
+  "server-concepts": {
+    "label": "Server Concepts",
+    "color": "#8b5cf6",
+    "children": {
+      "routing": { "label": "Routing" },
+      "middleware": { "label": "Middleware" },
+      "api-design": { "label": "API Design" },
+      "data-modeling": { "label": "Data Modeling" }
     }
   },
   "testing": {
     "label": "Testing",
     "color": "#06b6d4",
     "children": {
-      "assertions": { "label": "Assertions" },
-      "fundamentals": { "label": "Test Fundamentals" }
-    }
-  },
-  "web-apis": {
-    "label": "Web APIs",
-    "color": "#8b5cf6",
-    "children": {
-      "storage": { "label": "Storage" },
-      "data": { "label": "Data & Patterns" }
+      "test-framework": { "label": "Test Framework" }
     }
   }
 }
