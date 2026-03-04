@@ -18537,7 +18537,7 @@
     },
     {
       "id": 1311,
-      "title": "Generate Report Cards",
+      "title": "Application: Generate Report Cards",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18573,7 +18573,7 @@
     },
     {
       "id": 1312,
-      "title": "Analyze Sales Data",
+      "title": "Application: Analyze Sales Data",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18609,7 +18609,7 @@
     },
     {
       "id": 1313,
-      "title": "Build Search Index",
+      "title": "Application: Build Search Index",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18645,7 +18645,7 @@
     },
     {
       "id": 1314,
-      "title": "Tournament Rankings",
+      "title": "Application: Tournament Rankings",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18682,7 +18682,7 @@
     },
     {
       "id": 1315,
-      "title": "Bank Account",
+      "title": "Application: Bank Account",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18718,7 +18718,7 @@
     },
     {
       "id": 1316,
-      "title": "Event Emitter",
+      "title": "Application: Event Emitter",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18754,7 +18754,7 @@
     },
     {
       "id": 1317,
-      "title": "Validator Builder",
+      "title": "Application: Validator Builder",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18790,7 +18790,7 @@
     },
     {
       "id": 1318,
-      "title": "Memoize Function",
+      "title": "Application: Memoize Function",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18827,7 +18827,7 @@
     },
     {
       "id": 1319,
-      "title": "Click Counter Widget",
+      "title": "Application: Click Counter Widget",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18864,7 +18864,7 @@
     },
     {
       "id": 1320,
-      "title": "Dynamic Table Builder",
+      "title": "Application: Dynamic Table Builder",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18900,7 +18900,7 @@
     },
     {
       "id": 1321,
-      "title": "Filterable List",
+      "title": "Application: Filterable List",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18937,7 +18937,7 @@
     },
     {
       "id": 1322,
-      "title": "Retry Until Success",
+      "title": "Application: Retry Until Success",
       "type": "js",
       "tier": 3,
       "category": [
@@ -18974,7 +18974,7 @@
     },
     {
       "id": 1323,
-      "title": "Config Loader",
+      "title": "Application: Config Loader",
       "type": "js",
       "tier": 3,
       "category": [
@@ -19011,7 +19011,7 @@
     },
     {
       "id": 1324,
-      "title": "Async Data Pipeline",
+      "title": "Application: Async Data Pipeline",
       "type": "js",
       "tier": 3,
       "category": [
@@ -21219,7 +21219,7 @@
     },
     {
       "id": 1382,
-      "title": "Expression Evaluator",
+      "title": "Application: Expression Evaluator",
       "type": "js",
       "tier": 4,
       "category": [
@@ -21256,7 +21256,7 @@
     },
     {
       "id": 1383,
-      "title": "Reactive Store",
+      "title": "Application: Reactive Store",
       "type": "js",
       "tier": 4,
       "category": [
@@ -21293,7 +21293,7 @@
     },
     {
       "id": 1384,
-      "title": "Task Scheduler",
+      "title": "Application: Task Scheduler",
       "type": "js",
       "tier": 4,
       "category": [
@@ -21329,7 +21329,7 @@
     },
     {
       "id": 1385,
-      "title": "Data Pipeline Engine",
+      "title": "Application: Data Pipeline Engine",
       "type": "js",
       "tier": 4,
       "category": [
@@ -21367,7 +21367,7 @@
     },
     {
       "id": 1386,
-      "title": "Matrix Operations",
+      "title": "Application: Matrix Operations",
       "type": "js",
       "tier": 4,
       "category": [
@@ -21405,7 +21405,7 @@
     },
     {
       "id": 1387,
-      "title": "Mini App Framework",
+      "title": "Application: Mini App Framework",
       "type": "js",
       "tier": 4,
       "category": [
@@ -21670,7 +21670,7 @@
     },
     {
       "id": 1394,
-      "title": "RPG Combat System",
+      "title": "Application: RPG Combat System",
       "type": "js",
       "tier": 5,
       "category": [
@@ -21708,7 +21708,7 @@
     },
     {
       "id": 1395,
-      "title": "Markdown Parser",
+      "title": "Application: Markdown Parser",
       "type": "js",
       "tier": 5,
       "category": [
@@ -21745,7 +21745,7 @@
     },
     {
       "id": 1396,
-      "title": "Social Feed",
+      "title": "Application: Social Feed",
       "type": "js",
       "tier": 5,
       "category": [
@@ -21784,7 +21784,7 @@
     },
     {
       "id": 1397,
-      "title": "Regex Engine",
+      "title": "Application: Regex Engine",
       "type": "js",
       "tier": 5,
       "category": [
