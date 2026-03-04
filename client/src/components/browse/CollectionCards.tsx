@@ -57,10 +57,7 @@ export default function CollectionCards() {
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = `${col.color ?? 'var(--accent)'}66`; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = `${col.color ?? 'var(--border)'}33`; }}
             >
-              <div className="flex flex-col gap-0.5">
-                <span className="font-heading font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{col.name}</span>
-                {col.source && col.source !== col.name && <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{col.source}</span>}
-              </div>
+              <span className="font-heading font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{col.name}</span>
               <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
                 <span>{colCompleted}/{colExercises.length}</span>
                 <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--bg-raised)' }}>
