@@ -90,7 +90,7 @@ export default function InstructionsPanel({
       <div className="flex-1 overflow-y-auto" role="tabpanel">
         {activeTab === 'instructions' ? (
           <div className="p-4 flex flex-col gap-4">
-            <MarkdownLite text={exercise.instructions} />
+            <MarkdownLite text={exercise.instructions || exercise.description} />
             <ResourcesSection resources={exercise.resources} expanded={showResources} onToggle={() => setShowResources((v) => !v)} />
             <HintsSection hints={exercise.hints} expandedHints={expandedHints} onToggleHint={toggleHint} uniqueAttempts={uniqueAttempts} />
             <SolutionSection solution={exercise.solution} solutionUnlocked={solutionUnlocked} expanded={showSolution} onToggle={() => setShowSolution((v) => !v)} uniqueAttempts={uniqueAttempts} gate={gate} />
