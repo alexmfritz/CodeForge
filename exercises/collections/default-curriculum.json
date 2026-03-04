@@ -5,7 +5,7 @@
   "isDefault": true,
   "exercises": [
     {
-      "id": 758,
+      "id": 1,
       "title": "Your First HTML Page",
       "type": "html",
       "tier": 1,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": 759,
+      "id": 2,
       "title": "Page Title",
       "type": "html",
       "tier": 1,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": 760,
+      "id": 3,
       "title": "Head and Body",
       "type": "html",
       "tier": 1,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": 761,
+      "id": 4,
       "title": "Complete Skeleton",
       "type": "html",
       "tier": 1,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": 762,
+      "id": 5,
       "title": "Heading Levels",
       "type": "html",
       "tier": 1,
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": 763,
+      "id": 6,
       "title": "Paragraphs",
       "type": "html",
       "tier": 1,
@@ -367,7 +367,7 @@
       ]
     },
     {
-      "id": 764,
+      "id": 7,
       "title": "Bold and Italic",
       "type": "html",
       "tier": 1,
@@ -424,7 +424,7 @@
       ]
     },
     {
-      "id": 765,
+      "id": 8,
       "title": "Line Breaks",
       "type": "html",
       "tier": 1,
@@ -479,7 +479,7 @@
       ]
     },
     {
-      "id": 766,
+      "id": 9,
       "title": "Horizontal Rules",
       "type": "html",
       "tier": 1,
@@ -535,7 +535,7 @@
       ]
     },
     {
-      "id": 767,
+      "id": 10,
       "title": "Headings and Paragraphs",
       "type": "html",
       "tier": 1,
@@ -592,7 +592,7 @@
       ]
     },
     {
-      "id": 768,
+      "id": 11,
       "title": "Preformatted Text",
       "type": "html",
       "tier": 1,
@@ -652,7 +652,7 @@
       ]
     },
     {
-      "id": 769,
+      "id": 12,
       "title": "Unordered List",
       "type": "html",
       "tier": 1,
@@ -709,7 +709,7 @@
       ]
     },
     {
-      "id": 770,
+      "id": 13,
       "title": "Ordered List",
       "type": "html",
       "tier": 1,
@@ -766,7 +766,7 @@
       ]
     },
     {
-      "id": 771,
+      "id": 14,
       "title": "Grocery List",
       "type": "html",
       "tier": 1,
@@ -823,7 +823,7 @@
       ]
     },
     {
-      "id": 772,
+      "id": 15,
       "title": "Recipe Steps",
       "type": "html",
       "tier": 1,
@@ -884,7 +884,7 @@
       ]
     },
     {
-      "id": 773,
+      "id": 16,
       "title": "External Link",
       "type": "html",
       "tier": 1,
@@ -939,7 +939,7 @@
       ]
     },
     {
-      "id": 774,
+      "id": 17,
       "title": "Descriptive Link Text",
       "type": "html",
       "tier": 1,
@@ -996,7 +996,7 @@
       ]
     },
     {
-      "id": 775,
+      "id": 18,
       "title": "Open in New Tab",
       "type": "html",
       "tier": 1,
@@ -1057,7 +1057,7 @@
       ]
     },
     {
-      "id": 776,
+      "id": 19,
       "title": "Email Link",
       "type": "html",
       "tier": 1,
@@ -1112,7 +1112,7 @@
       ]
     },
     {
-      "id": 777,
+      "id": 20,
       "title": "Add an Image",
       "type": "html",
       "tier": 1,
@@ -1167,7 +1167,7 @@
       ]
     },
     {
-      "id": 778,
+      "id": 21,
       "title": "Image Sizing",
       "type": "html",
       "tier": 1,
@@ -1227,7 +1227,7 @@
       ]
     },
     {
-      "id": 779,
+      "id": 22,
       "title": "Linked Image",
       "type": "html",
       "tier": 1,
@@ -1287,7 +1287,7 @@
       ]
     },
     {
-      "id": 780,
+      "id": 23,
       "title": "Simple Table",
       "type": "html",
       "tier": 1,
@@ -1344,7 +1344,7 @@
       ]
     },
     {
-      "id": 781,
+      "id": 24,
       "title": "Table Headers",
       "type": "html",
       "tier": 1,
@@ -1401,7 +1401,7 @@
       ]
     },
     {
-      "id": 782,
+      "id": 25,
       "title": "Table Sections",
       "type": "html",
       "tier": 1,
@@ -1468,7 +1468,7 @@
       ]
     },
     {
-      "id": 783,
+      "id": 26,
       "title": "Text Input",
       "type": "html",
       "tier": 1,
@@ -1533,7 +1533,7 @@
       ]
     },
     {
-      "id": 784,
+      "id": 27,
       "title": "Form with Button",
       "type": "html",
       "tier": 1,
@@ -1599,7 +1599,7 @@
       ]
     },
     {
-      "id": 785,
+      "id": 28,
       "title": "Input Types",
       "type": "html",
       "tier": 1,
@@ -1661,7 +1661,7 @@
       ]
     },
     {
-      "id": 786,
+      "id": 29,
       "title": "Placeholder Text",
       "type": "html",
       "tier": 1,
@@ -1721,7 +1721,7 @@
       ]
     },
     {
-      "id": 787,
+      "id": 30,
       "title": "Checkboxes and Radio Buttons",
       "type": "html",
       "tier": 1,
@@ -1782,7 +1782,7 @@
       ]
     },
     {
-      "id": 788,
+      "id": 31,
       "title": "Header and Footer",
       "type": "html",
       "tier": 1,
@@ -1843,7 +1843,7 @@
       ]
     },
     {
-      "id": 789,
+      "id": 32,
       "title": "Nav Element",
       "type": "html",
       "tier": 1,
@@ -1900,7 +1900,7 @@
       ]
     },
     {
-      "id": 790,
+      "id": 33,
       "title": "Main Content",
       "type": "html",
       "tier": 1,
@@ -1966,7 +1966,7 @@
       ]
     },
     {
-      "id": 791,
+      "id": 34,
       "title": "Inline Style",
       "type": "css",
       "tier": 1,
@@ -2013,7 +2013,7 @@
       ]
     },
     {
-      "id": 792,
+      "id": 35,
       "title": "Internal Stylesheet",
       "type": "css",
       "tier": 1,
@@ -2067,7 +2067,7 @@
       ]
     },
     {
-      "id": 793,
+      "id": 36,
       "title": "External Stylesheet",
       "type": "css",
       "tier": 1,
@@ -2121,7 +2121,7 @@
       ]
     },
     {
-      "id": 794,
+      "id": 37,
       "title": "Style a Heading",
       "type": "css",
       "tier": 1,
@@ -2175,7 +2175,7 @@
       ]
     },
     {
-      "id": 795,
+      "id": 38,
       "title": "Element Selector",
       "type": "css",
       "tier": 1,
@@ -2229,7 +2229,7 @@
       ]
     },
     {
-      "id": 796,
+      "id": 39,
       "title": "Class Selector",
       "type": "css",
       "tier": 1,
@@ -2276,7 +2276,7 @@
       ]
     },
     {
-      "id": 797,
+      "id": 40,
       "title": "ID Selector",
       "type": "css",
       "tier": 1,
@@ -2323,7 +2323,7 @@
       ]
     },
     {
-      "id": 798,
+      "id": 41,
       "title": "Multiple Classes",
       "type": "css",
       "tier": 1,
@@ -2378,7 +2378,7 @@
       ]
     },
     {
-      "id": 799,
+      "id": 42,
       "title": "Group Selectors",
       "type": "css",
       "tier": 1,
@@ -2440,7 +2440,7 @@
       ]
     },
     {
-      "id": 800,
+      "id": 43,
       "title": "Named Colors",
       "type": "css",
       "tier": 1,
@@ -2494,7 +2494,7 @@
       ]
     },
     {
-      "id": 801,
+      "id": 44,
       "title": "Hex Colors",
       "type": "css",
       "tier": 1,
@@ -2548,7 +2548,7 @@
       ]
     },
     {
-      "id": 802,
+      "id": 45,
       "title": "RGB Colors",
       "type": "css",
       "tier": 1,
@@ -2602,7 +2602,7 @@
       ]
     },
     {
-      "id": 803,
+      "id": 46,
       "title": "Background Color",
       "type": "css",
       "tier": 1,
@@ -2656,7 +2656,7 @@
       ]
     },
     {
-      "id": 804,
+      "id": 47,
       "title": "Text and Inheritance",
       "type": "css",
       "tier": 1,
@@ -2710,7 +2710,7 @@
       ]
     },
     {
-      "id": 805,
+      "id": 48,
       "title": "Font Family",
       "type": "css",
       "tier": 1,
@@ -2765,7 +2765,7 @@
       ]
     },
     {
-      "id": 806,
+      "id": 49,
       "title": "Font Size",
       "type": "css",
       "tier": 1,
@@ -2820,7 +2820,7 @@
       ]
     },
     {
-      "id": 807,
+      "id": 50,
       "title": "Font Weight",
       "type": "css",
       "tier": 1,
@@ -2875,7 +2875,7 @@
       ]
     },
     {
-      "id": 808,
+      "id": 51,
       "title": "Text Alignment",
       "type": "css",
       "tier": 1,
@@ -2930,7 +2930,7 @@
       ]
     },
     {
-      "id": 809,
+      "id": 52,
       "title": "Text Decoration",
       "type": "css",
       "tier": 1,
@@ -2985,7 +2985,7 @@
       ]
     },
     {
-      "id": 810,
+      "id": 53,
       "title": "Padding",
       "type": "css",
       "tier": 1,
@@ -3039,7 +3039,7 @@
       ]
     },
     {
-      "id": 811,
+      "id": 54,
       "title": "Margin",
       "type": "css",
       "tier": 1,
@@ -3093,7 +3093,7 @@
       ]
     },
     {
-      "id": 812,
+      "id": 55,
       "title": "Border",
       "type": "css",
       "tier": 1,
@@ -3155,7 +3155,7 @@
       ]
     },
     {
-      "id": 813,
+      "id": 56,
       "title": "Padding Shorthand",
       "type": "css",
       "tier": 1,
@@ -3224,7 +3224,7 @@
       ]
     },
     {
-      "id": 814,
+      "id": 57,
       "title": "Margin Auto",
       "type": "css",
       "tier": 1,
@@ -3285,7 +3285,7 @@
       ]
     },
     {
-      "id": 815,
+      "id": 58,
       "title": "Border Radius",
       "type": "css",
       "tier": 1,
@@ -3347,7 +3347,7 @@
       ]
     },
     {
-      "id": 816,
+      "id": 59,
       "title": "Pixels",
       "type": "css",
       "tier": 1,
@@ -3409,7 +3409,7 @@
       ]
     },
     {
-      "id": 817,
+      "id": 60,
       "title": "Percentages",
       "type": "css",
       "tier": 1,
@@ -3460,7 +3460,7 @@
       ]
     },
     {
-      "id": 818,
+      "id": 61,
       "title": "Em Units",
       "type": "css",
       "tier": 1,
@@ -3515,7 +3515,7 @@
       ]
     },
     {
-      "id": 819,
+      "id": 62,
       "title": "Block Elements",
       "type": "css",
       "tier": 1,
@@ -3576,7 +3576,7 @@
       ]
     },
     {
-      "id": 820,
+      "id": 63,
       "title": "Inline Elements",
       "type": "css",
       "tier": 1,
@@ -3638,7 +3638,7 @@
       ]
     },
     {
-      "id": 821,
+      "id": 64,
       "title": "Display None",
       "type": "css",
       "tier": 1,
@@ -3686,7 +3686,7 @@
       ]
     },
     {
-      "id": 822,
+      "id": 65,
       "title": "Source Order",
       "type": "css",
       "tier": 1,
@@ -3734,7 +3734,7 @@
       ]
     },
     {
-      "id": 823,
+      "id": 66,
       "title": "Declare with Var",
       "type": "js",
       "tier": 1,
@@ -3772,7 +3772,7 @@
       ]
     },
     {
-      "id": 824,
+      "id": 67,
       "title": "Declare with Const",
       "type": "js",
       "tier": 1,
@@ -3809,7 +3809,7 @@
       ]
     },
     {
-      "id": 862,
+      "id": 68,
       "title": "Relative Positioning",
       "type": "css",
       "tier": 1,
@@ -3871,7 +3871,7 @@
       ]
     },
     {
-      "id": 863,
+      "id": 69,
       "title": "Absolute Positioning",
       "type": "css",
       "tier": 1,
@@ -3933,7 +3933,7 @@
       ]
     },
     {
-      "id": 864,
+      "id": 70,
       "title": "Fixed Header",
       "type": "css",
       "tier": 1,
@@ -4002,7 +4002,7 @@
       ]
     },
     {
-      "id": 865,
+      "id": 71,
       "title": "Enable Flexbox",
       "type": "css",
       "tier": 1,
@@ -4050,7 +4050,7 @@
       ]
     },
     {
-      "id": 866,
+      "id": 72,
       "title": "Flex Direction",
       "type": "css",
       "tier": 1,
@@ -4105,7 +4105,7 @@
       ]
     },
     {
-      "id": 867,
+      "id": 73,
       "title": "Justify Content",
       "type": "css",
       "tier": 1,
@@ -4160,7 +4160,7 @@
       ]
     },
     {
-      "id": 868,
+      "id": 74,
       "title": "Align Items",
       "type": "css",
       "tier": 1,
@@ -4222,7 +4222,7 @@
       ]
     },
     {
-      "id": 869,
+      "id": 75,
       "title": "Gap",
       "type": "css",
       "tier": 1,
@@ -4275,7 +4275,7 @@
       ]
     },
     {
-      "id": 870,
+      "id": 76,
       "title": "Enable Grid",
       "type": "css",
       "tier": 1,
@@ -4328,7 +4328,7 @@
       ]
     },
     {
-      "id": 871,
+      "id": 77,
       "title": "Grid Columns",
       "type": "css",
       "tier": 1,
@@ -4385,7 +4385,7 @@
       ]
     },
     {
-      "id": 872,
+      "id": 78,
       "title": "Grid Rows",
       "type": "css",
       "tier": 1,
@@ -4442,7 +4442,7 @@
       ]
     },
     {
-      "id": 873,
+      "id": 79,
       "title": "Viewport Meta",
       "type": "html",
       "tier": 1,
@@ -4502,7 +4502,7 @@
       ]
     },
     {
-      "id": 874,
+      "id": 80,
       "title": "Fluid Widths",
       "type": "css",
       "tier": 1,
@@ -4560,7 +4560,7 @@
       ]
     },
     {
-      "id": 875,
+      "id": 81,
       "title": "Define a Custom Property",
       "type": "css",
       "tier": 1,
@@ -4618,7 +4618,7 @@
       ]
     },
     {
-      "id": 876,
+      "id": 82,
       "title": "Use Multiple Variables",
       "type": "css",
       "tier": 1,
@@ -4683,7 +4683,7 @@
       ]
     },
     {
-      "id": 877,
+      "id": 83,
       "title": "Box Shadow",
       "type": "css",
       "tier": 1,
@@ -4734,7 +4734,7 @@
       ]
     },
     {
-      "id": 878,
+      "id": 84,
       "title": "Text Shadow",
       "type": "css",
       "tier": 1,
@@ -4787,7 +4787,7 @@
       ]
     },
     {
-      "id": 948,
+      "id": 85,
       "title": "Declare a String",
       "type": "js",
       "tier": 1,
@@ -4824,7 +4824,7 @@
       ]
     },
     {
-      "id": 949,
+      "id": 86,
       "title": "Declare a Number",
       "type": "js",
       "tier": 1,
@@ -4861,7 +4861,7 @@
       ]
     },
     {
-      "id": 950,
+      "id": 87,
       "title": "Declare a Boolean",
       "type": "js",
       "tier": 1,
@@ -4898,7 +4898,7 @@
       ]
     },
     {
-      "id": 951,
+      "id": 88,
       "title": "Declare an Array",
       "type": "js",
       "tier": 1,
@@ -4935,7 +4935,7 @@
       ]
     },
     {
-      "id": 952,
+      "id": 89,
       "title": "Declare an Object",
       "type": "js",
       "tier": 1,
@@ -4972,7 +4972,7 @@
       ]
     },
     {
-      "id": 953,
+      "id": 90,
       "title": "Naming Conventions",
       "type": "js",
       "tier": 1,
@@ -5010,7 +5010,7 @@
       ]
     },
     {
-      "id": 954,
+      "id": 91,
       "title": "Reassign an Array Element",
       "type": "js",
       "tier": 1,
@@ -5047,7 +5047,7 @@
       ]
     },
     {
-      "id": 955,
+      "id": 92,
       "title": "Reassign an Object Property",
       "type": "js",
       "tier": 1,
@@ -5084,7 +5084,7 @@
       ]
     },
     {
-      "id": 956,
+      "id": 93,
       "title": "Access an Array Element",
       "type": "js",
       "tier": 1,
@@ -5121,7 +5121,7 @@
       ]
     },
     {
-      "id": 957,
+      "id": 94,
       "title": "Access an Object Property",
       "type": "js",
       "tier": 1,
@@ -5159,7 +5159,7 @@
       ]
     },
     {
-      "id": 958,
+      "id": 95,
       "title": "Logical Operator: AND",
       "type": "js",
       "tier": 1,
@@ -5196,7 +5196,7 @@
       ]
     },
     {
-      "id": 959,
+      "id": 96,
       "title": "Logical Operator: OR",
       "type": "js",
       "tier": 1,
@@ -5233,7 +5233,7 @@
       ]
     },
     {
-      "id": 960,
+      "id": 97,
       "title": "Logical Operator: NOT",
       "type": "js",
       "tier": 1,
@@ -5270,7 +5270,7 @@
       ]
     },
     {
-      "id": 961,
+      "id": 98,
       "title": "Logical Operators: Combined",
       "type": "js",
       "tier": 1,
@@ -5307,7 +5307,7 @@
       ]
     },
     {
-      "id": 962,
+      "id": 99,
       "title": "Math Operator: Addition",
       "type": "js",
       "tier": 1,
@@ -5344,7 +5344,7 @@
       ]
     },
     {
-      "id": 963,
+      "id": 100,
       "title": "Math Operator: Subtraction",
       "type": "js",
       "tier": 1,
@@ -5381,7 +5381,7 @@
       ]
     },
     {
-      "id": 964,
+      "id": 101,
       "title": "Math Operator: Multiplication",
       "type": "js",
       "tier": 1,
@@ -5418,7 +5418,7 @@
       ]
     },
     {
-      "id": 965,
+      "id": 102,
       "title": "Math Operator: Division",
       "type": "js",
       "tier": 1,
@@ -5455,7 +5455,7 @@
       ]
     },
     {
-      "id": 966,
+      "id": 103,
       "title": "Math Operator: Modulo",
       "type": "js",
       "tier": 1,
@@ -5493,7 +5493,7 @@
       ]
     },
     {
-      "id": 967,
+      "id": 104,
       "title": "Math Operators: Combined",
       "type": "js",
       "tier": 1,
@@ -5531,7 +5531,7 @@
       ]
     },
     {
-      "id": 968,
+      "id": 105,
       "title": "Math Operators: Parentheses",
       "type": "js",
       "tier": 1,
@@ -5569,7 +5569,7 @@
       ]
     },
     {
-      "id": 969,
+      "id": 106,
       "title": "Math Operators: Real-World Formulas",
       "type": "js",
       "tier": 1,
@@ -5607,7 +5607,7 @@
       ]
     },
     {
-      "id": 970,
+      "id": 107,
       "title": "Conditional: If",
       "type": "js",
       "tier": 1,
@@ -5644,7 +5644,7 @@
       ]
     },
     {
-      "id": 971,
+      "id": 108,
       "title": "Conditional: If Else",
       "type": "js",
       "tier": 1,
@@ -5680,7 +5680,7 @@
       ]
     },
     {
-      "id": 972,
+      "id": 109,
       "title": "Conditional: If Else If Else",
       "type": "js",
       "tier": 1,
@@ -5717,7 +5717,7 @@
       ]
     },
     {
-      "id": 973,
+      "id": 110,
       "title": "Comparison Operator: Loose Equality",
       "type": "js",
       "tier": 1,
@@ -5755,7 +5755,7 @@
       ]
     },
     {
-      "id": 974,
+      "id": 111,
       "title": "Comparison Operator: Strict Equality",
       "type": "js",
       "tier": 1,
@@ -5792,7 +5792,7 @@
       ]
     },
     {
-      "id": 975,
+      "id": 112,
       "title": "Comparison Operator: Does Not Equal",
       "type": "js",
       "tier": 1,
@@ -5829,7 +5829,7 @@
       ]
     },
     {
-      "id": 976,
+      "id": 113,
       "title": "Comparison Operator: Greater Than / Less Than",
       "type": "js",
       "tier": 1,
@@ -5867,7 +5867,7 @@
       ]
     },
     {
-      "id": 977,
+      "id": 114,
       "title": "Comparison Operator: Greater or Equal / Less or Equal",
       "type": "js",
       "tier": 1,
@@ -5905,7 +5905,7 @@
       ]
     },
     {
-      "id": 978,
+      "id": 115,
       "title": "Comparison Operators: Combined",
       "type": "js",
       "tier": 1,
@@ -5943,7 +5943,7 @@
       ]
     },
     {
-      "id": 979,
+      "id": 116,
       "title": "Define a Function",
       "type": "js",
       "tier": 1,
@@ -5980,7 +5980,7 @@
       ]
     },
     {
-      "id": 980,
+      "id": 117,
       "title": "Define a Function with One Parameter",
       "type": "js",
       "tier": 1,
@@ -6017,7 +6017,7 @@
       ]
     },
     {
-      "id": 981,
+      "id": 118,
       "title": "Define a Function with Multiple Parameters",
       "type": "js",
       "tier": 1,
@@ -6054,7 +6054,7 @@
       ]
     },
     {
-      "id": 982,
+      "id": 119,
       "title": "Define a Function with a Default Parameter",
       "type": "js",
       "tier": 1,
@@ -6090,7 +6090,7 @@
       ]
     },
     {
-      "id": 983,
+      "id": 120,
       "title": "Define a Function with Default Parameters",
       "type": "js",
       "tier": 1,
@@ -6127,7 +6127,7 @@
       ]
     },
     {
-      "id": 984,
+      "id": 121,
       "title": "Write a For Loop",
       "type": "js",
       "tier": 1,
@@ -6164,7 +6164,7 @@
       ]
     },
     {
-      "id": 985,
+      "id": 122,
       "title": "For Loop: Count Up",
       "type": "js",
       "tier": 1,
@@ -6201,7 +6201,7 @@
       ]
     },
     {
-      "id": 986,
+      "id": 123,
       "title": "For Loop: Count Down",
       "type": "js",
       "tier": 1,
@@ -6239,7 +6239,7 @@
       ]
     },
     {
-      "id": 987,
+      "id": 124,
       "title": "For Loop: Custom Steps",
       "type": "js",
       "tier": 1,
@@ -6277,7 +6277,7 @@
       ]
     },
     {
-      "id": 988,
+      "id": 125,
       "title": "For Loop: Dynamic Range",
       "type": "js",
       "tier": 1,
@@ -6315,7 +6315,7 @@
       ]
     },
     {
-      "id": 989,
+      "id": 126,
       "title": "Assignment Operators",
       "type": "js",
       "tier": 1,
@@ -6352,7 +6352,7 @@
       ]
     },
     {
-      "id": 990,
+      "id": 127,
       "title": "Loop Styles: for...in",
       "type": "js",
       "tier": 1,
@@ -6389,7 +6389,7 @@
       ]
     },
     {
-      "id": 991,
+      "id": 128,
       "title": "Loop Styles: for...of",
       "type": "js",
       "tier": 1,
@@ -6426,7 +6426,7 @@
       ]
     },
     {
-      "id": 992,
+      "id": 129,
       "title": "Loop Styles: while",
       "type": "js",
       "tier": 1,
@@ -6462,7 +6462,7 @@
       ]
     },
     {
-      "id": 993,
+      "id": 130,
       "title": "Loop Styles: do...while",
       "type": "js",
       "tier": 1,
@@ -6498,7 +6498,7 @@
       ]
     },
     {
-      "id": 994,
+      "id": 131,
       "title": "String Concatenation",
       "type": "js",
       "tier": 1,
@@ -6535,7 +6535,7 @@
       ]
     },
     {
-      "id": 995,
+      "id": 132,
       "title": "String Interpolation",
       "type": "js",
       "tier": 1,
@@ -6572,7 +6572,7 @@
       ]
     },
     {
-      "id": 996,
+      "id": 133,
       "title": "Math Object: Rounding",
       "type": "js",
       "tier": 1,
@@ -6611,7 +6611,7 @@
       ]
     },
     {
-      "id": 997,
+      "id": 134,
       "title": "Math Object: Utilities",
       "type": "js",
       "tier": 1,
@@ -6651,7 +6651,7 @@
       ]
     },
     {
-      "id": 998,
+      "id": 135,
       "title": "isEven",
       "type": "js",
       "tier": 1,
@@ -6698,7 +6698,7 @@
       ]
     },
     {
-      "id": 999,
+      "id": 136,
       "title": "isOdd",
       "type": "js",
       "tier": 1,
@@ -6745,7 +6745,7 @@
       ]
     },
     {
-      "id": 1000,
+      "id": 137,
       "title": "canVote",
       "type": "js",
       "tier": 1,
@@ -6792,7 +6792,7 @@
       ]
     },
     {
-      "id": 1001,
+      "id": 138,
       "title": "isInRange",
       "type": "js",
       "tier": 1,
@@ -6839,7 +6839,7 @@
       ]
     },
     {
-      "id": 1002,
+      "id": 139,
       "title": "largerOf",
       "type": "js",
       "tier": 1,
@@ -6886,7 +6886,7 @@
       ]
     },
     {
-      "id": 1003,
+      "id": 140,
       "title": "smallerOf",
       "type": "js",
       "tier": 1,
@@ -6933,7 +6933,7 @@
       ]
     },
     {
-      "id": 1004,
+      "id": 141,
       "title": "getSign",
       "type": "js",
       "tier": 1,
@@ -6980,7 +6980,7 @@
       ]
     },
     {
-      "id": 1005,
+      "id": 142,
       "title": "getGrade",
       "type": "js",
       "tier": 1,
@@ -7027,7 +7027,7 @@
       ]
     },
     {
-      "id": 1006,
+      "id": 143,
       "title": "ticketPrice",
       "type": "js",
       "tier": 1,
@@ -7074,7 +7074,7 @@
       ]
     },
     {
-      "id": 1007,
+      "id": 144,
       "title": "clamp",
       "type": "js",
       "tier": 1,
@@ -7121,7 +7121,7 @@
       ]
     },
     {
-      "id": 1008,
+      "id": 145,
       "title": "fizzBuzz",
       "type": "js",
       "tier": 1,
@@ -7169,7 +7169,7 @@
       ]
     },
     {
-      "id": 1009,
+      "id": 146,
       "title": "toCelsius",
       "type": "js",
       "tier": 1,
@@ -7216,7 +7216,7 @@
       ]
     },
     {
-      "id": 1010,
+      "id": 147,
       "title": "toFahrenheit",
       "type": "js",
       "tier": 1,
@@ -7263,7 +7263,7 @@
       ]
     },
     {
-      "id": 1011,
+      "id": 148,
       "title": "areaOfCircle",
       "type": "js",
       "tier": 1,
@@ -7310,7 +7310,7 @@
       ]
     },
     {
-      "id": 1012,
+      "id": 149,
       "title": "hypotenuse",
       "type": "js",
       "tier": 1,
@@ -7357,7 +7357,7 @@
       ]
     },
     {
-      "id": 1013,
+      "id": 150,
       "title": "calculateTip",
       "type": "js",
       "tier": 1,
@@ -7404,7 +7404,7 @@
       ]
     },
     {
-      "id": 1014,
+      "id": 151,
       "title": "coinTotal",
       "type": "js",
       "tier": 1,
@@ -7451,7 +7451,7 @@
       ]
     },
     {
-      "id": 1015,
+      "id": 152,
       "title": "calculateShipping",
       "type": "js",
       "tier": 1,
@@ -7498,7 +7498,7 @@
       ]
     },
     {
-      "id": 1016,
+      "id": 153,
       "title": "factorial",
       "type": "js",
       "tier": 1,
@@ -7545,7 +7545,7 @@
       ]
     },
     {
-      "id": 1017,
+      "id": 154,
       "title": "power",
       "type": "js",
       "tier": 1,
@@ -7592,7 +7592,7 @@
       ]
     },
     {
-      "id": 1018,
+      "id": 155,
       "title": "repeatString",
       "type": "js",
       "tier": 1,
@@ -7639,7 +7639,7 @@
       ]
     },
     {
-      "id": 1019,
+      "id": 156,
       "title": "countEvens",
       "type": "js",
       "tier": 1,
@@ -7686,7 +7686,7 @@
       ]
     },
     {
-      "id": 1020,
+      "id": 157,
       "title": "countOdds",
       "type": "js",
       "tier": 1,
@@ -7733,7 +7733,7 @@
       ]
     },
     {
-      "id": 1021,
+      "id": 158,
       "title": "sumEvens",
       "type": "js",
       "tier": 1,
@@ -7781,7 +7781,7 @@
       ]
     },
     {
-      "id": 1022,
+      "id": 159,
       "title": "sumOdds",
       "type": "js",
       "tier": 1,
@@ -7829,7 +7829,7 @@
       ]
     },
     {
-      "id": 1023,
+      "id": 160,
       "title": "isLeapYear",
       "type": "js",
       "tier": 1,
@@ -7876,7 +7876,7 @@
       ]
     },
     {
-      "id": 1024,
+      "id": 161,
       "title": "bottleSong",
       "type": "js",
       "tier": 1,
@@ -7923,7 +7923,7 @@
       ]
     },
     {
-      "id": 1025,
+      "id": 162,
       "title": "dashJoin",
       "type": "js",
       "tier": 1,
@@ -7970,7 +7970,7 @@
       ]
     },
     {
-      "id": 1026,
+      "id": 163,
       "title": "multiplicationRow",
       "type": "js",
       "tier": 1,
@@ -8018,7 +8018,7 @@
       ]
     },
     {
-      "id": 1027,
+      "id": 164,
       "title": "buildOdds",
       "type": "js",
       "tier": 1,
@@ -8066,7 +8066,7 @@
       ]
     },
     {
-      "id": 1028,
+      "id": 165,
       "title": "maxOfThree",
       "type": "js",
       "tier": 1,
@@ -8113,7 +8113,7 @@
       ]
     },
     {
-      "id": 1029,
+      "id": 166,
       "title": "discountPrice",
       "type": "js",
       "tier": 1,
@@ -8161,7 +8161,7 @@
       ]
     },
     {
-      "id": 1030,
+      "id": 167,
       "title": "celsiusLabel",
       "type": "js",
       "tier": 1,
@@ -8209,7 +8209,7 @@
       ]
     },
     {
-      "id": 1031,
+      "id": 168,
       "title": "calculateTax",
       "type": "js",
       "tier": 1,
@@ -8256,7 +8256,7 @@
       ]
     },
     {
-      "id": 1032,
+      "id": 169,
       "title": "countdown",
       "type": "js",
       "tier": 1,
@@ -8304,7 +8304,7 @@
       ]
     },
     {
-      "id": 1033,
+      "id": 170,
       "title": "convertDistance",
       "type": "js",
       "tier": 1,
@@ -8351,7 +8351,7 @@
       ]
     },
     {
-      "id": 1034,
+      "id": 171,
       "title": "buildSequence",
       "type": "js",
       "tier": 1,
@@ -8398,7 +8398,7 @@
       ]
     },
     {
-      "id": 1035,
+      "id": 172,
       "title": "generateMultiples",
       "type": "js",
       "tier": 1,
@@ -8445,7 +8445,7 @@
       ]
     },
     {
-      "id": 1036,
+      "id": 173,
       "title": "Switch Statement",
       "type": "js",
       "tier": 2,
@@ -8480,7 +8480,7 @@
       ]
     },
     {
-      "id": 1037,
+      "id": 174,
       "title": "Switch: Fall-Through",
       "type": "js",
       "tier": 2,
@@ -8516,7 +8516,7 @@
       ]
     },
     {
-      "id": 1038,
+      "id": 175,
       "title": "Switch: Fall-Through",
       "type": "js",
       "tier": 2,
@@ -8552,7 +8552,7 @@
       ]
     },
     {
-      "id": 1039,
+      "id": 176,
       "title": "Switch: String Matching",
       "type": "js",
       "tier": 2,
@@ -8588,7 +8588,7 @@
       ]
     },
     {
-      "id": 1040,
+      "id": 177,
       "title": "Switch: Default",
       "type": "js",
       "tier": 2,
@@ -8624,7 +8624,7 @@
       ]
     },
     {
-      "id": 1041,
+      "id": 178,
       "title": "Ternary Operator",
       "type": "js",
       "tier": 2,
@@ -8659,7 +8659,7 @@
       ]
     },
     {
-      "id": 1042,
+      "id": 179,
       "title": "Ternary: Inline",
       "type": "js",
       "tier": 2,
@@ -8695,7 +8695,7 @@
       ]
     },
     {
-      "id": 1043,
+      "id": 180,
       "title": "Ternary: Chained",
       "type": "js",
       "tier": 2,
@@ -8731,7 +8731,7 @@
       ]
     },
     {
-      "id": 1044,
+      "id": 181,
       "title": "Ternary: Chained",
       "type": "js",
       "tier": 2,
@@ -8767,7 +8767,7 @@
       ]
     },
     {
-      "id": 1045,
+      "id": 182,
       "title": "Nested If",
       "type": "js",
       "tier": 2,
@@ -8803,7 +8803,7 @@
       ]
     },
     {
-      "id": 1046,
+      "id": 183,
       "title": "Nested If",
       "type": "js",
       "tier": 2,
@@ -8839,7 +8839,7 @@
       ]
     },
     {
-      "id": 1047,
+      "id": 184,
       "title": "Complex If",
       "type": "js",
       "tier": 2,
@@ -8875,7 +8875,7 @@
       ]
     },
     {
-      "id": 1048,
+      "id": 185,
       "title": "Complex If",
       "type": "js",
       "tier": 2,
@@ -8911,7 +8911,7 @@
       ]
     },
     {
-      "id": 1049,
+      "id": 186,
       "title": "Conditionals: Combined",
       "type": "js",
       "tier": 2,
@@ -8968,7 +8968,7 @@
       ]
     },
     {
-      "id": 1050,
+      "id": 187,
       "title": "String: Length and Access",
       "type": "js",
       "tier": 2,
@@ -9005,7 +9005,7 @@
       ]
     },
     {
-      "id": 1051,
+      "id": 188,
       "title": "String: toLowerCase",
       "type": "js",
       "tier": 2,
@@ -9041,7 +9041,7 @@
       ]
     },
     {
-      "id": 1052,
+      "id": 189,
       "title": "String: toUpperCase",
       "type": "js",
       "tier": 2,
@@ -9077,7 +9077,7 @@
       ]
     },
     {
-      "id": 1053,
+      "id": 190,
       "title": "String: trim",
       "type": "js",
       "tier": 2,
@@ -9113,7 +9113,7 @@
       ]
     },
     {
-      "id": 1054,
+      "id": 191,
       "title": "String: trimStart",
       "type": "js",
       "tier": 2,
@@ -9149,7 +9149,7 @@
       ]
     },
     {
-      "id": 1055,
+      "id": 192,
       "title": "String: trimEnd",
       "type": "js",
       "tier": 2,
@@ -9185,7 +9185,7 @@
       ]
     },
     {
-      "id": 1056,
+      "id": 193,
       "title": "String: includes",
       "type": "js",
       "tier": 2,
@@ -9221,7 +9221,7 @@
       ]
     },
     {
-      "id": 1057,
+      "id": 194,
       "title": "String: startsWith",
       "type": "js",
       "tier": 2,
@@ -9257,7 +9257,7 @@
       ]
     },
     {
-      "id": 1058,
+      "id": 195,
       "title": "String: endsWith",
       "type": "js",
       "tier": 2,
@@ -9293,7 +9293,7 @@
       ]
     },
     {
-      "id": 1059,
+      "id": 196,
       "title": "String: indexOf",
       "type": "js",
       "tier": 2,
@@ -9329,7 +9329,7 @@
       ]
     },
     {
-      "id": 1060,
+      "id": 197,
       "title": "String: lastIndexOf",
       "type": "js",
       "tier": 2,
@@ -9365,7 +9365,7 @@
       ]
     },
     {
-      "id": 1061,
+      "id": 198,
       "title": "String: slice",
       "type": "js",
       "tier": 2,
@@ -9402,7 +9402,7 @@
       ]
     },
     {
-      "id": 1062,
+      "id": 199,
       "title": "String: slice",
       "type": "js",
       "tier": 2,
@@ -9439,7 +9439,7 @@
       ]
     },
     {
-      "id": 1063,
+      "id": 200,
       "title": "String: replace",
       "type": "js",
       "tier": 2,
@@ -9475,7 +9475,7 @@
       ]
     },
     {
-      "id": 1064,
+      "id": 201,
       "title": "String: replaceAll",
       "type": "js",
       "tier": 2,
@@ -9511,7 +9511,7 @@
       ]
     },
     {
-      "id": 1065,
+      "id": 202,
       "title": "String: repeat",
       "type": "js",
       "tier": 2,
@@ -9547,7 +9547,7 @@
       ]
     },
     {
-      "id": 1066,
+      "id": 203,
       "title": "String: padStart",
       "type": "js",
       "tier": 2,
@@ -9583,7 +9583,7 @@
       ]
     },
     {
-      "id": 1067,
+      "id": 204,
       "title": "String: padEnd",
       "type": "js",
       "tier": 2,
@@ -9619,7 +9619,7 @@
       ]
     },
     {
-      "id": 1068,
+      "id": 205,
       "title": "String: split",
       "type": "js",
       "tier": 2,
@@ -9655,7 +9655,7 @@
       ]
     },
     {
-      "id": 1069,
+      "id": 206,
       "title": "String Methods: Combined",
       "type": "js",
       "tier": 2,
@@ -9691,7 +9691,7 @@
       ]
     },
     {
-      "id": 1070,
+      "id": 207,
       "title": "reverseString",
       "type": "js",
       "tier": 2,
@@ -9737,7 +9737,7 @@
       ]
     },
     {
-      "id": 1071,
+      "id": 208,
       "title": "isPalindrome",
       "type": "js",
       "tier": 2,
@@ -9783,7 +9783,7 @@
       ]
     },
     {
-      "id": 1072,
+      "id": 209,
       "title": "countVowels",
       "type": "js",
       "tier": 2,
@@ -9830,7 +9830,7 @@
       ]
     },
     {
-      "id": 1073,
+      "id": 210,
       "title": "truncate",
       "type": "js",
       "tier": 2,
@@ -9866,7 +9866,7 @@
       ]
     },
     {
-      "id": 1074,
+      "id": 211,
       "title": "maskCardString",
       "type": "js",
       "tier": 2,
@@ -9903,7 +9903,7 @@
       ]
     },
     {
-      "id": 1075,
+      "id": 212,
       "title": "Array: Nested Access",
       "type": "js",
       "tier": 2,
@@ -9940,7 +9940,7 @@
       ]
     },
     {
-      "id": 1076,
+      "id": 213,
       "title": "Array: Deep Access",
       "type": "js",
       "tier": 2,
@@ -9977,7 +9977,7 @@
       ]
     },
     {
-      "id": 1077,
+      "id": 214,
       "title": "Array: Length and Last",
       "type": "js",
       "tier": 2,
@@ -10013,7 +10013,7 @@
       ]
     },
     {
-      "id": 1078,
+      "id": 215,
       "title": "Array: push",
       "type": "js",
       "tier": 2,
@@ -10049,7 +10049,7 @@
       ]
     },
     {
-      "id": 1079,
+      "id": 216,
       "title": "Array: pop",
       "type": "js",
       "tier": 2,
@@ -10085,7 +10085,7 @@
       ]
     },
     {
-      "id": 1080,
+      "id": 217,
       "title": "Array: push and pop",
       "type": "js",
       "tier": 2,
@@ -10123,7 +10123,7 @@
       ]
     },
     {
-      "id": 1081,
+      "id": 218,
       "title": "Array: unshift",
       "type": "js",
       "tier": 2,
@@ -10159,7 +10159,7 @@
       ]
     },
     {
-      "id": 1082,
+      "id": 219,
       "title": "Array: shift",
       "type": "js",
       "tier": 2,
@@ -10195,7 +10195,7 @@
       ]
     },
     {
-      "id": 1083,
+      "id": 220,
       "title": "Array: shift and unshift",
       "type": "js",
       "tier": 2,
@@ -10233,7 +10233,7 @@
       ]
     },
     {
-      "id": 1084,
+      "id": 221,
       "title": "Array: includes",
       "type": "js",
       "tier": 2,
@@ -10269,7 +10269,7 @@
       ]
     },
     {
-      "id": 1085,
+      "id": 222,
       "title": "Array: indexOf",
       "type": "js",
       "tier": 2,
@@ -10305,7 +10305,7 @@
       ]
     },
     {
-      "id": 1086,
+      "id": 223,
       "title": "Array: lastIndexOf",
       "type": "js",
       "tier": 2,
@@ -10341,7 +10341,7 @@
       ]
     },
     {
-      "id": 1087,
+      "id": 224,
       "title": "Array: Search Combined",
       "type": "js",
       "tier": 2,
@@ -10379,7 +10379,7 @@
       ]
     },
     {
-      "id": 1088,
+      "id": 225,
       "title": "Array: slice",
       "type": "js",
       "tier": 2,
@@ -10415,7 +10415,7 @@
       ]
     },
     {
-      "id": 1089,
+      "id": 226,
       "title": "Array: splice",
       "type": "js",
       "tier": 2,
@@ -10451,7 +10451,7 @@
       ]
     },
     {
-      "id": 1090,
+      "id": 227,
       "title": "Array: concat",
       "type": "js",
       "tier": 2,
@@ -10487,7 +10487,7 @@
       ]
     },
     {
-      "id": 1091,
+      "id": 228,
       "title": "Array: reverse",
       "type": "js",
       "tier": 2,
@@ -10524,7 +10524,7 @@
       ]
     },
     {
-      "id": 1092,
+      "id": 229,
       "title": "Array: join",
       "type": "js",
       "tier": 2,
@@ -10560,7 +10560,7 @@
       ]
     },
     {
-      "id": 1093,
+      "id": 230,
       "title": "Nested Loops: Basics",
       "type": "js",
       "tier": 2,
@@ -10596,7 +10596,7 @@
       ]
     },
     {
-      "id": 1094,
+      "id": 231,
       "title": "Nested Loops: Pairs",
       "type": "js",
       "tier": 2,
@@ -10633,7 +10633,7 @@
       ]
     },
     {
-      "id": 1095,
+      "id": 232,
       "title": "Nested Loops: Find First",
       "type": "js",
       "tier": 2,
@@ -10670,7 +10670,7 @@
       ]
     },
     {
-      "id": 1096,
+      "id": 233,
       "title": "Nested Loops: Find All",
       "type": "js",
       "tier": 2,
@@ -10707,7 +10707,7 @@
       ]
     },
     {
-      "id": 1097,
+      "id": 234,
       "title": "Nested Loops: Triangle",
       "type": "js",
       "tier": 2,
@@ -10744,7 +10744,7 @@
       ]
     },
     {
-      "id": 1098,
+      "id": 235,
       "title": "Nested Loops: Reverse Triangle",
       "type": "js",
       "tier": 2,
@@ -10781,7 +10781,7 @@
       ]
     },
     {
-      "id": 1099,
+      "id": 236,
       "title": "Nested Loops: Flatten",
       "type": "js",
       "tier": 2,
@@ -10817,7 +10817,7 @@
       ]
     },
     {
-      "id": 1100,
+      "id": 237,
       "title": "Nested Loops: Multiplication Table",
       "type": "js",
       "tier": 2,
@@ -10853,7 +10853,7 @@
       ]
     },
     {
-      "id": 1101,
+      "id": 238,
       "title": "Nested Loops: Common Elements",
       "type": "js",
       "tier": 2,
@@ -10891,7 +10891,7 @@
       ]
     },
     {
-      "id": 1102,
+      "id": 239,
       "title": "Nested Loops: Pyramid",
       "type": "js",
       "tier": 2,
@@ -10929,7 +10929,7 @@
       ]
     },
     {
-      "id": 1103,
+      "id": 240,
       "title": "Loop Control: break",
       "type": "js",
       "tier": 2,
@@ -10965,7 +10965,7 @@
       ]
     },
     {
-      "id": 1104,
+      "id": 241,
       "title": "Loop Control: continue",
       "type": "js",
       "tier": 2,
@@ -11001,7 +11001,7 @@
       ]
     },
     {
-      "id": 1105,
+      "id": 242,
       "title": "Loop Control: break in Nested Loops",
       "type": "js",
       "tier": 2,
@@ -11038,7 +11038,7 @@
       ]
     },
     {
-      "id": 1106,
+      "id": 243,
       "title": "Loop Control: Early Return",
       "type": "js",
       "tier": 2,
@@ -11074,7 +11074,7 @@
       ]
     },
     {
-      "id": 1107,
+      "id": 244,
       "title": "Loop Control: break and continue",
       "type": "js",
       "tier": 2,
@@ -11111,7 +11111,7 @@
       ]
     },
     {
-      "id": 1108,
+      "id": 245,
       "title": "for...of: Arrays",
       "type": "js",
       "tier": 2,
@@ -11147,7 +11147,7 @@
       ]
     },
     {
-      "id": 1109,
+      "id": 246,
       "title": "for...of: Strings",
       "type": "js",
       "tier": 2,
@@ -11183,7 +11183,7 @@
       ]
     },
     {
-      "id": 1110,
+      "id": 247,
       "title": "while Loop",
       "type": "js",
       "tier": 2,
@@ -11219,7 +11219,7 @@
       ]
     },
     {
-      "id": 1111,
+      "id": 248,
       "title": "do...while Loop",
       "type": "js",
       "tier": 2,
@@ -11255,7 +11255,7 @@
       ]
     },
     {
-      "id": 1112,
+      "id": 249,
       "title": "for...in: Object Keys",
       "type": "js",
       "tier": 2,
@@ -11291,7 +11291,7 @@
       ]
     },
     {
-      "id": 1113,
+      "id": 250,
       "title": "Convert: for to while",
       "type": "js",
       "tier": 2,
@@ -11327,7 +11327,7 @@
       ]
     },
     {
-      "id": 1114,
+      "id": 251,
       "title": "Convert: while to for",
       "type": "js",
       "tier": 2,
@@ -11363,7 +11363,7 @@
       ]
     },
     {
-      "id": 1115,
+      "id": 252,
       "title": "Convert: for to for...of",
       "type": "js",
       "tier": 2,
@@ -11399,7 +11399,7 @@
       ]
     },
     {
-      "id": 1116,
+      "id": 253,
       "title": "Convert: for to for...in",
       "type": "js",
       "tier": 2,
@@ -11436,7 +11436,7 @@
       ]
     },
     {
-      "id": 1117,
+      "id": 254,
       "title": "Convert: while to do...while",
       "type": "js",
       "tier": 2,
@@ -11473,7 +11473,7 @@
       ]
     },
     {
-      "id": 1118,
+      "id": 255,
       "title": "Convert: for...of to for",
       "type": "js",
       "tier": 2,
@@ -11510,7 +11510,7 @@
       ]
     },
     {
-      "id": 1119,
+      "id": 256,
       "title": "Loop Mastery: Combined",
       "type": "js",
       "tier": 2,
@@ -11548,7 +11548,7 @@
       ]
     },
     {
-      "id": 1120,
+      "id": 257,
       "title": "Manual Map: Transform Numbers",
       "type": "js",
       "tier": 2,
@@ -11595,7 +11595,7 @@
       ]
     },
     {
-      "id": 1121,
+      "id": 258,
       "title": "Manual Map: Transform Strings",
       "type": "js",
       "tier": 2,
@@ -11633,7 +11633,7 @@
       ]
     },
     {
-      "id": 1122,
+      "id": 259,
       "title": "Manual Map: Extract Property",
       "type": "js",
       "tier": 2,
@@ -11671,7 +11671,7 @@
       ]
     },
     {
-      "id": 1123,
+      "id": 260,
       "title": "Manual Filter: Even Numbers",
       "type": "js",
       "tier": 2,
@@ -11718,7 +11718,7 @@
       ]
     },
     {
-      "id": 1124,
+      "id": 261,
       "title": "Manual Filter: Odd Numbers",
       "type": "js",
       "tier": 2,
@@ -11755,7 +11755,7 @@
       ]
     },
     {
-      "id": 1125,
+      "id": 262,
       "title": "Manual Filter: By Length",
       "type": "js",
       "tier": 2,
@@ -11793,7 +11793,7 @@
       ]
     },
     {
-      "id": 1126,
+      "id": 263,
       "title": "Manual Filter: By Key",
       "type": "js",
       "tier": 2,
@@ -11831,7 +11831,7 @@
       ]
     },
     {
-      "id": 1127,
+      "id": 264,
       "title": "Manual Filter: Exclude by Key",
       "type": "js",
       "tier": 2,
@@ -11869,7 +11869,7 @@
       ]
     },
     {
-      "id": 1128,
+      "id": 265,
       "title": "Manual Find: First Match",
       "type": "js",
       "tier": 2,
@@ -11906,7 +11906,7 @@
       ]
     },
     {
-      "id": 1129,
+      "id": 266,
       "title": "Manual Find: Last Match",
       "type": "js",
       "tier": 2,
@@ -11943,7 +11943,7 @@
       ]
     },
     {
-      "id": 1130,
+      "id": 267,
       "title": "Manual Find: First Index",
       "type": "js",
       "tier": 2,
@@ -11981,7 +11981,7 @@
       ]
     },
     {
-      "id": 1131,
+      "id": 268,
       "title": "Manual Find: All Indices",
       "type": "js",
       "tier": 2,
@@ -12019,7 +12019,7 @@
       ]
     },
     {
-      "id": 1132,
+      "id": 269,
       "title": "Manual Reduce: Sum",
       "type": "js",
       "tier": 2,
@@ -12066,7 +12066,7 @@
       ]
     },
     {
-      "id": 1133,
+      "id": 270,
       "title": "Manual Reduce: Product",
       "type": "js",
       "tier": 2,
@@ -12103,7 +12103,7 @@
       ]
     },
     {
-      "id": 1134,
+      "id": 271,
       "title": "Manual Reduce: Count Occurrences",
       "type": "js",
       "tier": 2,
@@ -12141,7 +12141,7 @@
       ]
     },
     {
-      "id": 1135,
+      "id": 272,
       "title": "Manual Reduce: Build String",
       "type": "js",
       "tier": 2,
@@ -12179,7 +12179,7 @@
       ]
     },
     {
-      "id": 1136,
+      "id": 273,
       "title": "Manual Every: All Positive",
       "type": "js",
       "tier": 2,
@@ -12216,7 +12216,7 @@
       ]
     },
     {
-      "id": 1137,
+      "id": 274,
       "title": "Manual Every: All Negative",
       "type": "js",
       "tier": 2,
@@ -12253,7 +12253,7 @@
       ]
     },
     {
-      "id": 1138,
+      "id": 275,
       "title": "Manual Some: Has Negative",
       "type": "js",
       "tier": 2,
@@ -12290,7 +12290,7 @@
       ]
     },
     {
-      "id": 1139,
+      "id": 276,
       "title": "Manual Some: Has Even",
       "type": "js",
       "tier": 2,
@@ -12327,7 +12327,7 @@
       ]
     },
     {
-      "id": 1140,
+      "id": 277,
       "title": "Array Patterns: Combined",
       "type": "js",
       "tier": 2,
@@ -12367,7 +12367,7 @@
       ]
     },
     {
-      "id": 1141,
+      "id": 278,
       "title": "Array Patterns: Pipeline",
       "type": "js",
       "tier": 2,
@@ -12407,7 +12407,7 @@
       ]
     },
     {
-      "id": 1142,
+      "id": 279,
       "title": "Object Iteration: Keys",
       "type": "js",
       "tier": 2,
@@ -12454,7 +12454,7 @@
       ]
     },
     {
-      "id": 1143,
+      "id": 280,
       "title": "Object Iteration: Values",
       "type": "js",
       "tier": 2,
@@ -12501,7 +12501,7 @@
       ]
     },
     {
-      "id": 1144,
+      "id": 281,
       "title": "Object Iteration: Entries",
       "type": "js",
       "tier": 2,
@@ -12548,7 +12548,7 @@
       ]
     },
     {
-      "id": 1145,
+      "id": 282,
       "title": "Object Iteration: Key-Value String",
       "type": "js",
       "tier": 2,
@@ -12596,7 +12596,7 @@
       ]
     },
     {
-      "id": 1146,
+      "id": 283,
       "title": "Object Build: From Arrays",
       "type": "js",
       "tier": 2,
@@ -12633,7 +12633,7 @@
       ]
     },
     {
-      "id": 1147,
+      "id": 284,
       "title": "Object Build: From Pairs",
       "type": "js",
       "tier": 2,
@@ -12670,7 +12670,7 @@
       ]
     },
     {
-      "id": 1148,
+      "id": 285,
       "title": "Object Build: Frequency Count",
       "type": "js",
       "tier": 2,
@@ -12707,7 +12707,7 @@
       ]
     },
     {
-      "id": 1149,
+      "id": 286,
       "title": "Object Build: Group By Property",
       "type": "js",
       "tier": 2,
@@ -12745,7 +12745,7 @@
       ]
     },
     {
-      "id": 1150,
+      "id": 287,
       "title": "Object Merge: Shallow",
       "type": "js",
       "tier": 2,
@@ -12792,7 +12792,7 @@
       ]
     },
     {
-      "id": 1151,
+      "id": 288,
       "title": "Object Merge: Defaults",
       "type": "js",
       "tier": 2,
@@ -12840,7 +12840,7 @@
       ]
     },
     {
-      "id": 1152,
+      "id": 289,
       "title": "Object Merge: Sum Values",
       "type": "js",
       "tier": 2,
@@ -12888,7 +12888,7 @@
       ]
     },
     {
-      "id": 1153,
+      "id": 290,
       "title": "Object Filter: By Value",
       "type": "js",
       "tier": 2,
@@ -12935,7 +12935,7 @@
       ]
     },
     {
-      "id": 1154,
+      "id": 291,
       "title": "Object Filter: Exclude Keys",
       "type": "js",
       "tier": 2,
@@ -12983,7 +12983,7 @@
       ]
     },
     {
-      "id": 1155,
+      "id": 292,
       "title": "Object Search: Has All Keys",
       "type": "js",
       "tier": 2,
@@ -13020,7 +13020,7 @@
       ]
     },
     {
-      "id": 1156,
+      "id": 293,
       "title": "Object Nested: Get Value",
       "type": "js",
       "tier": 2,
@@ -13057,7 +13057,7 @@
       ]
     },
     {
-      "id": 1157,
+      "id": 294,
       "title": "Object Nested: Flatten",
       "type": "js",
       "tier": 2,
@@ -13105,7 +13105,7 @@
       ]
     },
     {
-      "id": 1158,
+      "id": 295,
       "title": "Object Patterns: Combined",
       "type": "js",
       "tier": 2,
@@ -13154,7 +13154,7 @@
       ]
     },
     {
-      "id": 1159,
+      "id": 296,
       "title": "Object Patterns: Pipeline",
       "type": "js",
       "tier": 2,
@@ -13193,7 +13193,7 @@
       ]
     },
     {
-      "id": 1160,
+      "id": 297,
       "title": "Class Basics: Create a Class",
       "type": "js",
       "tier": 2,
@@ -13230,7 +13230,7 @@
       ]
     },
     {
-      "id": 1161,
+      "id": 298,
       "title": "Class Basics: Add a Method",
       "type": "js",
       "tier": 2,
@@ -13267,7 +13267,7 @@
       ]
     },
     {
-      "id": 1162,
+      "id": 299,
       "title": "Class Basics: State Methods",
       "type": "js",
       "tier": 2,
@@ -13305,7 +13305,7 @@
       ]
     },
     {
-      "id": 1163,
+      "id": 300,
       "title": "Application: Title Case",
       "type": "js",
       "tier": 2,
@@ -13343,7 +13343,7 @@
       ]
     },
     {
-      "id": 1164,
+      "id": 301,
       "title": "Application: Camel Case",
       "type": "js",
       "tier": 2,
@@ -13381,7 +13381,7 @@
       ]
     },
     {
-      "id": 1165,
+      "id": 302,
       "title": "Application: Kebab Case",
       "type": "js",
       "tier": 2,
@@ -13419,7 +13419,7 @@
       ]
     },
     {
-      "id": 1166,
+      "id": 303,
       "title": "Application: Intersection",
       "type": "js",
       "tier": 2,
@@ -13456,7 +13456,7 @@
       ]
     },
     {
-      "id": 1167,
+      "id": 304,
       "title": "Application: Difference",
       "type": "js",
       "tier": 2,
@@ -13493,7 +13493,7 @@
       ]
     },
     {
-      "id": 1168,
+      "id": 305,
       "title": "Application: Zip Arrays",
       "type": "js",
       "tier": 2,
@@ -13529,7 +13529,7 @@
       ]
     },
     {
-      "id": 1169,
+      "id": 306,
       "title": "Application: Unzip Pairs",
       "type": "js",
       "tier": 2,
@@ -13565,7 +13565,7 @@
       ]
     },
     {
-      "id": 1170,
+      "id": 307,
       "title": "Application: Chunk Array",
       "type": "js",
       "tier": 2,
@@ -13601,7 +13601,7 @@
       ]
     },
     {
-      "id": 1171,
+      "id": 308,
       "title": "Application: Number Range",
       "type": "js",
       "tier": 2,
@@ -13637,7 +13637,7 @@
       ]
     },
     {
-      "id": 1172,
+      "id": 309,
       "title": "Application: Average Score",
       "type": "js",
       "tier": 2,
@@ -13674,7 +13674,7 @@
       ]
     },
     {
-      "id": 1173,
+      "id": 310,
       "title": "Application: Validate Password",
       "type": "js",
       "tier": 2,
@@ -13711,7 +13711,7 @@
       ]
     },
     {
-      "id": 1174,
+      "id": 311,
       "title": "Application: Character Frequency",
       "type": "js",
       "tier": 2,
@@ -13748,7 +13748,7 @@
       ]
     },
     {
-      "id": 1175,
+      "id": 312,
       "title": "Application: Word Frequency",
       "type": "js",
       "tier": 2,
@@ -13786,7 +13786,7 @@
       ]
     },
     {
-      "id": 1176,
+      "id": 313,
       "title": "forEach: Basics",
       "type": "js",
       "tier": 3,
@@ -13818,7 +13818,7 @@
       ]
     },
     {
-      "id": 1177,
+      "id": 314,
       "title": "forEach: Sum",
       "type": "js",
       "tier": 3,
@@ -13850,7 +13850,7 @@
       ]
     },
     {
-      "id": 1178,
+      "id": 315,
       "title": "forEach: Transform",
       "type": "js",
       "tier": 3,
@@ -13882,7 +13882,7 @@
       ]
     },
     {
-      "id": 1179,
+      "id": 316,
       "title": "forEach: Count",
       "type": "js",
       "tier": 3,
@@ -13914,7 +13914,7 @@
       ]
     },
     {
-      "id": 1180,
+      "id": 317,
       "title": "forEach: Side Effects",
       "type": "js",
       "tier": 3,
@@ -13946,7 +13946,7 @@
       ]
     },
     {
-      "id": 1181,
+      "id": 318,
       "title": "map: Basics",
       "type": "js",
       "tier": 3,
@@ -13978,7 +13978,7 @@
       ]
     },
     {
-      "id": 1182,
+      "id": 319,
       "title": "map: Numbers",
       "type": "js",
       "tier": 3,
@@ -14010,7 +14010,7 @@
       ]
     },
     {
-      "id": 1183,
+      "id": 320,
       "title": "map: Strings",
       "type": "js",
       "tier": 3,
@@ -14042,7 +14042,7 @@
       ]
     },
     {
-      "id": 1184,
+      "id": 321,
       "title": "map: Objects",
       "type": "js",
       "tier": 3,
@@ -14074,7 +14074,7 @@
       ]
     },
     {
-      "id": 1185,
+      "id": 322,
       "title": "map: Conditional",
       "type": "js",
       "tier": 3,
@@ -14106,7 +14106,7 @@
       ]
     },
     {
-      "id": 1186,
+      "id": 323,
       "title": "filter: Basics",
       "type": "js",
       "tier": 3,
@@ -14138,7 +14138,7 @@
       ]
     },
     {
-      "id": 1187,
+      "id": 324,
       "title": "filter: Numbers",
       "type": "js",
       "tier": 3,
@@ -14170,7 +14170,7 @@
       ]
     },
     {
-      "id": 1188,
+      "id": 325,
       "title": "filter: Strings",
       "type": "js",
       "tier": 3,
@@ -14202,7 +14202,7 @@
       ]
     },
     {
-      "id": 1189,
+      "id": 326,
       "title": "filter: Objects",
       "type": "js",
       "tier": 3,
@@ -14234,7 +14234,7 @@
       ]
     },
     {
-      "id": 1190,
+      "id": 327,
       "title": "filter: Complex",
       "type": "js",
       "tier": 3,
@@ -14266,7 +14266,7 @@
       ]
     },
     {
-      "id": 1191,
+      "id": 328,
       "title": "find: Basics",
       "type": "js",
       "tier": 3,
@@ -14303,7 +14303,7 @@
       ]
     },
     {
-      "id": 1192,
+      "id": 329,
       "title": "findIndex: Basics",
       "type": "js",
       "tier": 3,
@@ -14340,7 +14340,7 @@
       ]
     },
     {
-      "id": 1193,
+      "id": 330,
       "title": "find: Objects",
       "type": "js",
       "tier": 3,
@@ -14377,7 +14377,7 @@
       ]
     },
     {
-      "id": 1194,
+      "id": 331,
       "title": "find and findIndex: Combined",
       "type": "js",
       "tier": 3,
@@ -14414,7 +14414,7 @@
       ]
     },
     {
-      "id": 1195,
+      "id": 332,
       "title": "find: Fallback",
       "type": "js",
       "tier": 3,
@@ -14451,7 +14451,7 @@
       ]
     },
     {
-      "id": 1196,
+      "id": 333,
       "title": "reduce: Sum",
       "type": "js",
       "tier": 3,
@@ -14483,7 +14483,7 @@
       ]
     },
     {
-      "id": 1197,
+      "id": 334,
       "title": "reduce: Count",
       "type": "js",
       "tier": 3,
@@ -14515,7 +14515,7 @@
       ]
     },
     {
-      "id": 1198,
+      "id": 335,
       "title": "reduce: Flatten",
       "type": "js",
       "tier": 3,
@@ -14547,7 +14547,7 @@
       ]
     },
     {
-      "id": 1199,
+      "id": 336,
       "title": "reduce: Group",
       "type": "js",
       "tier": 3,
@@ -14579,7 +14579,7 @@
       ]
     },
     {
-      "id": 1200,
+      "id": 337,
       "title": "reduce: Object Build",
       "type": "js",
       "tier": 3,
@@ -14611,7 +14611,7 @@
       ]
     },
     {
-      "id": 1201,
+      "id": 338,
       "title": "every: Basics",
       "type": "js",
       "tier": 3,
@@ -14648,7 +14648,7 @@
       ]
     },
     {
-      "id": 1202,
+      "id": 339,
       "title": "some: Basics",
       "type": "js",
       "tier": 3,
@@ -14685,7 +14685,7 @@
       ]
     },
     {
-      "id": 1203,
+      "id": 340,
       "title": "every and some: Combined",
       "type": "js",
       "tier": 3,
@@ -14723,7 +14723,7 @@
       ]
     },
     {
-      "id": 1204,
+      "id": 341,
       "title": "every and some: Validation",
       "type": "js",
       "tier": 3,
@@ -14761,7 +14761,7 @@
       ]
     },
     {
-      "id": 1205,
+      "id": 342,
       "title": "sort: Numbers",
       "type": "js",
       "tier": 3,
@@ -14793,7 +14793,7 @@
       ]
     },
     {
-      "id": 1206,
+      "id": 343,
       "title": "sort: Strings",
       "type": "js",
       "tier": 3,
@@ -14825,7 +14825,7 @@
       ]
     },
     {
-      "id": 1207,
+      "id": 344,
       "title": "sort: Objects",
       "type": "js",
       "tier": 3,
@@ -14857,7 +14857,7 @@
       ]
     },
     {
-      "id": 1208,
+      "id": 345,
       "title": "sort: Multi-Key",
       "type": "js",
       "tier": 3,
@@ -14889,7 +14889,7 @@
       ]
     },
     {
-      "id": 1209,
+      "id": 346,
       "title": "Method Chaining: Filter and Map",
       "type": "js",
       "tier": 3,
@@ -14931,7 +14931,7 @@
       ]
     },
     {
-      "id": 1210,
+      "id": 347,
       "title": "Method Chaining: Map, Filter, and Reduce",
       "type": "js",
       "tier": 3,
@@ -14974,7 +14974,7 @@
       ]
     },
     {
-      "id": 1211,
+      "id": 348,
       "title": "Method Chaining: Sort and Slice",
       "type": "js",
       "tier": 3,
@@ -15016,7 +15016,7 @@
       ]
     },
     {
-      "id": 1212,
+      "id": 349,
       "title": "Method Chaining: Chain with Find",
       "type": "js",
       "tier": 3,
@@ -15059,7 +15059,7 @@
       ]
     },
     {
-      "id": 1213,
+      "id": 350,
       "title": "Method Chaining: Complex Pipeline",
       "type": "js",
       "tier": 3,
@@ -15102,7 +15102,7 @@
       ]
     },
     {
-      "id": 1214,
+      "id": 351,
       "title": "Callback Methods: Top Words",
       "type": "js",
       "tier": 3,
@@ -15136,7 +15136,7 @@
       ]
     },
     {
-      "id": 1215,
+      "id": 352,
       "title": "Callback Methods: Grade Analyzer",
       "type": "js",
       "tier": 3,
@@ -15170,7 +15170,7 @@
       ]
     },
     {
-      "id": 1216,
+      "id": 353,
       "title": "Callback Methods: Inventory Manager",
       "type": "js",
       "tier": 3,
@@ -15203,7 +15203,7 @@
       ]
     },
     {
-      "id": 1217,
+      "id": 354,
       "title": "Callback Methods: Student Roster",
       "type": "js",
       "tier": 3,
@@ -15236,7 +15236,7 @@
       ]
     },
     {
-      "id": 1218,
+      "id": 355,
       "title": "Callback Methods: Data Pipeline",
       "type": "js",
       "tier": 3,
@@ -15270,7 +15270,7 @@
       ]
     },
     {
-      "id": 1219,
+      "id": 356,
       "title": "Closures: Counter",
       "type": "js",
       "tier": 3,
@@ -15302,7 +15302,7 @@
       ]
     },
     {
-      "id": 1220,
+      "id": 357,
       "title": "Closures: Private State",
       "type": "js",
       "tier": 3,
@@ -15334,7 +15334,7 @@
       "instructions": "Create a closure that encapsulates a private balance with deposit, withdraw, and getBalance methods."
     },
     {
-      "id": 1221,
+      "id": 358,
       "title": "Closures: Function Factory",
       "type": "js",
       "tier": 3,
@@ -15366,7 +15366,7 @@
       "instructions": "Create a function that accepts a factor and returns a new function that multiplies any number by that factor."
     },
     {
-      "id": 1222,
+      "id": 359,
       "title": "Closures: Accumulator",
       "type": "js",
       "tier": 3,
@@ -15398,7 +15398,7 @@
       "instructions": "Create a closure that keeps a running total — each call adds to the total and returns the new sum."
     },
     {
-      "id": 1223,
+      "id": 360,
       "title": "Higher-Order Functions: Accept Callback",
       "type": "js",
       "tier": 3,
@@ -15430,7 +15430,7 @@
       ]
     },
     {
-      "id": 1224,
+      "id": 361,
       "title": "Higher-Order Functions: Return Function",
       "type": "js",
       "tier": 3,
@@ -15462,7 +15462,7 @@
       "instructions": "Write a function that accepts a greeting string and returns a new function that greets any name with that greeting."
     },
     {
-      "id": 1225,
+      "id": 362,
       "title": "Higher-Order Functions: Compose",
       "type": "js",
       "tier": 3,
@@ -15494,7 +15494,7 @@
       "instructions": "Write a function that accepts two single-argument functions and returns a new function applying them right-to-left."
     },
     {
-      "id": 1226,
+      "id": 363,
       "title": "Higher-Order Functions: Pipe",
       "type": "js",
       "tier": 3,
@@ -15526,7 +15526,7 @@
       "instructions": "Write a function that accepts two single-argument functions and returns a new function applying them left-to-right."
     },
     {
-      "id": 1227,
+      "id": 364,
       "title": "Function Composition: Compose N",
       "type": "js",
       "tier": 3,
@@ -15563,7 +15563,7 @@
       ]
     },
     {
-      "id": 1228,
+      "id": 365,
       "title": "Function Composition: Pipe N",
       "type": "js",
       "tier": 3,
@@ -15600,7 +15600,7 @@
       "instructions": "Write a function that accepts any number of single-argument functions and returns a new function applying them left-to-right."
     },
     {
-      "id": 1229,
+      "id": 366,
       "title": "Function Composition: Predicate Combiner",
       "type": "js",
       "tier": 3,
@@ -15637,7 +15637,7 @@
       "instructions": "Write a function that accepts an array of predicate functions and returns a new predicate that returns true only if all predicates pass."
     },
     {
-      "id": 1230,
+      "id": 367,
       "title": "Currying: Two Arguments",
       "type": "js",
       "tier": 3,
@@ -15674,7 +15674,7 @@
       ]
     },
     {
-      "id": 1231,
+      "id": 368,
       "title": "Currying: Three Arguments",
       "type": "js",
       "tier": 3,
@@ -15711,7 +15711,7 @@
       "instructions": "Write a function that accepts a three-argument function and returns a curried version."
     },
     {
-      "id": 1232,
+      "id": 369,
       "title": "Partial Application",
       "type": "js",
       "tier": 3,
@@ -15748,7 +15748,7 @@
       "instructions": "Write a function that accepts a two-argument function and the first argument, returning a new function that accepts the second."
     },
     {
-      "id": 1233,
+      "id": 370,
       "title": "Currying: Practical Usage",
       "type": "js",
       "tier": 3,
@@ -15785,7 +15785,7 @@
       "instructions": "Use currying to create a configurable string formatter that wraps a string with a prefix and suffix."
     },
     {
-      "id": 1234,
+      "id": 371,
       "title": "IIFE: Basics",
       "type": "js",
       "tier": 3,
@@ -15822,7 +15822,7 @@
       ]
     },
     {
-      "id": 1235,
+      "id": 372,
       "title": "IIFE: With Parameters",
       "type": "js",
       "tier": 3,
@@ -15859,7 +15859,7 @@
       "instructions": "Use an IIFE to capture a prefix configuration and return a logger with log, warn, and error methods."
     },
     {
-      "id": 1236,
+      "id": 373,
       "title": "Module Pattern: Revealing",
       "type": "js",
       "tier": 3,
@@ -15896,7 +15896,7 @@
       "instructions": "Use the revealing module pattern to create a calculator with private state and history tracking."
     },
     {
-      "id": 1237,
+      "id": 374,
       "title": "Module Pattern: Namespace",
       "type": "js",
       "tier": 3,
@@ -15933,7 +15933,7 @@
       "instructions": "Use the module pattern to create a validator namespace with isNonEmpty, isInRange, and isValidLength methods."
     },
     {
-      "id": 1238,
+      "id": 375,
       "title": "Module Pattern: Combined",
       "type": "js",
       "tier": 3,
@@ -15970,7 +15970,7 @@
       "instructions": "Create a task manager using the module pattern with addTask, completeTask, getTasks, and getPending methods."
     },
     {
-      "id": 1239,
+      "id": 376,
       "title": "Arrow Functions: Basics",
       "type": "js",
       "tier": 3,
@@ -16002,7 +16002,7 @@
       ]
     },
     {
-      "id": 1240,
+      "id": 377,
       "title": "Arrow Functions: Concise Body",
       "type": "js",
       "tier": 3,
@@ -16034,7 +16034,7 @@
       "instructions": "Use arrow functions with concise body (implicit return) to filter even numbers from an array."
     },
     {
-      "id": 1241,
+      "id": 378,
       "title": "Arrow Functions: With Callbacks",
       "type": "js",
       "tier": 3,
@@ -16066,7 +16066,7 @@
       "instructions": "Use arrow functions as callbacks to filter positive numbers and sum them in a single chained expression."
     },
     {
-      "id": 1242,
+      "id": 379,
       "title": "Arrow Functions: ES5 to ES6",
       "type": "js",
       "tier": 3,
@@ -16098,7 +16098,7 @@
       "instructions": "Rewrite four ES5-style utility functions as arrow functions with concise syntax."
     },
     {
-      "id": 1243,
+      "id": 380,
       "title": "Arrow Functions: Lexical This",
       "type": "js",
       "tier": 3,
@@ -16130,7 +16130,7 @@
       "instructions": "Create a counter object where methods use arrow functions to correctly reference the object via lexical this."
     },
     {
-      "id": 1244,
+      "id": 381,
       "title": "Template Literals: Advanced",
       "type": "js",
       "tier": 3,
@@ -16162,7 +16162,7 @@
       ]
     },
     {
-      "id": 1245,
+      "id": 382,
       "title": "Template Literals: Tagged Templates",
       "type": "js",
       "tier": 3,
@@ -16194,7 +16194,7 @@
       "instructions": "Write a tagged template function that wraps each interpolated value in square brackets."
     },
     {
-      "id": 1246,
+      "id": 383,
       "title": "Template Literals: Builder",
       "type": "js",
       "tier": 3,
@@ -16226,7 +16226,7 @@
       "instructions": "Use template literals to build an HTML string from an array of tag/content objects."
     },
     {
-      "id": 1247,
+      "id": 384,
       "title": "Destructuring: Function Parameters",
       "type": "js",
       "tier": 3,
@@ -16258,7 +16258,7 @@
       ]
     },
     {
-      "id": 1248,
+      "id": 385,
       "title": "Destructuring: Nested Objects",
       "type": "js",
       "tier": 3,
@@ -16290,7 +16290,7 @@
       "instructions": "Destructure nested objects to extract deeply nested values in a function parameter."
     },
     {
-      "id": 1249,
+      "id": 386,
       "title": "Destructuring: Array Swap and Rest",
       "type": "js",
       "tier": 3,
@@ -16322,7 +16322,7 @@
       "instructions": "Use array destructuring with rest syntax to split an array into its first element and the remaining elements."
     },
     {
-      "id": 1250,
+      "id": 387,
       "title": "Destructuring: Combined",
       "type": "js",
       "tier": 3,
@@ -16355,7 +16355,7 @@
       "instructions": "Destructure a config object with nested defaults, renaming, and rest collection."
     },
     {
-      "id": 1251,
+      "id": 388,
       "title": "Rest Parameters: Collect Arguments",
       "type": "js",
       "tier": 3,
@@ -16392,7 +16392,7 @@
       ]
     },
     {
-      "id": 1252,
+      "id": 389,
       "title": "Spread: Shallow Clone and Merge",
       "type": "js",
       "tier": 3,
@@ -16429,7 +16429,7 @@
       "instructions": "Use the spread operator to merge a defaults object with user config, where user values override defaults."
     },
     {
-      "id": 1253,
+      "id": 390,
       "title": "Spread: Array Operations",
       "type": "js",
       "tier": 3,
@@ -16466,7 +16466,7 @@
       "instructions": "Use spread to insert elements into an array at a given index without mutation."
     },
     {
-      "id": 1254,
+      "id": 391,
       "title": "Rest and Spread: Combined",
       "type": "js",
       "tier": 3,
@@ -16504,7 +16504,7 @@
       "instructions": "Use rest to separate the first argument from the rest, then spread to build the result object."
     },
     {
-      "id": 1255,
+      "id": 392,
       "title": "ES6 Refactor: Callback Methods",
       "type": "js",
       "tier": 3,
@@ -16542,7 +16542,7 @@
       ]
     },
     {
-      "id": 1256,
+      "id": 393,
       "title": "ES6 Refactor: Closure Pattern",
       "type": "js",
       "tier": 3,
@@ -16580,7 +16580,7 @@
       "instructions": "Rewrite the createCounter closure from Section 2 using const/let, arrow functions, and shorthand methods."
     },
     {
-      "id": 1257,
+      "id": 394,
       "title": "ES6 Refactor: Composition",
       "type": "js",
       "tier": 3,
@@ -16618,7 +16618,7 @@
       "instructions": "Rewrite pipeAll from Section 2 using rest parameters and arrow functions instead of arguments and var."
     },
     {
-      "id": 1258,
+      "id": 395,
       "title": "ES6 Refactor: Module Pattern",
       "type": "js",
       "tier": 3,
@@ -16656,7 +16656,7 @@
       "instructions": "Rewrite a task manager module using const/let, arrow functions, destructuring, and shorthand properties."
     },
     {
-      "id": 1259,
+      "id": 396,
       "title": "Getters and Setters",
       "type": "js",
       "tier": 3,
@@ -16694,7 +16694,7 @@
       ]
     },
     {
-      "id": 1260,
+      "id": 397,
       "title": "Getter: Read-Only Property",
       "type": "js",
       "tier": 3,
@@ -16731,7 +16731,7 @@
       "instructions": "Create a Circle class with read-only computed properties for area and circumference."
     },
     {
-      "id": 1261,
+      "id": 398,
       "title": "Setter: Validation",
       "type": "js",
       "tier": 3,
@@ -16768,7 +16768,7 @@
       "instructions": "Create a BankAccount class with a validated setter that prevents negative balances."
     },
     {
-      "id": 1262,
+      "id": 399,
       "title": "Static Methods",
       "type": "js",
       "tier": 3,
@@ -16800,7 +16800,7 @@
       "instructions": "Create a class with static utility methods that are called on the class itself, not on instances."
     },
     {
-      "id": 1263,
+      "id": 400,
       "title": "Constructor Validation",
       "type": "js",
       "tier": 3,
@@ -16833,7 +16833,7 @@
       "instructions": "Create a class whose constructor validates inputs and throws errors for invalid values."
     },
     {
-      "id": 1264,
+      "id": 401,
       "title": "Full Single Class",
       "type": "js",
       "tier": 3,
@@ -16866,7 +16866,7 @@
       "instructions": "Build a complete Playlist class with methods, getters, and state management."
     },
     {
-      "id": 1265,
+      "id": 402,
       "title": "Inheritance: Extends",
       "type": "js",
       "tier": 3,
@@ -16904,7 +16904,7 @@
       ]
     },
     {
-      "id": 1266,
+      "id": 403,
       "title": "Inheritance: Super with Properties",
       "type": "js",
       "tier": 3,
@@ -16942,7 +16942,7 @@
       "instructions": "Create a Shape parent and Circle child class, using super to pass the color property and adding computed getters."
     },
     {
-      "id": 1267,
+      "id": 404,
       "title": "Inheritance: Method Override",
       "type": "js",
       "tier": 3,
@@ -16979,7 +16979,7 @@
       "instructions": "Create Vehicle and ElectricCar classes where the child overrides a parent method."
     },
     {
-      "id": 1268,
+      "id": 405,
       "title": "Inheritance: Shared Interface",
       "type": "js",
       "tier": 3,
@@ -17017,7 +17017,7 @@
       "instructions": "Create a Notification parent class with Email and SMS children that each override the send method."
     },
     {
-      "id": 1269,
+      "id": 406,
       "title": "Inheritance: Combined",
       "type": "js",
       "tier": 3,
@@ -17055,7 +17055,7 @@
       "instructions": "Create an Account parent and SavingsAccount child that extends with interest functionality."
     },
     {
-      "id": 1270,
+      "id": 407,
       "title": "Class Interaction: Has-A",
       "type": "js",
       "tier": 3,
@@ -17087,7 +17087,7 @@
       ]
     },
     {
-      "id": 1271,
+      "id": 408,
       "title": "Class Interaction: Collection",
       "type": "js",
       "tier": 3,
@@ -17119,7 +17119,7 @@
       "instructions": "Create Book and Library classes where Library manages a collection of Book instances."
     },
     {
-      "id": 1272,
+      "id": 409,
       "title": "Class Interaction: Delegation",
       "type": "js",
       "tier": 3,
@@ -17151,7 +17151,7 @@
       "instructions": "Create Logger and App classes where App uses a Logger for all its message recording."
     },
     {
-      "id": 1273,
+      "id": 410,
       "title": "Class Interaction: Builder",
       "type": "js",
       "tier": 3,
@@ -17183,7 +17183,7 @@
       "instructions": "Create MenuItem and Order classes where Order manages a collection of menu items with quantities."
     },
     {
-      "id": 1274,
+      "id": 411,
       "title": "Class Interaction: Combined",
       "type": "js",
       "tier": 3,
@@ -17215,7 +17215,7 @@
       "instructions": "Create Player and Inventory classes where Player has an Inventory with a weight limit."
     },
     {
-      "id": 1275,
+      "id": 412,
       "title": "Try/Catch Basics",
       "type": "js",
       "tier": 3,
@@ -17248,7 +17248,7 @@
       ]
     },
     {
-      "id": 1276,
+      "id": 413,
       "title": "Finally Block",
       "type": "js",
       "tier": 3,
@@ -17281,7 +17281,7 @@
       "instructions": "Write a function that uses try/catch/finally to track whether an operation was attempted, regardless of outcome."
     },
     {
-      "id": 1277,
+      "id": 414,
       "title": "Try/Catch with Return",
       "type": "js",
       "tier": 3,
@@ -17314,7 +17314,7 @@
       "instructions": "Write a function that converts a string to a number, returning different values from try vs catch to handle valid and invalid input."
     },
     {
-      "id": 1278,
+      "id": 415,
       "title": "Throw an Error",
       "type": "js",
       "tier": 3,
@@ -17351,7 +17351,7 @@
       ]
     },
     {
-      "id": 1279,
+      "id": 416,
       "title": "Error Types",
       "type": "js",
       "tier": 3,
@@ -17388,7 +17388,7 @@
       "instructions": "Write a function that throws the appropriate built-in error type based on what went wrong."
     },
     {
-      "id": 1280,
+      "id": 417,
       "title": "Error Message Formatting",
       "type": "js",
       "tier": 3,
@@ -17421,7 +17421,7 @@
       "instructions": "Write a function that catches errors and returns a standardized result object with success status, data, and error info."
     },
     {
-      "id": 1281,
+      "id": 418,
       "title": "Custom Error Class",
       "type": "js",
       "tier": 3,
@@ -17459,7 +17459,7 @@
       ]
     },
     {
-      "id": 1282,
+      "id": 419,
       "title": "Validation Error",
       "type": "js",
       "tier": 3,
@@ -17497,7 +17497,7 @@
       "instructions": "Create a ValidationError class that stores which field failed and what constraint was violated."
     },
     {
-      "id": 1283,
+      "id": 420,
       "title": "Custom Error: Combined",
       "type": "js",
       "tier": 3,
@@ -17536,7 +17536,7 @@
       "instructions": "Write a function that throws different custom error types and a handler that catches and responds to each one differently."
     },
     {
-      "id": 1284,
+      "id": 421,
       "title": "Parse or Default",
       "type": "js",
       "tier": 3,
@@ -17570,7 +17570,7 @@
       "instructions": "Write a function that attempts to parse data and returns a default value on failure instead of crashing."
     },
     {
-      "id": 1285,
+      "id": 422,
       "title": "Safe Wrapper",
       "type": "js",
       "tier": 3,
@@ -17608,7 +17608,7 @@
       "instructions": "Write a higher-order function that wraps any function in try/catch and returns a safe version that never throws."
     },
     {
-      "id": 1286,
+      "id": 423,
       "title": "Error Handling: Combined",
       "type": "js",
       "tier": 3,
@@ -17652,7 +17652,7 @@
       "instructions": "Write a config loader that uses custom errors, validation, and try/catch to handle multiple failure modes gracefully."
     },
     {
-      "id": 1287,
+      "id": 424,
       "title": "getElementById",
       "type": "js",
       "tier": 3,
@@ -17689,7 +17689,7 @@
       ]
     },
     {
-      "id": 1288,
+      "id": 425,
       "title": "querySelector",
       "type": "js",
       "tier": 3,
@@ -17726,7 +17726,7 @@
       "instructions": "Write a function that uses a CSS selector to find an element and return its text content."
     },
     {
-      "id": 1289,
+      "id": 426,
       "title": "querySelectorAll",
       "type": "js",
       "tier": 3,
@@ -17768,7 +17768,7 @@
       "instructions": "Write a function that selects all matching elements and returns an array of their text content."
     },
     {
-      "id": 1290,
+      "id": 427,
       "title": "Change Text Content",
       "type": "js",
       "tier": 3,
@@ -17800,7 +17800,7 @@
       ]
     },
     {
-      "id": 1291,
+      "id": 428,
       "title": "Modify Styles",
       "type": "js",
       "tier": 3,
@@ -17832,7 +17832,7 @@
       "instructions": "Write a function that changes an inline style property on an element."
     },
     {
-      "id": 1292,
+      "id": 429,
       "title": "classList",
       "type": "js",
       "tier": 3,
@@ -17866,7 +17866,7 @@
       "instructions": "Write a function that adds, removes, or toggles a CSS class on an element and reports whether the class is present."
     },
     {
-      "id": 1293,
+      "id": 430,
       "title": "Set Attributes",
       "type": "js",
       "tier": 3,
@@ -17903,7 +17903,7 @@
       "instructions": "Write a function that sets an attribute on an element and another that reads an attribute value."
     },
     {
-      "id": 1294,
+      "id": 431,
       "title": "Create and Append",
       "type": "js",
       "tier": 3,
@@ -17940,7 +17940,7 @@
       ]
     },
     {
-      "id": 1295,
+      "id": 432,
       "title": "Build a List",
       "type": "js",
       "tier": 3,
@@ -17978,7 +17978,7 @@
       "instructions": "Write a function that creates a ul element with li children from an array and appends it to a container."
     },
     {
-      "id": 1296,
+      "id": 433,
       "title": "Remove Elements",
       "type": "js",
       "tier": 3,
@@ -18010,7 +18010,7 @@
       "instructions": "Write a function that removes all elements matching a CSS selector and returns how many were removed."
     },
     {
-      "id": 1297,
+      "id": 434,
       "title": "Click Handler",
       "type": "js",
       "tier": 3,
@@ -18048,7 +18048,7 @@
       ]
     },
     {
-      "id": 1298,
+      "id": 435,
       "title": "Event Object",
       "type": "js",
       "tier": 3,
@@ -18086,7 +18086,7 @@
       "instructions": "Write a function that reports which button was clicked using the event object."
     },
     {
-      "id": 1299,
+      "id": 436,
       "title": "Form Submit",
       "type": "js",
       "tier": 3,
@@ -18125,7 +18125,7 @@
       "instructions": "Write a function that handles form submission by preventing the default action, reading the input, and displaying a greeting."
     },
     {
-      "id": 1300,
+      "id": 437,
       "title": "DOM and Events: Combined",
       "type": "js",
       "tier": 3,
@@ -18174,7 +18174,7 @@
       "instructions": "Write a function that creates list items from user input — combining element creation, event handling, and DOM manipulation."
     },
     {
-      "id": 1301,
+      "id": 438,
       "title": "Create a Promise",
       "type": "js",
       "tier": 3,
@@ -18210,7 +18210,7 @@
       ]
     },
     {
-      "id": 1302,
+      "id": 439,
       "title": "Promise Chaining",
       "type": "js",
       "tier": 3,
@@ -18245,7 +18245,7 @@
       "instructions": "Write a function that chains .then() calls to transform a resolved value through multiple steps."
     },
     {
-      "id": 1303,
+      "id": 440,
       "title": "Promise Rejection",
       "type": "js",
       "tier": 3,
@@ -18281,7 +18281,7 @@
       "instructions": "Write a function that uses .catch() to handle a rejected Promise and return a fallback value."
     },
     {
-      "id": 1304,
+      "id": 441,
       "title": "Promise: Combined",
       "type": "js",
       "tier": 3,
@@ -18317,7 +18317,7 @@
       "instructions": "Write a function that chains .then() transformations with a .catch() fallback to safely process a Promise."
     },
     {
-      "id": 1305,
+      "id": 442,
       "title": "async Function Basics",
       "type": "js",
       "tier": 3,
@@ -18352,7 +18352,7 @@
       ]
     },
     {
-      "id": 1306,
+      "id": 443,
       "title": "Await Sequential",
       "type": "js",
       "tier": 3,
@@ -18387,7 +18387,7 @@
       "instructions": "Write an async function that awaits two Promises in sequence and combines their results."
     },
     {
-      "id": 1307,
+      "id": 444,
       "title": "Async Error Handling",
       "type": "js",
       "tier": 3,
@@ -18428,7 +18428,7 @@
       "instructions": "Write an async function that uses try/catch to handle a rejected Promise gracefully."
     },
     {
-      "id": 1308,
+      "id": 445,
       "title": "async/await: Combined",
       "type": "js",
       "tier": 3,
@@ -18465,7 +18465,7 @@
       "instructions": "Write an async function that awaits multiple Promises sequentially with error handling, collecting successes and failures."
     },
     {
-      "id": 1309,
+      "id": 446,
       "title": "Promisify a Callback",
       "type": "js",
       "tier": 3,
@@ -18500,7 +18500,7 @@
       "instructions": "Write a function that converts a callback-style function into one that returns a Promise."
     },
     {
-      "id": 1310,
+      "id": 447,
       "title": "Async Pipeline",
       "type": "js",
       "tier": 3,
@@ -18536,7 +18536,7 @@
       "instructions": "Write an async function that passes a value through an array of async transform functions in sequence."
     },
     {
-      "id": 1311,
+      "id": 448,
       "title": "Application: Generate Report Cards",
       "type": "js",
       "tier": 3,
@@ -18572,7 +18572,7 @@
       "instructions": "Write a function that transforms an array of student records into report card objects with averages and letter grades."
     },
     {
-      "id": 1312,
+      "id": 449,
       "title": "Application: Analyze Sales Data",
       "type": "js",
       "tier": 3,
@@ -18608,7 +18608,7 @@
       "instructions": "Write a function that analyzes an array of sales records and returns a summary with total revenue, category totals, and the best-selling product."
     },
     {
-      "id": 1313,
+      "id": 450,
       "title": "Application: Build Search Index",
       "type": "js",
       "tier": 3,
@@ -18644,7 +18644,7 @@
       "instructions": "Write a function that builds a word-to-titles index from an array of documents, mapping each lowercase word to the titles that contain it."
     },
     {
-      "id": 1314,
+      "id": 451,
       "title": "Application: Tournament Rankings",
       "type": "js",
       "tier": 3,
@@ -18681,7 +18681,7 @@
       "instructions": "Write a function that ranks tournament players by win rate, filters by minimum games played, and formats the results as ranked strings."
     },
     {
-      "id": 1315,
+      "id": 452,
       "title": "Application: Bank Account",
       "type": "js",
       "tier": 3,
@@ -18717,7 +18717,7 @@
       "instructions": "Write a BankAccount class with deposit, withdraw, and transfer methods, plus overdraft protection and a transaction history."
     },
     {
-      "id": 1316,
+      "id": 453,
       "title": "Application: Event Emitter",
       "type": "js",
       "tier": 3,
@@ -18753,7 +18753,7 @@
       "instructions": "Write an EventEmitter class that allows subscribing to named events, emitting events with data, and removing listeners."
     },
     {
-      "id": 1317,
+      "id": 454,
       "title": "Application: Validator Builder",
       "type": "js",
       "tier": 3,
@@ -18789,7 +18789,7 @@
       "instructions": "Write a createValidator function that builds chainable validators by composing rule functions."
     },
     {
-      "id": 1318,
+      "id": 455,
       "title": "Application: Memoize Function",
       "type": "js",
       "tier": 3,
@@ -18826,7 +18826,7 @@
       "instructions": "Write a memoize function that caches the results of a function based on its arguments, avoiding redundant computation."
     },
     {
-      "id": 1319,
+      "id": 456,
       "title": "Application: Click Counter Widget",
       "type": "js",
       "tier": 3,
@@ -18863,7 +18863,7 @@
       "instructions": "Write a function that creates a click counter widget — a button and a display element that shows how many times the button has been clicked."
     },
     {
-      "id": 1320,
+      "id": 457,
       "title": "Application: Dynamic Table Builder",
       "type": "js",
       "tier": 3,
@@ -18899,7 +18899,7 @@
       "instructions": "Write a function that generates an HTML table from an array of objects, using the object keys as column headers."
     },
     {
-      "id": 1321,
+      "id": 458,
       "title": "Application: Filterable List",
       "type": "js",
       "tier": 3,
@@ -18936,7 +18936,7 @@
       "instructions": "Write a function that sets up a text input to filter a list of items — typing in the input hides list items that do not match (case-insensitive)."
     },
     {
-      "id": 1322,
+      "id": 459,
       "title": "Application: Retry Until Success",
       "type": "js",
       "tier": 3,
@@ -18973,7 +18973,7 @@
       "instructions": "Write an async function that retries a failing async operation up to a maximum number of times before giving up."
     },
     {
-      "id": 1323,
+      "id": 460,
       "title": "Application: Config Loader",
       "type": "js",
       "tier": 3,
@@ -19010,7 +19010,7 @@
       "instructions": "Write an async function that tries multiple config sources in order and returns the first successful result."
     },
     {
-      "id": 1324,
+      "id": 461,
       "title": "Application: Async Data Pipeline",
       "type": "js",
       "tier": 3,
@@ -19052,7 +19052,7 @@
       "instructions": "Write an async function that processes data through a pipeline of async stages (fetch, transform, validate), with error handling at each step."
     },
     {
-      "id": 1325,
+      "id": 462,
       "title": "Parallel Fetch All",
       "type": "js",
       "tier": 4,
@@ -19083,7 +19083,7 @@
       "instructions": "Create a function called `fetchAll` that takes an array of async functions (each returns a Promise) and runs them all in parallel using `Promise.all`. Return an array of all resolved values. If any single promise rejects, the entire operation should reject with that error."
     },
     {
-      "id": 1326,
+      "id": 463,
       "title": "Race to Finish",
       "type": "js",
       "tier": 4,
@@ -19114,7 +19114,7 @@
       "instructions": "Create a function called `raceToFinish` that takes an array of Promises and returns the value of whichever Promise settles first (resolves or rejects). If the first to settle is a rejection, the returned Promise should reject with that error."
     },
     {
-      "id": 1327,
+      "id": 464,
       "title": "Collect All Outcomes",
       "type": "js",
       "tier": 4,
@@ -19144,7 +19144,7 @@
       "instructions": "Create a function called `collectOutcomes` that takes an array of Promises and returns an array of result objects. Each result should be `{ status: \"fulfilled\", value: ... }` for resolved Promises or `{ status: \"rejected\", reason: ... }` for rejected Promises. Never reject — always return all outcomes."
     },
     {
-      "id": 1328,
+      "id": 465,
       "title": "Async Find First",
       "type": "js",
       "tier": 4,
@@ -19180,7 +19180,7 @@
       "instructions": "Create a function called `asyncFind` that takes an array of values and an async predicate function. It should test each value sequentially (one at a time, in order) using the predicate, and return the first value for which the predicate resolves to `true`. If no value passes, return `undefined`. Do not test remaining values after finding a match."
     },
     {
-      "id": 1329,
+      "id": 466,
       "title": "Aggregate Async Errors",
       "type": "js",
       "tier": 4,
@@ -19221,7 +19221,7 @@
       "instructions": "Create a function called `aggregateErrors` that takes an array of async functions and runs them all in parallel. Return an object with `{ successes: [...values], errors: [...errorMessages] }`. Every function should be attempted regardless of failures — never short-circuit. Preserve the order of successes and errors relative to the original array."
     },
     {
-      "id": 1330,
+      "id": 467,
       "title": "Parallel with Timeout",
       "type": "js",
       "tier": 4,
@@ -19259,7 +19259,7 @@
       "instructions": "Create a function called `fetchWithTimeout` that takes an array of async functions and a timeout in milliseconds. Run all functions in parallel, but if the entire batch does not complete within the timeout, reject with an Error whose message is \"Timeout after Nms\" (where N is the timeout value). If all functions complete in time, return their resolved values as an array."
     },
     {
-      "id": 1331,
+      "id": 468,
       "title": "Event Delegation",
       "type": "js",
       "tier": 4,
@@ -19295,7 +19295,7 @@
       "instructions": "Create a function called `setupDelegatedList` that takes a `<ul>` element ID and sets up event delegation for click handling. Attach a single click event listener to the `<ul>` element (not to individual `<li>` items). When any `<li>` inside the list is clicked, toggle a CSS class called `\"completed\"` on that `<li>`. Clicks directly on the `<ul>` itself (not on an `<li>`) should do nothing. This pattern ensures that items added to the list later also respond to clicks without needing new listeners."
     },
     {
-      "id": 1332,
+      "id": 469,
       "title": "Dynamic Sortable Table",
       "type": "js",
       "tier": 4,
@@ -19332,7 +19332,7 @@
       "instructions": "Create a function called `buildSortableTable` that takes an array of objects and a container element ID. Build an HTML `<table>` inside the container with a `<thead>` row of `<th>` headers (from the object keys) and a `<tbody>` with one `<tr>` per object (one `<td>` per value). When a `<th>` header is clicked, sort the table rows by that column in ascending order. Clicking the same header again should toggle to descending order. The currently sorted header should display `\" ▲\"` (ascending) or `\" ▼\"` (descending) appended to the column name. Other headers should show just the column name with no indicator."
     },
     {
-      "id": 1333,
+      "id": 470,
       "title": "Tabs Component",
       "type": "js",
       "tier": 4,
@@ -19369,7 +19369,7 @@
       "instructions": "Create a function called `createTabs` that takes an array of tab objects (each with `label` and `content` string properties) and a container element ID. Build a row of `<button>` elements with class `\"tab-button\"` (one per tab) and a set of `<div>` elements with class `\"tab-panel\"` (one per tab, containing the content text). The first tab should be active by default — its button gets an additional `\"active\"` class and its panel is visible. All other panels should have a `\"hidden\"` class. Clicking a tab button should show its panel (remove `\"hidden\"`), hide all other panels (add `\"hidden\"`), add `\"active\"` to the clicked button, and remove `\"active\"` from all other buttons."
     },
     {
-      "id": 1334,
+      "id": 471,
       "title": "Modal Dialog",
       "type": "js",
       "tier": 4,
@@ -19406,7 +19406,7 @@
       "instructions": "Create a function called `setupModal` that takes a trigger button ID and a modal element ID. The modal element already exists in the DOM with a `\"hidden\"` class. When the trigger button is clicked, remove the `\"hidden\"` class from the modal and create an overlay `<div>` with class `\"modal-overlay\"` appended to `document.body`. The modal must contain an element with class `\"modal-close\"` — clicking it should add `\"hidden\"` back to the modal and remove the overlay from the DOM. Pressing the Escape key should also close the modal. Clicking the overlay itself should close the modal. If the modal is already hidden, Escape should do nothing."
     },
     {
-      "id": 1335,
+      "id": 472,
       "title": "Accordion",
       "type": "js",
       "tier": 4,
@@ -19442,7 +19442,7 @@
       "instructions": "Create a function called `createAccordion` that takes an array of section objects (each with `title` and `content` string properties) and a container element ID. Build an accordion where each section has a `<button>` with class `\"accordion-header\"` and a `<div>` with class `\"accordion-content\"`. All sections start collapsed (content has `\"hidden\"` class). Clicking a header should expand its content (remove `\"hidden\"`) and collapse all other sections (add `\"hidden\"` to their content). The expanded header should get an `\"active\"` class. Clicking an already-open header should collapse it (all sections closed). Only one section can be open at a time."
     },
     {
-      "id": 1336,
+      "id": 473,
       "title": "Live Form Validation",
       "type": "js",
       "tier": 4,
@@ -19479,7 +19479,7 @@
       "instructions": "Create a function called `setupFormValidation` that takes a form element ID and a rules object. The rules object has field names as keys and rule objects as values. Each rule can have: `required` (boolean), `minLength` (number), and `maxLength` (number). For each field in the rules, find the `<input>` with that `name` attribute inside the form and attach an `\"input\"` event listener. On every keystroke, validate the current value against the rules. If validation fails, add a `\"invalid\"` class to the input and remove any `\"valid\"` class. If validation passes, add `\"valid\"` and remove `\"invalid\"`. Also create a `<span>` with class `\"error-message\"` immediately after each validated input — set its `textContent` to the first failing rule message or empty string if valid. Error messages should be: `\"Required\"` for empty required fields, `\"Min N characters\"` when too short, `\"Max N characters\"` when too long."
     },
     {
-      "id": 1337,
+      "id": 474,
       "title": "Rethrow with Context",
       "type": "js",
       "tier": 4,
@@ -19516,7 +19516,7 @@
       "instructions": "Create a function called `withContext` that takes a function `fn` and a string `context`. It should return a new function that calls `fn` with the same arguments. If `fn` executes successfully, return its result. If `fn` throws an error, catch it and throw a new `Error` whose message is `\"[context] original message\"` (the context string in square brackets followed by a space and the original error message). This wrapping pattern adds meaningful context to errors so you can trace where they originated."
     },
     {
-      "id": 1338,
+      "id": 475,
       "title": "Error Collector",
       "type": "js",
       "tier": 4,
@@ -19552,7 +19552,7 @@
       "instructions": "Create a function called `collectErrors` that takes an array of functions. Call each function (with no arguments) and collect the outcomes. Return an object with two arrays: `results` containing `{ index, value }` for each successful call, and `errors` containing `{ index, message }` for each function that threw. The `index` is the position of the function in the input array (starting at 0). Process every function — do not stop at the first error. The function itself should never throw."
     },
     {
-      "id": 1339,
+      "id": 476,
       "title": "Defensive Guard",
       "type": "js",
       "tier": 4,
@@ -19588,7 +19588,7 @@
       "instructions": "Create a function called `processTransaction` that takes a transaction object and validates it thoroughly before processing. Check ALL of the following rules, collecting every error (not stopping at the first one): `type` must be a string equal to `\"credit\"` or `\"debit\"`; `amount` must be a number greater than 0; `account` must be a non-empty string; `timestamp` must be a number (Unix milliseconds). If there are validation errors, return `{ valid: false, errors: errors }` where `errors` is an array of strings describing each failure. If all checks pass, return `{ valid: true, processed: { type, amount, account, timestamp } }`. If the input is not an object or is null, return a single error: `\"Transaction must be an object\"`."
     },
     {
-      "id": 1340,
+      "id": 477,
       "title": "Error Pipeline",
       "type": "js",
       "tier": 4,
@@ -19624,7 +19624,7 @@
       "instructions": "Create a function called `pipeline` that takes an array of data items and an array of transformation functions (steps). Each item should pass through every step in order. If a step throws for a particular item, that item is removed from processing and added to a `failed` array with details about the failure. Items that survive all steps go into a `passed` array. Return `{ passed: [...], failed: [...] }` where each `failed` entry is `{ item: originalItem, step: stepIndex, error: errorMessage }` (`step` is the 0-based index of the step that failed). Items that fail at an earlier step should not be processed by later steps."
     },
     {
-      "id": 1341,
+      "id": 478,
       "title": "Validate Email Format",
       "type": "js",
       "tier": 4,
@@ -19665,7 +19665,7 @@
       "instructions": "Create a function called `isValidEmail` that takes a string and returns `true` if it matches a basic email format, or `false` otherwise. A valid email has: one or more word characters or dots or hyphens before the `@`, then one or more word characters or hyphens after the `@`, then a dot, then two or more letters at the end. Use a regular expression with the `test` method."
     },
     {
-      "id": 1342,
+      "id": 479,
       "title": "Extract Numbers",
       "type": "js",
       "tier": 4,
@@ -19701,7 +19701,7 @@
       "instructions": "Create a function called `extractNumbers` that takes a string and returns an array of all numbers found in it (as actual numbers, not strings). Numbers can be integers or decimals and can be negative. If no numbers are found, return an empty array. Use the `match` method with a global regex."
     },
     {
-      "id": 1343,
+      "id": 480,
       "title": "Count Word Occurrences",
       "type": "js",
       "tier": 4,
@@ -19747,7 +19747,7 @@
       "instructions": "Create a function called `countWord` that takes a text string and a word string, then returns how many times that exact word appears in the text. The search should be case-insensitive and match whole words only (not substrings inside other words). For example, searching for `\"the\"` should not match `\"there\"` or `\"other\"`. Use a regular expression with word boundary anchors and appropriate flags."
     },
     {
-      "id": 1344,
+      "id": 481,
       "title": "Format Phone Number",
       "type": "js",
       "tier": 4,
@@ -19789,7 +19789,7 @@
       "instructions": "Create a function called `formatPhone` that takes a string containing a phone number in any common format and returns it formatted as `\"(XXX) XXX-XXXX\"`. First extract all digits from the input. If the result has exactly 10 digits, format them. If the result has 11 digits starting with `1` (country code), drop the leading `1` and format the remaining 10. For any other count of digits, return `null`."
     },
     {
-      "id": 1345,
+      "id": 482,
       "title": "Capitalize Words",
       "type": "js",
       "tier": 4,
@@ -19820,7 +19820,7 @@
       "instructions": "Create a function called `capitalizeWords` that takes a string and returns a new string with the first letter of every word capitalized and the rest lowercase. A word starts after a space or at the beginning of the string. Use `replace` with a regular expression. Handle multiple spaces between words and preserve them."
     },
     {
-      "id": 1346,
+      "id": 483,
       "title": "Parse Key-Value Pairs",
       "type": "js",
       "tier": 4,
@@ -19856,7 +19856,7 @@
       "instructions": "Create a function called `parseKeyValue` that takes a string of key-value pairs and returns an object. Pairs are separated by semicolons (`;`). Each pair has the format `key=value`. Keys are one or more word characters. Values can be either unquoted (word characters only) or quoted with double quotes (which can contain any character except double quotes). Strip the quotes from quoted values. Ignore any extra whitespace around keys, values, and separators."
     },
     {
-      "id": 1347,
+      "id": 484,
       "title": "Slug Generator",
       "type": "js",
       "tier": 4,
@@ -19887,7 +19887,7 @@
       "instructions": "Create a function called `slugify` that converts a title string into a URL-friendly slug. The rules are: convert to lowercase, replace spaces and any non-alphanumeric characters with hyphens, collapse consecutive hyphens into a single hyphen, and remove leading and trailing hyphens. For example, `\"Hello World!\"` becomes `\"hello-world\"`."
     },
     {
-      "id": 1348,
+      "id": 485,
       "title": "Password Strength",
       "type": "js",
       "tier": 4,
@@ -19928,7 +19928,7 @@
       "instructions": "Create a function called `checkPassword` that takes a string and returns an object describing its strength. Check these rules independently: `length` (at least 8 characters), `hasUpper` (contains at least one uppercase letter), `hasLower` (contains at least one lowercase letter), `hasDigit` (contains at least one digit), `hasSpecial` (contains at least one character that is not a letter or digit). Each property should be `true` or `false`. Also include a `score` property that counts how many of the five rules pass (0 to 5) and a `strong` property that is `true` only when all five rules pass."
     },
     {
-      "id": 1349,
+      "id": 486,
       "title": "Extract HTML Tags",
       "type": "js",
       "tier": 4,
@@ -19965,7 +19965,7 @@
       "instructions": "Create a function called `extractTags` that takes an HTML string and returns an array of unique tag names found in it, in order of first appearance. Extract tag names from opening tags like `<div>` and self-closing tags like `<br/>`, but ignore closing tags like `</div>`. Tag names consist of letters and numbers. Ignore attributes inside tags — you only need the tag name. The result should contain each tag name only once, in lowercase."
     },
     {
-      "id": 1350,
+      "id": 487,
       "title": "Template Engine",
       "type": "js",
       "tier": 4,
@@ -19996,7 +19996,7 @@
       "instructions": "Create a function called `render` that takes a template string and a data object, and returns the template with all placeholders replaced. Placeholders use double curly braces: `{{key}}`. The function should support dot notation for nested values: `{{user.name}}` accesses `data.user.name`. If a placeholder references a key that does not exist, replace it with an empty string. Whitespace inside the braces should be trimmed: `{{ key }}` is the same as `{{key}}`."
     },
     {
-      "id": 1351,
+      "id": 488,
       "title": "Flatten Nested Orders",
       "type": "js",
       "tier": 4,
@@ -20043,7 +20043,7 @@
       "instructions": "Create a function called `flattenOrders` that takes an array of department objects. Each department has a `name` and a `regions` array. Each region has a `region` name and an `orders` array. Each order has `item` (string), `price` (number), and `qty` (number). Return an array of summary objects `{ department, orderCount, total }` where `total` is the sum of `price * qty` for all orders across all regions in that department. Sort the result by `total` descending."
     },
     {
-      "id": 1352,
+      "id": 489,
       "title": "Student Grade Analysis",
       "type": "js",
       "tier": 4,
@@ -20090,7 +20090,7 @@
       "instructions": "Create a function called `analyzeStudents` that takes an array of student objects. Each student has `name` (string), `grade` (string like `\"A\"`, `\"B\"`, etc.), and `courses` (array of `{ name, score }` objects). Group students by their `grade`. For each grade group, compute the average of all students' course averages (each student's average is the mean of their course scores). Return an array of `{ grade, count, avgScore }` objects sorted by `grade` alphabetically. Round `avgScore` to 2 decimal places."
     },
     {
-      "id": 1353,
+      "id": 490,
       "title": "Deep Value Extraction",
       "type": "js",
       "tier": 4,
@@ -20136,7 +20136,7 @@
       "instructions": "Create a function called `pluck` that takes an array of objects and a dot-notation path string. Extract the value at that path from each object. If the path does not exist in an object, use `undefined` for that entry. Return the array of extracted values. For example, `pluck([{ a: { b: 1 } }, { a: { b: 2 } }], \"a.b\")` returns `[1, 2]`."
     },
     {
-      "id": 1354,
+      "id": 491,
       "title": "Transform Nested Tree",
       "type": "js",
       "tier": 4,
@@ -20172,7 +20172,7 @@
       "instructions": "Create a function called `mapTree` that takes a tree node and a transform function. Each node is an object with a `value` property and an optional `children` array of child nodes. Apply the transform function to each node's `value` and return a new tree with the same structure but transformed values. The transform function takes `(value, depth)` where `depth` is 0 for the root. Do not mutate the original tree."
     },
     {
-      "id": 1355,
+      "id": 492,
       "title": "Cross-Reference Datasets",
       "type": "js",
       "tier": 4,
@@ -20219,7 +20219,7 @@
       "instructions": "Create a function called `crossReference` that takes two arrays of objects, `primary` and `lookup`, and a `key` string. For each object in `primary`, find the matching object in `lookup` (where both have the same value for the given key). Merge the matching lookup properties into the primary object (lookup properties should not overwrite existing primary properties). If no match is found, add a `_matched` property set to `false`. If a match is found, add `_matched: true`. Return the merged array."
     },
     {
-      "id": 1356,
+      "id": 493,
       "title": "Company Department Report",
       "type": "js",
       "tier": 4,
@@ -20267,7 +20267,7 @@
       "instructions": "Create a function called `departmentReport` that takes a company object with structure: `{ departments: [{ name, teams: [{ name, members: [{ name, role, salary, active }] }] }] }`. Return an array of department summaries sorted by total salary descending. Each summary has: `department` (name), `teamCount` (number of teams), `activeMembers` (count of members where `active` is true across all teams), `totalSalary` (sum of all active members' salaries), and `topEarner` (name of the highest-paid active member, or `null` if no active members)."
     },
     {
-      "id": 1357,
+      "id": 494,
       "title": "Pivot Table",
       "type": "js",
       "tier": 4,
@@ -20314,7 +20314,7 @@
       "instructions": "Create a function called `pivot` that takes an array of flat records, a `rowKey` (string), a `colKey` (string), and a `valueKey` (string). Reshape the data into a pivot table. Return an array of objects, one per unique `rowKey` value. Each object has a `_row` property (the row key value) plus one property for each unique `colKey` value (containing the sum of `valueKey` values for that row-column combination). If a row-column combination has no data, its value should be `0`. Sort rows alphabetically by `_row`."
     },
     {
-      "id": 1358,
+      "id": 495,
       "title": "Inventory Analysis Pipeline",
       "type": "js",
       "tier": 4,
@@ -20373,7 +20373,7 @@
       "instructions": "Create a function called `analyzeInventory` that takes an array of warehouse objects. Each warehouse has `name` (string), `location` (string), and `inventory` (array of `{ product, category, quantity, price }` objects). Perform this analysis pipeline: (1) Flatten all inventory items across all warehouses, tagging each with its warehouse name. (2) Filter out items with `quantity` of 0. (3) Compute the `totalValue` (`quantity * price`) for each item. (4) Group the remaining items by `category`. (5) For each category, return `{ category, itemCount, totalValue, topItem }` where `topItem` is the product name with the highest total value in that category. Sort the result by `totalValue` descending."
     },
     {
-      "id": 1359,
+      "id": 496,
       "title": "Stack Implementation",
       "type": "js",
       "tier": 4,
@@ -20411,7 +20411,7 @@
       "instructions": "Create a `Stack` class that implements a Last-In-First-Out data structure. The constructor takes no arguments and initializes an empty stack. Implement these methods: `push(value)` adds a value to the top and returns the new size; `pop()` removes and returns the top value (returns `undefined` if empty); `peek()` returns the top value without removing it (returns `undefined` if empty); `size()` returns the number of items; `isEmpty()` returns `true` if the stack has no items; `toArray()` returns an array of all items from bottom to top."
     },
     {
-      "id": 1360,
+      "id": 497,
       "title": "Queue Implementation",
       "type": "js",
       "tier": 4,
@@ -20448,7 +20448,7 @@
       "instructions": "Create a `Queue` class that implements a First-In-First-Out data structure. The constructor takes no arguments and initializes an empty queue. Implement these methods: `enqueue(value)` adds a value to the back and returns the new size; `dequeue()` removes and returns the front value (returns `undefined` if empty); `front()` returns the front value without removing it (returns `undefined` if empty); `size()` returns the number of items; `isEmpty()` returns `true` if the queue has no items; `toArray()` returns an array of all items from front to back."
     },
     {
-      "id": 1361,
+      "id": 498,
       "title": "Linked List",
       "type": "js",
       "tier": 4,
@@ -20485,7 +20485,7 @@
       "instructions": "Create a `LinkedList` class that implements a singly linked list. Each node should have a `value` and a `next` pointer. The constructor initializes an empty list with a `head` of `null`. Implement these methods: `append(value)` adds a node to the end; `prepend(value)` adds a node to the beginning; `size()` returns the number of nodes; `toArray()` returns an array of all values from head to tail; `find(value)` returns the first node with that value or `null` if not found; `removeAt(index)` removes the node at the given 0-based index and returns its value (returns `undefined` if index is out of bounds). You may define a separate `Node` class or use plain objects for nodes."
     },
     {
-      "id": 1362,
+      "id": 499,
       "title": "HashMap Implementation",
       "type": "js",
       "tier": 4,
@@ -20522,7 +20522,7 @@
       "instructions": "Create a `HashMap` class that stores key-value pairs using a hash function and handles collisions with chaining (arrays at each bucket). The constructor takes an optional `size` parameter (default 16) for the number of buckets. Implement a `_hash(key)` method that converts a string key into a bucket index. Implement these methods: `set(key, value)` stores a key-value pair (update if key exists); `get(key)` returns the value for a key or `undefined` if not found; `has(key)` returns `true` if the key exists; `delete(key)` removes a key-value pair and returns `true` if it existed, `false` otherwise; `keys()` returns an array of all keys; `values()` returns an array of all values."
     },
     {
-      "id": 1363,
+      "id": 500,
       "title": "Binary Search Tree",
       "type": "js",
       "tier": 4,
@@ -20561,7 +20561,7 @@
       "instructions": "Create a `BST` class that implements a binary search tree. Each node has a `value`, `left`, and `right` property. The constructor initializes the tree with a `root` of `null`. Implement these methods: `insert(value)` adds a value to the correct position (left if less than, right if greater than or equal to the current node); `contains(value)` returns `true` if the value exists in the tree; `min()` returns the smallest value (or `null` for empty tree); `max()` returns the largest value (or `null` for empty tree); `inOrder()` returns an array of values using in-order traversal (left, root, right — produces sorted output); `count()` returns the total number of nodes."
     },
     {
-      "id": 1364,
+      "id": 501,
       "title": "Graph with Traversal",
       "type": "js",
       "tier": 4,
@@ -20599,7 +20599,7 @@
       "instructions": "Create a `Graph` class that implements an undirected graph using an adjacency list. The constructor initializes an empty graph. Implement these methods: `addVertex(vertex)` adds a vertex (does nothing if it already exists); `addEdge(v1, v2)` adds an undirected edge between two vertices (does nothing if the edge already exists or vertices do not exist); `getNeighbors(vertex)` returns an array of adjacent vertices (or empty array if vertex does not exist); `hasVertex(vertex)` returns `true` if the vertex exists; `hasEdge(v1, v2)` returns `true` if an edge exists between the two vertices; `bfs(start)` performs breadth-first search from the start vertex and returns an array of vertices in the order visited (returns empty array if start does not exist); `dfs(start)` performs depth-first search from the start vertex and returns an array of vertices in the order visited (returns empty array if start does not exist)."
     },
     {
-      "id": 1365,
+      "id": 502,
       "title": "Binary Search",
       "type": "js",
       "tier": 4,
@@ -20635,7 +20635,7 @@
       "instructions": "Create a function called `binarySearch` that takes a sorted array of numbers and a target value. It should find the target by repeatedly dividing the search space in half. Return the index of the target if found, or `-1` if the target is not in the array. Start with two pointers at the beginning and end of the array. Calculate the middle index, then compare the middle element to the target: if it matches, return the index; if the target is smaller, search the left half; if the target is larger, search the right half. Continue until the pointers cross."
     },
     {
-      "id": 1366,
+      "id": 503,
       "title": "Bubble Sort",
       "type": "js",
       "tier": 4,
@@ -20671,7 +20671,7 @@
       "instructions": "Create a function called `bubbleSort` that takes an array of numbers and returns a new sorted array in ascending order. Bubble sort works by repeatedly stepping through the array, comparing adjacent elements, and swapping them if they are in the wrong order. After each full pass, the largest unsorted element \"bubbles\" to its correct position. Include an optimization: if a complete pass makes no swaps, the array is already sorted and you can stop early. Do not modify the original array."
     },
     {
-      "id": 1367,
+      "id": 504,
       "title": "Insertion Sort",
       "type": "js",
       "tier": 4,
@@ -20707,7 +20707,7 @@
       "instructions": "Create a function called `insertionSort` that takes an array of numbers and returns a new sorted array in ascending order. Insertion sort works by building a sorted portion one element at a time. Start from the second element and compare it backward against the sorted portion. Shift larger elements to the right to make room, then insert the current element in its correct position. Do not modify the original array."
     },
     {
-      "id": 1368,
+      "id": 505,
       "title": "Merge Sort",
       "type": "js",
       "tier": 4,
@@ -20743,7 +20743,7 @@
       "instructions": "Create a function called `mergeSort` that takes an array of numbers and returns a new sorted array in ascending order using the merge sort algorithm. Merge sort works by recursively splitting the array in half until each piece has one element, then merging the pieces back together in sorted order. Write a helper function that merges two sorted arrays into one sorted array by comparing their elements one at a time. The base case is an array with 0 or 1 elements (already sorted). Do not modify the original array."
     },
     {
-      "id": 1369,
+      "id": 506,
       "title": "Quick Sort",
       "type": "js",
       "tier": 4,
@@ -20780,7 +20780,7 @@
       "instructions": "Create a function called `quickSort` that takes an array of numbers and returns a new sorted array in ascending order using the quicksort algorithm. Pick the first element as the pivot. Partition the remaining elements into two groups: those less than the pivot and those greater than or equal to the pivot. Recursively sort each group, then combine: sorted-less, pivot, sorted-greater. The base case is an array with 0 or 1 elements. Do not modify the original array."
     },
     {
-      "id": 1370,
+      "id": 507,
       "title": "Frequency Counter",
       "type": "js",
       "tier": 4,
@@ -20816,7 +20816,7 @@
       "instructions": "Create a function called `findPairSum` that takes an array of numbers and a target sum. Return the first pair of numbers (as a two-element array `[a, b]`) where `a + b` equals the target, or `null` if no pair exists. Use the frequency counter (hash map) pattern: as you iterate through the array, store each number you have seen. For each new number, check if the complement (target minus current number) has already been seen. This approach finds the pair in a single pass through the array. Return the pair in the order they appear (the complement first, then the current number)."
     },
     {
-      "id": 1371,
+      "id": 508,
       "title": "Two Pointer Technique",
       "type": "js",
       "tier": 4,
@@ -20852,7 +20852,7 @@
       "instructions": "Create a function called `threeSum` that takes a sorted array of numbers and a target sum. Find all unique triplets `[a, b, c]` where `a + b + c` equals the target. Return an array of triplets (each triplet is a three-element array). There should be no duplicate triplets in the result. Use the two-pointer technique: for each element, set a left pointer just after it and a right pointer at the end, then move them inward based on whether the current sum is too small or too large. Skip duplicate values to avoid duplicate triplets."
     },
     {
-      "id": 1372,
+      "id": 509,
       "title": "Sliding Window",
       "type": "js",
       "tier": 4,
@@ -20888,7 +20888,7 @@
       "instructions": "Create a function called `maxSubarraySum` that takes an array of numbers and a positive integer `k`. Find the maximum sum of any contiguous subarray of exactly `k` elements. Return the maximum sum, or `null` if the array has fewer than `k` elements. Use the sliding window technique: calculate the sum of the first `k` elements, then slide the window one position at a time by adding the next element and removing the element that fell off the left side. Track the maximum sum seen."
     },
     {
-      "id": 1373,
+      "id": 510,
       "title": "Singleton Pattern",
       "type": "js",
       "tier": 4,
@@ -20924,7 +20924,7 @@
       "instructions": "Create a function called `createConfigManager` that returns a config manager object. The manager must be a singleton — every call to `createConfigManager()` must return the exact same object reference. The manager has these methods: `get(key)` returns the value for a key or `undefined` if not set; `set(key, value)` stores a key-value pair; `getAll()` returns a shallow copy of all stored config as a plain object; `reset()` clears all stored config. Use a closure to store the single instance and the config data privately."
     },
     {
-      "id": 1374,
+      "id": 511,
       "title": "Observer Pattern",
       "type": "js",
       "tier": 4,
@@ -20961,7 +20961,7 @@
       "instructions": "Create a function called `createEventEmitter` that returns an event emitter object. The emitter has these methods: `on(event, callback)` registers a callback for the named event (the same callback should not be registered twice for the same event); `off(event, callback)` removes a specific callback from the event; `emit(event, ...args)` calls all registered callbacks for the event, passing the extra arguments to each one; `listenerCount(event)` returns the number of callbacks registered for the event (0 if no listeners). Callbacks should fire in the order they were registered."
     },
     {
-      "id": 1375,
+      "id": 512,
       "title": "Strategy Pattern",
       "type": "js",
       "tier": 4,
@@ -20997,7 +20997,7 @@
       "instructions": "Create a `Validator` class that accepts a validation strategy and validates data using it. The constructor takes a strategy object that must have a `validate(data)` method. The `Validator` has these methods: `setStrategy(strategy)` changes the current strategy; `validate(data)` delegates to the current strategy's `validate` method and returns its result; `validateBatch(items)` validates an array of items and returns `{ valid: [...], invalid: [...] }` where each entry is `{ item, result }` (result is whatever the strategy returns). Also create three strategy objects: `emailStrategy` with a `validate(str)` method that returns `{ valid: true/false, message: \"...\" }` (valid if the string contains `@` and `.` after the `@`); `numberRangeStrategy` with a `validate(obj)` method where `obj` has `value`, `min`, `max` and returns valid if value is within range; `passwordStrategy` with a `validate(str)` method that returns valid if the string is at least 8 characters and contains both a letter and a digit."
     },
     {
-      "id": 1376,
+      "id": 513,
       "title": "Decorator Pattern",
       "type": "js",
       "tier": 4,
@@ -21034,7 +21034,7 @@
       "instructions": "Create two decorator functions that wrap other functions with additional behavior without modifying the original. First, create `withLogging(fn)` that returns a new function which calls `fn` with the same arguments and returns its result, but also records each call. The wrapper should have a `calls` property (an array) where each entry is `{ args: [...], result: value }`. Second, create `withMemoization(fn)` that returns a new function which caches results based on the `JSON.stringify` of the arguments. If the same arguments are passed again, return the cached result without calling `fn`. The wrapper should have a `cache` property (a plain object) mapping stringified args to results."
     },
     {
-      "id": 1377,
+      "id": 514,
       "title": "Mixin Pattern",
       "type": "js",
       "tier": 4,
@@ -21071,7 +21071,7 @@
       "instructions": "Create a function called `applyMixins` that takes a target class and any number of mixin objects, and copies all methods from each mixin onto the target class's prototype. Existing methods on the prototype should not be overwritten. Also create three mixin objects: `timestampMixin` with a `getTimestamp()` method that returns the current millisecond timestamp; `serializeMixin` with a `serialize()` method that returns a JSON string of the instance's own enumerable properties, and a `toObject()` method that returns a shallow copy of the instance's own properties as a plain object; `validationMixin` with a `validate(rules)` method that takes an object where each key is a property name and each value is a validation function — it returns `{ valid: true/false, errors: [...] }` where errors is an array of key names that failed validation."
     },
     {
-      "id": 1378,
+      "id": 515,
       "title": "Router with Path Parameters",
       "type": "js",
       "tier": 4,
@@ -21107,7 +21107,7 @@
       "instructions": "Create a function called `createRouter` that returns a router object. The router has these methods: `addRoute(method, pattern, handler)` registers a handler for a given HTTP method and URL pattern — patterns can include named parameters prefixed with `:` (e.g., `\"/users/:id\"`); `dispatch(method, path)` finds the matching route and calls its handler with an object of extracted parameters, returning the handler's result. If no route matches, return `{ status: 404, body: \"Not Found\" }`. Routes must match the HTTP method exactly (case-insensitive) and the path segments. For example, the pattern `\"/users/:id/posts/:postId\"` should match the path `\"/users/42/posts/7\"` and extract `{ id: \"42\", postId: \"7\" }`."
     },
     {
-      "id": 1379,
+      "id": 516,
       "title": "Middleware Pipeline",
       "type": "js",
       "tier": 4,
@@ -21144,7 +21144,7 @@
       "instructions": "Create a function called `createMiddlewarePipeline` that returns a pipeline object. The pipeline has these methods: `use(middlewareFn)` adds a middleware function to the pipeline; `execute(context)` runs all middleware in order and returns the final context. Each middleware function receives `(context, next)` — it can modify the context object and must call `next()` to pass control to the next middleware. If a middleware does not call `next()`, the pipeline stops and returns the context at that point. If any middleware throws an error, the pipeline should catch it and set `context.error` to the error message, then stop execution. The context starts as whatever object is passed to `execute` and accumulates modifications from each middleware."
     },
     {
-      "id": 1380,
+      "id": 517,
       "title": "REST API Simulation",
       "type": "js",
       "tier": 4,
@@ -21181,7 +21181,7 @@
       "instructions": "Create a function called `createAPI` that returns a simulated REST API for managing a collection of items. Each item has an auto-incremented `id`. The API object has these methods: `get(id)` returns `{ status: 200, body: item }` if found, or `{ status: 404, body: \"Not Found\" }` if not; `getAll()` returns `{ status: 200, body: [items] }`; `post(data)` validates that `data` has a `name` property (non-empty string), creates an item with an auto-incremented `id`, and returns `{ status: 201, body: newItem }` — or `{ status: 400, body: \"Validation Error\" }` if invalid; `put(id, data)` updates an existing item and returns `{ status: 200, body: updatedItem }`, or 404 if not found, or 400 if data is invalid; `delete(id)` removes an item and returns `{ status: 200, body: \"Deleted\" }`, or 404 if not found."
     },
     {
-      "id": 1381,
+      "id": 518,
       "title": "In-Memory Database",
       "type": "js",
       "tier": 4,
@@ -21218,7 +21218,7 @@
       "instructions": "Create a function called `createDatabase` that takes a schema object and returns a database instance. The schema defines field names and their types (e.g., `{ name: \"string\", age: \"number\", active: \"boolean\" }`). The database has these methods: `insert(record)` validates the record against the schema, assigns an auto-incremented `_id`, and stores it — returns the stored record or throws an error with message `\"Validation failed\"` if any field has the wrong type or required fields are missing; `findById(id)` returns the record or `null`; `find(query)` returns an array of all records matching every key-value pair in the query object (e.g., `find({ active: true })` returns all active records); `update(id, changes)` merges changes into an existing record (validating changed fields against schema) and returns the updated record or `null` if not found; `remove(id)` deletes a record and returns `true` if found, `false` otherwise; `count()` returns the total number of records."
     },
     {
-      "id": 1382,
+      "id": 519,
       "title": "Application: Expression Evaluator",
       "type": "js",
       "tier": 4,
@@ -21255,7 +21255,7 @@
       "instructions": "Create a function called `evaluate` that takes a string containing a mathematical expression with `+`, `-`, `*`, `/`, and parentheses, and returns the numeric result. The function must respect standard operator precedence: parentheses first, then `*` and `/` (left to right), then `+` and `-` (left to right). The expression will contain non-negative integers and may have spaces. Examples: `\"3 + 4 * 2\"` returns `11`, `\"(3 + 4) * 2\"` returns `14`, `\"10 / 2 + 3\"` returns `8`. You may assume the input is always a valid expression."
     },
     {
-      "id": 1383,
+      "id": 520,
       "title": "Application: Reactive Store",
       "type": "js",
       "tier": 4,
@@ -21292,7 +21292,7 @@
       "instructions": "Create a function called `createStore` that takes an initial state object and returns a reactive store. The store has these methods: `getState()` returns a shallow copy of the current state; `setState(changes)` merges changes into the state and notifies all subscribers; `subscribe(callback)` registers a function that is called with `(newState, oldState)` whenever state changes — it returns an `unsubscribe` function; `computed(name, deps, fn)` defines a computed property named `name` that depends on the state keys listed in `deps` (an array of strings) and is calculated by `fn(state)` — the computed value updates automatically when any dependency changes and is included in `getState()`. Computed properties should not trigger re-computation unless one of their dependencies actually changed."
     },
     {
-      "id": 1384,
+      "id": 521,
       "title": "Application: Task Scheduler",
       "type": "js",
       "tier": 4,
@@ -21328,7 +21328,7 @@
       "instructions": "Create a function called `createScheduler` that returns a task scheduler. Tasks have a `name` (string), `priority` (number, higher runs first), and an `action` (function). The scheduler has these methods: `addTask(name, priority, action)` registers a task; `addDependency(taskName, dependsOn)` declares that `taskName` cannot run until `dependsOn` has completed; `run()` executes all tasks in priority order (highest first), respecting dependencies — a task with unmet dependencies is deferred until its dependencies complete. If a task's action throws an error, record it and continue with remaining tasks. Return `{ completed: [names], failed: [{ name, error }], skipped: [names] }`. Tasks whose dependencies failed should be skipped (not attempted)."
     },
     {
-      "id": 1385,
+      "id": 522,
       "title": "Application: Data Pipeline Engine",
       "type": "js",
       "tier": 4,
@@ -21366,7 +21366,7 @@
       "instructions": "Create a function called `createPipeline` that returns a configurable data pipeline. The pipeline processes an array of records through a sequence of stages. It has these methods: `addStage(name, fn)` adds a named transformation stage where `fn(records)` takes an array and returns a new array; `removeStage(name)` removes a stage by name; `process(records)` runs all stages in order and returns `{ result: finalArray, log: [...] }` where `log` is an array of `{ stage, inputCount, outputCount }` entries showing how many records entered and left each stage. If a stage throws an error, catch it, record `{ stage, error: message }` in the log, and pass the records unchanged to the next stage. The pipeline should not modify the original records array."
     },
     {
-      "id": 1386,
+      "id": 523,
       "title": "Application: Matrix Operations",
       "type": "js",
       "tier": 4,
@@ -21404,7 +21404,7 @@
       "instructions": "Create an object called `Matrix` with these static methods: `multiply(a, b)` takes two 2D arrays (matrices) and returns their matrix product — the number of columns in `a` must equal the number of rows in `b`, otherwise throw `\"Incompatible dimensions\"`; `transpose(m)` returns the transpose (rows become columns); `determinant(m)` computes the determinant of a square matrix using cofactor expansion — for a 1x1 matrix return the single value, for 2x2 use `ad - bc`, for larger matrices expand along the first row recursively. Throw `\"Not a square matrix\"` if the matrix is not square. All operations should return new arrays without modifying the inputs."
     },
     {
-      "id": 1387,
+      "id": 524,
       "title": "Application: Mini App Framework",
       "type": "js",
       "tier": 4,
@@ -21442,7 +21442,7 @@
       "instructions": "Create a function called `createApp` that returns a mini application framework combining routing, middleware, and state management. The app has these methods: `use(middlewareFn)` registers a middleware that receives `(ctx, next)` and can modify the context before calling `next()`; `route(method, path, handler)` registers a route handler that receives the context; `setState(changes)` merges changes into the app's internal state; `getState()` returns a copy of the state; `handle(method, path)` creates a context object `{ method, path, state: currentState, body: null }`, runs it through all middleware, then dispatches to the matching route handler — the handler can set `ctx.body`. Return the final context. If no route matches, set `ctx.body` to `\"Not Found\"` and `ctx.status` to `404`. If a middleware or handler throws, set `ctx.body` to the error message and `ctx.status` to `500`."
     },
     {
-      "id": 1388,
+      "id": 525,
       "title": "Array Toolkit",
       "type": "js",
       "tier": 5,
@@ -21481,7 +21481,7 @@
       "instructions": "Build a utility library of custom array methods. Your solution should export an object called `ArrayKit` with these methods: `chunk(arr, size)` splits an array into groups of the given size (the last chunk may be smaller); `zip(...arrays)` combines multiple arrays element-by-element into an array of tuples; `difference(a, b)` returns elements in `a` that are not in `b`; `intersection(a, b)` returns elements present in both `a` and `b`; `flatten(arr)` recursively flattens nested arrays into a single-level array; `unique(arr)` returns an array with duplicates removed, preserving original order."
     },
     {
-      "id": 1389,
+      "id": 526,
       "title": "Data Pipeline",
       "type": "js",
       "tier": 5,
@@ -21519,7 +21519,7 @@
       "instructions": "Build a lazy data pipeline that processes datasets through chained transformations. Your solution should export a function called `createPipeline` that takes an array of data and returns a pipeline object supporting chained calls: `map(fn)` transforms each element, `filter(fn)` keeps elements where fn returns true, `take(n)` limits output to the first n results, and `toArray()` executes all queued operations and returns the final array. Operations should be lazy — nothing executes until `toArray()` is called. The pipeline must be reusable: calling `toArray()` multiple times should produce the same result."
     },
     {
-      "id": 1390,
+      "id": 527,
       "title": "Class System",
       "type": "js",
       "tier": 5,
@@ -21556,7 +21556,7 @@
       "instructions": "Design a school management system with interacting classes. Your solution should export the following constructors or classes: `School` takes a name, has methods `addDepartment(dept)`, `getDepartment(name)`, `getStats()` returning `{ departments, teachers, students }`; `Department` takes a name, has methods `addTeacher(teacher)`, `addStudent(student)`, `getTeachers()`, `getStudents()`; `Teacher` takes a name and subject; `Student` takes a name and grade (number). Teachers and students should have a `name` property. `School.getStats()` should aggregate counts across all departments."
     },
     {
-      "id": 1391,
+      "id": 528,
       "title": "Library System",
       "type": "js",
       "tier": 5,
@@ -21594,7 +21594,7 @@
       "instructions": "Build a library management system that tracks books, members, and borrowing. Your solution should export the following constructors or classes: `Library` takes a name, has methods `addBook(book)`, `addMember(member)`, `search(query)` returning books whose title contains the query (case-insensitive), `getAvailableBooks()` returning books not currently borrowed; `Book` takes a title and author, starts as available; `Member` takes a name, has methods `borrow(book)` which marks the book as borrowed by this member (returns false if already borrowed), `return(book)` which returns the book (returns false if not borrowed by this member), `getBorrowed()` returning array of currently borrowed books."
     },
     {
-      "id": 1392,
+      "id": 529,
       "title": "Dynamic Programming",
       "type": "js",
       "tier": 5,
@@ -21631,7 +21631,7 @@
       "instructions": "Solve the classic coin change problem efficiently. Your solution should export a function called `minCoins` that takes an array of coin denominations and a target amount, and returns the minimum number of coins needed to make that amount. If the amount cannot be made with the given coins, return -1. Your solution must handle large inputs efficiently — a brute-force recursive approach without optimization will be too slow. For example: `minCoins([1, 5, 10, 25], 30)` returns 2 (a quarter and a nickel)."
     },
     {
-      "id": 1393,
+      "id": 530,
       "title": "Test Framework",
       "type": "js",
       "tier": 5,
@@ -21669,7 +21669,7 @@
       "instructions": "Build a minimal test runner. Your solution should export a function called `createTestFramework` that returns an object with `describe(name, fn)`, `it(name, fn)`, `expect(value)`, and `run()`. `describe` groups tests and can be nested. `it` defines a test case. `expect` returns an object with matchers: `toBe(expected)` for strict equality, `toEqual(expected)` for deep equality (objects/arrays), and `toThrow()` which checks that the value (a function) throws an error. `run()` executes all registered tests and returns `{ passed: number, failed: number, results: [...] }` where each result has `{ name, passed, error }`. Failed matchers should throw descriptive errors. The `name` in results should include the describe context (e.g., \"Math > addition > adds two numbers\")."
     },
     {
-      "id": 1394,
+      "id": 531,
       "title": "Application: RPG Combat System",
       "type": "js",
       "tier": 5,
@@ -21707,7 +21707,7 @@
       "instructions": "Build a turn-based RPG combat system. Your solution should export the following constructors or classes: `Fighter` takes a name, hp (number), and attack (number), has methods `isAlive()` returning true if hp > 0, `takeDamage(amount)` reducing hp (minimum 0), `applyEffect(effect)` adding a status effect, `processEffects()` applying all active effects and decrementing their durations; `StatusEffect` takes a name, duration (number of turns), and an `apply` function that receives the fighter; `Battle` takes two fighters, has method `playRound()` where fighter1 attacks fighter2 then fighter2 attacks fighter1 (if still alive), processing effects at the start of each fighter's turn — returns `{ attacker, defender, damage }` entries for the round, and `getWinner()` returning the winning fighter or null if both alive."
     },
     {
-      "id": 1395,
+      "id": 532,
       "title": "Application: Markdown Parser",
       "type": "js",
       "tier": 5,
@@ -21744,7 +21744,7 @@
       "instructions": "Convert a subset of Markdown to HTML. Your solution should export a function called `parseMarkdown` that takes a Markdown string and returns an HTML string. Support these elements: headings (`# H1` through `### H3` become `<h1>` through `<h3>`), bold (`**text**` becomes `<strong>text</strong>`), italic (`*text*` becomes `<em>text</em>`), inline code (`` `code` `` becomes `<code>code</code>`), links (`[text](url)` becomes `<a href=\"url\">text</a>`), unordered lists (lines starting with `- ` wrapped in `<ul><li>...</li></ul>`), and plain paragraphs (non-special lines wrapped in `<p>...</p>`). Process the input line by line. Consecutive list items should be grouped in a single `<ul>` block."
     },
     {
-      "id": 1396,
+      "id": 533,
       "title": "Application: Social Feed",
       "type": "js",
       "tier": 5,
@@ -21783,7 +21783,7 @@
       "instructions": "Build a social media feed system. Your solution should export the following constructors or classes: `SocialFeed` has methods `addUser(user)`, `createPost(userName, content)` returning the new post, and `getFeed()` returning all posts sorted by engagement score descending (score = likes + comments count); `User` takes a name, has methods `like(post)` (cannot like same post twice, returns false if already liked), `comment(post, text)` adding a comment; `Post` is created with an author name and content, tracks likes (count) and comments (array of `{ author, text }`), has a `getScore()` method returning likes + number of comments."
     },
     {
-      "id": 1397,
+      "id": 534,
       "title": "Application: Regex Engine",
       "type": "js",
       "tier": 5,
