@@ -133,7 +133,7 @@
     },
     {
       "id": 653,
-      "title": "charAt (No Built-in)",
+      "title": "Character At Index",
       "type": "js",
       "tier": 2,
       "category": [
@@ -179,7 +179,7 @@
     },
     {
       "id": 654,
-      "title": "stringIncludes (No Built-in)",
+      "title": "String Includes",
       "type": "js",
       "tier": 2,
       "category": [
@@ -225,7 +225,7 @@
     },
     {
       "id": 655,
-      "title": "stringIndexOf (No Built-in)",
+      "title": "String Index Of",
       "type": "js",
       "tier": 2,
       "category": [
@@ -271,7 +271,7 @@
     },
     {
       "id": 656,
-      "title": "stringLastIndexOf (No Built-in)",
+      "title": "String Last Index Of",
       "type": "js",
       "tier": 2,
       "category": [
@@ -317,7 +317,7 @@
     },
     {
       "id": 657,
-      "title": "repeat (No Built-in)",
+      "title": "Repeat String",
       "type": "js",
       "tier": 2,
       "category": [
@@ -362,7 +362,7 @@
     },
     {
       "id": 658,
-      "title": "removeFromString",
+      "title": "Remove From String",
       "type": "js",
       "tier": 2,
       "category": [
@@ -401,7 +401,7 @@
     },
     {
       "id": 659,
-      "title": "includes (Universal)",
+      "title": "Universal Includes",
       "type": "js",
       "tier": 3,
       "category": [
@@ -447,7 +447,7 @@
     },
     {
       "id": 660,
-      "title": "indexOf (No Built-in)",
+      "title": "Array Index Of",
       "type": "js",
       "tier": 2,
       "category": [
@@ -493,7 +493,7 @@
     },
     {
       "id": 661,
-      "title": "lastIndexOf (No Built-in)",
+      "title": "Array Last Index Of",
       "type": "js",
       "tier": 2,
       "category": [
@@ -539,7 +539,7 @@
     },
     {
       "id": 662,
-      "title": "max (No Built-in)",
+      "title": "Array Maximum",
       "type": "js",
       "tier": 2,
       "category": [
@@ -585,7 +585,7 @@
     },
     {
       "id": 663,
-      "title": "min (No Built-in)",
+      "title": "Array Minimum",
       "type": "js",
       "tier": 2,
       "category": [
@@ -631,7 +631,7 @@
     },
     {
       "id": 664,
-      "title": "slice (No Built-in)",
+      "title": "Array Slice",
       "type": "js",
       "tier": 3,
       "category": [
@@ -677,7 +677,7 @@
     },
     {
       "id": 665,
-      "title": "countValues",
+      "title": "Count Values",
       "type": "js",
       "tier": 2,
       "category": [
@@ -722,7 +722,7 @@
     },
     {
       "id": 666,
-      "title": "keys (No Built-in)",
+      "title": "Object Keys",
       "type": "js",
       "tier": 2,
       "category": [
@@ -767,7 +767,7 @@
     },
     {
       "id": 667,
-      "title": "values (No Built-in)",
+      "title": "Object Values",
       "type": "js",
       "tier": 2,
       "category": [
@@ -812,7 +812,7 @@
     },
     {
       "id": 668,
-      "title": "squareEvenNumbers",
+      "title": "Square Even Numbers",
       "type": "js",
       "tier": 2,
       "category": [
@@ -857,7 +857,7 @@
     },
     {
       "id": 669,
-      "title": "entries (No Built-in)",
+      "title": "Object Entries",
       "type": "js",
       "tier": 2,
       "category": [
@@ -903,7 +903,7 @@
     },
     {
       "id": 670,
-      "title": "multiples",
+      "title": "Find Multiples",
       "type": "js",
       "tier": 2,
       "category": [
@@ -948,7 +948,7 @@
     },
     {
       "id": 671,
-      "title": "pluck",
+      "title": "Pluck Property",
       "type": "js",
       "tier": 2,
       "category": [
@@ -993,7 +993,7 @@
     },
     {
       "id": 672,
-      "title": "twoHighest",
+      "title": "Two Highest Numbers",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1039,7 +1039,7 @@
     },
     {
       "id": 673,
-      "title": "minMaxKeyInObject",
+      "title": "Min and Max Key in Object",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1084,7 +1084,7 @@
     },
     {
       "id": 674,
-      "title": "stringFromObject",
+      "title": "String From Object",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1129,7 +1129,7 @@
     },
     {
       "id": 675,
-      "title": "countNumbers",
+      "title": "Count Numbers in Array",
       "type": "js",
       "tier": 2,
       "category": [
@@ -1174,7 +1174,7 @@
     },
     {
       "id": 676,
-      "title": "removeVowels",
+      "title": "Remove Vowels",
       "type": "js",
       "tier": 2,
       "category": [
@@ -1219,7 +1219,7 @@
     },
     {
       "id": 677,
-      "title": "findTheDuplicate",
+      "title": "Find the Duplicate",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1264,7 +1264,7 @@
     },
     {
       "id": 678,
-      "title": "totalCaps",
+      "title": "Total Capitals",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1309,7 +1309,7 @@
     },
     {
       "id": 679,
-      "title": "separate",
+      "title": "Separate by Type",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1354,7 +1354,7 @@
     },
     {
       "id": 680,
-      "title": "isAlt",
+      "title": "Alternating Characters",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1400,7 +1400,7 @@
     },
     {
       "id": 681,
-      "title": "calculateMonthlyOrders",
+      "title": "Calculate Monthly Orders",
       "type": "js",
       "tier": 2,
       "category": [
@@ -1446,7 +1446,7 @@
     },
     {
       "id": 682,
-      "title": "collectOddsAndEvens",
+      "title": "Collect Odds and Evens",
       "type": "js",
       "tier": 2,
       "category": [
@@ -1492,7 +1492,7 @@
     },
     {
       "id": 683,
-      "title": "countIfHasValue",
+      "title": "Count If Has Value",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1538,7 +1538,7 @@
     },
     {
       "id": 684,
-      "title": "countValidNumsInString",
+      "title": "Count Valid Numbers in String",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1583,7 +1583,7 @@
     },
     {
       "id": 685,
-      "title": "divideObject",
+      "title": "Divide Object",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1628,7 +1628,7 @@
     },
     {
       "id": 686,
-      "title": "findFirstAndLastIndex",
+      "title": "Find First and Last Index",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1673,7 +1673,7 @@
     },
     {
       "id": 687,
-      "title": "findFirstMove",
+      "title": "Find First Move",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1719,7 +1719,7 @@
     },
     {
       "id": 688,
-      "title": "findHighestPriorityTodo",
+      "title": "Find Highest Priority Todo",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1765,7 +1765,7 @@
     },
     {
       "id": 689,
-      "title": "inMatrix",
+      "title": "Search in Matrix",
       "type": "js",
       "tier": 2,
       "category": [
@@ -1811,7 +1811,7 @@
     },
     {
       "id": 690,
-      "title": "replaceAfter",
+      "title": "Replace After Index",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1856,7 +1856,7 @@
     },
     {
       "id": 691,
-      "title": "reverseValues",
+      "title": "Reverse Values",
       "type": "js",
       "tier": 3,
       "category": [
@@ -1901,7 +1901,7 @@
     },
     {
       "id": 692,
-      "title": "robotInstructions",
+      "title": "Robot Instructions",
       "type": "js",
       "tier": 2,
       "category": [
@@ -1946,7 +1946,7 @@
     },
     {
       "id": 693,
-      "title": "scheduleCheck",
+      "title": "Schedule Overlap Check",
       "type": "js",
       "tier": 2,
       "category": [
@@ -1991,7 +1991,7 @@
     },
     {
       "id": 694,
-      "title": "separateLanguages",
+      "title": "Separate Languages",
       "type": "js",
       "tier": 3,
       "category": [
@@ -2037,7 +2037,7 @@
     },
     {
       "id": 695,
-      "title": "skipVowels",
+      "title": "Skip Vowels",
       "type": "js",
       "tier": 3,
       "category": [
