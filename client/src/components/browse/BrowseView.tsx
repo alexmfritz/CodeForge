@@ -25,7 +25,7 @@ import SubcategoryNav from './SubcategoryNav';
 
 const FEATURED_TAGS = [
   'arrays', 'strings', 'objects', 'loops', 'conditionals', 'functions',
-  'oop', 'class', 'higher-order', 'reduce', 'map', 'filter',
+  'oop', 'classes', 'higher-order', 'reduce', 'map', 'filter',
   'scope', 'context', 'callbacks', 'math', 'operators', 'searching',
   'composition', 'closure', 'inheritance', 'accumulator', 'state',
   'html', 'css', 'es6', 'methods',
