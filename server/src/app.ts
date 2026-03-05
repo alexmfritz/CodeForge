@@ -13,6 +13,7 @@ import assignmentRoutes from './routes/assignments.js';
 import achievementRoutes from './routes/achievements.js';
 import ratingRoutes from './routes/ratings.js';
 import chatRoutes from './routes/chat.js';
+import leaderboardRoutes from './routes/leaderboard.js';
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use('/api/assignments', assignmentRoutes);
 app.use('/api/achievements', achievementRoutes);
 app.use('/api/ratings', ratingRoutes);
 app.use('/api/chat', chatRoutes);
+app.use('/api/leaderboard', leaderboardRoutes);
 
 if (!config.isDev) {
   app.use(express.static(config.paths.clientDist));
