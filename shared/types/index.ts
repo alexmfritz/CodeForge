@@ -102,6 +102,7 @@ export interface User {
   lastLogin?: string;
   preferences: {
     theme: Theme;
+    leaderboardOptIn: boolean;
   };
   createdAt: string;
   updatedAt: string;
@@ -168,6 +169,35 @@ export interface DashboardStats {
   tierBreakdown: Record<number, BreakdownEntry>;
   typeBreakdown: Record<string, BreakdownEntry>;
   recentActivity: RecentActivityItem[];
+}
+
+// ─── Leaderboard ───────────────────────────────────────────────────────────
+
+export interface LeaderboardEntry {
+  userId: string;
+  displayName: string;
+  cohortId: string;
+  cohortName: string;
+  totalScore: number;
+  completedCount: number;
+  tierBreakdown: Record<number, number>;
+  streak: number;
+  rank: number;
+}
+
+export interface LeaderboardHighlight {
+  type: 'achievement' | 'perfect_score' | 'milestone';
+  userId: string;
+  displayName: string;
+  description: string;
+  icon: string;
+  timestamp: string;
+}
+
+export interface LeaderboardData {
+  entries: LeaderboardEntry[];
+  highlights: LeaderboardHighlight[];
+  updatedAt: string;
 }
 
 // ─── Assignments ────────────────────────────────────────────────────────────

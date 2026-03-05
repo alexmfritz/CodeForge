@@ -12,6 +12,7 @@ export interface IUser extends Document {
   lastLogin?: Date;
   preferences: {
     theme: Theme;
+    leaderboardOptIn: boolean;
   };
   createdAt: Date;
   updatedAt: Date;
@@ -29,6 +30,7 @@ const userSchema = new Schema<IUser>(
     lastLogin: { type: Date, default: null },
     preferences: {
       theme: { type: String, default: 'midnight' },
+      leaderboardOptIn: { type: Boolean, default: false },
     },
   },
   { timestamps: true },

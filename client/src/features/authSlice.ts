@@ -44,6 +44,23 @@ export const fetchMe = createAsyncThunk('auth/fetchMe', async (_, { rejectWithVa
   return result.data;
 });
 
+export const updatePreferences = createAsyncThunk(
+  'auth/updatePreferences',
+  async (
+    { userId, preferences }: { userId: string; preferences: Record<string, unknown> },
+    { rejectWithValue },
+  ) => {
+    const result = await apiFetch<User>(`/api/users/${userId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ preferences }),
+    });
+    if (!result.success || !result.data) {
+      return rejectWithValue(result.error || 'Failed to update preferences');
+    }
+    return result.data;
+  },
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -84,6 +101,9 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = null;
         state.token = null;
+      })
+      .addCase(updatePreferences.fulfilled, (state, action) => {
+        state.user = action.payload;
       });
   },
 });

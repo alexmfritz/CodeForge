@@ -45,6 +45,7 @@ export const updateUserSchema = z.object({
           'dracula',
         ])
         .optional(),
+      leaderboardOptIn: z.boolean().optional(),
     })
     .optional(),
 });
