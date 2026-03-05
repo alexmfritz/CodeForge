@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import type { User, Cohort, Progress } from '@codeforge/shared';
+import type { User, Cohort, Progress, ExerciseDifficultyRow, EngagementData, HeatmapPagination } from '@codeforge/shared';
 import { apiFetch } from '../utils/api';
 
 interface CohortSummary {
@@ -65,6 +65,7 @@ interface HeatmapRow {
 interface HeatmapData {
   exercises: HeatmapExercise[];
   students: HeatmapRow[];
+  pagination?: HeatmapPagination;
 }
 
 interface InstructorState {
@@ -78,6 +79,10 @@ interface InstructorState {
   cohortsLoading: boolean;
   heatmap: HeatmapData | null;
   heatmapLoading: boolean;
+  difficultyReport: ExerciseDifficultyRow[];
+  difficultyReportLoading: boolean;
+  engagement: EngagementData | null;
+  engagementLoading: boolean;
 }
 
 const initialState: InstructorState = {
@@ -91,6 +96,10 @@ const initialState: InstructorState = {
   cohortsLoading: false,
   heatmap: null,
   heatmapLoading: false,
+  difficultyReport: [],
+  difficultyReportLoading: false,
+  engagement: null,
+  engagementLoading: false,
 };
 
 export const fetchOverview = createAsyncThunk(
@@ -142,10 +151,56 @@ export const fetchCohorts = createAsyncThunk(
 
 export const fetchHeatmap = createAsyncThunk(
   'instructor/fetchHeatmap',
-  async (cohortId: string, { rejectWithValue }) => {
-    const result = await apiFetch<HeatmapData>(`/api/instructor/cohort/${cohortId}/heatmap`);
+  async (
+    params: { cohortId: string; tier?: number; type?: string; collectionId?: string; page?: number; pageSize?: number },
+    { rejectWithValue },
+  ) => {
+    const query = new URLSearchParams();
+    if (params.tier) query.set('tier', String(params.tier));
+    if (params.type) query.set('type', params.type);
+    if (params.collectionId) query.set('collectionId', params.collectionId);
+    if (params.page) query.set('page', String(params.page));
+    if (params.pageSize) query.set('pageSize', String(params.pageSize));
+    const qs = query.toString();
+    const url = `/api/instructor/cohort/${params.cohortId}/heatmap${qs ? `?${qs}` : ''}`;
+    const result = await apiFetch<HeatmapData>(url);
     if (!result.success || !result.data) {
       return rejectWithValue(result.error || 'Failed to load heatmap');
+    }
+    return result.data;
+  },
+);
+
+export const fetchDifficultyReport = createAsyncThunk(
+  'instructor/fetchDifficultyReport',
+  async (
+    params: { cohortId?: string; tier?: number; type?: string; collectionId?: string },
+    { rejectWithValue },
+  ) => {
+    const query = new URLSearchParams();
+    if (params.cohortId) query.set('cohortId', params.cohortId);
+    if (params.tier) query.set('tier', String(params.tier));
+    if (params.type) query.set('type', params.type);
+    if (params.collectionId) query.set('collectionId', params.collectionId);
+    const qs = query.toString();
+    const result = await apiFetch<ExerciseDifficultyRow[]>(`/api/instructor/analytics/difficulty${qs ? `?${qs}` : ''}`);
+    if (!result.success || !result.data) {
+      return rejectWithValue(result.error || 'Failed to load difficulty report');
+    }
+    return result.data;
+  },
+);
+
+export const fetchEngagementTimeline = createAsyncThunk(
+  'instructor/fetchEngagementTimeline',
+  async (params: { cohortId?: string; days?: number }, { rejectWithValue }) => {
+    const query = new URLSearchParams();
+    if (params.cohortId) query.set('cohortId', params.cohortId);
+    if (params.days) query.set('days', String(params.days));
+    const qs = query.toString();
+    const result = await apiFetch<EngagementData>(`/api/instructor/analytics/engagement${qs ? `?${qs}` : ''}`);
+    if (!result.success || !result.data) {
+      return rejectWithValue(result.error || 'Failed to load engagement data');
     }
     return result.data;
   },
@@ -334,6 +389,28 @@ const instructorSlice = createSlice({
       })
       .addCase(fetchAllUsers.rejected, (state) => {
         state.studentsLoading = false;
+      })
+
+      .addCase(fetchDifficultyReport.pending, (state) => {
+        state.difficultyReportLoading = true;
+      })
+      .addCase(fetchDifficultyReport.fulfilled, (state, action) => {
+        state.difficultyReportLoading = false;
+        state.difficultyReport = action.payload;
+      })
+      .addCase(fetchDifficultyReport.rejected, (state) => {
+        state.difficultyReportLoading = false;
+      })
+
+      .addCase(fetchEngagementTimeline.pending, (state) => {
+        state.engagementLoading = true;
+      })
+      .addCase(fetchEngagementTimeline.fulfilled, (state, action) => {
+        state.engagementLoading = false;
+        state.engagement = action.payload;
+      })
+      .addCase(fetchEngagementTimeline.rejected, (state) => {
+        state.engagementLoading = false;
       });
   },
 });
