@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { fetchHeatmap } from '../../features/instructorSlice';
 import type { Tier } from '@codeforge/shared';
@@ -16,6 +17,7 @@ const STATUS_COLORS: Record<string, string> = {
 
 export default function CohortHeatmap({ cohortId }: Props) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { heatmap, heatmapLoading } = useAppSelector((s) => s.instructor);
 
   const [tierFilter, setTierFilter] = useState<number | ''>('');
@@ -149,8 +151,9 @@ export default function CohortHeatmap({ cohortId }: Props) {
                     <th
                       key={ex._id}
                       className="px-0.5 py-1 text-center"
-                      style={{ minWidth: 22, maxWidth: 22 }}
-                      title={`${ex.title} (T${ex.tier})`}
+                      style={{ minWidth: 22, maxWidth: 22, cursor: 'pointer' }}
+                      title={`${ex.title} (T${ex.tier}) — click to view`}
+                      onClick={() => navigate(`/exercises/${ex._id}`)}
                     >
                       <span
                         className="block text-center font-normal"

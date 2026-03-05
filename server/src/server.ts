@@ -19,6 +19,11 @@ async function start(): Promise<void> {
     await seedAchievements();
     await seedAssignments();
 
+    if (config.isDev) {
+      const { seedDevData } = await import('./seed/seedDevData.js');
+      await seedDevData();
+    }
+
     await archivePreviousDayLogs();
 
     const httpServer = createServer(app);
