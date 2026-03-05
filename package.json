@@ -11,7 +11,8 @@
     "build": "npm run build -w shared && npm run build -w server && npm run build -w client",
     "start": "npm run start -w server",
     "test": "npm run test -w client && npm run test -w server",
-    "lint": "npm run lint -w client && npm run lint -w server"
+    "lint": "npm run lint -w client && npm run lint -w server",
+    "seed:reset": "cd server && npx tsx src/scripts/resetAndSeed.ts"
   },
   "engines": {
     "node": ">=20.0.0"

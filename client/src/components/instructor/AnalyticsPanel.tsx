@@ -5,10 +5,10 @@ import EngagementTimeline from './EngagementTimeline';
 
 type AnalyticsView = 'difficulty' | 'heatmap' | 'engagement';
 
-const VIEWS: { id: AnalyticsView; label: string }[] = [
-  { id: 'difficulty', label: 'Exercise Difficulty' },
-  { id: 'heatmap', label: 'Cohort Heatmap' },
-  { id: 'engagement', label: 'Engagement' },
+const VIEWS: { id: AnalyticsView; label: string; description: string }[] = [
+  { id: 'difficulty', label: 'Exercise Difficulty', description: 'Identify which exercises students struggle with most \u2014 sorted by completion rate, attempt count, and solution usage.' },
+  { id: 'heatmap', label: 'Cohort Heatmap', description: 'Visualize each student\u2019s progress across exercises \u2014 green for completed, yellow for in progress, gray for not started.' },
+  { id: 'engagement', label: 'Engagement', description: 'Track daily student activity and spot students who may need additional support.' },
 ];
 
 interface Props {
@@ -40,6 +40,10 @@ export default function AnalyticsPanel({ cohortId }: Props) {
           </button>
         ))}
       </div>
+
+      <p className="text-xs -mt-3" style={{ color: 'var(--text-muted)' }}>
+        {VIEWS.find((v) => v.id === activeView)?.description}
+      </p>
 
       {activeView === 'difficulty' && <DifficultyReport cohortId={cohortId} />}
       {activeView === 'heatmap' && <CohortHeatmap cohortId={cohortId} />}

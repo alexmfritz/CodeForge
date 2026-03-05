@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { fetchDifficultyReport } from '../../features/instructorSlice';
 import type { ExerciseDifficultyRow, Tier, ExerciseType } from '@codeforge/shared';
@@ -33,6 +34,7 @@ function difficultyScore(row: ExerciseDifficultyRow): number {
 
 export default function DifficultyReport({ cohortId }: Props) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { difficultyReport: data, difficultyReportLoading: loading } = useAppSelector((s) => s.instructor);
 
   const [tierFilter, setTierFilter] = useState<number | ''>('');
@@ -110,18 +112,21 @@ export default function DifficultyReport({ cohortId }: Props) {
           value={hardest ? hardest.title : '—'}
           sub={hardest ? `${Math.round(hardest.completionRate * 100)}% completion` : ''}
           color="var(--error)"
+          onClick={hardest ? () => navigate(`/exercises/${hardest.exerciseId}`) : undefined}
         />
         <SummaryCard
           label="Most Abandoned"
           value={mostAbandoned ? mostAbandoned.title : '—'}
           sub={mostAbandoned ? `${Math.round(mostAbandoned.abandonRate * 100)}% abandon rate` : ''}
           color="var(--orange)"
+          onClick={mostAbandoned ? () => navigate(`/exercises/${mostAbandoned.exerciseId}`) : undefined}
         />
         <SummaryCard
           label="Most Solution Viewed"
           value={mostSolutionViewed ? mostSolutionViewed.title : '—'}
           sub={mostSolutionViewed ? `${Math.round(mostSolutionViewed.solutionViewRate * 100)}% viewed solution` : ''}
           color="var(--warning)"
+          onClick={mostSolutionViewed ? () => navigate(`/exercises/${mostSolutionViewed.exerciseId}`) : undefined}
         />
         <SummaryCard
           label="Avg Completion Rate"
@@ -200,8 +205,14 @@ export default function DifficultyReport({ cohortId }: Props) {
                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-raised)')}
                       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                     >
-                      <td className="px-3 py-2.5 max-w-[200px] truncate" style={{ color: 'var(--text-primary)' }}>
-                        {row.title}
+                      <td className="px-3 py-2.5 max-w-[200px] truncate">
+                        <span
+                          className="hover:underline"
+                          style={{ color: 'var(--accent)', cursor: 'pointer' }}
+                          onClick={() => navigate(`/exercises/${row.exerciseId}`)}
+                        >
+                          {row.title}
+                        </span>
                       </td>
                       <td className="px-3 py-2.5 text-center">
                         <TierBadge tier={row.tier as Tier} />
@@ -259,11 +270,17 @@ export default function DifficultyReport({ cohortId }: Props) {
   );
 }
 
-function SummaryCard({ label, value, sub, color }: { label: string; value: string; sub: string; color: string }) {
+function SummaryCard({ label, value, sub, color, onClick }: { label: string; value: string; sub: string; color: string; onClick?: () => void }) {
   return (
     <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
       <p className="text-xs font-medium mb-1" style={{ color: 'var(--text-muted)' }}>{label}</p>
-      <p className="text-sm font-semibold truncate" style={{ color }}>{value}</p>
+      <p
+        className={`text-sm font-semibold truncate${onClick ? ' hover:underline' : ''}`}
+        style={{ color, cursor: onClick ? 'pointer' : 'default' }}
+        onClick={onClick}
+      >
+        {value}
+      </p>
       {sub && <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>{sub}</p>}
     </div>
   );
