@@ -200,6 +200,61 @@ export interface LeaderboardData {
   updatedAt: string;
 }
 
+// ─── Analytics ──────────────────────────────────────────────────────────────
+
+export interface ExerciseDifficultyRow {
+  exerciseId: string;
+  title: string;
+  tier: number;
+  type: string;
+  category: string[];
+  collectionId?: string;
+  totalStarted: number;
+  totalCompleted: number;
+  completionRate: number;
+  avgAttempts: number;
+  avgTimeMs: number;
+  hintUsageRate: number;
+  solutionViewRate: number;
+  abandonRate: number;
+}
+
+export interface DailyActivityPoint {
+  date: string;
+  activeStudentCount: number;
+  exercisesAttempted: number;
+  exercisesCompleted: number;
+  totalTimeSpent: number;
+}
+
+export interface AtRiskStudent {
+  studentId: string;
+  displayName: string;
+  lastActivity: string | null;
+  daysSinceActivity: number | null;
+  totalCompleted: number;
+  totalAttempted: number;
+  completionRate: number;
+}
+
+export interface EngagementData {
+  dailyActivity: DailyActivityPoint[];
+  totalStudents: number;
+  atRiskStudents: AtRiskStudent[];
+  summary: {
+    activeToday: number;
+    avgDailyActive: number;
+    totalCompletionsThisPeriod: number;
+  };
+}
+
+export interface HeatmapPagination {
+  page: number;
+  pageSize: number;
+  totalExercises: number;
+  totalPages: number;
+}
+
 // ─── Assignments ────────────────────────────────────────────────────────────
 
 export interface Assignment {

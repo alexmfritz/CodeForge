@@ -1,6 +1,12 @@
 import { Router } from 'express';
 import { authenticate, authorize } from '../middleware/auth.js';
-import { getOverview, getStudentProgress, getCohortHeatmap } from '../services/instructorService.js';
+import {
+  getOverview,
+  getStudentProgress,
+  getCohortHeatmap,
+  getExerciseDifficultyReport,
+  getEngagementTimeline,
+} from '../services/instructorService.js';
 
 const router = Router();
 
@@ -30,10 +36,47 @@ router.get('/students/:id/progress', async (req, res) => {
 
 router.get('/cohort/:id/heatmap', async (req, res) => {
   try {
-    const data = await getCohortHeatmap(req.params.id);
+    const { tier, type, collectionId, page, pageSize } = req.query;
+    const data = await getCohortHeatmap(req.params.id, {
+      tier: tier ? Number(tier) : undefined,
+      type: type as string | undefined,
+      collectionId: collectionId as string | undefined,
+      page: page ? Number(page) : 1,
+      pageSize: pageSize ? Number(pageSize) : 50,
+    });
     res.json({ success: true, data });
   } catch {
     res.status(500).json({ success: false, error: 'Failed to fetch heatmap data' });
+  }
+});
+
+router.get('/analytics/difficulty', async (req, res) => {
+  try {
+    const { cohortId, tier, type, collectionId } = req.query;
+    const data = await getExerciseDifficultyReport(
+      cohortId as string | undefined,
+      {
+        tier: tier ? Number(tier) : undefined,
+        type: type as string | undefined,
+        collectionId: collectionId as string | undefined,
+      },
+    );
+    res.json({ success: true, data });
+  } catch {
+    res.status(500).json({ success: false, error: 'Failed to fetch difficulty report' });
+  }
+});
+
+router.get('/analytics/engagement', async (req, res) => {
+  try {
+    const { cohortId, days } = req.query;
+    const data = await getEngagementTimeline(
+      cohortId as string | undefined,
+      days ? Number(days) : 30,
+    );
+    res.json({ success: true, data });
+  } catch {
+    res.status(500).json({ success: false, error: 'Failed to fetch engagement data' });
   }
 });
 
