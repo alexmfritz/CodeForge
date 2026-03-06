@@ -22,6 +22,7 @@ export interface IExercise extends Document {
     flags?: string;
   }[];
   providedHtml?: string;
+  dataset?: string;
   hints: string[];
   resources: { label: string; url: string; description?: string }[];
   solutionGate?: number;
@@ -58,6 +59,7 @@ const exerciseSchema = new Schema<IExercise>(
       },
     ],
     providedHtml: String,
+    dataset: String,
     hints: [{ type: String }],
     resources: [
       {

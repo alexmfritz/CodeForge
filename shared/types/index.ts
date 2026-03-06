@@ -45,6 +45,7 @@ export interface Exercise {
   testRunner: string;
   testCases?: TestCase[];
   providedHtml?: string;
+  dataset?: string;
   hints: string[];
   resources: Resource[];
   solutionGate?: number;

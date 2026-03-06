@@ -21,6 +21,7 @@ interface RawExercise {
   testRunner: string;
   testCases?: unknown[];
   providedHtml?: string;
+  dataset?: string;
   hint?: string;
   hints?: string[];
   resources: { label: string; url: string; description?: string }[];
@@ -123,6 +124,7 @@ export async function seedExercises(): Promise<void> {
         testRunner: rawEx.testRunner ?? '',
         testCases: rawEx.testCases ?? [],
         providedHtml: rawEx.providedHtml,
+        dataset: rawEx.dataset,
         hints: normalizeHints(rawEx),
         resources: rawEx.resources ?? [],
         solutionGate: rawEx.solutionGate,

@@ -9,11 +9,14 @@ import MarkdownLite from '../shared/MarkdownLite';
 import ResourcesSection from './ResourcesSection';
 import HintsSection from './HintsSection';
 import SolutionSection from './SolutionSection';
+import CodeEditor from './CodeEditor';
+
+type TabId = 'instructions' | 'results' | 'preview' | 'dataset';
 
 interface InstructionsPanelProps {
   exercise: Exercise;
-  activeTab: 'instructions' | 'results' | 'preview';
-  onTabChange: (tab: 'instructions' | 'results' | 'preview') => void;
+  activeTab: TabId;
+  onTabChange: (tab: TabId) => void;
   children: React.ReactNode;
   testResultCount: number;
   testPassCount: number;
@@ -45,8 +48,9 @@ export default function InstructionsPanel({
     });
   };
 
-  const tabs: { id: 'instructions' | 'results' | 'preview'; label: string; show: boolean }[] = [
+  const tabs: { id: TabId; label: string; show: boolean }[] = [
     { id: 'instructions', label: 'Instructions', show: true },
+    { id: 'dataset', label: 'Dataset', show: !!exercise.dataset },
     { id: 'results', label: testResultCount > 0 ? `Results (${testPassCount}/${testResultCount})` : 'Results', show: true },
     { id: 'preview', label: 'Preview', show: exercise.type !== 'js' },
   ];
@@ -94,6 +98,10 @@ export default function InstructionsPanel({
             <ResourcesSection resources={exercise.resources} expanded={showResources} onToggle={() => setShowResources((v) => !v)} />
             <HintsSection hints={exercise.hints} expandedHints={expandedHints} onToggleHint={toggleHint} uniqueAttempts={uniqueAttempts} />
             <SolutionSection solution={exercise.solution} solutionUnlocked={solutionUnlocked} expanded={showSolution} onToggle={() => setShowSolution((v) => !v)} uniqueAttempts={uniqueAttempts} gate={gate} />
+          </div>
+        ) : activeTab === 'dataset' ? (
+          <div className="h-full">
+            <CodeEditor value={exercise.dataset ?? ''} onChange={() => {}} language="js" readOnly />
           </div>
         ) : (
           children
