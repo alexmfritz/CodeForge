@@ -1,0 +1,532 @@
+{
+  "name": "Hard Math & Science",
+  "color": "#14b8a6",
+  "description": "Advanced mathematical and scientific exercises covering number theory, geometry, statistics, physics, chemistry, and more. Tiers 2-5.",
+  "exercises": [
+    {
+      "id": 1085,
+      "title": "Number Theory: Is Prime",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "primes",
+        "loops",
+        "conditionals"
+      ],
+      "description": "Determine whether a given number is a prime number.",
+      "instructions": "Write a function called `isPrime` that takes a positive integer `n` and returns `true` if it is prime, or `false` otherwise.\n\nA prime number is greater than 1 and has no divisors other than 1 and itself.\n\nExample:\n```\nisPrime(7)  // Returns: true\nisPrime(4)  // Returns: false\nisPrime(1)  // Returns: false\n```",
+      "starterCode": "// Return true if n is prime, false otherwise\nfunction isPrime(n) {\n  \n}",
+      "solution": "function isPrime(n) {\n  if (n < 2) return false;\n  for (let i = 2; i <= Math.sqrt(n); i++) {\n    if (n % i === 0) return false;\n  }\n  return true;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return isPrime;')();\n  const results = [];\n  results.push({ pass: fn(2) === true, description: '2 is prime', got: String(fn(2)) });\n  results.push({ pass: fn(7) === true, description: '7 is prime', got: String(fn(7)) });\n  results.push({ pass: fn(1) === false, description: '1 is not prime', got: String(fn(1)) });\n  results.push({ pass: fn(4) === false, description: '4 is not prime', got: String(fn(4)) });\n  results.push({ pass: fn(97) === true, description: '97 is prime', got: String(fn(97)) });\n  results.push({ pass: fn(100) === false, description: '100 is not prime', got: String(fn(100)) });\n  results.push({ pass: fn(0) === false, description: '0 is not prime', got: String(fn(0)) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "A prime number has no divisors other than 1 and itself. You only need to check divisors up to the square root of n.",
+        "Use a loop from 2 to `Math.sqrt(n)`. If any value divides n evenly (`n % i === 0`), it is not prime."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.sqrt()",
+          "url": "/docs/mdn/math-sqrt.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1086,
+      "title": "Number Theory: GCD",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "gcd",
+        "recursion",
+        "euclidean"
+      ],
+      "description": "Calculate the greatest common divisor of two positive integers using the Euclidean algorithm.",
+      "instructions": "Write a function called `gcd` that takes two positive integers `a` and `b` and returns their greatest common divisor.\n\nThe greatest common divisor (GCD) is the largest number that divides both `a` and `b` evenly.\n\nExample:\n```\ngcd(12, 8)   // Returns: 4\ngcd(54, 24)  // Returns: 6\ngcd(7, 13)   // Returns: 1\n```",
+      "starterCode": "// Return the greatest common divisor of a and b\nfunction gcd(a, b) {\n  \n}",
+      "solution": "function gcd(a, b) {\n  while (b !== 0) {\n    [a, b] = [b, a % b];\n  }\n  return a;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return gcd;')();\n  const results = [];\n  results.push({ pass: fn(12, 8) === 4, description: 'gcd(12, 8) is 4', got: String(fn(12, 8)) });\n  results.push({ pass: fn(54, 24) === 6, description: 'gcd(54, 24) is 6', got: String(fn(54, 24)) });\n  results.push({ pass: fn(7, 13) === 1, description: 'gcd(7, 13) is 1 (coprime)', got: String(fn(7, 13)) });\n  results.push({ pass: fn(100, 75) === 25, description: 'gcd(100, 75) is 25', got: String(fn(100, 75)) });\n  results.push({ pass: fn(17, 17) === 17, description: 'gcd(17, 17) is 17 (equal inputs)', got: String(fn(17, 17)) });\n  results.push({ pass: fn(48, 18) === 6, description: 'gcd(48, 18) is 6', got: String(fn(48, 18)) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "The Euclidean algorithm repeatedly replaces the larger number with the remainder of dividing the two, until one becomes 0.",
+        "Use a loop: while b is not 0, set `[a, b] = [b, a % b]`. When b reaches 0, a is the GCD."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Remainder (%)",
+          "url": "/docs/mdn/operators-remainder.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1087,
+      "title": "Number Theory: Fibonacci",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "fibonacci",
+        "sequences",
+        "loops"
+      ],
+      "description": "Return the nth number in the Fibonacci sequence.",
+      "instructions": "Write a function called `fibonacci` that takes a non-negative integer `n` and returns the nth Fibonacci number.\n\nThe Fibonacci sequence starts: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...\n- F(0) = 0\n- F(1) = 1\n- F(n) = F(n-1) + F(n-2)\n\nExample:\n```\nfibonacci(0)  // Returns: 0\nfibonacci(6)  // Returns: 8\nfibonacci(10) // Returns: 55\n```",
+      "starterCode": "// Return the nth Fibonacci number\nfunction fibonacci(n) {\n  \n}",
+      "solution": "function fibonacci(n) {\n  if (n <= 1) return n;\n  let a = 0, b = 1;\n  for (let i = 2; i <= n; i++) {\n    [a, b] = [b, a + b];\n  }\n  return b;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return fibonacci;')();\n  const results = [];\n  results.push({ pass: fn(0) === 0, description: 'F(0) is 0', got: String(fn(0)) });\n  results.push({ pass: fn(1) === 1, description: 'F(1) is 1', got: String(fn(1)) });\n  results.push({ pass: fn(6) === 8, description: 'F(6) is 8', got: String(fn(6)) });\n  results.push({ pass: fn(10) === 55, description: 'F(10) is 55', got: String(fn(10)) });\n  results.push({ pass: fn(20) === 6765, description: 'F(20) is 6765', got: String(fn(20)) });\n  results.push({ pass: fn(2) === 1, description: 'F(2) is 1', got: String(fn(2)) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Start with two variables representing F(0)=0 and F(1)=1, then iteratively compute the next value by adding the previous two.",
+        "Use a loop from 2 to n: `[a, b] = [b, a + b]`. After the loop, b holds F(n)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "/docs/mdn/destructuring-assignment.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1088,
+      "title": "Number Theory: Prime Factorization",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "primes",
+        "factorization",
+        "loops"
+      ],
+      "description": "Return the prime factorization of a positive integer as a sorted array.",
+      "instructions": "Write a function called `primeFactors` that takes a positive integer `n` (greater than 1) and returns an array of its prime factors in ascending order, including duplicates.\n\nExample:\n```\nprimeFactors(12)   // Returns: [2, 2, 3]\nprimeFactors(100)  // Returns: [2, 2, 5, 5]\nprimeFactors(17)   // Returns: [17]\n```",
+      "starterCode": "function primeFactors(n) {\n  \n}",
+      "solution": "function primeFactors(n) {\n  const factors = [];\n  for (let d = 2; d * d <= n; d++) {\n    while (n % d === 0) {\n      factors.push(d);\n      n /= d;\n    }\n  }\n  if (n > 1) factors.push(n);\n  return factors;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return primeFactors;')();\n  const results = [];\n  const j = JSON.stringify;\n  results.push({ pass: j(fn(12)) === '[2,2,3]', description: 'primeFactors(12) is [2, 2, 3]', got: j(fn(12)) });\n  results.push({ pass: j(fn(100)) === '[2,2,5,5]', description: 'primeFactors(100) is [2, 2, 5, 5]', got: j(fn(100)) });\n  results.push({ pass: j(fn(17)) === '[17]', description: 'primeFactors(17) is [17] (prime input)', got: j(fn(17)) });\n  results.push({ pass: j(fn(2)) === '[2]', description: 'primeFactors(2) is [2]', got: j(fn(2)) });\n  results.push({ pass: j(fn(60)) === '[2,2,3,5]', description: 'primeFactors(60) is [2, 2, 3, 5]', got: j(fn(60)) });\n  results.push({ pass: j(fn(84)) === '[2,2,3,7]', description: 'primeFactors(84) is [2, 2, 3, 7]', got: j(fn(84)) });\n  results.push({ pass: j(fn(1024)) === j(Array(10).fill(2)), description: 'primeFactors(1024) is ten 2s', got: j(fn(1024)) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Start with the smallest prime (2) and divide n repeatedly by each factor while it divides evenly, then move to the next candidate.",
+        "Loop divisor d from 2 while `d * d <= n`. Use `while (n % d === 0)` to extract all copies. If n > 1 after the loop, n itself is a prime factor."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.push()",
+          "url": "/docs/mdn/array-push.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1089,
+      "title": "Number Theory: LCM",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "lcm",
+        "gcd",
+        "algorithms"
+      ],
+      "description": "Calculate the least common multiple of two or more positive integers.",
+      "instructions": "Write a function called `lcm` that takes an array of positive integers and returns their least common multiple.\n\nThe LCM of two numbers can be computed as `(a * b) / gcd(a, b)`. Extend this to handle an array by reducing.\n\nExample:\n```\nlcm([4, 6])        // Returns: 12\nlcm([3, 4, 5])     // Returns: 60\nlcm([12, 18, 24])  // Returns: 72\n```",
+      "starterCode": "function lcm(nums) {\n  \n}",
+      "solution": "function lcm(nums) {\n  function gcd(a, b) {\n    while (b !== 0) [a, b] = [b, a % b];\n    return a;\n  }\n  function lcmTwo(a, b) {\n    return (a / gcd(a, b)) * b;\n  }\n  return nums.reduce((acc, n) => lcmTwo(acc, n));\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return lcm;')();\n  const results = [];\n  results.push({ pass: fn([4, 6]) === 12, description: 'lcm([4, 6]) is 12', got: String(fn([4, 6])) });\n  results.push({ pass: fn([3, 4, 5]) === 60, description: 'lcm([3, 4, 5]) is 60', got: String(fn([3, 4, 5])) });\n  results.push({ pass: fn([12, 18, 24]) === 72, description: 'lcm([12, 18, 24]) is 72', got: String(fn([12, 18, 24])) });\n  results.push({ pass: fn([7, 13]) === 91, description: 'lcm([7, 13]) is 91 (coprime)', got: String(fn([7, 13])) });\n  results.push({ pass: fn([5]) === 5, description: 'lcm([5]) is 5 (single element)', got: String(fn([5])) });\n  results.push({ pass: fn([6, 10, 15]) === 30, description: 'lcm([6, 10, 15]) is 30', got: String(fn([6, 10, 15])) });\n  results.push({ pass: fn([2, 3, 4, 5, 6]) === 60, description: 'lcm([2, 3, 4, 5, 6]) is 60', got: String(fn([2, 3, 4, 5, 6])) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "First implement a helper to compute GCD of two numbers. Then LCM of two numbers is `(a / gcd(a, b)) * b`. Divide first to avoid overflow.",
+        "Use `Array.reduce()` to fold the LCM across the entire array: `nums.reduce((acc, n) => lcmTwo(acc, n))`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "/docs/mdn/array-reduce.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1090,
+      "title": "Number Theory: Collatz Sequence",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "collatz",
+        "sequences",
+        "loops"
+      ],
+      "description": "Generate the complete Collatz sequence starting from a given positive integer.",
+      "instructions": "Write a function called `collatz` that takes a positive integer `n` and returns the complete Collatz sequence as an array, ending at 1.\n\nThe Collatz rule:\n- If n is even: n = n / 2\n- If n is odd: n = 3n + 1\n\nExample:\n```\ncollatz(6)  // Returns: [6, 3, 10, 5, 16, 8, 4, 2, 1]\ncollatz(1)  // Returns: [1]\n```",
+      "starterCode": "function collatz(n) {\n  \n}",
+      "solution": "function collatz(n) {\n  const seq = [n];\n  while (n !== 1) {\n    n = n % 2 === 0 ? n / 2 : 3 * n + 1;\n    seq.push(n);\n  }\n  return seq;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return collatz;')();\n  const j = JSON.stringify;\n  const results = [];\n  results.push({ pass: j(fn(6)) === j([6,3,10,5,16,8,4,2,1]), description: 'collatz(6) produces 9-step sequence', got: j(fn(6)) });\n  results.push({ pass: j(fn(1)) === '[1]', description: 'collatz(1) is [1]', got: j(fn(1)) });\n  results.push({ pass: fn(27).length === 112, description: 'collatz(27) has 112 steps', got: String(fn(27).length) });\n  results.push({ pass: fn(6)[0] === 6, description: 'Sequence starts with input', got: String(fn(6)[0]) });\n  results.push({ pass: fn(6)[fn(6).length - 1] === 1, description: 'Sequence ends with 1', got: String(fn(6)[fn(6).length - 1]) });\n  results.push({ pass: j(fn(10)) === j([10,5,16,8,4,2,1]), description: 'collatz(10) is [10,5,16,8,4,2,1]', got: j(fn(10)) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Build an array starting with n. While n is not 1, apply the Collatz rule and push each new value.",
+        "Use a ternary: `n = n % 2 === 0 ? n / 2 : 3 * n + 1`. Push n into the array after each step."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Conditional (ternary) operator",
+          "url": "/docs/mdn/conditional-ternary.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1091,
+      "title": "Number Theory: Sieve of Eratosthenes",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "primes",
+        "sieve",
+        "algorithms"
+      ],
+      "description": "Find all prime numbers up to a given limit using the Sieve of Eratosthenes.",
+      "instructions": "Write a function called `sieve` that takes a positive integer `limit` and returns an array of all prime numbers from 2 up to and including `limit`.\n\nUse the Sieve of Eratosthenes algorithm:\n1. Create a boolean array of size `limit + 1`, initialized to `true`\n2. Starting from 2, mark all multiples of each prime as not prime\n3. Collect remaining `true` indices\n\nExample:\n```\nsieve(10)  // Returns: [2, 3, 5, 7]\nsieve(30)  // Returns: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]\n```",
+      "starterCode": "function sieve(limit) {\n  \n}",
+      "solution": "function sieve(limit) {\n  const isPrime = Array(limit + 1).fill(true);\n  isPrime[0] = isPrime[1] = false;\n  for (let i = 2; i * i <= limit; i++) {\n    if (isPrime[i]) {\n      for (let j = i * i; j <= limit; j += i) {\n        isPrime[j] = false;\n      }\n    }\n  }\n  return isPrime.reduce((primes, val, idx) => val ? [...primes, idx] : primes, []);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return sieve;')();\n  const j = JSON.stringify;\n  const results = [];\n  results.push({ pass: j(fn(10)) === j([2,3,5,7]), description: 'sieve(10) returns [2, 3, 5, 7]', got: j(fn(10)) });\n  results.push({ pass: fn(30).length === 10, description: 'sieve(30) returns 10 primes', got: String(fn(30).length) });\n  results.push({ pass: j(fn(2)) === '[2]', description: 'sieve(2) returns [2]', got: j(fn(2)) });\n  results.push({ pass: j(fn(1)) === '[]', description: 'sieve(1) returns [] (no primes)', got: j(fn(1)) });\n  results.push({ pass: fn(100).length === 25, description: 'sieve(100) returns 25 primes', got: String(fn(100).length) });\n  results.push({ pass: fn(50)[fn(50).length - 1] === 47, description: 'Largest prime <= 50 is 47', got: String(fn(50)[fn(50).length - 1]) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Create a boolean array where index = number. Start all as true, then for each prime p starting at 2, mark all multiples of p (starting at p*p) as false.",
+        "Only iterate outer loop while `i * i <= limit`. Inner loop starts at `i * i` and increments by i. Collect indices that remain true."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.fill()",
+          "url": "/docs/mdn/array-fill.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1092,
+      "title": "Number Theory: Modular Exponentiation",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "modular-arithmetic",
+        "exponentiation",
+        "algorithms"
+      ],
+      "description": "Compute (base^exp) % mod efficiently using fast exponentiation.",
+      "instructions": "Write a function called `modPow` that takes three non-negative integers `base`, `exp`, and `mod`, and returns `(base ** exp) % mod`.\n\nDo NOT simply compute `base ** exp` and then mod — the intermediate value would be astronomically large. Use the repeated-squaring technique.\n\nExample:\n```\nmodPow(2, 10, 1000)   // Returns: 24  (1024 % 1000)\nmodPow(3, 13, 50)     // Returns: 23  (1594323 % 50)\nmodPow(5, 0, 7)       // Returns: 1   (any number to the 0th power is 1)\n```",
+      "starterCode": "function modPow(base, exp, mod) {\n  \n}",
+      "solution": "function modPow(base, exp, mod) {\n  if (mod === 1) return 0;\n  let result = 1;\n  base = base % mod;\n  while (exp > 0) {\n    if (exp % 2 === 1) {\n      result = (result * base) % mod;\n    }\n    exp = Math.floor(exp / 2);\n    base = (base * base) % mod;\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return modPow;')();\n  const results = [];\n  results.push({ pass: fn(2, 10, 1000) === 24, description: '2^10 mod 1000 is 24', got: String(fn(2, 10, 1000)) });\n  results.push({ pass: fn(3, 13, 50) === 23, description: '3^13 mod 50 is 23', got: String(fn(3, 13, 50)) });\n  results.push({ pass: fn(5, 0, 7) === 1, description: '5^0 mod 7 is 1', got: String(fn(5, 0, 7)) });\n  results.push({ pass: fn(7, 1, 13) === 7, description: '7^1 mod 13 is 7', got: String(fn(7, 1, 13)) });\n  results.push({ pass: fn(2, 20, 1000) === 576, description: '2^20 mod 1000 is 576', got: String(fn(2, 20, 1000)) });\n  results.push({ pass: fn(123, 0, 1) === 0, description: '123^0 mod 1 is 0', got: String(fn(123, 0, 1)) });\n  results.push({ pass: fn(10, 5, 97) === 90, description: '10^5 mod 97 is 90', got: String(fn(10, 5, 97)) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Use repeated squaring: if the exponent is odd, multiply result by base; always square the base and halve the exponent. Apply mod at each step.",
+        "Start with `result = 1`. While exp > 0: if exp is odd, `result = (result * base) % mod`. Then `base = (base * base) % mod` and `exp = Math.floor(exp / 2)`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.floor()",
+          "url": "/docs/mdn/math-floor.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1093,
+      "title": "Number Theory: Digital Root",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "digital-root",
+        "recursion",
+        "number-manipulation"
+      ],
+      "description": "Compute the digital root of a non-negative integer by repeatedly summing its digits.",
+      "instructions": "Write a function called `digitalRoot` that takes a non-negative integer `n` and returns its digital root.\n\nThe digital root is found by repeatedly summing the digits of a number until a single digit remains.\n\nExample:\n```\ndigitalRoot(493)   // 4+9+3=16, 1+6=7 → Returns: 7\ndigitalRoot(0)     // Returns: 0\ndigitalRoot(99999) // 9+9+9+9+9=45, 4+5=9 → Returns: 9\n```",
+      "starterCode": "function digitalRoot(n) {\n  \n}",
+      "solution": "function digitalRoot(n) {\n  while (n >= 10) {\n    let sum = 0;\n    while (n > 0) {\n      sum += n % 10;\n      n = Math.floor(n / 10);\n    }\n    n = sum;\n  }\n  return n;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return digitalRoot;')();\n  const results = [];\n  results.push({ pass: fn(493) === 7, description: 'digitalRoot(493) is 7 (4+9+3=16, 1+6=7)', got: String(fn(493)) });\n  results.push({ pass: fn(0) === 0, description: 'digitalRoot(0) is 0', got: String(fn(0)) });\n  results.push({ pass: fn(99999) === 9, description: 'digitalRoot(99999) is 9', got: String(fn(99999)) });\n  results.push({ pass: fn(1) === 1, description: 'digitalRoot(1) is 1', got: String(fn(1)) });\n  results.push({ pass: fn(12345) === 6, description: 'digitalRoot(12345) is 6 (1+2+3+4+5=15, 1+5=6)', got: String(fn(12345)) });\n  results.push({ pass: fn(100) === 1, description: 'digitalRoot(100) is 1', got: String(fn(100)) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Extract digits using `n % 10` and `Math.floor(n / 10)`. Sum them, then repeat if the sum has more than one digit.",
+        "Use an outer loop `while (n >= 10)` and an inner loop to sum digits. Or use the mathematical formula: for n > 0, digital root = 1 + (n - 1) % 9."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Remainder (%)",
+          "url": "/docs/mdn/operators-remainder.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1094,
+      "title": "Number Theory: Euler's Totient",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "euler",
+        "totient",
+        "number-theory"
+      ],
+      "description": "Compute Euler's totient function — the count of integers from 1 to n that are coprime with n.",
+      "instructions": "Write a function called `totient` that takes a positive integer `n` and returns Euler's totient φ(n) — the count of integers from 1 to n that are coprime with n (their GCD is 1).\n\nEfficient approach: use the prime factorization. For each distinct prime factor p of n, multiply the result by (1 - 1/p).\n\nφ(n) = n × ∏(1 - 1/p) for each distinct prime factor p\n\nExample:\n```\ntotient(1)   // Returns: 1\ntotient(10)  // Returns: 4  (1, 3, 7, 9 are coprime with 10)\ntotient(12)  // Returns: 4  (1, 5, 7, 11 are coprime with 12)\n```",
+      "starterCode": "",
+      "solution": "function totient(n) {\n  let result = n;\n  for (let p = 2; p * p <= n; p++) {\n    if (n % p === 0) {\n      while (n % p === 0) n /= p;\n      result -= result / p;\n    }\n  }\n  if (n > 1) result -= result / n;\n  return result;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return totient;')();\n  const results = [];\n  results.push({ pass: fn(1) === 1, description: 'totient(1) is 1', got: String(fn(1)) });\n  results.push({ pass: fn(10) === 4, description: 'totient(10) is 4', got: String(fn(10)) });\n  results.push({ pass: fn(12) === 4, description: 'totient(12) is 4', got: String(fn(12)) });\n  results.push({ pass: fn(7) === 6, description: 'totient(7) is 6 (prime: p-1)', got: String(fn(7)) });\n  results.push({ pass: fn(36) === 12, description: 'totient(36) is 12', got: String(fn(36)) });\n  results.push({ pass: fn(100) === 40, description: 'totient(100) is 40', got: String(fn(100)) });\n  results.push({ pass: fn(97) === 96, description: 'totient(97) is 96 (prime)', got: String(fn(97)) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "For each distinct prime factor p of n, the totient is reduced by a factor of (1 - 1/p). Find prime factors by trial division.",
+        "Start `result = n`. For each prime factor p, do `result -= result / p`. Make sure to divide out all copies of p from n before moving to the next."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arithmetic operators",
+          "url": "/docs/mdn/arithmetic-operators.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 75
+    },
+    {
+      "id": 1095,
+      "title": "Number Theory: Extended GCD",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "gcd",
+        "extended-euclidean",
+        "algorithms"
+      ],
+      "description": "Implement the Extended Euclidean Algorithm to find GCD and Bezout coefficients.",
+      "instructions": "Write a function called `extendedGcd` that takes two non-negative integers `a` and `b` and returns an object `{ gcd, x, y }` such that:\n\n`a * x + b * y = gcd(a, b)`\n\nThese values x and y are called Bezout coefficients.\n\nExample:\n```\nextendedGcd(35, 15)  // Returns: { gcd: 5, x: 1, y: -2 }  (35*1 + 15*(-2) = 5)\nextendedGcd(12, 8)   // Returns: { gcd: 4, x: 1, y: -1 }  (12*1 + 8*(-1) = 4)\n```",
+      "starterCode": "",
+      "solution": "function extendedGcd(a, b) {\n  if (b === 0) return { gcd: a, x: 1, y: 0 };\n  const { gcd, x: x1, y: y1 } = extendedGcd(b, a % b);\n  return { gcd, x: y1, y: x1 - Math.floor(a / b) * y1 };\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return extendedGcd;')();\n  const results = [];\n  const check = (a, b) => {\n    const r = fn(a, b);\n    return r && a * r.x + b * r.y === r.gcd;\n  };\n  let r = fn(35, 15);\n  results.push({ pass: r.gcd === 5, description: 'gcd(35, 15) is 5', got: String(r.gcd) });\n  results.push({ pass: check(35, 15), description: '35*x + 15*y = 5 holds', got: JSON.stringify(r) });\n  r = fn(12, 8);\n  results.push({ pass: r.gcd === 4, description: 'gcd(12, 8) is 4', got: String(r.gcd) });\n  results.push({ pass: check(12, 8), description: '12*x + 8*y = 4 holds', got: JSON.stringify(r) });\n  r = fn(17, 13);\n  results.push({ pass: r.gcd === 1, description: 'gcd(17, 13) is 1 (coprime)', got: String(r.gcd) });\n  results.push({ pass: check(17, 13), description: '17*x + 13*y = 1 holds', got: JSON.stringify(r) });\n  r = fn(100, 0);\n  results.push({ pass: r.gcd === 100 && r.x === 1 && r.y === 0, description: 'gcd(100, 0) is {gcd:100, x:1, y:0}', got: JSON.stringify(r) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Base case: when b=0, return {gcd: a, x: 1, y: 0}. Recursive case: compute extendedGcd(b, a%b) then back-substitute.",
+        "If the recursive call gives {gcd, x1, y1} for (b, a%b), then for (a, b): x = y1, y = x1 - floor(a/b) * y1."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.floor()",
+          "url": "/docs/mdn/math-floor.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 75
+    },
+    {
+      "id": 1096,
+      "title": "Number Theory: Amicable Numbers",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "divisors",
+        "amicable",
+        "number-theory"
+      ],
+      "description": "Find all amicable number pairs below a given limit.",
+      "instructions": "Write a function called `amicablePairs` that takes a positive integer `limit` and returns an array of all amicable pairs [a, b] where a < b and both are less than `limit`.\n\nTwo numbers are amicable if the sum of proper divisors of a equals b, and the sum of proper divisors of b equals a (where a ≠ b).\n\nProper divisors of n are all divisors less than n.\n\nExample:\n```\namicablePairs(300)    // Returns: [[220, 284]]\namicablePairs(2000)   // Returns: [[220, 284], [1184, 1210]]\n```",
+      "starterCode": "",
+      "solution": "function amicablePairs(limit) {\n  function sumDivisors(n) {\n    let sum = 1;\n    for (let i = 2; i * i <= n; i++) {\n      if (n % i === 0) {\n        sum += i;\n        if (i !== n / i) sum += n / i;\n      }\n    }\n    return sum;\n  }\n  const pairs = [];\n  for (let a = 2; a < limit; a++) {\n    const b = sumDivisors(a);\n    if (b > a && b < limit && sumDivisors(b) === a) {\n      pairs.push([a, b]);\n    }\n  }\n  return pairs;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return amicablePairs;')();\n  const j = JSON.stringify;\n  const results = [];\n  results.push({ pass: j(fn(300)) === j([[220,284]]), description: 'amicablePairs(300) is [[220, 284]]', got: j(fn(300)) });\n  const r2k = fn(2000);\n  results.push({ pass: r2k.length === 2, description: 'amicablePairs(2000) finds 2 pairs', got: String(r2k.length) });\n  results.push({ pass: j(r2k[0]) === j([220,284]), description: 'First pair is [220, 284]', got: j(r2k[0]) });\n  results.push({ pass: j(r2k[1]) === j([1184,1210]), description: 'Second pair is [1184, 1210]', got: j(r2k[1]) });\n  results.push({ pass: fn(100).length === 0, description: 'amicablePairs(100) finds no pairs', got: String(fn(100).length) });\n  results.push({ pass: fn(10000).length === 5, description: 'amicablePairs(10000) finds 5 pairs', got: String(fn(10000).length) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "First write a helper `sumDivisors(n)` that sums all divisors of n less than n. Optimize by only checking up to sqrt(n).",
+        "For each a from 2, compute b = sumDivisors(a). If b > a and sumDivisors(b) === a, they are an amicable pair."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.sqrt()",
+          "url": "/docs/mdn/math-sqrt.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 75
+    },
+    {
+      "id": 1097,
+      "title": "Number Theory: Modular Inverse",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "modular-arithmetic",
+        "inverse",
+        "extended-euclidean"
+      ],
+      "description": "Find the modular multiplicative inverse of a number, or determine that none exists.",
+      "instructions": "Write a function called `modInverse` that takes two positive integers `a` and `mod`, and returns the modular multiplicative inverse of `a` modulo `mod`.\n\nThe modular inverse of `a` mod `m` is a number `x` such that `(a * x) % m === 1`.\n\nReturn `-1` if no inverse exists (which happens when `gcd(a, m) !== 1`).\n\nExample:\n```\nmodInverse(3, 11)  // Returns: 4  (3 * 4 = 12, 12 % 11 = 1)\nmodInverse(6, 9)   // Returns: -1 (gcd(6, 9) = 3, no inverse)\n```",
+      "starterCode": "",
+      "solution": "function modInverse(a, mod) {\n  function extGcd(a, b) {\n    if (b === 0) return { gcd: a, x: 1, y: 0 };\n    const { gcd, x, y } = extGcd(b, a % b);\n    return { gcd, x: y, y: x - Math.floor(a / b) * y };\n  }\n  const { gcd, x } = extGcd(a, mod);\n  if (gcd !== 1) return -1;\n  return ((x % mod) + mod) % mod;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return modInverse;')();\n  const results = [];\n  results.push({ pass: fn(3, 11) === 4, description: 'modInverse(3, 11) is 4', got: String(fn(3, 11)) });\n  results.push({ pass: fn(6, 9) === -1, description: 'modInverse(6, 9) is -1 (no inverse)', got: String(fn(6, 9)) });\n  results.push({ pass: fn(7, 13) === 2, description: 'modInverse(7, 13) is 2 (7*2=14, 14%13=1)', got: String(fn(7, 13)) });\n  const r1 = fn(10, 17);\n  results.push({ pass: (10 * r1) % 17 === 1, description: '10 * modInverse(10, 17) ≡ 1 (mod 17)', got: String(r1) });\n  results.push({ pass: fn(1, 5) === 1, description: 'modInverse(1, 5) is 1', got: String(fn(1, 5)) });\n  results.push({ pass: fn(4, 6) === -1, description: 'modInverse(4, 6) is -1 (gcd=2)', got: String(fn(4, 6)) });\n  results.push({ pass: fn(3, 7) === 5, description: 'modInverse(3, 7) is 5 (3*5=15, 15%7=1)', got: String(fn(3, 7)) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Use the Extended Euclidean Algorithm. If gcd(a, mod) is not 1, no inverse exists. Otherwise, the Bezout coefficient x gives the inverse.",
+        "After computing extGcd(a, mod), if gcd is 1, the inverse is `((x % mod) + mod) % mod` to ensure a positive result."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.floor()",
+          "url": "/docs/mdn/math-floor.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 75
+    },
+    {
+      "id": 1098,
+      "title": "Number Theory: Complete Toolkit",
+      "type": "js",
+      "tier": 5,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "number-theory",
+        "toolkit",
+        "multi-function"
+      ],
+      "description": "Build a number theory toolkit with six core functions and a summary analyzer.",
+      "instructions": "Write a function called `numberTheory` that takes a positive integer `n` and returns an object with:\n\n- `isPrime`: boolean — whether n is prime\n- `factors`: array — prime factorization (ascending, with repeats)\n- `divisorCount`: number — total number of divisors (including 1 and n)\n- `divisorSum`: number — sum of all divisors (including 1 and n)\n- `totient`: number — Euler's totient φ(n)\n- `isPerfect`: boolean — whether n equals its sum of proper divisors\n- `digitalRoot`: number — single-digit result of repeatedly summing digits\n\nExample:\n```\nnumberTheory(6)\n// Returns: { isPrime: false, factors: [2, 3], divisorCount: 4,\n//           divisorSum: 12, totient: 2, isPerfect: true, digitalRoot: 6 }\n```",
+      "starterCode": "",
+      "solution": "function numberTheory(n) {\n  // Prime check\n  function checkPrime(num) {\n    if (num < 2) return false;\n    for (let i = 2; i * i <= num; i++) if (num % i === 0) return false;\n    return true;\n  }\n  // Prime factors\n  function getFactors(num) {\n    const f = [];\n    let temp = num;\n    for (let d = 2; d * d <= temp; d++) {\n      while (temp % d === 0) { f.push(d); temp /= d; }\n    }\n    if (temp > 1) f.push(temp);\n    return f;\n  }\n  // Divisors\n  function getDivisors(num) {\n    const divs = [];\n    for (let i = 1; i * i <= num; i++) {\n      if (num % i === 0) { divs.push(i); if (i !== num / i) divs.push(num / i); }\n    }\n    return divs;\n  }\n  // Totient\n  function phi(num) {\n    let result = num, temp = num;\n    for (let p = 2; p * p <= temp; p++) {\n      if (temp % p === 0) { while (temp % p === 0) temp /= p; result -= result / p; }\n    }\n    if (temp > 1) result -= result / temp;\n    return result;\n  }\n  // Digital root\n  function digRoot(num) {\n    while (num >= 10) {\n      let s = 0, t = num;\n      while (t > 0) { s += t % 10; t = Math.floor(t / 10); }\n      num = s;\n    }\n    return num;\n  }\n  const divs = getDivisors(n);\n  const divisorSum = divs.reduce((a, b) => a + b, 0);\n  return {\n    isPrime: checkPrime(n),\n    factors: getFactors(n),\n    divisorCount: divs.length,\n    divisorSum,\n    totient: phi(n),\n    isPerfect: divisorSum - n === n,\n    digitalRoot: digRoot(n)\n  };\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return numberTheory;')();\n  const j = JSON.stringify;\n  const results = [];\n  let r = fn(6);\n  results.push({ pass: r.isPrime === false, description: '6 is not prime', got: String(r.isPrime) });\n  results.push({ pass: j(r.factors) === '[2,3]', description: 'factors of 6: [2, 3]', got: j(r.factors) });\n  results.push({ pass: r.divisorCount === 4, description: '6 has 4 divisors', got: String(r.divisorCount) });\n  results.push({ pass: r.divisorSum === 12, description: 'Sum of divisors of 6 is 12', got: String(r.divisorSum) });\n  results.push({ pass: r.totient === 2, description: 'totient(6) is 2', got: String(r.totient) });\n  results.push({ pass: r.isPerfect === true, description: '6 is perfect', got: String(r.isPerfect) });\n  r = fn(28);\n  results.push({ pass: r.isPerfect === true, description: '28 is perfect', got: String(r.isPerfect) });\n  results.push({ pass: r.digitalRoot === 1, description: 'digitalRoot(28) is 1', got: String(r.digitalRoot) });\n  r = fn(97);\n  results.push({ pass: r.isPrime === true, description: '97 is prime', got: String(r.isPrime) });\n  results.push({ pass: r.totient === 96, description: 'totient(97) is 96', got: String(r.totient) });\n  r = fn(12);\n  results.push({ pass: j(r.factors) === '[2,2,3]', description: 'factors of 12: [2, 2, 3]', got: j(r.factors) });\n  results.push({ pass: r.divisorCount === 6, description: '12 has 6 divisors', got: String(r.divisorCount) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Break the problem into independent sub-functions: isPrime, primeFactors, getDivisors, totient, digitalRoot. Compose them to build the result object.",
+        "For divisors, loop from 1 to sqrt(n) — if i divides n, both i and n/i are divisors. A number is perfect if the sum of its proper divisors (divisorSum - n) equals n."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Object",
+          "url": "/docs/mdn/object.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 100
+    },
+    {
+      "id": 1099,
+      "title": "Number Theory: Chinese Remainder Theorem",
+      "type": "js",
+      "tier": 5,
+      "category": [
+        "math",
+        "number-theory"
+      ],
+      "tags": [
+        "math",
+        "crt",
+        "modular-arithmetic",
+        "number-theory"
+      ],
+      "description": "Solve a system of modular congruences using the Chinese Remainder Theorem.",
+      "instructions": "Write a function called `chineseRemainder` that takes two arrays: `remainders` and `moduli`, representing a system of congruences:\n\n```\nx ≡ remainders[0] (mod moduli[0])\nx ≡ remainders[1] (mod moduli[1])\n...\n```\n\nReturn the smallest non-negative integer `x` that satisfies all congruences, or `-1` if no solution exists.\n\nAll moduli must be pairwise coprime for a solution to exist.\n\nExample:\n```\nchineseRemainder([2, 3, 2], [3, 5, 7])  // Returns: 23\n// 23 % 3 = 2, 23 % 5 = 3, 23 % 7 = 2\n\nchineseRemainder([1, 2], [3, 6])  // Returns: -1 (3 and 6 not coprime)\n```",
+      "starterCode": "",
+      "solution": "function chineseRemainder(remainders, moduli) {\n  function extGcd(a, b) {\n    if (b === 0) return { gcd: a, x: 1, y: 0 };\n    const { gcd, x, y } = extGcd(b, a % b);\n    return { gcd, x: y, y: x - Math.floor(a / b) * y };\n  }\n  function modInverse(a, m) {\n    const { gcd, x } = extGcd(a, m);\n    if (gcd !== 1) return -1;\n    return ((x % m) + m) % m;\n  }\n  const N = moduli.reduce((a, b) => a * b, 1);\n  let x = 0;\n  for (let i = 0; i < moduli.length; i++) {\n    const ni = N / moduli[i];\n    const inv = modInverse(ni, moduli[i]);\n    if (inv === -1) return -1;\n    x += remainders[i] * ni * inv;\n  }\n  return ((x % N) + N) % N;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return chineseRemainder;')();\n  const results = [];\n  results.push({ pass: fn([2,3,2], [3,5,7]) === 23, description: 'x≡2(mod3), x≡3(mod5), x≡2(mod7) → 23', got: String(fn([2,3,2], [3,5,7])) });\n  results.push({ pass: fn([1,2], [3,6]) === -1, description: 'Coprime check: [3,6] returns -1', got: String(fn([1,2], [3,6])) });\n  results.push({ pass: fn([0,3,4], [3,4,5]) === 39, description: 'x≡0(mod3), x≡3(mod4), x≡4(mod5) → 39', got: String(fn([0,3,4], [3,4,5])) });\n  results.push({ pass: fn([1], [5]) === 1, description: 'Single congruence: x≡1(mod5) → 1', got: String(fn([1], [5])) });\n  const r = fn([2,3,1], [3,5,7]);\n  results.push({ pass: r % 3 === 2 && r % 5 === 3 && r % 7 === 1, description: 'Result satisfies all 3 congruences', got: String(r) });\n  results.push({ pass: fn([0,0,0], [3,5,7]) === 0, description: 'All zero remainders → 0', got: String(fn([0,0,0], [3,5,7])) });\n  return results;\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Compute N = product of all moduli. For each i, compute Ni = N/moduli[i], find the modular inverse of Ni mod moduli[i], then sum remainders[i] * Ni * inverse.",
+        "You need the Extended Euclidean Algorithm to find modular inverses. If any modular inverse does not exist (gcd ≠ 1), the system has no solution."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "/docs/mdn/array-reduce.html"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 100
+    }
+  ]
+}
