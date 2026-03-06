@@ -31,7 +31,7 @@ export default function ExerciseView() {
 
   const [code, setCode] = useState('');
   const [cssCode, setCssCode] = useState('');
-  const [activeTab, setActiveTab] = useState<'instructions' | 'results' | 'preview'>('instructions');
+  const [activeTab, setActiveTab] = useState<'instructions' | 'results' | 'preview' | 'dataset'>('instructions');
   const [previewHtml, setPreviewHtml] = useState('');
   const [showResetModal, setShowResetModal] = useState(false);
   const [panelCollapsed, setPanelCollapsed] = useState(false);

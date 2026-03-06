@@ -102,6 +102,7 @@ export const createExerciseSchema = z.object({
     )
     .optional(),
   providedHtml: z.string().optional(),
+  dataset: z.string().optional(),
   hints: z.array(z.string()).default([]),
   resources: z
     .array(
