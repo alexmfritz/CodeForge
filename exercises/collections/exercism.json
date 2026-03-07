@@ -783,7 +783,7 @@
           "description": "The repeat method"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -861,7 +861,7 @@
           "description": "Iterating over arrays with for...of"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -900,7 +900,7 @@
           "description": "Pop elements from an array (stack)"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -939,7 +939,7 @@
           "description": "Regular expressions for pattern matching"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1017,7 +1017,7 @@
           "description": "Regular expressions"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1056,7 +1056,7 @@
           "description": "Loops and iteration in JavaScript"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1095,7 +1095,7 @@
           "description": "Reduce an array to collect results"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1134,7 +1134,7 @@
           "description": "Filter array elements"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1173,7 +1173,7 @@
           "description": "Left shift operator"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1212,7 +1212,7 @@
           "description": "Reverse an array in place"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1251,7 +1251,7 @@
           "description": "Remainder (modulo) operator"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1290,7 +1290,7 @@
           "description": "Set data structure for unique values"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1368,7 +1368,7 @@
           "description": "Round down to integer"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1446,7 +1446,7 @@
           "description": "Add elements to the beginning of an array"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1485,7 +1485,7 @@
           "description": "Create a string from character codes"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1524,7 +1524,7 @@
           "description": "Match patterns in strings"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1563,7 +1563,7 @@
           "description": "Create characters from codes"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1602,8 +1602,8 @@
           "description": "Throwing errors"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 639,
@@ -1641,8 +1641,8 @@
           "description": "Check if array includes a value"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 640,
@@ -1680,8 +1680,8 @@
           "description": "Add to the end of an array"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 641,
@@ -1719,8 +1719,8 @@
           "description": "Square root function"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 642,
@@ -1758,8 +1758,8 @@
           "description": "Transform array elements"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 643,
@@ -1797,7 +1797,7 @@
           "description": "Destructure arrays and objects"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1836,8 +1836,8 @@
           "description": "Sort array elements"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 645,
@@ -1875,8 +1875,8 @@
           "description": "Test if all elements pass a test"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 646,
@@ -1914,8 +1914,8 @@
           "description": "Getter properties"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 647,
@@ -1953,8 +1953,8 @@
           "description": "Add elements to the beginning of an array"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 648,
@@ -1992,8 +1992,8 @@
           "description": "Convert to number"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 649,
@@ -2031,8 +2031,8 @@
           "description": "Extract part of a string"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 650,
@@ -2070,8 +2070,8 @@
           "description": "Truncate to integer"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 200
+      "solutionGate": 10,
+      "basePoints": 100
     }
   ]
 }

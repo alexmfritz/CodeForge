@@ -268,7 +268,7 @@
           "description": "Unpack values from arrays into variables"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -307,7 +307,7 @@
           "description": "Determines whether a value is an array"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -346,8 +346,8 @@
           "description": "Adds elements to the end of an array"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 714,
@@ -1328,7 +1328,7 @@
           "description": "Control the direction of flex items"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50,
       "providedHtml": "<div class=\"modal\" style=\"background:#1e293b;color:#e2e8f0;border-radius:8px;\"><div class=\"modal-header\"><h2>Confirm Action</h2><button>✕</button></div><div class=\"modal-body\"><p>Are you sure you want to proceed?</p></div><div class=\"modal-footer\"><button>Cancel</button><button>Continue</button></div></div>"
     },
@@ -1402,7 +1402,7 @@
           "description": "The flex shorthand property"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50,
       "providedHtml": "<div class=\"page\" style=\"color:#e2e8f0;\"><div class=\"page-header\">Header</div><div class=\"page-content\">Main Content</div><div class=\"page-footer\">Footer</div></div>"
     },
@@ -1483,7 +1483,7 @@
           "description": "Building complex layouts with flexbox"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50,
       "providedHtml": "<div class=\"holy-grail\" style=\"background:#0f172a;color:#e2e8f0;\"><div class=\"hg-header\" style=\"background:#1e293b;\">Header</div><div class=\"hg-body\"><div class=\"hg-sidebar\" style=\"background:#1e293b;\">Sidebar</div><div class=\"hg-content\">Main Content Area</div></div><div class=\"hg-footer\" style=\"background:#1e293b;\">Footer</div></div>"
     },
@@ -1558,7 +1558,7 @@
           "description": "Complete guide to CSS Grid"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50,
       "providedHtml": "<div class=\"grid-layout\" style=\"color:#e2e8f0;\"><div class=\"gl-header\" style=\"background:#1e293b;padding:16px;\">Header</div><div class=\"gl-sidebar\" style=\"background:#334155;padding:16px;\">Sidebar</div><div class=\"gl-content\" style=\"background:#0f172a;padding:16px;\">Content</div><div class=\"gl-footer\" style=\"background:#1e293b;padding:16px;\">Footer</div></div>"
     },
@@ -1622,7 +1622,7 @@
           "description": "The fractional unit for grid layouts"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50,
       "providedHtml": "<div class=\"responsive-grid\" style=\"color:#e2e8f0;\"><div class=\"rg-header\" style=\"background:#1e293b;padding:8px;\">Header</div><div class=\"rg-sidebar\" style=\"background:#334155;padding:8px;\">Sidebar</div><div class=\"rg-content\" style=\"background:#0f172a;padding:8px;\">Content</div><div class=\"rg-footer\" style=\"background:#1e293b;padding:8px;\">Footer</div></div>"
     },
@@ -1700,7 +1700,7 @@
           "description": "Auto-fitting grid tracks"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50,
       "providedHtml": "<div class=\"card-grid\"><div class=\"grid-card\" style=\"background:#1e293b;color:#e2e8f0;\">Card 1</div><div class=\"grid-card\" style=\"background:#334155;color:#e2e8f0;\">Card 2</div><div class=\"grid-card\" style=\"background:#475569;color:#e2e8f0;\">Card 3</div><div class=\"grid-card\" style=\"background:#1e293b;color:#e2e8f0;\">Card 4</div></div>"
     },
@@ -1770,7 +1770,7 @@
           "description": "Animate CSS property changes"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50,
       "providedHtml": "<button class=\"hover-btn\">Hover Me</button>"
     },
@@ -1841,8 +1841,8 @@
           "description": "CSS transform functions including translate"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100,
+      "solutionGate": 10,
+      "basePoints": 75,
       "providedHtml": "<div class=\"popup visible\" style=\"background:#1e293b;color:#e2e8f0;\"><h2>Pop-up Title</h2><p>This slides down and fades in.</p></div>"
     },
     {
@@ -1915,8 +1915,8 @@
           "description": "Set the origin for transformations"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100,
+      "solutionGate": 10,
+      "basePoints": 75,
       "providedHtml": "<div style=\"position:relative;\"><button style=\"padding:8px 16px;background:#3b82f6;color:white;border:none;border-radius:8px 8px 0 0;\">Menu</button><div class=\"dropdown\" style=\"background:#1e293b;color:#e2e8f0;min-width:150px;\"><div class=\"dropdown-item\">Option 1</div><div class=\"dropdown-item\">Option 2</div><div class=\"dropdown-item\">Option 3</div></div></div>"
     }
   ]

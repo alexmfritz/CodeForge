@@ -1823,7 +1823,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 100
+      "basePoints": 75
     },
     {
       "id": 768,
@@ -1863,7 +1863,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 100
+      "basePoints": 75
     },
     {
       "id": 769,
@@ -1976,7 +1976,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 100
+      "basePoints": 75
     },
     {
       "id": 770,
@@ -2018,7 +2018,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 100
+      "basePoints": 75
     },
     {
       "id": 771,
@@ -2059,7 +2059,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 100
+      "basePoints": 75
     },
     {
       "id": 772,
@@ -2184,7 +2184,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 100,
+      "basePoints": 75,
       "providedHtml": "<div class=\"party-panel\"><div class=\"char-entry\"><div class=\"avatar-frame\"></div><div class=\"bars\"><div class=\"hp-bar\" style=\"width:80%\"></div><div class=\"mp-bar\" style=\"width:60%\"></div></div></div><div class=\"char-entry\"><div class=\"avatar-frame\"></div><div class=\"bars\"><div class=\"hp-bar\" style=\"width:45%\"></div><div class=\"mp-bar\" style=\"width:90%\"></div></div></div><div class=\"char-entry\"><div class=\"avatar-frame\"></div><div class=\"bars\"><div class=\"hp-bar\" style=\"width:20%\"></div><div class=\"mp-bar\" style=\"width:30%\"></div></div></div></div>"
     },
     {
@@ -2225,7 +2225,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 100
+      "basePoints": 75
     },
     {
       "id": 774,
@@ -2267,7 +2267,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 100
+      "basePoints": 75
     },
     {
       "id": 775,
@@ -2393,7 +2393,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 100
+      "basePoints": 75
     },
     {
       "id": 776,
@@ -2435,7 +2435,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 200
+      "basePoints": 100
     },
     {
       "id": 777,
@@ -2567,7 +2567,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 200
+      "basePoints": 100
     },
     {
       "id": 778,
@@ -2609,7 +2609,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 200
+      "basePoints": 100
     },
     {
       "id": 779,
@@ -2649,7 +2649,7 @@
         }
       ],
       "solutionGate": 10,
-      "basePoints": 200
+      "basePoints": 100
     }
   ]
 }

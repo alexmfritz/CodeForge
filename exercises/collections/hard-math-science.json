@@ -342,7 +342,7 @@
       "dataset": "",
       "hints": [
         "For each distinct prime factor p of n, the totient is reduced by a factor of (1 - 1/p). Find prime factors by trial division.",
-        "Start `result = n`. For each prime factor p, do `result -= result / p`. Make sure to divide out all copies of p from n before moving to the next."
+        "Start with result equal to n. For each distinct prime factor found by trial division, reduce result by result divided by that factor. Remove all copies of each prime before moving on."
       ],
       "resources": [
         {
@@ -868,7 +868,7 @@
       "dataset": "",
       "hints": [
         "The gift wrapping algorithm starts from the leftmost point and repeatedly selects the next point that makes the smallest counterclockwise angle.",
-        "Use the cross product to determine turns: `cross(o, a, b) = (a.x-o.x)*(b.y-o.y) - (a.y-o.y)*(b.x-o.x)`. Positive means counterclockwise turn."
+        "Use the cross product of three points to determine turn direction. A positive value indicates a counterclockwise turn, which is the one you want to keep."
       ],
       "resources": [
         {
@@ -903,7 +903,7 @@
       "dataset": "",
       "hints": [
         "The circumscribed circle center is equidistant from all three points. Set up and solve the system of equations from expanding the circle equation.",
-        "Compute determinant `d = 2*(ax*(by-cy) + bx*(cy-ay) + cx*(ay-by))`. If d ≈ 0, points are collinear. Otherwise, compute center and radius."
+        "Compute a determinant from the three points. If it is near zero, the points are collinear. Otherwise use the determinant to find the center coordinates, then calculate the radius as the distance from the center to any point."
       ],
       "resources": [
         {
@@ -1385,7 +1385,7 @@
       "testCases": [],
       "hints": [
         "Compute the means of both x and y. The slope uses the same numerator as correlation but divided only by Σ(xi - x̄)². The intercept follows from the point (x̄, ȳ).",
-        "Accumulate `(x[i]-meanX)*(y[i]-meanY)` for the numerator and `(x[i]-meanX)²` for the denominator. Then `intercept = meanY - slope * meanX`."
+        "Accumulate paired deviations from the means for the numerator and squared x-deviations for the denominator. The intercept passes through the point defined by both means."
       ],
       "resources": [
         {
@@ -1419,7 +1419,7 @@
       "testCases": [],
       "hints": [
         "Find the range (max - min), divide by `numBins` to get bin width. Assign each value to a bin based on its position.",
-        "Compute `idx = Math.floor((value - min) / width)`. Clamp `idx` to `numBins - 1` to handle the maximum value (which would otherwise be out of range)."
+        "Determine which bin a value belongs to by computing its offset from the minimum divided by the bin width, then flooring the result. Clamp the index so the maximum value falls in the last bin."
       ],
       "resources": [
         {
@@ -1453,7 +1453,7 @@
       "testCases": [],
       "hints": [
         "The PDF is a direct formula application. For the CDF, implement the error function approximation using the Horner's method polynomial evaluation.",
-        "For the error function, compute `t = 1/(1 + p*|z|)` then evaluate the polynomial `((((a5*t+a4)*t+a3)*t+a2)*t+a1)*t`. Handle the sign of z separately for the final CDF."
+        "The PDF is a direct formula application. For the CDF, implement the error function approximation by computing a substitution variable from the absolute z-score, evaluating a polynomial, and handling the sign separately."
       ],
       "resources": [
         {
@@ -1522,7 +1522,7 @@
       "testCases": [],
       "hints": [
         "Break this into three independent functions. `describe` needs mean, median, mode, and standard deviation. `removeOutliers` uses the IQR method. `bestFit` is linear regression plus R².",
-        "For R², compute `ssRes = Σ(yi - predicted)²` and `ssTot = Σ(yi - meanY)²`, then `R² = 1 - ssRes/ssTot`. The `predict` function returns a closure: `(xVal) => slope * xVal + intercept`."
+        "Break this into three independent functions. For R-squared, compare the sum of squared residuals against the total variance. The predict function should return a closure that applies the line equation."
       ],
       "resources": [
         {
@@ -1868,7 +1868,7 @@
       "testCases": [],
       "hints": [
         "Use the formula C(n) = C(2n, n) / (n+1). Compute C(2n, n) using the multiplicative formula to avoid large factorials.",
-        "Loop i from 0 to n-1: `result = result * (2*n - i) / (i + 1)`. Then divide by `n + 1` at the end."
+        "Use the multiplicative formula for the binomial coefficient to avoid computing large factorials directly. Divide by n plus 1 at the end."
       ],
       "resources": [
         {

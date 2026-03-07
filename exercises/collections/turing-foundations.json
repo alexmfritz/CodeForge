@@ -537,7 +537,7 @@
           "description": "JavaScript classes reference"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -584,7 +584,7 @@
           "description": "JavaScript classes reference"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -631,7 +631,7 @@
           "description": "The this keyword"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -678,7 +678,7 @@
           "description": "JavaScript functions guide"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -725,7 +725,7 @@
           "description": "JavaScript classes reference"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -772,7 +772,7 @@
           "description": "JavaScript classes reference"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -819,7 +819,7 @@
           "description": "JavaScript classes reference"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -866,7 +866,7 @@
           "description": "JavaScript functions guide"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -913,7 +913,7 @@
           "description": "The this keyword"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -960,7 +960,7 @@
           "description": "JavaScript classes reference"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1007,7 +1007,7 @@
           "description": "The this keyword"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1054,7 +1054,7 @@
           "description": "Template literal syntax"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1084,7 +1084,7 @@
       "testCases": [],
       "hints": [
         "The `splice` method will be helpful here.",
-        "This exercise chains across five classes. Start small — get Item working, then Inventory, then Character (which uses Inventory internally), then Quest, then Party last.\n\nKey patterns:\n- `get power()` is a getter — use `get power() { ... }` syntax, accessed as `character.power` (no parentheses)\n- `distributeReward` must create NEW Item instances for each member — don't share the same object or removing it from one inventory removes it from all\n- `remove()` should also clear `this.equipped` if the removed item was the one equipped\n- `runQuest()` checks both: quest not already completed AND at least one member can attempt it\n- `usePotion()` removes the potion FIRST, then heals — so the potion is consumed even if at full health"
+        "Build classes in dependency order: Item, Inventory, Character, Quest, Party. Watch for traps: the power getter uses only the equipped item, distributeReward creates new instances per member, remove clears equipped if needed, and usePotion consumes before healing."
       ],
       "resources": [
         {
@@ -1103,8 +1103,8 @@
           "description": "JavaScript classes reference"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 557,
@@ -1436,7 +1436,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Glossary/Hoisting"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1475,7 +1475,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1510,7 +1510,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1550,7 +1550,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1585,7 +1585,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1619,7 +1619,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1654,7 +1654,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1688,7 +1688,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#hoisting"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1723,7 +1723,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1745,7 +1745,7 @@
       "instructions": "You have two datasets:\n```js\nconst clubs = [\n  { club: 'Drama', members: ['Louisa', 'Pam', 'Nathaniel'] },\n  { club: 'Band', members: ['Leta', 'Robbie', 'Jhun', 'Will'] },\n  { club: 'Chess', members: ['David', 'Pam', 'Brittany', 'Robbie'] },\n  { club: 'Newspaper', members: ['Pam', 'David', 'Brittany', 'Christie', 'Leta'] },\n  { club: 'Astronomy', members: ['Nathaniel', 'Leta'] },\n  { club: 'FBLA', members: ['Christie', 'David', 'Robbie'] },\n  { club: 'Art', members: ['Jhun', 'Louisa'] }\n];\n\nconst mods = [\n  { mod: 1, students: 27, instructors: 3 },\n  { mod: 2, students: 33, instructors: 3 },\n  { mod: 3, students: 20, instructors: 2 },\n  { mod: 4, students: 16, instructors: 2 }\n];\n```\n\n**membersBelongingToClubs(clubs)** — Return an object where each key is a member name and the value is an array of clubs they belong to:\n```js\n// { Louisa: ['Drama', 'Art'], Pam: ['Drama', 'Chess', 'Newspaper'], ... }\n```\n\n**studentsPerMod(mods)** — Return an array of objects with each mod number and its students-per-instructor ratio:\n```js\n// [{ mod: 1, studentsPerInstructor: 9 }, { mod: 2, studentsPerInstructor: 11 }, ...]\n```",
       "starterCode": "function membersBelongingToClubs(clubs) {\n  // your code here\n}\n\nfunction studentsPerMod(mods) {\n  // your code here\n}",
       "solution": "function membersBelongingToClubs(clubs) {\n  return clubs.reduce((obj, club) => {\n    club.members.forEach(member => {\n      if (!obj[member]) {\n        obj[member] = [club.club];\n      } else {\n        obj[member].push(club.club);\n      }\n    });\n    return obj;\n  }, {});\n}\n\nfunction studentsPerMod(mods) {\n  return mods.map(m => ({\n    mod: m.mod,\n    studentsPerInstructor: m.students / m.instructors\n  }));\n}",
-      "testRunner": "(code) => {\n  const { membersBelongingToClubs, studentsPerMod } = new Function(code + '; return { membersBelongingToClubs, studentsPerMod };')();\n  const results = [];\n\n  const clubs = [\n    { club: 'Drama', members: ['Louisa', 'Pam', 'Nathaniel'] },\n    { club: 'Band', members: ['Leta', 'Robbie', 'Jhun', 'Will'] },\n    { club: 'Chess', members: ['David', 'Pam', 'Brittany', 'Robbie'] },\n    { club: 'Newspaper', members: ['Pam', 'David', 'Brittany', 'Christie', 'Leta'] },\n    { club: 'Astronomy', members: ['Nathaniel', 'Leta'] },\n    { club: 'FBLA', members: ['Christie', 'David', 'Robbie'] },\n    { club: 'Art', members: ['Jhun', 'Louisa'] }\n  ];\n  const mods = [\n    { mod: 1, students: 27, instructors: 3 },\n    { mod: 2, students: 33, instructors: 3 },\n    { mod: 3, students: 20, instructors: 2 },\n    { mod: 4, students: 16, instructors: 2 }\n  ];\n\n  const mc = membersBelongingToClubs(clubs);\n  results.push({ pass: JSON.stringify(mc['Pam']?.sort()) === JSON.stringify(['Chess', 'Drama', 'Newspaper']), description: 'Pam belongs to Drama, Chess, Newspaper', got: JSON.stringify(mc['Pam']) });\n  results.push({ pass: JSON.stringify(mc['Louisa']?.sort()) === JSON.stringify(['Art', 'Drama']), description: 'Louisa belongs to Drama, Art', got: JSON.stringify(mc['Louisa']) });\n  results.push({ pass: mc['Robbie']?.length === 3, description: 'Robbie belongs to 3 clubs', got: String(mc['Robbie']?.length) });\n  results.push({ pass: Object.keys(mc).length === 9, description: 'There are 9 unique members', got: String(Object.keys(mc).length) });\n\n  const sp = studentsPerMod(mods);\n  results.push({ pass: sp[0].mod === 1 && sp[0].studentsPerInstructor === 9, description: 'Mod 1: 27/3 = 9 students per instructor', got: JSON.stringify(sp[0]) });\n  results.push({ pass: sp[1].mod === 2 && sp[1].studentsPerInstructor === 11, description: 'Mod 2: 33/3 = 11 students per instructor', got: JSON.stringify(sp[1]) });\n  results.push({ pass: sp[2].mod === 3 && sp[2].studentsPerInstructor === 10, description: 'Mod 3: 20/2 = 10 students per instructor', got: JSON.stringify(sp[2]) });\n  results.push({ pass: sp[3].mod === 4 && sp[3].studentsPerInstructor === 8, description: 'Mod 4: 16/2 = 8 students per instructor', got: JSON.stringify(sp[3]) });\n\n  return results;\n}",
+      "testRunner": "(code) => {\n  const { membersBelongingToClubs, studentsPerMod } = new Function(code + '; return { membersBelongingToClubs, studentsPerMod };')();\n  const results = [];\n\n  const clubs = [\n    { club: 'Drama', members: ['Louisa', 'Pam', 'Nathaniel'] },\n    { club: 'Band', members: ['Leta', 'Robbie', 'Jhun', 'Will'] },\n    { club: 'Chess', members: ['David', 'Pam', 'Brittany', 'Robbie'] },\n    { club: 'Newspaper', members: ['Pam', 'David', 'Brittany', 'Christie', 'Leta'] },\n    { club: 'Astronomy', members: ['Nathaniel', 'Leta'] },\n    { club: 'FBLA', members: ['Christie', 'David', 'Robbie'] },\n    { club: 'Art', members: ['Jhun', 'Louisa'] }\n  ];\n  const mods = [\n    { mod: 1, students: 27, instructors: 3 },\n    { mod: 2, students: 33, instructors: 3 },\n    { mod: 3, students: 20, instructors: 2 },\n    { mod: 4, students: 16, instructors: 2 }\n  ];\n\n  const mc = membersBelongingToClubs(clubs);\n  results.push({ pass: JSON.stringify(mc['Pam']?.sort()) === JSON.stringify(['Chess', 'Drama', 'Newspaper']), description: 'Pam belongs to Drama, Chess, Newspaper', got: JSON.stringify(mc['Pam']) });\n  results.push({ pass: JSON.stringify(mc['Louisa']?.sort()) === JSON.stringify(['Art', 'Drama']), description: 'Louisa belongs to Drama, Art', got: JSON.stringify(mc['Louisa']) });\n  results.push({ pass: mc['Robbie']?.length === 3, description: 'Robbie belongs to 3 clubs', got: String(mc['Robbie']?.length) });\n  results.push({ pass: Object.keys(mc).length === 10, description: 'There are 10 unique members', got: String(Object.keys(mc).length) });\n\n  const sp = studentsPerMod(mods);\n  results.push({ pass: sp[0].mod === 1 && sp[0].studentsPerInstructor === 9, description: 'Mod 1: 27/3 = 9 students per instructor', got: JSON.stringify(sp[0]) });\n  results.push({ pass: sp[1].mod === 2 && sp[1].studentsPerInstructor === 11, description: 'Mod 2: 33/3 = 11 students per instructor', got: JSON.stringify(sp[1]) });\n  results.push({ pass: sp[2].mod === 3 && sp[2].studentsPerInstructor === 10, description: 'Mod 3: 20/2 = 10 students per instructor', got: JSON.stringify(sp[2]) });\n  results.push({ pass: sp[3].mod === 4 && sp[3].studentsPerInstructor === 8, description: 'Mod 4: 16/2 = 8 students per instructor', got: JSON.stringify(sp[3]) });\n\n  return results;\n}",
       "testCases": [],
       "hints": [
         "For `membersBelongingToClubs`, use `.reduce()` with an accumulator object. For each club, loop through its members and either create a new array or push to an existing one.",
@@ -1757,7 +1757,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1791,7 +1791,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1825,7 +1825,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1860,7 +1860,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1895,7 +1895,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1930,7 +1930,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1964,7 +1964,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -1999,7 +1999,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2034,7 +2034,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2062,7 +2062,7 @@
       "testCases": [],
       "hints": [
         "For `countAwesomeDinosaurs`, iterate over movies and for each movie, filter its `dinos` array — check each dino name against the dinosaurs object to see if `isAwesome` is true.",
-        "For `uncastActors`, create a Set of all cast members from all movies using `.flatMap()`. Then filter `Object.entries(humans)` to find names NOT in the Set."
+        "For uncastActors, collect all cast names into a Set using flatMap, then find humans not in that Set. Sort the result by nationality using localeCompare."
       ],
       "resources": [
         {
@@ -2070,8 +2070,8 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 584,
@@ -2103,7 +2103,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2137,7 +2137,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2171,7 +2171,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2197,7 +2197,7 @@
       "testCases": [],
       "hints": [
         "The protect method needs two guards: same location check (`this.location === stark.location`) AND a capacity check (`this.starksToProtect.length < 2`).",
-        "For `goHome()`, iterate over a copy of the array (spread into a new array first) since `leave()` modifies the original."
+        "For goHome, make a copy of the protected array before iterating, since calling leave inside the loop modifies the original array."
       ],
       "resources": [
         {
@@ -2205,8 +2205,8 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
         }
       ],
-      "solutionGate": 6,
-      "basePoints": 100
+      "solutionGate": 10,
+      "basePoints": 75
     },
     {
       "id": 588,
@@ -2304,7 +2304,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2371,7 +2371,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2405,7 +2405,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2439,7 +2439,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2473,7 +2473,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2506,7 +2506,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     },
     {
@@ -2564,7 +2564,7 @@
       "instructions": "You are given a `stores` array of restaurant objects. Each has:\n- `store`: name string\n- `employees`: array of `{ name, position }`\n- `dishes`: array of `{ name, ingredients, price }` where ingredients is an array of strings\n\nWrite these functions:\n\n1. `allEmployeeNames(stores)` — Returns a flat array of all employee names across all stores.\n\n2. `findChefs(stores)` — Returns an array of names of employees whose position is `'chef'`.\n\n3. `mostExpensiveDish(stores)` — Returns the single dish object with the highest price across all stores.\n\n4. `allIngredients(stores)` — Returns a sorted array of all unique ingredient strings across all dishes in all stores.\n\n5. `storeRevenue(stores)` — Returns an object where keys are store names and values are the sum of all dish prices at that store.",
       "starterCode": "/**\n * Restaurant Analysis — deeply nested data traversal\n *\n * stores: [{ store, employees: [{name, position}], dishes: [{name, ingredients, price}] }]\n * Extract, filter, and aggregate across multiple nesting levels.\n */\n",
       "solution": "function allEmployeeNames(stores) {\n  return stores.flatMap(s => s.employees.map(e => e.name));\n}\n\nfunction findChefs(stores) {\n  return stores.flatMap(s => s.employees.filter(e => e.position === 'chef').map(e => e.name));\n}\n\nfunction mostExpensiveDish(stores) {\n  return stores.flatMap(s => s.dishes).reduce((max, dish) => dish.price > max.price ? dish : max);\n}\n\nfunction allIngredients(stores) {\n  const ingredients = new Set();\n  for (const store of stores) {\n    for (const dish of store.dishes) {\n      for (const ing of dish.ingredients) {\n        ingredients.add(ing);\n      }\n    }\n  }\n  return [...ingredients].sort();\n}\n\nfunction storeRevenue(stores) {\n  const result = {};\n  for (const store of stores) {\n    result[store.store] = store.dishes.reduce((sum, d) => sum + d.price, 0);\n  }\n  return result;\n}",
-      "testRunner": "(code) => {\n  const { allEmployeeNames, findChefs, mostExpensiveDish, allIngredients, storeRevenue } = new Function(code + '; return { allEmployeeNames, findChefs, mostExpensiveDish, allIngredients, storeRevenue };')();\n  const results = [];\n\n  const stores = [\n    {\n      store: \"Pasta Palace\",\n      employees: [\n        { name: \"Marco\", position: \"chef\" },\n        { name: \"Lisa\", position: \"server\" },\n        { name: \"Tony\", position: \"chef\" }\n      ],\n      dishes: [\n        { name: \"Spaghetti\", ingredients: [\"pasta\", \"tomato\", \"garlic\"], price: 12 },\n        { name: \"Alfredo\", ingredients: [\"pasta\", \"cream\", \"parmesan\"], price: 14 }\n      ]\n    },\n    {\n      store: \"Burger Barn\",\n      employees: [\n        { name: \"Jake\", position: \"chef\" },\n        { name: \"Sara\", position: \"manager\" }\n      ],\n      dishes: [\n        { name: \"Classic Burger\", ingredients: [\"beef\", \"bun\", \"lettuce\", \"tomato\"], price: 10 },\n        { name: \"Deluxe Burger\", ingredients: [\"beef\", \"bun\", \"cheese\", \"bacon\", \"lettuce\"], price: 15 }\n      ]\n    },\n    {\n      store: \"Sushi Spot\",\n      employees: [\n        { name: \"Yuki\", position: \"chef\" },\n        { name: \"Ken\", position: \"server\" }\n      ],\n      dishes: [\n        { name: \"Dragon Roll\", ingredients: [\"rice\", \"eel\", \"avocado\"], price: 18 },\n        { name: \"Salmon Nigiri\", ingredients: [\"rice\", \"salmon\"], price: 8 }\n      ]\n    }\n  ];\n\n  const names = allEmployeeNames(stores);\n  results.push({ pass: names.length === 7 && names.includes('Marco') && names.includes('Ken'), description: 'allEmployeeNames returns all 7 names', got: JSON.stringify(names) });\n\n  const chefs = findChefs(stores);\n  results.push({ pass: chefs.length === 3 && chefs.includes('Marco') && chefs.includes('Jake') && chefs.includes('Yuki'), description: 'findChefs returns 3 chefs', got: JSON.stringify(chefs) });\n\n  const expensive = mostExpensiveDish(stores);\n  results.push({ pass: expensive.name === 'Dragon Roll' && expensive.price === 18, description: 'mostExpensiveDish is Dragon Roll at $18', got: expensive.name + ': $' + expensive.price });\n\n  const ings = allIngredients(stores);\n  results.push({ pass: ings[0] === 'avocado' && ings[ings.length - 1] === 'tomato', description: 'allIngredients is sorted alphabetically', got: ings[0] + ' ... ' + ings[ings.length - 1] });\n  results.push({ pass: ings.length === new Set(ings).size, description: 'allIngredients has no duplicates', got: 'unique count: ' + ings.length });\n\n  const rev = storeRevenue(stores);\n  results.push({ pass: rev['Pasta Palace'] === 26, description: 'Pasta Palace revenue is $26', got: String(rev['Pasta Palace']) });\n  results.push({ pass: rev['Burger Barn'] === 25, description: 'Burger Barn revenue is $25', got: String(rev['Burger Barn']) });\n  results.push({ pass: rev['Sushi Spot'] === 26, description: 'Sushi Spot revenue is $26', got: String(rev['Sushi Spot']) });\n\n  return results;\n}",
+      "testRunner": "(code) => {\n  const { allEmployeeNames, findChefs, mostExpensiveDish, allIngredients, storeRevenue } = new Function(code + '; return { allEmployeeNames, findChefs, mostExpensiveDish, allIngredients, storeRevenue };')();\n  const results = [];\n\n  const stores = [\n    {\n      store: \"Pasta Palace\",\n      employees: [\n        { name: \"Marco\", position: \"chef\" },\n        { name: \"Lisa\", position: \"server\" },\n        { name: \"Tony\", position: \"chef\" }\n      ],\n      dishes: [\n        { name: \"Spaghetti\", ingredients: [\"pasta\", \"tomato\", \"garlic\"], price: 12 },\n        { name: \"Alfredo\", ingredients: [\"pasta\", \"cream\", \"parmesan\"], price: 14 }\n      ]\n    },\n    {\n      store: \"Burger Barn\",\n      employees: [\n        { name: \"Jake\", position: \"chef\" },\n        { name: \"Sara\", position: \"manager\" }\n      ],\n      dishes: [\n        { name: \"Classic Burger\", ingredients: [\"beef\", \"bun\", \"lettuce\", \"tomato\"], price: 10 },\n        { name: \"Deluxe Burger\", ingredients: [\"beef\", \"bun\", \"cheese\", \"bacon\", \"lettuce\"], price: 15 }\n      ]\n    },\n    {\n      store: \"Sushi Spot\",\n      employees: [\n        { name: \"Yuki\", position: \"chef\" },\n        { name: \"Ken\", position: \"server\" }\n      ],\n      dishes: [\n        { name: \"Dragon Roll\", ingredients: [\"rice\", \"eel\", \"avocado\"], price: 18 },\n        { name: \"Salmon Nigiri\", ingredients: [\"rice\", \"salmon\"], price: 8 }\n      ]\n    }\n  ];\n\n  const names = allEmployeeNames(stores);\n  results.push({ pass: names.length === 7 && names.includes('Marco') && names.includes('Ken'), description: 'allEmployeeNames returns all 7 names', got: JSON.stringify(names) });\n\n  const chefs = findChefs(stores);\n  results.push({ pass: chefs.length === 4 && chefs.includes('Marco') && chefs.includes('Tony') && chefs.includes('Jake') && chefs.includes('Yuki'), description: 'findChefs returns 4 chefs', got: JSON.stringify(chefs) });\n\n  const expensive = mostExpensiveDish(stores);\n  results.push({ pass: expensive.name === 'Dragon Roll' && expensive.price === 18, description: 'mostExpensiveDish is Dragon Roll at $18', got: expensive.name + ': $' + expensive.price });\n\n  const ings = allIngredients(stores);\n  results.push({ pass: ings[0] === 'avocado' && ings[ings.length - 1] === 'tomato', description: 'allIngredients is sorted alphabetically', got: ings[0] + ' ... ' + ings[ings.length - 1] });\n  results.push({ pass: ings.length === new Set(ings).size, description: 'allIngredients has no duplicates', got: 'unique count: ' + ings.length });\n\n  const rev = storeRevenue(stores);\n  results.push({ pass: rev['Pasta Palace'] === 26, description: 'Pasta Palace revenue is $26', got: String(rev['Pasta Palace']) });\n  results.push({ pass: rev['Burger Barn'] === 25, description: 'Burger Barn revenue is $25', got: String(rev['Burger Barn']) });\n  results.push({ pass: rev['Sushi Spot'] === 26, description: 'Sushi Spot revenue is $26', got: String(rev['Sushi Spot']) });\n\n  return results;\n}",
       "testCases": [],
       "hints": [
         "Use `.flatMap()` to flatten nested arrays in one step: `stores.flatMap(s => s.employees.map(e => e.name))` gives all employee names across all stores.",
@@ -2576,7 +2576,7 @@
           "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap"
         }
       ],
-      "solutionGate": 8,
+      "solutionGate": 10,
       "basePoints": 50
     }
   ]
