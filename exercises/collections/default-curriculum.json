@@ -31470,6 +31470,3921 @@
       "solutionGate": 10,
       "basePoints": 75,
       "testCases": []
+    },
+    {
+      "id": 1203,
+      "title": "rem Units",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "units"
+      ],
+      "tags": [
+        "css",
+        "units",
+        "rem",
+        "font-size",
+        "beginner"
+      ],
+      "description": "Set font sizes using rem units to scale relative to the root element.",
+      "instructions": "The `rem` unit stands for \"root em\" and is relative to the root (`<html>`) element's font size. By default, `1rem` equals `16px` in most browsers.\n\nStyle the following elements:\n- Set `.small-text` font-size to `1rem`\n- Set `.large-text` font-size to `2rem`\n\nUsing `rem` instead of `px` makes your text scale consistently across the page.",
+      "starterCode": "/* Set font sizes using rem units */\n.small-text {\n  /* Set font-size to 1rem */\n\n}\n\n.large-text {\n  /* Set font-size to 2rem */\n\n}",
+      "solution": ".small-text {\n  font-size: 1rem;\n}\n\n.large-text {\n  font-size: 2rem;\n}",
+      "testRunner": "",
+      "providedHtml": "<p class=\"small-text\">This text uses 1rem sizing.</p><p class=\"large-text\">This text uses 2rem sizing.</p>",
+      "testCases": [
+        {
+          "query": ".small-text",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "16px",
+          "description": ".small-text has font-size of 16px (1rem)"
+        },
+        {
+          "query": ".large-text",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "32px",
+          "description": ".large-text has font-size of 32px (2rem)"
+        }
+      ],
+      "hints": [
+        "There is a CSS unit that scales relative to the root element's font size, making it more consistent than em.",
+        "The unit is `rem`. Set `font-size: 1rem` for the default size and `font-size: 2rem` for double."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Units",
+          "url": "https://www.w3schools.com/css/css_units.asp",
+          "description": "CSS measurement units including rem"
+        },
+        {
+          "label": "MDN: rem",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units",
+          "description": "CSS values and units"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1204,
+      "title": "Viewport Units",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "units"
+      ],
+      "tags": [
+        "css",
+        "units",
+        "viewport",
+        "vw",
+        "vh",
+        "beginner"
+      ],
+      "description": "Size an element using viewport-relative units vw and vh.",
+      "instructions": "Viewport units let you size elements relative to the browser window. `1vw` equals 1% of the viewport width, and `1vh` equals 1% of the viewport height.\n\nStyle the `.hero-banner` element:\n- Set `width` to `100vw` (full viewport width)\n- Set `height` to `50vh` (half the viewport height)\n\nViewport units are commonly used for full-width hero sections and responsive layouts.",
+      "starterCode": "/* Size the hero banner using viewport units */\n.hero-banner {\n  /* Set width to 100vw */\n\n  /* Set height to 50vh */\n\n}",
+      "solution": ".hero-banner {\n  width: 100vw;\n  height: 50vh;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"hero-banner\" style=\"background-color: rgb(59, 130, 246);\">Hero Banner</div>",
+      "testCases": [
+        {
+          "query": ".hero-banner",
+          "assertion": "sourceContains",
+          "value": "100vw",
+          "description": "uses 100vw for width"
+        },
+        {
+          "query": ".hero-banner",
+          "assertion": "sourceContains",
+          "value": "50vh",
+          "description": "uses 50vh for height"
+        }
+      ],
+      "hints": [
+        "There are CSS units that are based on the size of the browser window itself, not a parent element.",
+        "Use `vw` for viewport width and `vh` for viewport height. `100vw` is the full width, `50vh` is half the height."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Units",
+          "url": "https://www.w3schools.com/css/css_units.asp",
+          "description": "CSS measurement units including viewport units"
+        },
+        {
+          "label": "MDN: Viewport units",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/length#viewport-percentage_lengths",
+          "description": "Viewport-percentage length units"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1205,
+      "title": "Line Height",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "typography"
+      ],
+      "tags": [
+        "css",
+        "typography",
+        "line-height",
+        "spacing",
+        "beginner"
+      ],
+      "description": "Adjust the vertical spacing between lines of text using line-height.",
+      "instructions": "The `line-height` property controls the amount of space above and below each line of text. A unitless number like `1.8` means 1.8 times the element's font size.\n\nStyle the `.spaced-text` element:\n- Set `line-height` to `1.8`\n\nA line-height of `1.5` to `2.0` is generally considered comfortable for reading body text.",
+      "starterCode": "/* Adjust line spacing for readability */\n.spaced-text {\n  /* Set line-height to 1.8 */\n\n}",
+      "solution": ".spaced-text {\n  line-height: 1.8;\n}",
+      "testRunner": "",
+      "providedHtml": "<p class=\"spaced-text\">This paragraph has increased line spacing for better readability. Notice how the lines of text have more breathing room between them, making it easier to read longer passages of content.</p>",
+      "testCases": [
+        {
+          "query": ".spaced-text",
+          "assertion": "equals",
+          "property": "line-height",
+          "value": "28.8px",
+          "description": ".spaced-text has line-height of 1.8 (28.8px at 16px font-size)"
+        }
+      ],
+      "hints": [
+        "There is a CSS property that controls the vertical distance between lines of text in a paragraph.",
+        "The property is `line-height`. Using a unitless number like `1.8` makes it scale proportionally with the font size."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Line Height",
+          "url": "https://www.w3schools.com/cssref/pr_dim_line-height.php",
+          "description": "The line-height property"
+        },
+        {
+          "label": "MDN: line-height",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/line-height",
+          "description": "Setting line height for text"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1206,
+      "title": "Letter Spacing",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "typography"
+      ],
+      "tags": [
+        "css",
+        "typography",
+        "letter-spacing",
+        "beginner"
+      ],
+      "description": "Control the space between characters using letter-spacing.",
+      "instructions": "The `letter-spacing` property adjusts the horizontal space between each character in text. Positive values spread characters apart, negative values bring them closer together.\n\nStyle the following elements:\n- Set `letter-spacing` to `4px` on `.spaced-heading`\n- Set `letter-spacing` to `-1px` on `.tight-text`\n\nLetter spacing is often used on headings for a dramatic look, or tightened slightly on dense body text.",
+      "starterCode": "/* Adjust space between characters */\n.spaced-heading {\n  /* Set letter-spacing to 4px */\n\n}\n\n.tight-text {\n  /* Set letter-spacing to -1px */\n\n}",
+      "solution": ".spaced-heading {\n  letter-spacing: 4px;\n}\n\n.tight-text {\n  letter-spacing: -1px;\n}",
+      "testRunner": "",
+      "providedHtml": "<h1 class=\"spaced-heading\">Wide Heading</h1><p class=\"tight-text\">This text has tighter character spacing for a compact look.</p>",
+      "testCases": [
+        {
+          "query": ".spaced-heading",
+          "assertion": "equals",
+          "property": "letter-spacing",
+          "value": "4px",
+          "description": ".spaced-heading has 4px letter-spacing"
+        },
+        {
+          "query": ".tight-text",
+          "assertion": "equals",
+          "property": "letter-spacing",
+          "value": "-1px",
+          "description": ".tight-text has -1px letter-spacing"
+        }
+      ],
+      "hints": [
+        "There is a CSS property that changes the amount of horizontal space between individual letters.",
+        "The property is `letter-spacing`. Use positive values like `4px` to spread letters apart and negative values like `-1px` to tighten them."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Letter Spacing",
+          "url": "https://www.w3schools.com/cssref/pr_text_letter-spacing.php",
+          "description": "The letter-spacing property"
+        },
+        {
+          "label": "MDN: letter-spacing",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing",
+          "description": "Adjusting space between characters"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1207,
+      "title": "Text Transform",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "typography"
+      ],
+      "tags": [
+        "css",
+        "typography",
+        "text-transform",
+        "uppercase",
+        "capitalize",
+        "beginner"
+      ],
+      "description": "Change the capitalization of text using the text-transform property.",
+      "instructions": "The `text-transform` property changes how text is capitalized without altering the actual content in the HTML.\n\nStyle the following elements:\n- Set `text-transform` to `uppercase` on `.uppercase-title` (ALL CAPS)\n- Set `text-transform` to `capitalize` on `.capitalize-text` (First Letter Of Each Word)\n- Set `text-transform` to `lowercase` on `.lowercase-text` (all lowercase)\n\nThis property is useful for styling headings and labels consistently.",
+      "starterCode": "/* Change text capitalization */\n.uppercase-title {\n  /* Set text-transform to uppercase */\n\n}\n\n.capitalize-text {\n  /* Set text-transform to capitalize */\n\n}\n\n.lowercase-text {\n  /* Set text-transform to lowercase */\n\n}",
+      "solution": ".uppercase-title {\n  text-transform: uppercase;\n}\n\n.capitalize-text {\n  text-transform: capitalize;\n}\n\n.lowercase-text {\n  text-transform: lowercase;\n}",
+      "testRunner": "",
+      "providedHtml": "<h1 class=\"uppercase-title\">make this uppercase</h1><p class=\"capitalize-text\">capitalize each word here</p><span class=\"lowercase-text\">MAKE THIS LOWERCASE</span>",
+      "testCases": [
+        {
+          "query": ".uppercase-title",
+          "assertion": "equals",
+          "property": "text-transform",
+          "value": "uppercase",
+          "description": ".uppercase-title has text-transform: uppercase"
+        },
+        {
+          "query": ".capitalize-text",
+          "assertion": "equals",
+          "property": "text-transform",
+          "value": "capitalize",
+          "description": ".capitalize-text has text-transform: capitalize"
+        },
+        {
+          "query": ".lowercase-text",
+          "assertion": "equals",
+          "property": "text-transform",
+          "value": "lowercase",
+          "description": ".lowercase-text has text-transform: lowercase"
+        }
+      ],
+      "hints": [
+        "There is a CSS property that controls the capitalization of text without changing the HTML content itself.",
+        "The property is `text-transform`. Values include `uppercase` for all caps, `capitalize` for first-letter caps, and `lowercase` for all lowercase."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Text Transform",
+          "url": "https://www.w3schools.com/cssref/pr_text_text-transform.php",
+          "description": "The text-transform property"
+        },
+        {
+          "label": "MDN: text-transform",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform",
+          "description": "Controlling text capitalization"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1208,
+      "title": "Opacity",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "visual",
+        "opacity",
+        "transparency",
+        "beginner"
+      ],
+      "description": "Control the transparency of elements using the opacity property.",
+      "instructions": "The `opacity` property sets how transparent an element is. A value of `1` is fully visible, `0` is fully invisible, and values in between create partial transparency.\n\nStyle the following elements:\n- Set `opacity` to `0.7` on `.faded-box` (slightly transparent)\n- Set `opacity` to `0.3` on `.ghost-box` (very transparent)\n\nOpacity affects the entire element and all its children.",
+      "starterCode": "/* Set transparency levels */\n.faded-box {\n  /* Set opacity to 0.7 */\n\n}\n\n.ghost-box {\n  /* Set opacity to 0.3 */\n\n}",
+      "solution": ".faded-box {\n  opacity: 0.7;\n}\n\n.ghost-box {\n  opacity: 0.3;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"faded-box\" style=\"background-color: rgb(59, 130, 246); padding: 20px; color: white;\">Slightly faded</div><div class=\"ghost-box\" style=\"background-color: rgb(239, 68, 68); padding: 20px; color: white;\">Very transparent</div>",
+      "testCases": [
+        {
+          "query": ".faded-box",
+          "assertion": "equals",
+          "property": "opacity",
+          "value": "0.7",
+          "description": ".faded-box has opacity of 0.7"
+        },
+        {
+          "query": ".ghost-box",
+          "assertion": "equals",
+          "property": "opacity",
+          "value": "0.3",
+          "description": ".ghost-box has opacity of 0.3"
+        }
+      ],
+      "hints": [
+        "There is a CSS property that controls how see-through an element appears, using a decimal value between 0 and 1.",
+        "The property is `opacity`. Use `0.7` for slight transparency and `0.3` for heavy transparency."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Opacity",
+          "url": "https://www.w3schools.com/css/css_image_transparency.asp",
+          "description": "Making elements transparent"
+        },
+        {
+          "label": "MDN: opacity",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/opacity",
+          "description": "The opacity property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1209,
+      "title": "Overflow",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "display"
+      ],
+      "tags": [
+        "css",
+        "display",
+        "overflow",
+        "scroll",
+        "hidden",
+        "beginner"
+      ],
+      "description": "Control how content that overflows its container is displayed using the overflow property.",
+      "instructions": "The `overflow` property controls what happens when content is too large to fit inside an element's box.\n\nStyle the following elements:\n- Set `overflow` to `scroll` on `.scroll-box` (adds scrollbars)\n- Set `overflow` to `hidden` on `.hidden-box` (clips the overflow)\n\nCommon values are `visible` (default), `hidden`, `scroll`, and `auto`.",
+      "starterCode": "/* Control overflowing content */\n.scroll-box {\n  /* Set overflow to scroll */\n\n}\n\n.hidden-box {\n  /* Set overflow to hidden */\n\n}",
+      "solution": ".scroll-box {\n  overflow: scroll;\n}\n\n.hidden-box {\n  overflow: hidden;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"scroll-box\" style=\"height: 80px; border: 1px solid gray; margin-bottom: 10px;\">This box has a lot of content that overflows its container. You should be able to scroll to see all of this text. The overflow property controls whether scrollbars appear or content is clipped.</div><div class=\"hidden-box\" style=\"height: 80px; border: 1px solid gray;\">This box also has overflowing content but it will be clipped and hidden from view. You will not be able to see the rest of this text because overflow is set to hidden.</div>",
+      "testCases": [
+        {
+          "query": ".scroll-box",
+          "assertion": "equals",
+          "property": "overflow",
+          "value": "scroll",
+          "description": ".scroll-box has overflow: scroll"
+        },
+        {
+          "query": ".hidden-box",
+          "assertion": "equals",
+          "property": "overflow",
+          "value": "hidden",
+          "description": ".hidden-box has overflow: hidden"
+        }
+      ],
+      "hints": [
+        "There is a CSS property that determines what happens when content is bigger than its container.",
+        "The property is `overflow`. Use `scroll` to add scrollbars and `hidden` to clip the extra content."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Overflow",
+          "url": "https://www.w3schools.com/css/css_overflow.asp",
+          "description": "Handling overflowing content"
+        },
+        {
+          "label": "MDN: overflow",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow",
+          "description": "The overflow property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1210,
+      "title": "Display Inline-Block",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "display"
+      ],
+      "tags": [
+        "css",
+        "display",
+        "inline-block",
+        "beginner"
+      ],
+      "description": "Use display inline-block to create side-by-side elements with box model properties.",
+      "instructions": "The `inline-block` display value combines features of both inline and block elements. Elements sit side by side like inline, but you can set width, height, padding, and margin like block elements.\n\nStyle the `.nav-item` elements:\n- Set `display` to `inline-block`\n- Set `padding` to `10px`\n- Set `width` to `120px`\n\nThis is a classic technique for creating horizontal navigation menus.",
+      "starterCode": "/* Make navigation items sit side by side */\n.nav-item {\n  /* Set display to inline-block */\n\n  /* Set padding to 10px */\n\n  /* Set width to 120px */\n\n}",
+      "solution": ".nav-item {\n  display: inline-block;\n  padding: 10px;\n  width: 120px;\n}",
+      "testRunner": "",
+      "providedHtml": "<nav><span class=\"nav-item\" style=\"background-color: rgb(226, 232, 240); text-align: center;\">Home</span><span class=\"nav-item\" style=\"background-color: rgb(226, 232, 240); text-align: center;\">About</span><span class=\"nav-item\" style=\"background-color: rgb(226, 232, 240); text-align: center;\">Contact</span></nav>",
+      "testCases": [
+        {
+          "query": ".nav-item",
+          "assertion": "equals",
+          "property": "display",
+          "value": "inline-block",
+          "description": ".nav-item has display: inline-block"
+        },
+        {
+          "query": ".nav-item",
+          "assertion": "equals",
+          "property": "padding-top",
+          "value": "10px",
+          "description": ".nav-item has 10px padding"
+        },
+        {
+          "query": ".nav-item",
+          "assertion": "equals",
+          "property": "width",
+          "value": "120px",
+          "description": ".nav-item has width of 120px"
+        }
+      ],
+      "hints": [
+        "There is a display value that lets elements sit on the same line while still accepting width, height, and padding.",
+        "Use `display: inline-block` to get the horizontal layout of inline with the sizing control of block."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Display",
+          "url": "https://www.w3schools.com/css/css_inline-block.asp",
+          "description": "The inline-block display value"
+        },
+        {
+          "label": "MDN: display",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/display",
+          "description": "The display property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1211,
+      "title": "Z-Index",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "positioning"
+      ],
+      "tags": [
+        "css",
+        "positioning",
+        "z-index",
+        "stacking",
+        "beginner"
+      ],
+      "description": "Control the stacking order of overlapping elements using z-index.",
+      "instructions": "The `z-index` property controls which element appears on top when elements overlap. Higher values appear in front of lower values. Note: `z-index` only works on positioned elements (elements with `position` set to something other than `static`).\n\nStyle the following positioned elements:\n- Set `z-index` to `1` on `.front-box` (appears on top)\n- Set `z-index` to `0` on `.back-box` (appears behind)\n\nThink of z-index like layers in a stack of papers.",
+      "starterCode": "/* Control which box appears on top */\n.front-box {\n  /* Set z-index to 1 */\n\n}\n\n.back-box {\n  /* Set z-index to 0 */\n\n}",
+      "solution": ".front-box {\n  z-index: 1;\n}\n\n.back-box {\n  z-index: 0;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"position: relative; height: 150px;\"><div class=\"back-box\" style=\"position: absolute; top: 10px; left: 10px; width: 120px; height: 120px; background-color: rgb(239, 68, 68);\">Back</div><div class=\"front-box\" style=\"position: absolute; top: 40px; left: 40px; width: 120px; height: 120px; background-color: rgb(59, 130, 246);\">Front</div></div>",
+      "testCases": [
+        {
+          "query": ".front-box",
+          "assertion": "equals",
+          "property": "z-index",
+          "value": "1",
+          "description": ".front-box has z-index of 1"
+        },
+        {
+          "query": ".back-box",
+          "assertion": "equals",
+          "property": "z-index",
+          "value": "0",
+          "description": ".back-box has z-index of 0"
+        }
+      ],
+      "hints": [
+        "There is a CSS property that determines the stacking order of overlapping elements, like layers on top of each other.",
+        "The property is `z-index`. Higher numbers appear in front. Set `1` for the front element and `0` for the back."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS z-index",
+          "url": "https://www.w3schools.com/css/css_z-index.asp",
+          "description": "Stacking elements with z-index"
+        },
+        {
+          "label": "MDN: z-index",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/z-index",
+          "description": "The z-index property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1212,
+      "title": "List Styling",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "lists"
+      ],
+      "tags": [
+        "css",
+        "lists",
+        "list-style-type",
+        "list-style-position",
+        "beginner"
+      ],
+      "description": "Customize the appearance of list markers using list-style properties.",
+      "instructions": "The `list-style-type` property changes the bullet or number style, and `list-style-position` controls whether the marker sits inside or outside the list item's content area.\n\nStyle the `.custom-list` element:\n- Set `list-style-type` to `square`\n- Set `list-style-position` to `inside`\n\nOther common list-style-type values include `disc`, `circle`, `decimal`, and `none`.",
+      "starterCode": "/* Customize the list appearance */\n.custom-list {\n  /* Set list-style-type to square */\n\n  /* Set list-style-position to inside */\n\n}",
+      "solution": ".custom-list {\n  list-style-type: square;\n  list-style-position: inside;\n}",
+      "testRunner": "",
+      "providedHtml": "<ul class=\"custom-list\"><li>First item</li><li>Second item</li><li>Third item</li></ul>",
+      "testCases": [
+        {
+          "query": ".custom-list",
+          "assertion": "equals",
+          "property": "list-style-type",
+          "value": "square",
+          "description": ".custom-list has list-style-type: square"
+        },
+        {
+          "query": ".custom-list",
+          "assertion": "equals",
+          "property": "list-style-position",
+          "value": "inside",
+          "description": ".custom-list has list-style-position: inside"
+        }
+      ],
+      "hints": [
+        "There are CSS properties that control the shape of the bullet marker and where it sits relative to the list content.",
+        "Use `list-style-type` to change the bullet shape (e.g., `square`) and `list-style-position` to move the marker `inside` the content area."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Lists",
+          "url": "https://www.w3schools.com/css/css_list.asp",
+          "description": "Styling HTML lists"
+        },
+        {
+          "label": "MDN: list-style",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/list-style",
+          "description": "List style properties"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1213,
+      "title": ":focus Pseudo-class",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "pseudo-classes"
+      ],
+      "tags": [
+        "css",
+        "pseudo-classes",
+        "focus",
+        "forms",
+        "beginner"
+      ],
+      "description": "Style an input element when it receives keyboard focus using the :focus pseudo-class.",
+      "instructions": "The `:focus` pseudo-class applies styles to an element when it is focused, such as when a user clicks or tabs into an input field.\n\nAdd a rule for `.styled-input:focus`:\n- Set `border-color` to `blue`\n- Set `outline` to `none`\n\nCustomizing the focus style helps users see which form field they are currently typing in.",
+      "starterCode": "/* Style the input when it receives focus */\n.styled-input {\n  border: 2px solid gray;\n  padding: 8px;\n}\n\n.styled-input:focus {\n  /* Set border-color to blue */\n\n  /* Set outline to none */\n\n}",
+      "solution": ".styled-input {\n  border: 2px solid gray;\n  padding: 8px;\n}\n\n.styled-input:focus {\n  border-color: blue;\n  outline: none;\n}",
+      "testRunner": "",
+      "providedHtml": "<input class=\"styled-input\" type=\"text\" placeholder=\"Click or tab here\">",
+      "testCases": [
+        {
+          "query": ".styled-input",
+          "assertion": "sourceContains",
+          "value": ":focus",
+          "description": "uses :focus pseudo-class"
+        },
+        {
+          "query": ".styled-input",
+          "assertion": "sourceContains",
+          "value": "border-color",
+          "description": "sets border-color on focus"
+        },
+        {
+          "query": ".styled-input",
+          "assertion": "sourceContains",
+          "value": "outline",
+          "description": "sets outline on focus"
+        }
+      ],
+      "hints": [
+        "There is a pseudo-class that targets an element only when a user has clicked or tabbed into it.",
+        "Write a rule using `.styled-input:focus` and set `border-color` and `outline` inside the block."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS :focus",
+          "url": "https://www.w3schools.com/cssref/sel_focus.php",
+          "description": "The :focus pseudo-class"
+        },
+        {
+          "label": "MDN: :focus",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:focus",
+          "description": "Styling focused elements"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1214,
+      "title": ":active Pseudo-class",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "pseudo-classes"
+      ],
+      "tags": [
+        "css",
+        "pseudo-classes",
+        "active",
+        "buttons",
+        "beginner"
+      ],
+      "description": "Style a button during the moment it is being clicked using the :active pseudo-class.",
+      "instructions": "The `:active` pseudo-class applies styles to an element at the moment it is being activated, such as while a mouse button is pressed down on it.\n\nAdd a rule for `.action-btn:active`:\n- Set `background-color` to `darkblue`\n- Set `transform` to `scale(0.98)`\n\nThis gives the user visual feedback that the button press was registered.",
+      "starterCode": "/* Style the button while it is being clicked */\n.action-btn {\n  background-color: rgb(59, 130, 246);\n  color: white;\n  padding: 10px 20px;\n  border: none;\n  cursor: pointer;\n}\n\n.action-btn:active {\n  /* Set background-color to darkblue */\n\n  /* Set transform to scale(0.98) */\n\n}",
+      "solution": ".action-btn {\n  background-color: rgb(59, 130, 246);\n  color: white;\n  padding: 10px 20px;\n  border: none;\n  cursor: pointer;\n}\n\n.action-btn:active {\n  background-color: darkblue;\n  transform: scale(0.98);\n}",
+      "testRunner": "",
+      "providedHtml": "<button class=\"action-btn\">Click Me</button>",
+      "testCases": [
+        {
+          "query": ".action-btn",
+          "assertion": "sourceContains",
+          "value": ":active",
+          "description": "uses :active pseudo-class"
+        },
+        {
+          "query": ".action-btn",
+          "assertion": "sourceContains",
+          "value": "scale",
+          "description": "uses scale transform on active"
+        },
+        {
+          "query": ".action-btn",
+          "assertion": "sourceContains",
+          "value": "background-color",
+          "description": "changes background-color on active"
+        }
+      ],
+      "hints": [
+        "There is a pseudo-class that only applies while the user is actively pressing down on an element.",
+        "Write a rule using `.action-btn:active` and set `background-color` and `transform` inside the block."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS :active",
+          "url": "https://www.w3schools.com/cssref/sel_active.php",
+          "description": "The :active pseudo-class"
+        },
+        {
+          "label": "MDN: :active",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:active",
+          "description": "Styling actively pressed elements"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1215,
+      "title": ":first-child and :last-child",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "pseudo-classes"
+      ],
+      "tags": [
+        "css",
+        "pseudo-classes",
+        "first-child",
+        "last-child",
+        "beginner"
+      ],
+      "description": "Style the first and last items in a list using structural pseudo-classes.",
+      "instructions": "The `:first-child` pseudo-class selects an element that is the first child of its parent. The `:last-child` pseudo-class selects the last child.\n\nAdd the following rules:\n- `li:first-child` should have `font-weight` set to `bold`\n- `li:last-child` should have `font-style` set to `italic`\n\nThese pseudo-classes are useful for adding special styling to the beginning or end of lists, navigation items, and more.",
+      "starterCode": "/* Style the first list item */\nli:first-child {\n  /* Set font-weight to bold */\n\n}\n\n/* Style the last list item */\nli:last-child {\n  /* Set font-style to italic */\n\n}",
+      "solution": "li:first-child {\n  font-weight: bold;\n}\n\nli:last-child {\n  font-style: italic;\n}",
+      "testRunner": "",
+      "providedHtml": "<ul><li>First item</li><li>Second item</li><li>Third item</li><li>Last item</li></ul>",
+      "testCases": [
+        {
+          "query": "li",
+          "assertion": "sourceContains",
+          "value": ":first-child",
+          "description": "uses :first-child pseudo-class"
+        },
+        {
+          "query": "li",
+          "assertion": "sourceContains",
+          "value": ":last-child",
+          "description": "uses :last-child pseudo-class"
+        },
+        {
+          "query": "li",
+          "assertion": "sourceContains",
+          "value": "font-weight",
+          "description": "sets font-weight for first child"
+        },
+        {
+          "query": "li",
+          "assertion": "sourceContains",
+          "value": "font-style",
+          "description": "sets font-style for last child"
+        }
+      ],
+      "hints": [
+        "There are pseudo-classes that target an element based on its position as the first or last child within its parent.",
+        "Use `li:first-child` with `font-weight: bold` and `li:last-child` with `font-style: italic`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS :first-child",
+          "url": "https://www.w3schools.com/cssref/sel_firstchild.php",
+          "description": "The :first-child pseudo-class"
+        },
+        {
+          "label": "MDN: :first-child",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child",
+          "description": "Selecting the first child element"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1216,
+      "title": ":nth-child()",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "pseudo-classes"
+      ],
+      "tags": [
+        "css",
+        "pseudo-classes",
+        "nth-child",
+        "tables",
+        "beginner"
+      ],
+      "description": "Apply alternating row styles to a table using the :nth-child pseudo-class.",
+      "instructions": "The `:nth-child()` pseudo-class selects elements based on their position among siblings. The keyword `even` targets every other element starting from the second.\n\nAdd a rule for `tr:nth-child(even)`:\n- Set `background-color` to `rgb(226, 232, 240)`\n\nAlternating row colors (\"zebra striping\") makes tables easier to read.",
+      "starterCode": "/* Style every other table row */\ntr:nth-child(even) {\n  /* Set background-color to rgb(226, 232, 240) */\n\n}",
+      "solution": "tr:nth-child(even) {\n  background-color: rgb(226, 232, 240);\n}",
+      "testRunner": "",
+      "providedHtml": "<table style=\"width: 100%; border-collapse: collapse;\"><tr><td style=\"padding: 8px; border: 1px solid gray;\">Row 1</td></tr><tr><td style=\"padding: 8px; border: 1px solid gray;\">Row 2</td></tr><tr><td style=\"padding: 8px; border: 1px solid gray;\">Row 3</td></tr><tr><td style=\"padding: 8px; border: 1px solid gray;\">Row 4</td></tr><tr><td style=\"padding: 8px; border: 1px solid gray;\">Row 5</td></tr><tr><td style=\"padding: 8px; border: 1px solid gray;\">Row 6</td></tr></table>",
+      "testCases": [
+        {
+          "query": "tr",
+          "assertion": "sourceContains",
+          "value": "nth-child",
+          "description": "uses :nth-child pseudo-class"
+        },
+        {
+          "query": "tr",
+          "assertion": "sourceMatch",
+          "value": "even|2n",
+          "description": "targets even rows with 'even' or '2n'"
+        },
+        {
+          "query": "tr",
+          "assertion": "sourceContains",
+          "value": "background-color",
+          "description": "sets background-color on even rows"
+        }
+      ],
+      "hints": [
+        "There is a pseudo-class that lets you select elements by their numerical position, and it accepts keywords like `even` and `odd`.",
+        "Use `tr:nth-child(even)` to select every other row starting from row 2, and set a `background-color` inside the block."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS :nth-child()",
+          "url": "https://www.w3schools.com/cssref/sel_nth-child.php",
+          "description": "The :nth-child pseudo-class"
+        },
+        {
+          "label": "MDN: :nth-child()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child",
+          "description": "Selecting elements by position"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1217,
+      "title": ":checked Pseudo-class",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "pseudo-classes"
+      ],
+      "tags": [
+        "css",
+        "pseudo-classes",
+        "checked",
+        "forms",
+        "beginner"
+      ],
+      "description": "Style a label when its associated checkbox is checked using the :checked pseudo-class and adjacent sibling combinator.",
+      "instructions": "The `:checked` pseudo-class matches checkboxes and radio buttons that are currently selected. Combined with the adjacent sibling combinator (`+`), you can style a label based on whether its checkbox is checked.\n\nAdd a rule for `input:checked + label`:\n- Set `font-weight` to `bold`\n- Set `color` to `green`\n\nThis technique creates interactive styling without any JavaScript.",
+      "starterCode": "/* Style the label when the checkbox is checked */\ninput:checked + label {\n  /* Set font-weight to bold */\n\n  /* Set color to green */\n\n}",
+      "solution": "input:checked + label {\n  font-weight: bold;\n  color: green;\n}",
+      "testRunner": "",
+      "providedHtml": "<div><input type=\"checkbox\" id=\"opt1\"><label for=\"opt1\">Option One</label></div><div><input type=\"checkbox\" id=\"opt2\"><label for=\"opt2\">Option Two</label></div><div><input type=\"checkbox\" id=\"opt3\" checked><label for=\"opt3\">Option Three (pre-checked)</label></div>",
+      "testCases": [
+        {
+          "query": "input",
+          "assertion": "sourceContains",
+          "value": ":checked",
+          "description": "uses :checked pseudo-class"
+        },
+        {
+          "query": "input",
+          "assertion": "sourceContains",
+          "value": "font-weight",
+          "description": "sets font-weight when checked"
+        },
+        {
+          "query": "input",
+          "assertion": "sourceContains",
+          "value": "color",
+          "description": "sets color when checked"
+        }
+      ],
+      "hints": [
+        "There is a pseudo-class that matches form inputs that are currently selected, and you can combine it with `+` to style the next sibling.",
+        "Write `input:checked + label` to target labels adjacent to checked checkboxes, then set `font-weight` and `color`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS :checked",
+          "url": "https://www.w3schools.com/cssref/sel_checked.php",
+          "description": "The :checked pseudo-class"
+        },
+        {
+          "label": "MDN: :checked",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:checked",
+          "description": "Styling checked inputs"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1218,
+      "title": ":disabled and :placeholder-shown",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "pseudo-classes"
+      ],
+      "tags": [
+        "css",
+        "pseudo-classes",
+        "disabled",
+        "placeholder-shown",
+        "forms"
+      ],
+      "description": "Style form inputs based on their disabled state and placeholder visibility using pseudo-classes.",
+      "instructions": "Write CSS to style form inputs using state-based pseudo-classes:\n\n1. Style `input:disabled`:\n   - opacity: 0.5\n   - cursor: not-allowed\n\n2. Style `input:placeholder-shown`:\n   - border-style: dashed",
+      "starterCode": "/* Style disabled and placeholder-shown inputs */\n\n",
+      "solution": "input:disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n}\n\ninput:placeholder-shown {\n  border-style: dashed;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"display: flex; flex-direction: column; gap: 10px;\"><input id=\"disabled-input\" type=\"text\" value=\"Cannot edit\" disabled style=\"padding: 8px; border: 2px solid gray;\"><input id=\"placeholder-input\" type=\"text\" placeholder=\"Type something here\" style=\"padding: 8px; border: 2px solid gray;\"><input id=\"filled-input\" type=\"text\" value=\"Already filled\" style=\"padding: 8px; border: 2px solid gray;\"></div>",
+      "testCases": [
+        {
+          "selector": "#disabled-input",
+          "assertion": "sourceContains",
+          "value": ":disabled",
+          "description": "uses :disabled pseudo-class"
+        },
+        {
+          "selector": "#disabled-input",
+          "assertion": "sourceContains",
+          "value": "opacity",
+          "description": "sets opacity for disabled inputs"
+        },
+        {
+          "selector": "#disabled-input",
+          "assertion": "sourceContains",
+          "value": "cursor",
+          "description": "sets cursor for disabled inputs"
+        },
+        {
+          "selector": "#placeholder-input",
+          "assertion": "sourceContains",
+          "value": ":placeholder-shown",
+          "description": "uses :placeholder-shown pseudo-class"
+        },
+        {
+          "selector": "#placeholder-input",
+          "assertion": "sourceContains",
+          "value": "border-style",
+          "description": "sets border-style for placeholder-shown inputs"
+        }
+      ],
+      "hints": [
+        "State-based pseudo-classes let you style inputs differently when they are disabled or still showing placeholder text.",
+        "Use `input:disabled` for the first set of styles and `input:placeholder-shown` for the dashed border. Both work like any other selector."
+      ],
+      "resources": [
+        {
+          "label": "MDN: :disabled",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:disabled",
+          "description": "Styling disabled form elements"
+        },
+        {
+          "label": "MDN: :placeholder-shown",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:placeholder-shown",
+          "description": "Styling inputs showing placeholder text"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1219,
+      "title": ":focus-visible and :focus-within",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "pseudo-classes"
+      ],
+      "tags": [
+        "css",
+        "pseudo-classes",
+        "focus-visible",
+        "focus-within",
+        "accessibility"
+      ],
+      "description": "Apply keyboard-only focus styles and parent-level focus detection using modern pseudo-classes.",
+      "instructions": "Write CSS using modern focus pseudo-classes:\n\n1. Style `button:focus-visible`:\n   - outline: 3px solid rgb(59, 130, 246)\n   - outline-offset: 2px\n\n2. Style `.form-container:focus-within`:\n   - border-color: rgb(59, 130, 246)\n   - box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3)\n\n`:focus-visible` only shows focus rings for keyboard navigation (not mouse clicks). `:focus-within` activates when any child element inside the parent has focus.",
+      "starterCode": "/* Style keyboard-only focus and parent focus detection */\n\n",
+      "solution": "button:focus-visible {\n  outline: 3px solid rgb(59, 130, 246);\n  outline-offset: 2px;\n}\n\n.form-container:focus-within {\n  border-color: rgb(59, 130, 246);\n  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"form-container\" style=\"border: 2px solid gray; padding: 20px;\"><label for=\"name-input\" style=\"display: block; margin-bottom: 5px;\">Name:</label><input id=\"name-input\" type=\"text\" placeholder=\"Enter your name\" style=\"padding: 8px; border: 1px solid gray; width: 100%;\"><button style=\"margin-top: 10px; padding: 8px 16px;\">Submit</button></div>",
+      "testCases": [
+        {
+          "selector": "button",
+          "assertion": "sourceContains",
+          "value": ":focus-visible",
+          "description": "uses :focus-visible pseudo-class"
+        },
+        {
+          "selector": "button",
+          "assertion": "sourceContains",
+          "value": "outline",
+          "description": "sets outline for focus-visible"
+        },
+        {
+          "selector": ".form-container",
+          "assertion": "sourceContains",
+          "value": ":focus-within",
+          "description": "uses :focus-within pseudo-class"
+        },
+        {
+          "selector": ".form-container",
+          "assertion": "sourceContains",
+          "value": "box-shadow",
+          "description": "sets box-shadow for focus-within"
+        }
+      ],
+      "hints": [
+        "Modern focus pseudo-classes distinguish between mouse and keyboard focus, and can detect focus on child elements from a parent.",
+        "Use `button:focus-visible` for keyboard-only outlines and `.form-container:focus-within` to highlight the container when any input inside it is focused."
+      ],
+      "resources": [
+        {
+          "label": "MDN: :focus-visible",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible",
+          "description": "Keyboard-only focus styling"
+        },
+        {
+          "label": "MDN: :focus-within",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within",
+          "description": "Parent-level focus detection"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1220,
+      "title": "Pseudo-classes Combined",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "pseudo-classes"
+      ],
+      "tags": [
+        "css",
+        "pseudo-classes",
+        "hover",
+        "focus",
+        "first-child",
+        "nth-child",
+        "combined"
+      ],
+      "description": "Combine multiple pseudo-classes to style a navigation menu and form with interactive states.",
+      "instructions": "Write CSS that combines several pseudo-classes:\n\n1. Style `.nav-link:hover` with color: rgb(59, 130, 246)\n2. Style `.nav-link:focus` with outline: 2px solid rgb(59, 130, 246)\n3. Style `.nav-link:first-child` with font-weight: bold\n4. Style `.form-field:nth-child(odd)` with background-color: rgb(241, 245, 249)",
+      "starterCode": "/* Combine pseudo-classes for navigation and form styling */\n\n",
+      "solution": ".nav-link:hover {\n  color: rgb(59, 130, 246);\n}\n\n.nav-link:focus {\n  outline: 2px solid rgb(59, 130, 246);\n}\n\n.nav-link:first-child {\n  font-weight: bold;\n}\n\n.form-field:nth-child(odd) {\n  background-color: rgb(241, 245, 249);\n}",
+      "testRunner": "",
+      "providedHtml": "<nav style=\"margin-bottom: 20px;\"><a class=\"nav-link\" href=\"#\" style=\"margin-right: 10px;\">Home</a><a class=\"nav-link\" href=\"#\" style=\"margin-right: 10px;\">About</a><a class=\"nav-link\" href=\"#\">Contact</a></nav><form><input class=\"form-field\" type=\"text\" placeholder=\"Name\" style=\"display: block; padding: 8px; margin-bottom: 5px; width: 100%;\"><input class=\"form-field\" type=\"email\" placeholder=\"Email\" style=\"display: block; padding: 8px; margin-bottom: 5px; width: 100%;\"><input class=\"form-field\" type=\"text\" placeholder=\"Subject\" style=\"display: block; padding: 8px; margin-bottom: 5px; width: 100%;\"><textarea class=\"form-field\" placeholder=\"Message\" style=\"display: block; padding: 8px; width: 100%;\"></textarea></form>",
+      "testCases": [
+        {
+          "selector": ".nav-link",
+          "assertion": "sourceContains",
+          "value": ":hover",
+          "description": "uses :hover pseudo-class"
+        },
+        {
+          "selector": ".nav-link",
+          "assertion": "sourceContains",
+          "value": ":focus",
+          "description": "uses :focus pseudo-class"
+        },
+        {
+          "selector": ".nav-link",
+          "assertion": "sourceContains",
+          "value": ":first-child",
+          "description": "uses :first-child pseudo-class"
+        },
+        {
+          "selector": ".form-field",
+          "assertion": "sourceContains",
+          "value": ":nth-child",
+          "description": "uses :nth-child pseudo-class"
+        }
+      ],
+      "hints": [
+        "Each pseudo-class targets a different state or position. Think about what happens on hover, on focus, for the first element, and for alternating elements.",
+        "Combine `:hover` for mouse interaction, `:focus` for keyboard interaction, `:first-child` for the first nav link, and `:nth-child(odd)` for alternating form fields."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Pseudo-classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes",
+          "description": "CSS pseudo-classes overview"
+        },
+        {
+          "label": "MDN: :nth-child()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child",
+          "description": "Selecting elements by position"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1221,
+      "title": "::before and ::after",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "pseudo-elements"
+      ],
+      "tags": [
+        "css",
+        "pseudo-elements",
+        "before",
+        "after",
+        "content",
+        "decorative"
+      ],
+      "description": "Add decorative content before and after an element using the ::before and ::after pseudo-elements.",
+      "instructions": "Write CSS to add decorative quotation marks to a blockquote:\n\n1. Style `.fancy-quote::before`:\n   - content: open-quote\n   - font-size: 2rem\n   - color: rgb(148, 163, 184)\n\n2. Style `.fancy-quote::after`:\n   - content: close-quote\n   - font-size: 2rem\n   - color: rgb(148, 163, 184)\n\nThe `content` property is required for pseudo-elements to appear. Use `open-quote` and `close-quote` as values (no quotation marks around them).",
+      "starterCode": "/* Add decorative quotes using pseudo-elements */\n\n",
+      "solution": ".fancy-quote::before {\n  content: open-quote;\n  font-size: 2rem;\n  color: rgb(148, 163, 184);\n}\n\n.fancy-quote::after {\n  content: close-quote;\n  font-size: 2rem;\n  color: rgb(148, 163, 184);\n}",
+      "testRunner": "",
+      "providedHtml": "<blockquote class=\"fancy-quote\" style=\"font-size: 1.2rem; padding: 10px 20px; border-left: 4px solid rgb(148, 163, 184);\">The only way to do great work is to love what you do.</blockquote>",
+      "testCases": [
+        {
+          "selector": ".fancy-quote",
+          "assertion": "sourceContains",
+          "value": "::before",
+          "description": "uses ::before pseudo-element"
+        },
+        {
+          "selector": ".fancy-quote",
+          "assertion": "sourceContains",
+          "value": "::after",
+          "description": "uses ::after pseudo-element"
+        },
+        {
+          "selector": ".fancy-quote",
+          "assertion": "sourceContains",
+          "value": "content",
+          "description": "sets content property for pseudo-elements"
+        },
+        {
+          "selector": ".fancy-quote",
+          "assertion": "sourceContains",
+          "value": "font-size",
+          "description": "sets font-size on pseudo-elements"
+        }
+      ],
+      "hints": [
+        "Pseudo-elements create virtual elements that exist in the render tree but not in the HTML. The `content` property is required to make them visible.",
+        "Use `.fancy-quote::before` and `.fancy-quote::after` with `content: open-quote` and `content: close-quote` respectively."
+      ],
+      "resources": [
+        {
+          "label": "MDN: ::before",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/::before",
+          "description": "Inserting content before an element"
+        },
+        {
+          "label": "MDN: ::after",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/::after",
+          "description": "Inserting content after an element"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1222,
+      "title": "::placeholder Styling",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "pseudo-elements"
+      ],
+      "tags": [
+        "css",
+        "pseudo-elements",
+        "placeholder",
+        "forms",
+        "styling"
+      ],
+      "description": "Customize the appearance of input placeholder text using the ::placeholder pseudo-element.",
+      "instructions": "Write CSS to style the placeholder text inside an input:\n\n1. Style `.styled-field::placeholder`:\n   - color: rgb(148, 163, 184)\n   - font-style: italic\n   - opacity: 1\n\nBy default, placeholder text is often gray and slightly transparent. The `::placeholder` pseudo-element lets you fully customize its appearance.",
+      "starterCode": "/* Style the placeholder text */\n\n",
+      "solution": ".styled-field::placeholder {\n  color: rgb(148, 163, 184);\n  font-style: italic;\n  opacity: 1;\n}",
+      "testRunner": "",
+      "providedHtml": "<input class=\"styled-field\" type=\"text\" placeholder=\"Enter your email address\" style=\"padding: 12px; border: 2px solid gray; font-size: 1rem; width: 100%;\">",
+      "testCases": [
+        {
+          "selector": ".styled-field",
+          "assertion": "sourceContains",
+          "value": "::placeholder",
+          "description": "uses ::placeholder pseudo-element"
+        },
+        {
+          "selector": ".styled-field",
+          "assertion": "sourceContains",
+          "value": "font-style",
+          "description": "sets font-style on placeholder"
+        },
+        {
+          "selector": ".styled-field",
+          "assertion": "sourceContains",
+          "value": "color",
+          "description": "sets color on placeholder text"
+        }
+      ],
+      "hints": [
+        "There is a pseudo-element that targets the placeholder text shown inside an input when it has no value.",
+        "Use `.styled-field::placeholder` and set `color`, `font-style`, and `opacity` inside the rule block."
+      ],
+      "resources": [
+        {
+          "label": "MDN: ::placeholder",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/::placeholder",
+          "description": "Styling placeholder text"
+        },
+        {
+          "label": "MDN: CSS pseudo-elements",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements",
+          "description": "Overview of CSS pseudo-elements"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1223,
+      "title": "Decorative Borders with Pseudo-elements",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "pseudo-elements"
+      ],
+      "tags": [
+        "css",
+        "pseudo-elements",
+        "after",
+        "decorative",
+        "borders",
+        "design"
+      ],
+      "description": "Create a decorative underline beneath a heading using the ::after pseudo-element.",
+      "instructions": "Write CSS to add a decorative underline bar beneath a heading using ::after:\n\n1. Style `.decorated-heading`:\n   - position: relative\n   - display: inline-block\n\n2. Style `.decorated-heading::after`:\n   - content: \"\"\n   - display: block\n   - width: 60px\n   - height: 4px\n   - background-color: rgb(59, 130, 246)\n   - margin-top: 8px\n\nUsing an empty `content: \"\"` with display and sizing creates a visual element without adding text.",
+      "starterCode": "/* Create a decorative underline using ::after */\n\n",
+      "solution": ".decorated-heading {\n  position: relative;\n  display: inline-block;\n}\n\n.decorated-heading::after {\n  content: \"\";\n  display: block;\n  width: 60px;\n  height: 4px;\n  background-color: rgb(59, 130, 246);\n  margin-top: 8px;\n}",
+      "testRunner": "",
+      "providedHtml": "<h2 class=\"decorated-heading\">Section Title</h2><p>This heading has a decorative colored bar beneath it, created entirely with CSS pseudo-elements.</p>",
+      "testCases": [
+        {
+          "selector": ".decorated-heading",
+          "assertion": "sourceContains",
+          "value": "::after",
+          "description": "uses ::after pseudo-element"
+        },
+        {
+          "selector": ".decorated-heading",
+          "assertion": "sourceContains",
+          "value": "content",
+          "description": "sets content property (empty string)"
+        },
+        {
+          "selector": ".decorated-heading",
+          "assertion": "sourceContains",
+          "value": "display",
+          "description": "sets display property on pseudo-element"
+        },
+        {
+          "selector": ".decorated-heading",
+          "assertion": "sourceContains",
+          "value": "background-color",
+          "description": "sets background-color for the decorative bar"
+        },
+        {
+          "selector": ".decorated-heading",
+          "assertion": "sourceContains",
+          "value": "height",
+          "description": "sets height for the decorative bar"
+        }
+      ],
+      "hints": [
+        "A pseudo-element with empty content, a set width and height, and a background color creates a colored bar without adding any HTML.",
+        "Use `.decorated-heading::after` with `content: \"\"`, `display: block`, then set `width`, `height`, `background-color`, and `margin-top` to position the bar."
+      ],
+      "resources": [
+        {
+          "label": "MDN: ::after",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/::after",
+          "description": "Inserting content after an element"
+        },
+        {
+          "label": "MDN: content",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/content",
+          "description": "The content property for pseudo-elements"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1224,
+      "title": "Transition Basics",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "transitions"
+      ],
+      "tags": [
+        "css",
+        "transitions",
+        "hover",
+        "background-color",
+        "beginner"
+      ],
+      "description": "Add a smooth transition to change a button's background color on hover.",
+      "instructions": "CSS transitions let you animate property changes smoothly instead of having them happen instantly. You define which property to animate, how long the animation takes, and optionally a timing function.\n\nAdd a `transition` to `.fade-btn` so that `background-color` changes smoothly over `0.3s`. Then write a `:hover` rule that changes the `background-color` to `#1d4ed8`.\n\nThe shorthand `transition: property duration timing-function` keeps it concise.",
+      "starterCode": ".fade-btn {\n  /* Add a transition for background-color lasting 0.3s */\n\n}\n\n/* Change background color on hover */\n.fade-btn:hover {\n\n}",
+      "solution": ".fade-btn {\n  transition: background-color 0.3s ease;\n}\n\n.fade-btn:hover {\n  background-color: #1d4ed8;\n}",
+      "testRunner": "",
+      "providedHtml": "<button class=\"fade-btn\" style=\"background-color: #3b82f6; color: white; padding: 10px 20px; border: none; cursor: pointer;\">Hover Me</button>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "transition",
+          "description": "CSS includes a transition property"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": ":hover",
+          "description": "CSS includes a :hover rule"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "background-color",
+          "description": "CSS targets background-color"
+        }
+      ],
+      "hints": [
+        "The `transition` property tells the browser to animate changes to specified CSS properties over a duration.",
+        "Inside `.fade-btn`, write `transition: background-color 0.3s ease;` and inside `.fade-btn:hover`, set the new `background-color` value."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Transitions",
+          "url": "https://www.w3schools.com/css/css3_transitions.asp",
+          "description": "Introduction to CSS transitions"
+        },
+        {
+          "label": "MDN: Using CSS transitions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions/Using_CSS_transitions",
+          "description": "Guide to CSS transitions"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1225,
+      "title": "Transition Duration and Timing",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "transitions"
+      ],
+      "tags": [
+        "css",
+        "transitions",
+        "duration",
+        "timing-function",
+        "delay",
+        "beginner"
+      ],
+      "description": "Set a transition with a specific duration, timing function, and delay on a box element.",
+      "instructions": "Transitions can be fine-tuned with duration, timing function, and delay values. The `transition` shorthand accepts: `property duration timing-function delay`.\n\nStyle `.slide-box` with a transition that:\n- Animates the `transform` property\n- Lasts `0.5s`\n- Uses `ease-in-out` timing\n- Has a `0.1s` delay\n\nThen add a `:hover` rule that moves the box right with `transform: translateX(100px)`.",
+      "starterCode": ".slide-box {\n  /* Add a transition: transform, 0.5s, ease-in-out, 0.1s delay */\n\n}\n\n/* Move the box on hover */\n.slide-box:hover {\n\n}",
+      "solution": ".slide-box {\n  transition: transform 0.5s ease-in-out 0.1s;\n}\n\n.slide-box:hover {\n  transform: translateX(100px);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"slide-box\" style=\"width: 80px; height: 80px; background-color: #10b981; border-radius: 8px;\"></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "transition",
+          "description": "CSS includes a transition property"
+        },
+        {
+          "assertion": "sourceMatch",
+          "value": "0\\.5s|500ms",
+          "description": "Transition has a 0.5s duration"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "ease-in-out",
+          "description": "Transition uses ease-in-out timing"
+        }
+      ],
+      "hints": [
+        "The `transition` shorthand lets you specify the property name, how long the change takes, a timing curve, and an optional delay before it starts.",
+        "Write `transition: transform 0.5s ease-in-out 0.1s;` in `.slide-box`, then add `transform: translateX(100px);` inside `.slide-box:hover`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Transitions",
+          "url": "https://www.w3schools.com/css/css3_transitions.asp",
+          "description": "CSS transition properties explained"
+        },
+        {
+          "label": "MDN: transition",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transition",
+          "description": "The transition shorthand property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1226,
+      "title": "Multi-Property Transitions",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "transitions"
+      ],
+      "tags": [
+        "css",
+        "transitions",
+        "multiple-properties",
+        "comma-separated"
+      ],
+      "description": "Transition background-color and transform independently with different durations on a card element.",
+      "instructions": "Write CSS for `#info-card` that transitions two properties with different durations:\n  1. `background-color` over `0.3s`\n  2. `transform` over `0.5s`\n\nYou can list multiple transitions separated by commas in the `transition` shorthand.\n\nThen add a `:hover` rule for `#info-card` that changes the `background-color` to `#1e40af` and applies `transform: scale(1.05)`.",
+      "starterCode": "#info-card {\n  /* Your code here */\n\n}\n\n#info-card:hover {\n  /* Your code here */\n\n}",
+      "solution": "#info-card {\n  transition: background-color 0.3s ease, transform 0.5s ease;\n}\n\n#info-card:hover {\n  background-color: #1e40af;\n  transform: scale(1.05);\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"info-card\" style=\"padding: 20px; background-color: #3b82f6; color: white; border-radius: 8px; cursor: pointer;\">Hover this card</div>",
+      "testCases": [
+        {
+          "assertion": "sourceMatch",
+          "value": "transition[^;]*,[^;]*",
+          "description": "Transition includes comma-separated values"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "background-color",
+          "description": "Transition targets background-color"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "transform",
+          "description": "Transition targets transform"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": ":hover",
+          "description": "CSS includes a :hover rule"
+        }
+      ],
+      "hints": [
+        "You can animate multiple properties at different speeds by separating each transition with a comma.",
+        "Use the pattern `transition: background-color 0.3s ease, transform 0.5s ease;` to give each property its own duration."
+      ],
+      "resources": [
+        {
+          "label": "MDN: transition",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transition",
+          "description": "The transition shorthand property"
+        },
+        {
+          "label": "MDN: Using CSS transitions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions/Using_CSS_transitions",
+          "description": "Multi-property transition examples"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1227,
+      "title": "Transition with Transform",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "transitions"
+      ],
+      "tags": [
+        "css",
+        "transitions",
+        "transform",
+        "scale",
+        "box-shadow",
+        "hover"
+      ],
+      "description": "Create a smooth hover effect that scales an image card and adds a shadow using transitions.",
+      "instructions": "Write CSS for `#image-card`:\n  1. Add a `transition` that covers `transform` and `box-shadow` (use `all 0.3s ease` or list them individually)\n  2. Set `border-radius: 8px` and `overflow: hidden`\n\nThen write a `:hover` rule for `#image-card` that:\n  1. Applies `transform: scale(1.05)` to enlarge the card slightly\n  2. Adds `box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3)` for depth",
+      "starterCode": "#image-card {\n  /* Your code here */\n\n}\n\n#image-card:hover {\n  /* Your code here */\n\n}",
+      "solution": "#image-card {\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n  border-radius: 8px;\n  overflow: hidden;\n}\n\n#image-card:hover {\n  transform: scale(1.05);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"image-card\" style=\"width: 200px; padding: 16px; background-color: #1e293b; color: #e2e8f0; cursor: pointer;\"><div style=\"height: 120px; background-color: #334155; margin-bottom: 8px;\"></div><p>Photo Card</p></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "transform",
+          "description": "CSS includes transform"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "transition",
+          "description": "CSS includes a transition"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": ":hover",
+          "description": "CSS includes a :hover rule"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "scale",
+          "description": "Hover state uses scale transform"
+        }
+      ],
+      "hints": [
+        "Combine `transition` on the base element with `transform` and `box-shadow` changes in the `:hover` state to create a lift effect.",
+        "Set `transition: transform 0.3s ease, box-shadow 0.3s ease;` on the base selector, then apply `transform: scale(1.05)` and a `box-shadow` in the `:hover` rule."
+      ],
+      "resources": [
+        {
+          "label": "MDN: transition",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transition",
+          "description": "The transition shorthand property"
+        },
+        {
+          "label": "MDN: transform",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+          "description": "CSS transform functions"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1228,
+      "title": "Interactive Button States",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "transitions"
+      ],
+      "tags": [
+        "css",
+        "transitions",
+        "hover",
+        "active",
+        "focus-visible",
+        "transform",
+        "intermediate"
+      ],
+      "description": "Build a button with smooth transitions across hover, active, and focus-visible states.",
+      "instructions": "Style `.action-btn` with complete interactive states.\n\n**Requirements:**\n1. `.action-btn`: `background-color: #3b82f6`, `color: white`, `padding: 12px 24px`, `border: none`, `border-radius: 6px`, `cursor: pointer`, and a `transition` covering `background-color`, `transform`, and `box-shadow` over `0.2s`\n2. `.action-btn:hover`: lighten background to `#60a5fa`, raise with `transform: translateY(-2px)`, add `box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4)`\n3. `.action-btn:active`: darken background to `#1d4ed8`, press down with `transform: translateY(1px)`, remove shadow with `box-shadow: none`\n4. `.action-btn:focus-visible`: add `outline: 2px solid #93c5fd` with `outline-offset: 2px`",
+      "starterCode": "/* Style the .action-btn with hover, active, and focus-visible states */\n",
+      "solution": ".action-btn {\n  background-color: #3b82f6;\n  color: white;\n  padding: 12px 24px;\n  border: none;\n  border-radius: 6px;\n  cursor: pointer;\n  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;\n}\n\n.action-btn:hover {\n  background-color: #60a5fa;\n  transform: translateY(-2px);\n  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);\n}\n\n.action-btn:active {\n  background-color: #1d4ed8;\n  transform: translateY(1px);\n  box-shadow: none;\n}\n\n.action-btn:focus-visible {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}",
+      "testRunner": "",
+      "providedHtml": "<button class=\"action-btn\">Click Me</button>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": ":hover",
+          "description": "CSS includes a :hover rule"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": ":active",
+          "description": "CSS includes an :active rule"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "transition",
+          "description": "CSS includes transition properties"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "transform",
+          "description": "CSS uses transform for button movement"
+        }
+      ],
+      "hints": [
+        "A polished button typically defines transitions on the base state, then overrides `background-color`, `transform`, and `box-shadow` in each pseudo-class.",
+        "Define `transition` on `.action-btn`, then write separate rule blocks for `:hover` (lighten and raise), `:active` (darken and press), and `:focus-visible` (outline)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: :hover",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:hover",
+          "description": "The :hover pseudo-class"
+        },
+        {
+          "label": "MDN: :active",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:active",
+          "description": "The :active pseudo-class"
+        },
+        {
+          "label": "MDN: :focus-visible",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible",
+          "description": "The :focus-visible pseudo-class"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1229,
+      "title": "Smooth Navigation Menu",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "transitions"
+      ],
+      "tags": [
+        "css",
+        "transitions",
+        "navigation",
+        "dropdown",
+        "opacity",
+        "max-height",
+        "intermediate"
+      ],
+      "description": "Create a dropdown navigation menu that appears smoothly on hover using transitions.",
+      "instructions": "Style a navigation menu where the dropdown submenu appears smoothly on hover.\n\n**Requirements:**\n1. `.nav-menu` links: `color: #e2e8f0`, `text-decoration: none`, `padding: 8px 16px`, `display: inline-block`\n2. `.dropdown`: `position: relative` (container for the submenu)\n3. `.submenu`: hidden by default with `opacity: 0`, `max-height: 0`, `overflow: hidden`, `position: absolute`, `background-color: #1e293b`, and a `transition` on `opacity` and `max-height` over `0.3s`\n4. `.dropdown:hover .submenu`: revealed with `opacity: 1` and `max-height: 200px`\n5. `.submenu a`: `display: block`, `padding: 8px 16px`, `color: #e2e8f0`, `text-decoration: none`",
+      "starterCode": "/* Style the navigation menu with a smooth dropdown */\n",
+      "solution": ".nav-menu a {\n  color: #e2e8f0;\n  text-decoration: none;\n  padding: 8px 16px;\n  display: inline-block;\n}\n\n.dropdown {\n  position: relative;\n  display: inline-block;\n}\n\n.submenu {\n  opacity: 0;\n  max-height: 0;\n  overflow: hidden;\n  position: absolute;\n  background-color: #1e293b;\n  transition: opacity 0.3s ease, max-height 0.3s ease;\n}\n\n.dropdown:hover .submenu {\n  opacity: 1;\n  max-height: 200px;\n}\n\n.submenu a {\n  display: block;\n  padding: 8px 16px;\n  color: #e2e8f0;\n  text-decoration: none;\n}",
+      "testRunner": "",
+      "providedHtml": "<nav class=\"nav-menu\"><a href=\"#\">Home</a><div class=\"dropdown\"><a href=\"#\">Products</a><div class=\"submenu\"><a href=\"#\">Widgets</a><a href=\"#\">Gadgets</a><a href=\"#\">Tools</a></div></div><a href=\"#\">About</a></nav>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "transition",
+          "description": "CSS includes transition properties"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": ":hover",
+          "description": "CSS includes a :hover rule for the dropdown"
+        },
+        {
+          "assertion": "sourceMatch",
+          "value": "opacity|max-height",
+          "description": "Transition targets opacity or max-height"
+        }
+      ],
+      "hints": [
+        "Hide the submenu with `opacity: 0` and `max-height: 0`, then reveal it on the parent's `:hover` state. Transitions on both properties create a smooth appearance.",
+        "Set `opacity: 0`, `max-height: 0`, and `overflow: hidden` on `.submenu` with transitions, then on `.dropdown:hover .submenu` set `opacity: 1` and a `max-height` large enough to show the content."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Using CSS transitions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions/Using_CSS_transitions",
+          "description": "Guide to CSS transitions"
+        },
+        {
+          "label": "MDN: opacity",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/opacity",
+          "description": "The opacity property"
+        },
+        {
+          "label": "MDN: max-height",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/max-height",
+          "description": "The max-height property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1230,
+      "title": "Translate and Rotate",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "transforms"
+      ],
+      "tags": [
+        "css",
+        "transforms",
+        "translate",
+        "rotate",
+        "beginner"
+      ],
+      "description": "Move one box horizontally and rotate another using CSS transform functions.",
+      "instructions": "CSS transforms let you move, rotate, scale, or skew elements without affecting the document flow. The `transform` property accepts functions like `translateX()`, `rotate()`, and more.\n\nApply transforms to two boxes:\n- `.move-box`: use `transform: translateX(50px)` to shift it 50 pixels to the right\n- `.spin-box`: use `transform: rotate(45deg)` to rotate it 45 degrees clockwise\n\nThe `translateX()` function moves along the horizontal axis, and `rotate()` turns the element around its center.",
+      "starterCode": "/* Move the box 50px to the right */\n.move-box {\n  /* Add a translateX transform */\n\n}\n\n/* Rotate the box 45 degrees */\n.spin-box {\n  /* Add a rotate transform */\n\n}",
+      "solution": ".move-box {\n  transform: translateX(50px);\n}\n\n.spin-box {\n  transform: rotate(45deg);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"move-box\" style=\"width: 80px; height: 80px; background-color: #3b82f6; margin: 20px;\"></div><div class=\"spin-box\" style=\"width: 80px; height: 80px; background-color: #ef4444; margin: 20px;\"></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "translateX",
+          "description": "CSS uses translateX for horizontal movement"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "rotate",
+          "description": "CSS uses rotate for rotation"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "45deg",
+          "description": "Rotation is set to 45 degrees"
+        }
+      ],
+      "hints": [
+        "The `transform` property accepts functions that describe how to change an element's position, size, or angle.",
+        "Write `transform: translateX(50px);` on `.move-box` and `transform: rotate(45deg);` on `.spin-box`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS 2D Transforms",
+          "url": "https://www.w3schools.com/css/css3_2dtransforms.asp",
+          "description": "Introduction to CSS 2D transforms"
+        },
+        {
+          "label": "MDN: transform",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+          "description": "The CSS transform property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1231,
+      "title": "Scale and Skew",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "transforms"
+      ],
+      "tags": [
+        "css",
+        "transforms",
+        "scale",
+        "skew",
+        "beginner"
+      ],
+      "description": "Enlarge one box with scale and slant another with skew using CSS transforms.",
+      "instructions": "Two more transform functions let you resize and slant elements. The `scale()` function makes an element larger or smaller, and `skewX()` tilts it along the horizontal axis.\n\nApply transforms to two boxes:\n- `.big-box`: use `transform: scale(1.5)` to make it 1.5 times its original size\n- `.slant-box`: use `transform: skewX(15deg)` to slant it 15 degrees\n\nA `scale(1)` means normal size, `scale(2)` means double, and `scale(0.5)` means half.",
+      "starterCode": "/* Make the box 1.5x bigger */\n.big-box {\n  /* Add a scale transform */\n\n}\n\n/* Slant the box 15 degrees */\n.slant-box {\n  /* Add a skewX transform */\n\n}",
+      "solution": ".big-box {\n  transform: scale(1.5);\n}\n\n.slant-box {\n  transform: skewX(15deg);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"big-box\" style=\"width: 60px; height: 60px; background-color: #8b5cf6; margin: 40px;\"></div><div class=\"slant-box\" style=\"width: 80px; height: 80px; background-color: #f59e0b; margin: 40px;\"></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "scale",
+          "description": "CSS uses scale to resize the element"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "skew",
+          "description": "CSS uses skew to slant the element"
+        }
+      ],
+      "hints": [
+        "The `scale()` function resizes an element by a multiplier, and `skewX()` tilts it along the x-axis by a degree value.",
+        "Write `transform: scale(1.5);` on `.big-box` and `transform: skewX(15deg);` on `.slant-box`."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS 2D Transforms",
+          "url": "https://www.w3schools.com/css/css3_2dtransforms.asp",
+          "description": "CSS scale and skew transforms"
+        },
+        {
+          "label": "MDN: transform",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+          "description": "The CSS transform property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1232,
+      "title": "Transform Origin",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "transforms"
+      ],
+      "tags": [
+        "css",
+        "transforms",
+        "transform-origin",
+        "rotate"
+      ],
+      "description": "Rotate an element around its top-left corner by changing the transform origin.",
+      "instructions": "Write CSS for `#pivot-box`:\n  1. Set `transform-origin` to `top left` so the element pivots from its top-left corner instead of its center\n  2. Apply `transform: rotate(30deg)` to rotate it 30 degrees\n\nBy default, transforms happen around the center of an element. Changing `transform-origin` moves that pivot point.",
+      "starterCode": "#pivot-box {\n  /* Your code here */\n\n}",
+      "solution": "#pivot-box {\n  transform-origin: top left;\n  transform: rotate(30deg);\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"pivot-box\" style=\"width: 100px; height: 100px; background-color: #06b6d4; margin: 60px;\"></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "transform-origin",
+          "description": "CSS sets a custom transform-origin"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "rotate",
+          "description": "CSS applies a rotation transform"
+        }
+      ],
+      "hints": [
+        "The `transform-origin` property sets the point around which transforms are applied. Keywords like `top`, `left`, `center`, `bottom`, `right` can be combined.",
+        "Use `transform-origin: top left;` followed by `transform: rotate(30deg);` to rotate the element from its corner."
+      ],
+      "resources": [
+        {
+          "label": "MDN: transform-origin",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin",
+          "description": "Setting the origin for transforms"
+        },
+        {
+          "label": "MDN: transform",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+          "description": "The CSS transform property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1233,
+      "title": "Combined Transforms",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "transforms"
+      ],
+      "tags": [
+        "css",
+        "transforms",
+        "translate",
+        "rotate",
+        "scale",
+        "chaining"
+      ],
+      "description": "Chain multiple transform functions in a single property to translate, rotate, and scale an element.",
+      "instructions": "Write CSS for `#combo-box` that chains three transforms in a single `transform` property:\n  1. `translate(40px, 20px)` to move the element right and down\n  2. `rotate(45deg)` to spin it\n  3. `scale(1.2)` to enlarge it\n\nMultiple transform functions are space-separated in one `transform` declaration. The order matters — transforms are applied from right to left.",
+      "starterCode": "#combo-box {\n  /* Your code here */\n\n}",
+      "solution": "#combo-box {\n  transform: translate(40px, 20px) rotate(45deg) scale(1.2);\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"combo-box\" style=\"width: 80px; height: 80px; background-color: #ec4899; margin: 60px;\"></div>",
+      "testCases": [
+        {
+          "assertion": "sourceMatch",
+          "value": "transform\\s*:.*translate.*rotate.*scale|transform\\s*:.*scale.*rotate.*translate",
+          "description": "Transform chains translate, rotate, and scale together"
+        }
+      ],
+      "hints": [
+        "You can apply several transform functions at once by listing them in a single `transform` property, separated by spaces.",
+        "Write all three functions in one line: `transform: translate(40px, 20px) rotate(45deg) scale(1.2);`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: transform",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+          "description": "Chaining multiple transform functions"
+        },
+        {
+          "label": "MDN: Using CSS transforms",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transforms/Using_CSS_transforms",
+          "description": "Guide to CSS transforms"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1234,
+      "title": "3D Transforms and Perspective",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "transforms"
+      ],
+      "tags": [
+        "css",
+        "transforms",
+        "3d",
+        "perspective",
+        "rotateY",
+        "backface-visibility",
+        "intermediate"
+      ],
+      "description": "Apply perspective to a container and rotate a card in 3D space with backface hidden.",
+      "instructions": "Style a 3D card flip effect.\n\n**Requirements:**\n1. `.scene`: set `perspective: 600px` to create a 3D rendering context (this controls how pronounced the 3D effect looks)\n2. `#flip-card`: apply `transform: rotateY(30deg)` to rotate the card around the vertical axis, set `transition: transform 0.6s ease`\n3. `#flip-card`: also set `backface-visibility: hidden` so the back of the card is invisible when rotated past 90 degrees\n4. `.scene:hover #flip-card`: on hover, rotate to `rotateY(180deg)` for a full flip",
+      "starterCode": "/* Style the 3D card with perspective */\n",
+      "solution": ".scene {\n  perspective: 600px;\n}\n\n#flip-card {\n  transform: rotateY(30deg);\n  transition: transform 0.6s ease;\n  backface-visibility: hidden;\n}\n\n.scene:hover #flip-card {\n  transform: rotateY(180deg);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"scene\" style=\"width: 200px; height: 150px; margin: 40px;\"><div id=\"flip-card\" style=\"width: 100%; height: 100%; background-color: #6366f1; color: white; display: flex; align-items: center; justify-content: center; border-radius: 8px;\">3D Card</div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "perspective",
+          "description": "CSS sets perspective on the scene container"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "rotateY",
+          "description": "CSS uses rotateY for 3D rotation"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "backface-visibility",
+          "description": "CSS sets backface-visibility"
+        }
+      ],
+      "hints": [
+        "The `perspective` property on a parent creates a 3D space. `rotateY()` spins elements around the vertical axis, and `backface-visibility: hidden` hides the back when flipped.",
+        "Set `perspective` on `.scene`, then `transform: rotateY(30deg)` and `backface-visibility: hidden` on `#flip-card`. Add a `:hover` rule on `.scene:hover #flip-card` to flip to `rotateY(180deg)`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: perspective",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/perspective",
+          "description": "Setting 3D perspective depth"
+        },
+        {
+          "label": "MDN: backface-visibility",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility",
+          "description": "Hiding the back face of rotated elements"
+        },
+        {
+          "label": "MDN: Using CSS transforms",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transforms/Using_CSS_transforms",
+          "description": "Guide to CSS transforms including 3D"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1235,
+      "title": "@keyframes Basics",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "animations"
+      ],
+      "tags": [
+        "css",
+        "animations",
+        "keyframes",
+        "scale",
+        "pulse"
+      ],
+      "description": "Define a @keyframes animation that pulses a circle by scaling it up and back.",
+      "instructions": "Write CSS to create a pulsing animation for `.pulse-circle`:\n  1. Define `@keyframes pulse` with three steps:\n     - `0%`: `transform: scale(1)` (normal size)\n     - `50%`: `transform: scale(1.2)` (enlarged)\n     - `100%`: `transform: scale(1)` (back to normal)\n  2. Apply the animation to `.pulse-circle`: `animation: pulse 1.5s ease-in-out infinite`",
+      "starterCode": "/* Define a keyframes animation called \"pulse\" */\n\n/* Apply the animation to .pulse-circle */\n.pulse-circle {\n  /* Your code here */\n\n}",
+      "solution": "@keyframes pulse {\n  0% {\n    transform: scale(1);\n  }\n  50% {\n    transform: scale(1.2);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n\n.pulse-circle {\n  animation: pulse 1.5s ease-in-out infinite;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"pulse-circle\" style=\"width: 80px; height: 80px; background-color: #ef4444; border-radius: 50%; margin: 40px auto;\"></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "@keyframes",
+          "description": "CSS defines a @keyframes rule"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "pulse",
+          "description": "Animation is named pulse"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "animation",
+          "description": "Animation is applied to the element"
+        }
+      ],
+      "hints": [
+        "The `@keyframes` at-rule defines the steps of an animation, and the `animation` property applies it to an element with a name, duration, and iteration count.",
+        "Write `@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }` then apply with `animation: pulse 1.5s ease-in-out infinite;`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: @keyframes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes",
+          "description": "Defining animation keyframes"
+        },
+        {
+          "label": "MDN: animation",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/animation",
+          "description": "The animation shorthand property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1236,
+      "title": "Animation Properties",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "animations"
+      ],
+      "tags": [
+        "css",
+        "animations",
+        "duration",
+        "iteration-count",
+        "direction",
+        "fill-mode"
+      ],
+      "description": "Apply an animation with specific duration, iteration count, direction, and fill mode to a bouncing box.",
+      "instructions": "Write CSS for `.bouncing-box`:\n  1. Define `@keyframes bounce` that moves the element up:\n     - `from`: `transform: translateY(0)`\n     - `to`: `transform: translateY(-30px)`\n  2. Apply the animation to `.bouncing-box` with these properties:\n     - `animation-name: bounce`\n     - `animation-duration: 1s`\n     - `animation-iteration-count: infinite`\n     - `animation-direction: alternate` (reverses every other cycle)\n     - `animation-fill-mode: forwards`\n     - `animation-timing-function: ease-in-out`\n\nYou may use the shorthand `animation` property instead of individual properties.",
+      "starterCode": "/* Define the bounce keyframes */\n\n/* Apply animation properties to .bouncing-box */\n.bouncing-box {\n  /* Your code here */\n\n}",
+      "solution": "@keyframes bounce {\n  from {\n    transform: translateY(0);\n  }\n  to {\n    transform: translateY(-30px);\n  }\n}\n\n.bouncing-box {\n  animation-name: bounce;\n  animation-duration: 1s;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n  animation-fill-mode: forwards;\n  animation-timing-function: ease-in-out;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"bouncing-box\" style=\"width: 60px; height: 60px; background-color: #22c55e; border-radius: 8px; margin: 60px auto 20px;\"></div>",
+      "testCases": [
+        {
+          "assertion": "sourceMatch",
+          "value": "animation-duration|animation\\s*:.*1s",
+          "description": "Animation has a duration set"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "infinite",
+          "description": "Animation repeats infinitely"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "alternate",
+          "description": "Animation direction is alternate"
+        }
+      ],
+      "hints": [
+        "Animation properties control how an animation plays: how long it lasts, how many times it repeats, whether it reverses, and what state it holds after finishing.",
+        "Set `animation-name: bounce`, `animation-duration: 1s`, `animation-iteration-count: infinite`, `animation-direction: alternate`, and `animation-fill-mode: forwards` on `.bouncing-box`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: animation",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/animation",
+          "description": "The animation shorthand property"
+        },
+        {
+          "label": "MDN: animation-direction",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction",
+          "description": "Controlling animation playback direction"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1237,
+      "title": "Fade and Slide Animations",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "animations"
+      ],
+      "tags": [
+        "css",
+        "animations",
+        "keyframes",
+        "opacity",
+        "translateY",
+        "fade",
+        "slide",
+        "intermediate"
+      ],
+      "description": "Create a fadeSlideIn animation that fades cards in while sliding them upward.",
+      "instructions": "Style a set of cards with a fade-and-slide entrance animation.\n\n**Requirements:**\n1. Define `@keyframes fadeSlideIn`:\n   - `from`: `opacity: 0` and `transform: translateY(20px)` (invisible and shifted down)\n   - `to`: `opacity: 1` and `transform: translateY(0)` (fully visible in original position)\n2. Apply the animation to `.card`: `animation: fadeSlideIn 0.5s ease-out forwards`\n3. Give `.card` a starting `opacity: 0` so it is hidden before the animation runs\n4. Style `.card` with `padding: 16px`, `background-color: #1e293b`, `border-radius: 8px`, `color: #e2e8f0`",
+      "starterCode": "/* Style the cards with a fade and slide entrance animation */\n",
+      "solution": "@keyframes fadeSlideIn {\n  from {\n    opacity: 0;\n    transform: translateY(20px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.card {\n  opacity: 0;\n  animation: fadeSlideIn 0.5s ease-out forwards;\n  padding: 16px;\n  background-color: #1e293b;\n  border-radius: 8px;\n  color: #e2e8f0;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"display: flex; gap: 16px; padding: 20px;\"><div class=\"card\">Card One</div><div class=\"card\">Card Two</div><div class=\"card\">Card Three</div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "@keyframes",
+          "description": "CSS defines a @keyframes rule"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "opacity",
+          "description": "Animation uses opacity for fading"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "translateY",
+          "description": "Animation uses translateY for sliding"
+        }
+      ],
+      "hints": [
+        "Combine `opacity` and `transform: translateY()` in keyframes to create a fade-and-slide effect. Use `animation-fill-mode: forwards` to keep the final state.",
+        "Define `@keyframes fadeSlideIn` going from `opacity: 0; transform: translateY(20px)` to `opacity: 1; transform: translateY(0)`, then apply with `animation: fadeSlideIn 0.5s ease-out forwards;`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: @keyframes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes",
+          "description": "Defining animation keyframes"
+        },
+        {
+          "label": "MDN: animation-fill-mode",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode",
+          "description": "Controlling styles before and after animation"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1238,
+      "title": "Loading Spinner",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "animations"
+      ],
+      "tags": [
+        "css",
+        "animations",
+        "keyframes",
+        "rotate",
+        "spinner",
+        "loading",
+        "intermediate"
+      ],
+      "description": "Create a continuously rotating loading spinner using @keyframes and the animation property.",
+      "instructions": "Style a loading spinner that rotates continuously.\n\n**Requirements:**\n1. `.spinner`:\n   - `width: 48px`, `height: 48px`\n   - `border: 4px solid #334155` (background ring)\n   - `border-top-color: #3b82f6` (highlighted arc)\n   - `border-radius: 50%` (makes it circular)\n2. Define `@keyframes spin`:\n   - `0%`: `transform: rotate(0deg)`\n   - `100%`: `transform: rotate(360deg)`\n3. Apply to `.spinner`: `animation: spin 1s linear infinite`\n\nThe `linear` timing function ensures constant rotation speed.",
+      "starterCode": "/* Style the loading spinner with a continuous rotation */\n",
+      "solution": ".spinner {\n  width: 48px;\n  height: 48px;\n  border: 4px solid #334155;\n  border-top-color: #3b82f6;\n  border-radius: 50%;\n  animation: spin 1s linear infinite;\n}\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"display: flex; justify-content: center; padding: 40px;\"><div class=\"spinner\"></div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "@keyframes",
+          "description": "CSS defines a @keyframes rule"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "rotate",
+          "description": "Animation uses rotate transform"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "infinite",
+          "description": "Animation repeats infinitely"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "linear",
+          "description": "Animation uses linear timing function"
+        }
+      ],
+      "hints": [
+        "A spinner is a circle (using `border-radius: 50%`) with one colored border segment, rotated continuously from 0 to 360 degrees.",
+        "Define `@keyframes spin` from `rotate(0deg)` to `rotate(360deg)`, then apply `animation: spin 1s linear infinite;` on `.spinner`. Use `border-top-color` to highlight one arc."
+      ],
+      "resources": [
+        {
+          "label": "MDN: @keyframes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes",
+          "description": "Defining animation keyframes"
+        },
+        {
+          "label": "MDN: animation-timing-function",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function",
+          "description": "Controlling animation speed curves"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1239,
+      "title": "Animated Card Entrance",
+      "type": "css",
+      "tier": 4,
+      "category": [
+        "css",
+        "animations"
+      ],
+      "tags": [
+        "css",
+        "animations",
+        "keyframes",
+        "animation-delay",
+        "nth-child",
+        "staggered",
+        "tier4"
+      ],
+      "description": "Create a staggered entrance animation for a grid of cards using animation-delay and :nth-child selectors.",
+      "instructions": "Style a set of cards with a staggered entrance animation where each card fades in slightly after the previous one.\n\n**Requirements:**\n1. Define `@keyframes fadeIn`:\n   - `from`: `opacity: 0` and `transform: translateY(20px)`\n   - `to`: `opacity: 1` and `transform: translateY(0)`\n2. `.grid`: `display: grid`, `grid-template-columns: repeat(2, 1fr)`, `gap: 16px`, `padding: 20px`\n3. `.grid .card`:\n   - `opacity: 0` (hidden initially)\n   - `animation: fadeIn 0.4s ease-out forwards`\n   - `padding: 24px`, `background-color: #1e293b`, `border-radius: 8px`, `color: #e2e8f0`\n4. Staggered delays using `:nth-child`:\n   - `.grid .card:nth-child(1)`: `animation-delay: 0s`\n   - `.grid .card:nth-child(2)`: `animation-delay: 0.1s`\n   - `.grid .card:nth-child(3)`: `animation-delay: 0.2s`\n   - `.grid .card:nth-child(4)`: `animation-delay: 0.3s`",
+      "starterCode": "/* Create a staggered card entrance animation */\n",
+      "solution": "@keyframes fadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(20px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 16px;\n  padding: 20px;\n}\n\n.grid .card {\n  opacity: 0;\n  animation: fadeIn 0.4s ease-out forwards;\n  padding: 24px;\n  background-color: #1e293b;\n  border-radius: 8px;\n  color: #e2e8f0;\n}\n\n.grid .card:nth-child(1) {\n  animation-delay: 0s;\n}\n\n.grid .card:nth-child(2) {\n  animation-delay: 0.1s;\n}\n\n.grid .card:nth-child(3) {\n  animation-delay: 0.2s;\n}\n\n.grid .card:nth-child(4) {\n  animation-delay: 0.3s;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"grid\"><div class=\"card\">Card 1</div><div class=\"card\">Card 2</div><div class=\"card\">Card 3</div><div class=\"card\">Card 4</div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "@keyframes",
+          "description": "CSS defines a @keyframes rule"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "animation-delay",
+          "description": "CSS uses animation-delay for staggering"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": ":nth-child",
+          "description": "CSS uses :nth-child selectors for targeting individual cards"
+        }
+      ],
+      "hints": [
+        "Each card can have a different `animation-delay` to create a cascading entrance effect. The `:nth-child()` pseudo-class lets you target specific items.",
+        "Define one `@keyframes` for the fade-in, apply it to all `.grid .card` elements, then use `.grid .card:nth-child(1)`, `:nth-child(2)`, etc. to set incrementing `animation-delay` values."
+      ],
+      "resources": [
+        {
+          "label": "MDN: animation-delay",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay",
+          "description": "Delaying the start of an animation"
+        },
+        {
+          "label": "MDN: :nth-child",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child",
+          "description": "Selecting elements by their position"
+        },
+        {
+          "label": "MDN: @keyframes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes",
+          "description": "Defining animation keyframes"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 75
+    },
+    {
+      "id": 1240,
+      "title": "Background Image",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "backgrounds"
+      ],
+      "tags": [
+        "css",
+        "backgrounds",
+        "background-image",
+        "beginner"
+      ],
+      "description": "Apply a background image to an element using the background-image property.",
+      "instructions": "The `background-image` property sets an image as the background of an element. Images are specified with the `url()` function. By default, a background image repeats both horizontally and vertically to fill the element.\n\nStyle the `.hero` element:\n- Set `background-image` to `url('https://picsum.photos/800/400')`\n- Set `background-repeat` to `no-repeat`",
+      "starterCode": "/* Add a background image to the hero section */\n.hero {\n  /* Set background-image using url() */\n\n  /* Set background-repeat to no-repeat */\n\n}",
+      "solution": ".hero {\n  background-image: url('https://picsum.photos/800/400');\n  background-repeat: no-repeat;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"hero\" style=\"height: 200px; color: white; padding: 20px;\">Hero Section</div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "background-image",
+          "description": "CSS includes background-image property"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "url(",
+          "description": "CSS uses url() function"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "background-repeat",
+          "description": "CSS includes background-repeat property"
+        }
+      ],
+      "hints": [
+        "The `background-image` property accepts a `url()` function that points to an image location.",
+        "Use `background-image: url('...')` with the image path inside the parentheses, and `background-repeat: no-repeat` to prevent tiling."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Background Image",
+          "url": "https://www.w3schools.com/css/css_background_image.asp",
+          "description": "How to set background images"
+        },
+        {
+          "label": "MDN: background-image",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/background-image",
+          "description": "The background-image property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1241,
+      "title": "Background Size and Position",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "backgrounds"
+      ],
+      "tags": [
+        "css",
+        "backgrounds",
+        "background-size",
+        "background-position",
+        "beginner"
+      ],
+      "description": "Control how a background image fills and aligns within its element.",
+      "instructions": "The `background-size` property controls how large the background image is drawn. The value `cover` scales the image to completely fill the element while maintaining its aspect ratio. The `background-position` property sets where the image is anchored within the element.\n\nStyle the `.cover-box` element:\n- Set `background-size` to `cover`\n- Set `background-position` to `center`",
+      "starterCode": "/* Control background sizing and position */\n.cover-box {\n  /* Set background-size to cover */\n\n  /* Set background-position to center */\n\n}",
+      "solution": ".cover-box {\n  background-size: cover;\n  background-position: center;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"cover-box\" style=\"height: 200px; background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%233b82f6%22 width=%22100%22 height=%22100%22/></svg>');\">Cover Box</div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "background-size",
+          "description": "CSS includes background-size property"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "cover",
+          "description": "CSS uses cover value"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "background-position",
+          "description": "CSS includes background-position property"
+        }
+      ],
+      "hints": [
+        "Think about what `cover` means visually: the image stretches to fill the entire element, even if part of the image gets clipped.",
+        "Use `background-size: cover` and `background-position: center` together to fill the element with the image anchored at its center."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Background Size",
+          "url": "https://www.w3schools.com/cssref/css3_pr_background-size.php",
+          "description": "How to control background image size"
+        },
+        {
+          "label": "MDN: background-size",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/background-size",
+          "description": "The background-size property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1242,
+      "title": "Linear Gradient",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "backgrounds"
+      ],
+      "tags": [
+        "css",
+        "backgrounds",
+        "gradient",
+        "linear-gradient",
+        "beginner"
+      ],
+      "description": "Create a smooth color transition using the linear-gradient function.",
+      "instructions": "The `linear-gradient()` function creates a background that transitions smoothly between two or more colors. You specify a direction (like `to right`) and the colors to blend.\n\nStyle the `.gradient-box` element:\n- Set `background` to `linear-gradient(to right, #3b82f6, #8b5cf6)`\n\nThis creates a horizontal gradient from blue to purple.",
+      "starterCode": "/* Create a gradient background */\n.gradient-box {\n  /* Set background to a linear-gradient going to the right */\n  /* Use colors #3b82f6 and #8b5cf6 */\n\n}",
+      "solution": ".gradient-box {\n  background: linear-gradient(to right, #3b82f6, #8b5cf6);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"gradient-box\" style=\"height: 150px; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;\">Gradient</div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "linear-gradient",
+          "description": "CSS uses linear-gradient function"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "to right",
+          "description": "Gradient direction is to right"
+        }
+      ],
+      "hints": [
+        "A gradient is set on the `background` property (not `background-color`), using the `linear-gradient()` function.",
+        "Use `background: linear-gradient(to right, #3b82f6, #8b5cf6)` to blend from blue on the left to purple on the right."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: CSS Gradients",
+          "url": "https://www.w3schools.com/css/css3_gradients.asp",
+          "description": "How to create CSS gradients"
+        },
+        {
+          "label": "MDN: linear-gradient()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient",
+          "description": "The linear-gradient() function"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 10
+    },
+    {
+      "id": 1243,
+      "title": "Radial Gradient",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "backgrounds"
+      ],
+      "tags": [
+        "css",
+        "backgrounds",
+        "gradient",
+        "radial-gradient"
+      ],
+      "description": "Create a circular color transition radiating from the center of an element.",
+      "instructions": "Write CSS to style `#radial-box`:\n  1. Set `background` to a `radial-gradient` with a `circle` shape\n  2. Transition from `#facc15` (yellow) at the center to `#f97316` (orange) at the edges\n  3. Set `height` to `200px`",
+      "starterCode": "/* Create a radial gradient */\n#radial-box {\n  /* Your code here */\n\n}",
+      "solution": "#radial-box {\n  background: radial-gradient(circle, #facc15, #f97316);\n  height: 200px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"radial-box\"></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "radial-gradient",
+          "description": "CSS uses radial-gradient function"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "circle",
+          "description": "Gradient shape is circle"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#radial-box",
+          "property": "height",
+          "value": "200px",
+          "description": "Height is 200px"
+        }
+      ],
+      "hints": [
+        "A radial gradient spreads outward from a central point, unlike a linear gradient which moves in a straight line.",
+        "Use `background: radial-gradient(circle, color1, color2)` where `circle` defines the shape and the colors define the transition."
+      ],
+      "resources": [
+        {
+          "label": "MDN: radial-gradient()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/radial-gradient",
+          "description": "The radial-gradient() function"
+        },
+        {
+          "label": "MDN: Using CSS gradients",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_images/Using_CSS_gradients",
+          "description": "Guide to CSS gradients"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1244,
+      "title": "Multiple Backgrounds",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "backgrounds"
+      ],
+      "tags": [
+        "css",
+        "backgrounds",
+        "gradient",
+        "multiple-backgrounds"
+      ],
+      "description": "Layer a gradient on top of a background image using multiple backgrounds.",
+      "instructions": "Write CSS to style `#layered-bg`:\n  1. Set `background` with two layers separated by a comma:\n     - First layer: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))`\n     - Second layer: `url('placeholder.jpg')`\n  2. Set `height` to `250px`\n  3. Set `color` to `white`\n\nThe gradient acts as a dark overlay on top of the image.",
+      "starterCode": "/* Layer a gradient over a background image */\n#layered-bg {\n  /* Your code here */\n\n}",
+      "solution": "#layered-bg {\n  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('placeholder.jpg');\n  height: 250px;\n  color: white;\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"layered-bg\" style=\"display: flex; align-items: center; justify-content: center; font-size: 1.5rem;\">Overlay Text</div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "linear-gradient",
+          "description": "CSS includes a linear-gradient layer"
+        },
+        {
+          "assertion": "sourceMatch",
+          "value": "gradient.*,.*url\\(",
+          "description": "CSS layers gradient and background image with a comma"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#layered-bg",
+          "property": "height",
+          "value": "250px",
+          "description": "Height is 250px"
+        }
+      ],
+      "hints": [
+        "CSS lets you stack multiple backgrounds on one element by separating them with commas. The first listed layer is drawn on top.",
+        "Use `background: linear-gradient(...), url(...)` where the gradient comes first (top layer) and the image second (bottom layer)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Using multiple backgrounds",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_backgrounds_and_borders/Using_multiple_backgrounds",
+          "description": "How to layer multiple backgrounds"
+        },
+        {
+          "label": "MDN: background",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/background",
+          "description": "The background shorthand property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1245,
+      "title": "flex-wrap",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "flex-wrap"
+      ],
+      "description": "Allow flex items to wrap onto multiple lines when they overflow the container.",
+      "instructions": "Write CSS to style `#wrap-container`:\n  1. Set `display` to `flex`\n  2. Set `flex-wrap` to `wrap`\n  3. Set `gap` to `10px`",
+      "starterCode": "/* Enable flex wrapping */\n#wrap-container {\n  /* Your code here */\n\n}",
+      "solution": "#wrap-container {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"wrap-container\"><div style=\"width: 120px; height: 60px; background: rgb(59, 130, 246);\">1</div><div style=\"width: 120px; height: 60px; background: rgb(139, 92, 246);\">2</div><div style=\"width: 120px; height: 60px; background: rgb(236, 72, 153);\">3</div><div style=\"width: 120px; height: 60px; background: rgb(34, 197, 94);\">4</div><div style=\"width: 120px; height: 60px; background: rgb(249, 115, 22);\">5</div><div style=\"width: 120px; height: 60px; background: rgb(234, 179, 8);\">6</div></div>",
+      "testCases": [
+        {
+          "assertion": "equals",
+          "selector": "#wrap-container",
+          "property": "display",
+          "value": "flex",
+          "description": "Container uses flexbox"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#wrap-container",
+          "property": "flex-wrap",
+          "value": "wrap",
+          "description": "flex-wrap is set to wrap"
+        }
+      ],
+      "hints": [
+        "By default, flex items try to fit on one line. There is a property that tells them what to do when they run out of space.",
+        "Use `flex-wrap: wrap` to allow items to flow onto the next line when there is not enough room on the current line."
+      ],
+      "resources": [
+        {
+          "label": "MDN: flex-wrap",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap",
+          "description": "The flex-wrap property"
+        },
+        {
+          "label": "MDN: Flexbox",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox",
+          "description": "Basic concepts of flexbox"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1246,
+      "title": "flex-grow and flex-shrink",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "flex-grow",
+        "flex-shrink"
+      ],
+      "description": "Control how flex items grow and shrink to fill available space.",
+      "instructions": "Write CSS to distribute space among three flex items:\n  1. `#sidebar` gets `flex-grow: 1`\n  2. `#main-content` gets `flex-grow: 2`\n  3. `#aside-panel` gets `flex-grow: 1`\n\nThe main content area should take up twice as much space as the sidebars.",
+      "starterCode": "/* Distribute flex space */\n#sidebar {\n  /* Your code here */\n\n}\n\n#main-content {\n  /* Your code here */\n\n}\n\n#aside-panel {\n  /* Your code here */\n\n}",
+      "solution": "#sidebar {\n  flex-grow: 1;\n}\n\n#main-content {\n  flex-grow: 2;\n}\n\n#aside-panel {\n  flex-grow: 1;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"display: flex; gap: 10px;\"><div id=\"sidebar\" style=\"background: rgb(59, 130, 246); padding: 20px; color: white;\">Sidebar</div><div id=\"main-content\" style=\"background: rgb(34, 197, 94); padding: 20px; color: white;\">Main Content</div><div id=\"aside-panel\" style=\"background: rgb(249, 115, 22); padding: 20px; color: white;\">Aside</div></div>",
+      "testCases": [
+        {
+          "assertion": "equals",
+          "selector": "#sidebar",
+          "property": "flex-grow",
+          "value": "1",
+          "description": "Sidebar flex-grow is 1"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#main-content",
+          "property": "flex-grow",
+          "value": "2",
+          "description": "Main content flex-grow is 2"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#aside-panel",
+          "property": "flex-grow",
+          "value": "1",
+          "description": "Aside panel flex-grow is 1"
+        }
+      ],
+      "hints": [
+        "The `flex-grow` property is a number that determines how much of the remaining space an item should absorb relative to its siblings.",
+        "An item with `flex-grow: 2` will take twice the share of extra space compared to an item with `flex-grow: 1`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: flex-grow",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow",
+          "description": "The flex-grow property"
+        },
+        {
+          "label": "MDN: Controlling ratios of flex items",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis",
+          "description": "How flex items share space"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1247,
+      "title": "flex Shorthand",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "flex-shorthand"
+      ],
+      "description": "Use the flex shorthand to set grow, shrink, and basis in one declaration.",
+      "instructions": "Write CSS to style three flex items using the `flex` shorthand:\n  1. `#col-a` gets `flex: 1 1 200px`\n  2. `#col-b` gets `flex: 2 1 200px`\n  3. `#col-c` gets `flex: 1 1 200px`\n\nThe shorthand format is `flex: grow shrink basis`.",
+      "starterCode": "/* Use flex shorthand */\n#col-a {\n  /* Your code here */\n\n}\n\n#col-b {\n  /* Your code here */\n\n}\n\n#col-c {\n  /* Your code here */\n\n}",
+      "solution": "#col-a {\n  flex: 1 1 200px;\n}\n\n#col-b {\n  flex: 2 1 200px;\n}\n\n#col-c {\n  flex: 1 1 200px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"display: flex; gap: 10px;\"><div id=\"col-a\" style=\"background: rgb(59, 130, 246); padding: 20px; color: white;\">Column A</div><div id=\"col-b\" style=\"background: rgb(139, 92, 246); padding: 20px; color: white;\">Column B</div><div id=\"col-c\" style=\"background: rgb(236, 72, 153); padding: 20px; color: white;\">Column C</div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "flex:",
+          "description": "CSS uses the flex shorthand property"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#col-a",
+          "property": "flex-basis",
+          "value": "200px",
+          "description": "Column A has flex-basis of 200px"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#col-b",
+          "property": "flex-grow",
+          "value": "2",
+          "description": "Column B has flex-grow of 2"
+        }
+      ],
+      "hints": [
+        "The `flex` shorthand combines three properties into one declaration: grow factor, shrink factor, and the starting size (basis).",
+        "Use `flex: 1 1 200px` which means grow=1, shrink=1, basis=200px. The middle column should have grow=2 to take more space."
+      ],
+      "resources": [
+        {
+          "label": "MDN: flex",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex",
+          "description": "The flex shorthand property"
+        },
+        {
+          "label": "MDN: Flexbox",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox",
+          "description": "Basic concepts of flexbox"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1248,
+      "title": "align-self and order",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "align-self",
+        "order"
+      ],
+      "description": "Override alignment for a single item and reorder items visually with CSS.",
+      "instructions": "Write CSS for items inside a flex container:\n  1. `#special-item` gets `align-self: flex-end`\n  2. `#first-item` gets `order: -1` to move it visually first\n\nThe container is already set to `display: flex` and `align-items: flex-start`.",
+      "starterCode": "/* Override alignment and order */\n#special-item {\n  /* Your code here */\n\n}\n\n#first-item {\n  /* Your code here */\n\n}",
+      "solution": "#special-item {\n  align-self: flex-end;\n}\n\n#first-item {\n  order: -1;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"display: flex; align-items: flex-start; gap: 10px; height: 200px; background: rgb(241, 245, 249); padding: 10px;\"><div style=\"background: rgb(59, 130, 246); padding: 20px; color: white;\">Item A</div><div id=\"special-item\" style=\"background: rgb(239, 68, 68); padding: 20px; color: white;\">Special</div><div style=\"background: rgb(34, 197, 94); padding: 20px; color: white;\">Item C</div><div id=\"first-item\" style=\"background: rgb(249, 115, 22); padding: 20px; color: white;\">First!</div></div>",
+      "testCases": [
+        {
+          "assertion": "equals",
+          "selector": "#special-item",
+          "property": "align-self",
+          "value": "flex-end",
+          "description": "Special item aligns to flex-end"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#first-item",
+          "property": "order",
+          "value": "-1",
+          "description": "First item has order -1"
+        }
+      ],
+      "hints": [
+        "While `align-items` sets the default alignment for all children, individual items can override their own alignment independently. The `order` property controls visual order without changing the HTML.",
+        "Use `align-self: flex-end` to push one item to the bottom of the cross axis. Use `order: -1` to move an item before all items with the default order of 0."
+      ],
+      "resources": [
+        {
+          "label": "MDN: align-self",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/align-self",
+          "description": "The align-self property"
+        },
+        {
+          "label": "MDN: order",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/order",
+          "description": "The order property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1249,
+      "title": "grid-column and grid-row Span",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "grid",
+        "grid-column",
+        "span"
+      ],
+      "description": "Make a grid item span multiple columns using the grid-column property.",
+      "instructions": "Write CSS to style `#featured`:\n  1. Set `grid-column` to `span 2` so it takes up two columns\n  2. Set `background-color` to `rgb(59, 130, 246)`\n  3. Set `color` to `white`\n  4. Set `padding` to `20px`",
+      "starterCode": "/* Make the featured item span two columns */\n#featured {\n  /* Your code here */\n\n}",
+      "solution": "#featured {\n  grid-column: span 2;\n  background-color: rgb(59, 130, 246);\n  color: white;\n  padding: 20px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;\"><div id=\"featured\">Featured Item</div><div style=\"background: rgb(226, 232, 240); padding: 20px;\">Item 2</div><div style=\"background: rgb(226, 232, 240); padding: 20px;\">Item 3</div><div style=\"background: rgb(226, 232, 240); padding: 20px;\">Item 4</div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "grid-column",
+          "description": "CSS uses grid-column property"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "span",
+          "description": "CSS uses span keyword"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#featured",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": "Featured item text is white"
+        }
+      ],
+      "hints": [
+        "The `grid-column` property controls how many columns a grid item occupies. The `span` keyword lets you specify a count rather than exact start and end lines.",
+        "Use `grid-column: span 2` to make the item stretch across two column tracks."
+      ],
+      "resources": [
+        {
+          "label": "MDN: grid-column",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column",
+          "description": "The grid-column property"
+        },
+        {
+          "label": "MDN: CSS Grid Layout",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout",
+          "description": "CSS Grid Layout guide"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1250,
+      "title": "grid-template-areas",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "grid",
+        "grid-template-areas",
+        "grid-area"
+      ],
+      "description": "Define a named grid layout using grid-template-areas and assign regions to items.",
+      "instructions": "Write CSS to create a page layout:\n  1. `#page-grid` gets:\n     - `display: grid`\n     - `grid-template-areas:` with three rows:\n       `\"header header\"` (top)\n       `\"sidebar main\"` (middle)\n       `\"footer footer\"` (bottom)\n     - `grid-template-columns: 200px 1fr`\n     - `gap: 10px`\n  2. `#grid-header` gets `grid-area: header`\n  3. `#grid-sidebar` gets `grid-area: sidebar`\n  4. `#grid-main` gets `grid-area: main`\n  5. `#grid-footer` gets `grid-area: footer`",
+      "starterCode": "/* Define the grid layout */\n#page-grid {\n  /* Your code here */\n\n}\n\n#grid-header {\n  /* Your code here */\n\n}\n\n#grid-sidebar {\n  /* Your code here */\n\n}\n\n#grid-main {\n  /* Your code here */\n\n}\n\n#grid-footer {\n  /* Your code here */\n\n}",
+      "solution": "#page-grid {\n  display: grid;\n  grid-template-areas:\n    \"header header\"\n    \"sidebar main\"\n    \"footer footer\";\n  grid-template-columns: 200px 1fr;\n  gap: 10px;\n}\n\n#grid-header {\n  grid-area: header;\n}\n\n#grid-sidebar {\n  grid-area: sidebar;\n}\n\n#grid-main {\n  grid-area: main;\n}\n\n#grid-footer {\n  grid-area: footer;\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"page-grid\"><div id=\"grid-header\" style=\"background: rgb(59, 130, 246); padding: 15px; color: white;\">Header</div><div id=\"grid-sidebar\" style=\"background: rgb(139, 92, 246); padding: 15px; color: white;\">Sidebar</div><div id=\"grid-main\" style=\"background: rgb(34, 197, 94); padding: 15px; color: white;\">Main Content</div><div id=\"grid-footer\" style=\"background: rgb(107, 114, 128); padding: 15px; color: white;\">Footer</div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "grid-template-areas",
+          "description": "CSS uses grid-template-areas"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "grid-area",
+          "description": "CSS assigns grid-area to items"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#page-grid",
+          "property": "display",
+          "value": "grid",
+          "description": "Container uses grid display"
+        }
+      ],
+      "hints": [
+        "Named grid areas let you describe your layout visually using quoted strings. Each string is one row, and each word is a named cell.",
+        "Define the template on the container with `grid-template-areas`, then assign each child to its region using `grid-area: name`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: grid-template-areas",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas",
+          "description": "The grid-template-areas property"
+        },
+        {
+          "label": "MDN: Grid template areas",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Grid_template_areas",
+          "description": "Guide to grid template areas"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1251,
+      "title": "Sticky Positioning",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "positioning"
+      ],
+      "tags": [
+        "css",
+        "positioning",
+        "sticky"
+      ],
+      "description": "Make a navigation bar stick to the top of the viewport when scrolling.",
+      "instructions": "Write CSS to style `#sticky-nav`:\n  1. Set `position` to `sticky`\n  2. Set `top` to `0`\n  3. Set `background-color` to `rgb(30, 41, 59)`\n  4. Set `color` to `white`\n  5. Set `padding` to `15px`",
+      "starterCode": "/* Make the nav stick to the top */\n#sticky-nav {\n  /* Your code here */\n\n}",
+      "solution": "#sticky-nav {\n  position: sticky;\n  top: 0;\n  background-color: rgb(30, 41, 59);\n  color: white;\n  padding: 15px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"height: 400px; overflow: auto;\"><div id=\"sticky-nav\">Navigation Bar</div><div style=\"padding: 20px;\"><p>Scroll down to see the sticky effect.</p><p style=\"margin-top: 100px;\">Keep scrolling...</p><p style=\"margin-top: 100px;\">The nav stays at the top!</p><p style=\"margin-top: 100px;\">End of content.</p></div></div>",
+      "testCases": [
+        {
+          "assertion": "equals",
+          "selector": "#sticky-nav",
+          "property": "position",
+          "value": "sticky",
+          "description": "Position is sticky"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#sticky-nav",
+          "property": "top",
+          "value": "0px",
+          "description": "Top offset is 0px"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#sticky-nav",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": "Text color is white"
+        }
+      ],
+      "hints": [
+        "Sticky positioning is a hybrid of relative and fixed. The element scrolls with the page until it reaches a threshold, then it sticks.",
+        "Use `position: sticky` along with `top: 0` to make the element stick to the top edge of its scrolling container."
+      ],
+      "resources": [
+        {
+          "label": "MDN: position",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/position",
+          "description": "The position property"
+        },
+        {
+          "label": "MDN: Sticky positioning",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning",
+          "description": "CSS positioning guide"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1252,
+      "title": "Stacking with z-index",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "positioning"
+      ],
+      "tags": [
+        "css",
+        "positioning",
+        "z-index",
+        "stacking"
+      ],
+      "description": "Control the stacking order of overlapping positioned elements using z-index.",
+      "instructions": "Write CSS to control the stacking order of three overlapping cards:\n  1. `#card-back` gets `position: relative` and `z-index: 1`\n  2. `#card-middle` gets `position: relative` and `z-index: 2`\n  3. `#card-front` gets `position: relative` and `z-index: 3`\n\nHigher z-index values appear in front of lower ones.",
+      "starterCode": "/* Control stacking order */\n#card-back {\n  /* Your code here */\n\n}\n\n#card-middle {\n  /* Your code here */\n\n}\n\n#card-front {\n  /* Your code here */\n\n}",
+      "solution": "#card-back {\n  position: relative;\n  z-index: 1;\n}\n\n#card-middle {\n  position: relative;\n  z-index: 2;\n}\n\n#card-front {\n  position: relative;\n  z-index: 3;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"position: relative; height: 200px;\"><div id=\"card-back\" style=\"position: absolute; top: 10px; left: 10px; width: 200px; height: 120px; background: rgb(239, 68, 68); padding: 15px; color: white;\">Back Card</div><div id=\"card-middle\" style=\"position: absolute; top: 30px; left: 40px; width: 200px; height: 120px; background: rgb(59, 130, 246); padding: 15px; color: white;\">Middle Card</div><div id=\"card-front\" style=\"position: absolute; top: 50px; left: 70px; width: 200px; height: 120px; background: rgb(34, 197, 94); padding: 15px; color: white;\">Front Card</div></div>",
+      "testCases": [
+        {
+          "assertion": "equals",
+          "selector": "#card-back",
+          "property": "z-index",
+          "value": "1",
+          "description": "Back card has z-index 1"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#card-middle",
+          "property": "z-index",
+          "value": "2",
+          "description": "Middle card has z-index 2"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#card-front",
+          "property": "z-index",
+          "value": "3",
+          "description": "Front card has z-index 3"
+        }
+      ],
+      "hints": [
+        "The `z-index` property only works on elements that have a `position` value other than `static` (the default). Think of it as a layer number.",
+        "Set `position: relative` on each card to enable `z-index`. Then assign increasing z-index values so each card stacks in front of the previous one."
+      ],
+      "resources": [
+        {
+          "label": "MDN: z-index",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/z-index",
+          "description": "The z-index property"
+        },
+        {
+          "label": "MDN: Stacking context",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context",
+          "description": "Understanding stacking contexts"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1253,
+      "title": "HSL Colors",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "colors"
+      ],
+      "tags": [
+        "css",
+        "colors",
+        "hsl"
+      ],
+      "description": "Apply background colors to elements using the hsl() color function.",
+      "instructions": "Write CSS to set background colors using `hsl()` (hue, saturation, lightness):\n  1. `#hsl-red` gets `background-color: hsl(0, 80%, 50%)`\n  2. `#hsl-green` gets `background-color: hsl(120, 80%, 40%)`\n  3. `#hsl-blue` gets `background-color: hsl(220, 80%, 50%)`\n\nAll three should have `color: white` and `padding: 20px`.",
+      "starterCode": "/* Use HSL colors */\n#hsl-red {\n  /* Your code here */\n\n}\n\n#hsl-green {\n  /* Your code here */\n\n}\n\n#hsl-blue {\n  /* Your code here */\n\n}",
+      "solution": "#hsl-red {\n  background-color: hsl(0, 80%, 50%);\n  color: white;\n  padding: 20px;\n}\n\n#hsl-green {\n  background-color: hsl(120, 80%, 40%);\n  color: white;\n  padding: 20px;\n}\n\n#hsl-blue {\n  background-color: hsl(220, 80%, 50%);\n  color: white;\n  padding: 20px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"hsl-red\">Red (Hue 0)</div><div id=\"hsl-green\">Green (Hue 120)</div><div id=\"hsl-blue\">Blue (Hue 220)</div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "hsl(",
+          "description": "CSS uses hsl() color function"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#hsl-red",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": "Red box has white text"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#hsl-green",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": "Green box has white text"
+        }
+      ],
+      "hints": [
+        "HSL stands for Hue (0-360 degrees on the color wheel), Saturation (0-100%, gray to vivid), and Lightness (0-100%, black to white).",
+        "Use `background-color: hsl(hue, saturation%, lightness%)` where hue 0 is red, 120 is green, and 220 is blue."
+      ],
+      "resources": [
+        {
+          "label": "MDN: hsl()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl",
+          "description": "The hsl() color function"
+        },
+        {
+          "label": "MDN: CSS color values",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value",
+          "description": "CSS color value types"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1254,
+      "title": "RGBA Transparency",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "colors"
+      ],
+      "tags": [
+        "css",
+        "colors",
+        "rgba",
+        "transparency"
+      ],
+      "description": "Create a semi-transparent overlay using the rgba() color function.",
+      "instructions": "Write CSS to style `#overlay`:\n  1. Set `background-color` to `rgba(0, 0, 0, 0.6)` (black at 60% opacity)\n  2. Set `color` to `white`\n  3. Set `padding` to `30px`\n  4. Set `text-align` to `center`",
+      "starterCode": "/* Create a semi-transparent overlay */\n#overlay {\n  /* Your code here */\n\n}",
+      "solution": "#overlay {\n  background-color: rgba(0, 0, 0, 0.6);\n  color: white;\n  padding: 30px;\n  text-align: center;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"background: linear-gradient(to right, rgb(59, 130, 246), rgb(139, 92, 246)); padding: 10px;\"><div id=\"overlay\">This overlay is semi-transparent</div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "rgba(",
+          "description": "CSS uses rgba() color function"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#overlay",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": "Overlay text is white"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#overlay",
+          "property": "text-align",
+          "value": "center",
+          "description": "Text is centered"
+        }
+      ],
+      "hints": [
+        "RGBA extends RGB by adding a fourth value: the alpha channel, which controls transparency from 0 (fully transparent) to 1 (fully opaque).",
+        "Use `background-color: rgba(0, 0, 0, 0.6)` where the first three values are the RGB color and the last value is the alpha (0.6 = 60% opaque)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: rgba()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb",
+          "description": "The rgb() and rgba() color functions"
+        },
+        {
+          "label": "MDN: Applying color to HTML elements",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_colors/Applying_color",
+          "description": "How to apply color in CSS"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1255,
+      "title": "Font Stacks and Fallbacks",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "typography"
+      ],
+      "tags": [
+        "css",
+        "typography",
+        "font-family",
+        "font-stack"
+      ],
+      "description": "Define a font stack with fallback fonts to ensure readable text across systems.",
+      "instructions": "Write CSS to set font families with fallbacks:\n  1. `#serif-heading` gets `font-family: Georgia, 'Times New Roman', serif`\n  2. `#sans-body` gets `font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`",
+      "starterCode": "/* Set font stacks with fallbacks */\n#serif-heading {\n  /* Your code here */\n\n}\n\n#sans-body {\n  /* Your code here */\n\n}",
+      "solution": "#serif-heading {\n  font-family: Georgia, 'Times New Roman', serif;\n}\n\n#sans-body {\n  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n}",
+      "testRunner": "",
+      "providedHtml": "<h2 id=\"serif-heading\">Serif Heading</h2><p id=\"sans-body\">This paragraph uses a modern sans-serif font stack. The browser will try each font in order and use the first one it finds installed on the system.</p>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "font-family",
+          "description": "CSS includes font-family property"
+        },
+        {
+          "assertion": "sourceMatch",
+          "value": "font-family:.*,.*,",
+          "description": "Font stacks include multiple comma-separated fonts"
+        }
+      ],
+      "hints": [
+        "A font stack is a list of fonts in order of preference. The browser tries each font and falls back to the next if it is not available, ending with a generic family.",
+        "List preferred fonts first, separated by commas, and end with a generic family like `serif` or `sans-serif`. Wrap multi-word font names in quotes."
+      ],
+      "resources": [
+        {
+          "label": "MDN: font-family",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-family",
+          "description": "The font-family property"
+        },
+        {
+          "label": "MDN: Fundamental text and font styling",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_text/Fundamentals",
+          "description": "CSS text and font styling guide"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1256,
+      "title": "Text Overflow and Ellipsis",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "typography"
+      ],
+      "tags": [
+        "css",
+        "typography",
+        "text-overflow",
+        "ellipsis"
+      ],
+      "description": "Truncate overflowing text with an ellipsis using three CSS properties.",
+      "instructions": "Write CSS to style `#truncated`:\n  1. Set `white-space` to `nowrap`\n  2. Set `overflow` to `hidden`\n  3. Set `text-overflow` to `ellipsis`\n  4. Set `width` to `200px`\n\nAll three properties work together to clip long text with \"...\".",
+      "starterCode": "/* Truncate text with ellipsis */\n#truncated {\n  /* Your code here */\n\n}",
+      "solution": "#truncated {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  width: 200px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"truncated\" style=\"border: 1px solid rgb(203, 213, 225); padding: 10px;\">This is a very long piece of text that should be truncated with an ellipsis when it overflows its container</div>",
+      "testCases": [
+        {
+          "assertion": "equals",
+          "selector": "#truncated",
+          "property": "white-space",
+          "value": "nowrap",
+          "description": "white-space is nowrap"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#truncated",
+          "property": "overflow",
+          "value": "hidden",
+          "description": "overflow is hidden"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#truncated",
+          "property": "text-overflow",
+          "value": "ellipsis",
+          "description": "text-overflow is ellipsis"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#truncated",
+          "property": "width",
+          "value": "200px",
+          "description": "Width is 200px"
+        }
+      ],
+      "hints": [
+        "Text truncation requires three properties working together: one to prevent wrapping, one to hide the overflow, and one to show the ellipsis.",
+        "Use `white-space: nowrap` to keep text on one line, `overflow: hidden` to clip what does not fit, and `text-overflow: ellipsis` to show \"...\" at the clipping point."
+      ],
+      "resources": [
+        {
+          "label": "MDN: text-overflow",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow",
+          "description": "The text-overflow property"
+        },
+        {
+          "label": "MDN: overflow",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow",
+          "description": "The overflow property"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1257,
+      "title": "Specificity Rules",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "cascade"
+      ],
+      "tags": [
+        "css",
+        "cascade",
+        "specificity"
+      ],
+      "description": "Demonstrate CSS specificity by writing competing rules where an ID selector overrides a class selector.",
+      "instructions": "Write CSS to demonstrate specificity:\n  1. `.highlight` gets `color: rgb(59, 130, 246)` (blue)\n  2. `#winner` gets `color: rgb(239, 68, 68)` (red)\n\nBoth rules target the same element, but the ID selector has higher specificity and wins. The text should appear red.",
+      "starterCode": "/* Class selector (lower specificity) */\n.highlight {\n  /* Your code here */\n\n}\n\n/* ID selector (higher specificity) */\n#winner {\n  /* Your code here */\n\n}",
+      "solution": ".highlight {\n  color: rgb(59, 130, 246);\n}\n\n#winner {\n  color: rgb(239, 68, 68);\n}",
+      "testRunner": "",
+      "providedHtml": "<p class=\"highlight\" id=\"winner\">Which color wins? The ID selector has higher specificity!</p>",
+      "testCases": [
+        {
+          "assertion": "equals",
+          "selector": "#winner",
+          "property": "color",
+          "value": "rgb(239, 68, 68)",
+          "description": "Element color is red (ID selector wins over class)"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": ".highlight",
+          "description": "CSS includes a class selector rule"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "#winner",
+          "description": "CSS includes an ID selector rule"
+        }
+      ],
+      "hints": [
+        "CSS specificity determines which rule applies when multiple rules target the same element. ID selectors are more specific than class selectors.",
+        "Write both rules with different `color` values. The `#winner` rule overrides `.highlight` because IDs (specificity 1-0-0) outrank classes (specificity 0-1-0)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Specificity",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity",
+          "description": "How CSS specificity works"
+        },
+        {
+          "label": "MDN: Cascade",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade",
+          "description": "The CSS cascade"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1258,
+      "title": "Media Query Basics",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "responsive"
+      ],
+      "tags": [
+        "css",
+        "responsive",
+        "media-query"
+      ],
+      "description": "Write a media query that changes a navigation layout at a specific screen width.",
+      "instructions": "Write CSS with a media query:\n  1. Base styles for `#responsive-nav`:\n     - `display: flex`\n     - `flex-direction: column`\n     - `gap: 5px`\n  2. Inside `@media (max-width: 768px)`, set `#responsive-nav`:\n     - `background-color: rgb(30, 41, 59)`\n     - `padding: 10px`",
+      "starterCode": "/* Base nav styles */\n#responsive-nav {\n  /* Your code here */\n\n}\n\n/* Media query for screens 768px and below */\n/* Your code here */\n",
+      "solution": "#responsive-nav {\n  display: flex;\n  flex-direction: column;\n  gap: 5px;\n}\n\n@media (max-width: 768px) {\n  #responsive-nav {\n    background-color: rgb(30, 41, 59);\n    padding: 10px;\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<nav id=\"responsive-nav\"><a href=\"#\" style=\"color: rgb(59, 130, 246); text-decoration: none;\">Home</a><a href=\"#\" style=\"color: rgb(59, 130, 246); text-decoration: none;\">About</a><a href=\"#\" style=\"color: rgb(59, 130, 246); text-decoration: none;\">Contact</a></nav>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "@media",
+          "description": "CSS includes a media query"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "max-width",
+          "description": "Media query uses max-width condition"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#responsive-nav",
+          "property": "display",
+          "value": "flex",
+          "description": "Nav uses flexbox display"
+        }
+      ],
+      "hints": [
+        "A media query wraps CSS rules that only apply when certain conditions are met, like the screen being narrower than a specific width.",
+        "Use `@media (max-width: 768px) { ... }` to wrap rules that apply only when the viewport is 768px wide or narrower."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Using media queries",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries",
+          "description": "How to use CSS media queries"
+        },
+        {
+          "label": "MDN: @media",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media",
+          "description": "The @media at-rule"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1259,
+      "title": "Mobile-First Breakpoints",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "responsive"
+      ],
+      "tags": [
+        "css",
+        "responsive",
+        "media-query",
+        "mobile-first",
+        "breakpoints"
+      ],
+      "description": "Build a mobile-first layout that adapts with min-width breakpoints for tablet and desktop.",
+      "instructions": "Write CSS using a mobile-first approach:\n  1. Base styles for `#card-grid` (mobile):\n     - `display: grid`\n     - `grid-template-columns: 1fr`\n     - `gap: 15px`\n  2. `@media (min-width: 768px)` (tablet):\n     - Change `grid-template-columns` to `repeat(2, 1fr)`\n  3. `@media (min-width: 1024px)` (desktop):\n     - Change `grid-template-columns` to `repeat(3, 1fr)`",
+      "starterCode": "/* Mobile base styles */\n#card-grid {\n  /* Your code here */\n\n}\n\n/* Tablet breakpoint */\n/* Your code here */\n\n/* Desktop breakpoint */\n/* Your code here */\n",
+      "solution": "#card-grid {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 15px;\n}\n\n@media (min-width: 768px) {\n  #card-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n\n@media (min-width: 1024px) {\n  #card-grid {\n    grid-template-columns: repeat(3, 1fr);\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<div id=\"card-grid\"><div style=\"background: rgb(59, 130, 246); padding: 20px; color: white; border-radius: 8px;\">Card 1</div><div style=\"background: rgb(139, 92, 246); padding: 20px; color: white; border-radius: 8px;\">Card 2</div><div style=\"background: rgb(236, 72, 153); padding: 20px; color: white; border-radius: 8px;\">Card 3</div><div style=\"background: rgb(34, 197, 94); padding: 20px; color: white; border-radius: 8px;\">Card 4</div><div style=\"background: rgb(249, 115, 22); padding: 20px; color: white; border-radius: 8px;\">Card 5</div><div style=\"background: rgb(234, 179, 8); padding: 20px; color: white; border-radius: 8px;\">Card 6</div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceMatch",
+          "value": "min-width.*768",
+          "description": "CSS includes tablet breakpoint at 768px"
+        },
+        {
+          "assertion": "sourceMatch",
+          "value": "min-width.*1024",
+          "description": "CSS includes desktop breakpoint at 1024px"
+        },
+        {
+          "assertion": "equals",
+          "selector": "#card-grid",
+          "property": "display",
+          "value": "grid",
+          "description": "Card grid uses CSS Grid"
+        }
+      ],
+      "hints": [
+        "Mobile-first means writing base styles for the smallest screens first, then using `min-width` media queries to add complexity for larger screens.",
+        "Start with `grid-template-columns: 1fr` (single column for mobile). Add `@media (min-width: 768px)` for two columns and `@media (min-width: 1024px)` for three columns."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Using media queries",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries",
+          "description": "How to use CSS media queries"
+        },
+        {
+          "label": "MDN: Responsive design",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design",
+          "description": "Guide to responsive web design"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1260,
+      "title": "Styled Form Controls",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "forms"
+      ],
+      "tags": [
+        "css",
+        "forms",
+        "inputs",
+        "styling",
+        "intermediate"
+      ],
+      "description": "Style a complete form with custom input, select, and button styling.",
+      "instructions": "Style the provided form to look polished and consistent.\n\n**Requirements:**\n1. All `.form-input` elements:\n   - `padding` of `10px 12px`\n   - `border`: `1px solid #94a3b8`\n   - `border-radius`: `6px`\n   - `font-size`: `16px`\n   - `width`: `100%`\n2. `.form-input:focus` should have:\n   - `border-color` change (e.g. `#3b82f6`)\n   - `outline: none`\n3. `.form-select` should match the input styling\n4. `.form-btn` should have:\n   - `background-color`: a blue (e.g. `#3b82f6`)\n   - `color`: white\n   - `padding`: `10px 24px`\n   - `border`: none\n   - `border-radius`: `6px`\n   - `cursor`: pointer\n5. Add a `transition` on inputs for the border-color change",
+      "starterCode": "/* Style the form controls */\n",
+      "solution": ".form-input {\n  padding: 10px 12px;\n  border: 1px solid #94a3b8;\n  border-radius: 6px;\n  font-size: 16px;\n  width: 100%;\n  transition: border-color 0.2s ease;\n  box-sizing: border-box;\n}\n\n.form-input:focus {\n  border-color: #3b82f6;\n  outline: none;\n}\n\n.form-select {\n  padding: 10px 12px;\n  border: 1px solid #94a3b8;\n  border-radius: 6px;\n  font-size: 16px;\n  width: 100%;\n}\n\n.form-btn {\n  background-color: #3b82f6;\n  color: white;\n  padding: 10px 24px;\n  border: none;\n  border-radius: 6px;\n  cursor: pointer;\n}",
+      "testRunner": "",
+      "providedHtml": "<form class=\"styled-form\" id=\"styled-form\"><label>Name</label><input class=\"form-input\" id=\"test-input\" type=\"text\" placeholder=\"Enter name\"><label>Category</label><select class=\"form-select form-input\" id=\"test-select\"><option>Option 1</option><option>Option 2</option></select><button class=\"form-btn\" id=\"test-btn\" type=\"button\">Submit</button></form>",
+      "testCases": [
+        {
+          "query": "#test-input",
+          "assertion": "equals",
+          "property": "padding-top",
+          "value": "10px",
+          "description": ".form-input has 10px vertical padding"
+        },
+        {
+          "query": "#test-input",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "6px",
+          "description": ".form-input has 6px border-radius"
+        },
+        {
+          "query": "#test-input",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "16px",
+          "description": ".form-input has 16px font-size"
+        },
+        {
+          "query": "#test-btn",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": ".form-btn has white text"
+        },
+        {
+          "query": "#test-btn",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "6px",
+          "description": ".form-btn has 6px border-radius"
+        },
+        {
+          "query": ".styled-form",
+          "assertion": "sourceContains",
+          "value": ":focus",
+          "description": "uses :focus pseudo-class on inputs"
+        },
+        {
+          "query": ".styled-form",
+          "assertion": "sourceContains",
+          "value": "transition",
+          "description": "uses transition for smooth state changes"
+        }
+      ],
+      "hints": [
+        "Think about what makes form controls feel consistent — matching padding, borders, and border-radius across all input types creates a unified look.",
+        "Style `.form-input` for shared properties across inputs and selects, then target `.form-btn` separately for the button. Use `:focus` with `outline: none` and a `border-color` change to indicate focus."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Styling web forms",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/Forms/Styling_web_forms",
+          "description": "Guide to styling HTML form controls"
+        },
+        {
+          "label": "MDN: :focus",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:focus",
+          "description": "The :focus pseudo-class"
+        },
+        {
+          "label": "MDN: transition",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transition",
+          "description": "CSS transitions"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1261,
+      "title": "Styled Data Table",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "tables"
+      ],
+      "tags": [
+        "css",
+        "tables",
+        "styling",
+        "hover",
+        "intermediate"
+      ],
+      "description": "Style a data table with striped rows, hover highlighting, and clean borders.",
+      "instructions": "Style the provided data table for readability.\n\n**Requirements:**\n1. `.data-table`:\n   - `width`: `100%`\n   - `border-collapse`: `collapse`\n2. `th` and `td`:\n   - `padding`: `12px 16px`\n   - `text-align`: `left`\n   - `border-bottom`: `1px solid #e2e8f0`\n3. `th` (header cells):\n   - `background-color`: a dark blue-gray (e.g. `#1e293b`)\n   - `color`: white\n   - `font-weight`: `600`\n4. Striped rows using `tr:nth-child(even)` with a light background\n5. `tr:hover` should highlight with a slightly darker background\n6. Round the table corners with `overflow: hidden` and `border-radius` on the table",
+      "starterCode": "/* Style the data table */\n",
+      "solution": ".data-table {\n  width: 100%;\n  border-collapse: collapse;\n  border-radius: 8px;\n  overflow: hidden;\n}\n\n.data-table th,\n.data-table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #e2e8f0;\n}\n\n.data-table th {\n  background-color: #1e293b;\n  color: white;\n  font-weight: 600;\n}\n\n.data-table tr:nth-child(even) {\n  background-color: #f8fafc;\n}\n\n.data-table tr:hover {\n  background-color: #e2e8f0;\n}",
+      "testRunner": "",
+      "providedHtml": "<table class=\"data-table\" id=\"data-table\"><thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead><tbody><tr><td>Alice</td><td>Developer</td><td>Active</td></tr><tr><td>Bob</td><td>Designer</td><td>Active</td></tr><tr><td>Carol</td><td>Manager</td><td>Away</td></tr><tr><td>Dave</td><td>Developer</td><td>Active</td></tr></tbody></table>",
+      "testCases": [
+        {
+          "query": "#data-table",
+          "assertion": "equals",
+          "property": "width",
+          "value": "100%",
+          "description": "table is full width"
+        },
+        {
+          "query": "#data-table",
+          "assertion": "equals",
+          "property": "border-collapse",
+          "value": "collapse",
+          "description": "borders collapse"
+        },
+        {
+          "query": "#data-table th",
+          "assertion": "equals",
+          "property": "padding-top",
+          "value": "12px",
+          "description": "th has 12px top padding"
+        },
+        {
+          "query": "#data-table th",
+          "assertion": "equals",
+          "property": "text-align",
+          "value": "left",
+          "description": "th is left-aligned"
+        },
+        {
+          "query": "#data-table th",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": "th has white text"
+        },
+        {
+          "query": "#data-table",
+          "assertion": "sourceContains",
+          "value": "nth-child",
+          "description": "uses :nth-child for striped rows"
+        },
+        {
+          "query": "#data-table",
+          "assertion": "sourceContains",
+          "value": ":hover",
+          "description": "uses :hover for row highlighting"
+        }
+      ],
+      "hints": [
+        "A well-styled table combines consistent spacing, visual hierarchy through header styling, and subtle row differentiation to make data scannable.",
+        "Use `border-collapse: collapse` to merge cell borders, `tr:nth-child(even)` for alternating row colors, and `tr:hover` for interactive highlighting. Style `th` elements with a contrasting background to create a clear header."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Styling tables",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Styling_tables",
+          "description": "Guide to styling HTML tables"
+        },
+        {
+          "label": "MDN: border-collapse",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse",
+          "description": "Collapsing table borders"
+        },
+        {
+          "label": "MDN: :nth-child",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child",
+          "description": "The :nth-child pseudo-class"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1262,
+      "title": "Overlay and Modal",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "positioning"
+      ],
+      "tags": [
+        "css",
+        "positioning",
+        "overlay",
+        "modal",
+        "z-index",
+        "intermediate"
+      ],
+      "description": "Style a centered modal dialog on top of a semi-transparent overlay.",
+      "instructions": "Style the provided overlay and modal elements.\n\n**Requirements:**\n1. `.overlay`:\n   - `position`: `fixed`\n   - Cover the full viewport (`top: 0`, `left: 0`, `width: 100%`, `height: 100%`)\n   - `background-color`: semi-transparent black (use `rgba(0, 0, 0, 0.5)`)\n   - `z-index`: `100`\n   - Use flexbox to center the modal (`display: flex`, `justify-content: center`, `align-items: center`)\n2. `.modal`:\n   - `background-color`: white\n   - `padding`: `32px`\n   - `border-radius`: `12px`\n   - `max-width`: `500px`\n   - `width`: `90%`\n   - A subtle `box-shadow`",
+      "starterCode": "/* Style the overlay and modal */\n",
+      "solution": ".overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 100;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.modal {\n  background-color: white;\n  padding: 32px;\n  border-radius: 12px;\n  max-width: 500px;\n  width: 90%;\n  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"overlay\" id=\"test-overlay\"><div class=\"modal\" id=\"test-modal\"><h2>Confirm Action</h2><p>Are you sure you want to proceed?</p><button>Confirm</button><button>Cancel</button></div></div>",
+      "testCases": [
+        {
+          "query": "#test-overlay",
+          "assertion": "equals",
+          "property": "position",
+          "value": "fixed",
+          "description": "overlay uses fixed positioning"
+        },
+        {
+          "query": "#test-overlay",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": "overlay uses flexbox for centering"
+        },
+        {
+          "query": "#test-overlay",
+          "assertion": "equals",
+          "property": "justify-content",
+          "value": "center",
+          "description": "overlay centers content horizontally"
+        },
+        {
+          "query": "#test-overlay",
+          "assertion": "equals",
+          "property": "align-items",
+          "value": "center",
+          "description": "overlay centers content vertically"
+        },
+        {
+          "query": "#test-modal",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "32px",
+          "description": "modal has 32px padding"
+        },
+        {
+          "query": "#test-modal",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "12px",
+          "description": "modal has 12px border-radius"
+        },
+        {
+          "query": "#test-overlay",
+          "assertion": "sourceContains",
+          "value": "rgba",
+          "description": "overlay uses rgba for semi-transparency"
+        }
+      ],
+      "hints": [
+        "An overlay covers the entire viewport while a modal sits centered on top of it. The overlay needs to block interaction with the content behind it.",
+        "Use `position: fixed` with `top/left: 0` and `width/height: 100%` for the overlay. Center the modal inside it using `display: flex` with `justify-content` and `align-items` set to `center`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: position",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/position",
+          "description": "CSS position property"
+        },
+        {
+          "label": "MDN: z-index",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/z-index",
+          "description": "Controlling stacking order"
+        },
+        {
+          "label": "MDN: Using flexbox",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox",
+          "description": "Flexbox centering patterns"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1263,
+      "title": "CSS Filters",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "filters",
+        "visual-effects",
+        "intermediate"
+      ],
+      "description": "Apply CSS filter effects to images including blur, grayscale, and brightness adjustments.",
+      "instructions": "Apply filter effects to the provided images.\n\n**Requirements:**\n1. `.blur-img`: Apply a `blur(4px)` filter\n2. `.grayscale-img`: Apply a `grayscale(100%)` filter\n3. `.bright-img`: Apply a `brightness(1.3)` filter\n4. `.sepia-img`: Apply a `sepia(80%)` filter\n5. `.combined-img`: Apply multiple filters: `contrast(1.2)` and `saturate(1.5)`\n6. All images with class `.filter-img` should have:\n   - A `transition` on the filter property (0.3s)\n   - On `:hover`, reset filter to `none` to show the original",
+      "starterCode": "/* Apply filter effects to images */\n",
+      "solution": ".filter-img {\n  transition: filter 0.3s ease;\n}\n\n.filter-img:hover {\n  filter: none;\n}\n\n.blur-img {\n  filter: blur(4px);\n}\n\n.grayscale-img {\n  filter: grayscale(100%);\n}\n\n.bright-img {\n  filter: brightness(1.3);\n}\n\n.sepia-img {\n  filter: sepia(80%);\n}\n\n.combined-img {\n  filter: contrast(1.2) saturate(1.5);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"filter-gallery\"><div class=\"filter-img blur-img\" id=\"blur-el\" style=\"width:100px;height:80px;background:#3b82f6;\"></div><div class=\"filter-img grayscale-img\" id=\"gray-el\" style=\"width:100px;height:80px;background:#ef4444;\"></div><div class=\"filter-img bright-img\" id=\"bright-el\" style=\"width:100px;height:80px;background:#10b981;\"></div><div class=\"filter-img sepia-img\" id=\"sepia-el\" style=\"width:100px;height:80px;background:#f59e0b;\"></div><div class=\"filter-img combined-img\" id=\"combined-el\" style=\"width:100px;height:80px;background:#8b5cf6;\"></div></div>",
+      "testCases": [
+        {
+          "query": "#blur-el",
+          "assertion": "sourceContains",
+          "value": "blur(",
+          "description": ".blur-img uses blur() filter"
+        },
+        {
+          "query": "#gray-el",
+          "assertion": "sourceContains",
+          "value": "grayscale(",
+          "description": ".grayscale-img uses grayscale() filter"
+        },
+        {
+          "query": "#bright-el",
+          "assertion": "sourceContains",
+          "value": "brightness(",
+          "description": ".bright-img uses brightness() filter"
+        },
+        {
+          "query": "#sepia-el",
+          "assertion": "sourceContains",
+          "value": "sepia(",
+          "description": ".sepia-img uses sepia() filter"
+        },
+        {
+          "query": "#combined-el",
+          "assertion": "sourceContains",
+          "value": "contrast(",
+          "description": ".combined-img uses contrast() filter"
+        },
+        {
+          "query": "#combined-el",
+          "assertion": "sourceContains",
+          "value": "saturate(",
+          "description": ".combined-img uses saturate() filter"
+        },
+        {
+          "query": ".filter-gallery",
+          "assertion": "sourceContains",
+          "value": "transition",
+          "description": "uses transition for smooth filter changes"
+        }
+      ],
+      "hints": [
+        "CSS filters change how elements render visually without modifying the actual content. Multiple filters can be chained in a single `filter` property value.",
+        "Apply each filter function to its respective class. For the combined image, list both filter functions separated by a space in one `filter` declaration. Use `transition: filter 0.3s` on the parent class for smooth hover effects."
+      ],
+      "resources": [
+        {
+          "label": "MDN: filter",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/filter",
+          "description": "CSS filter property and functions"
+        },
+        {
+          "label": "MDN: Using CSS filters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_filter_effects/Using_filter_effects",
+          "description": "Guide to CSS filter effects"
+        },
+        {
+          "label": "MDN: transition",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transition",
+          "description": "CSS transitions"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1264,
+      "title": "Responsive Card Layout",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "responsive"
+      ],
+      "tags": [
+        "css",
+        "responsive",
+        "media-queries",
+        "cards",
+        "layout",
+        "intermediate"
+      ],
+      "description": "Build a card layout that adapts from single-column on mobile to multi-column on larger screens using media queries.",
+      "instructions": "Style the cards to be responsive across screen sizes.\n\n**Requirements:**\n1. `.card-container`:\n   - `display`: `grid`\n   - `gap`: `20px`\n   - `padding`: `20px`\n   - Default (mobile): `grid-template-columns: 1fr` (single column)\n2. Each `.resp-card`:\n   - `padding`: `20px`\n   - `border`: `1px solid #e2e8f0`\n   - `border-radius`: `8px`\n3. At `min-width: 640px` (tablet):\n   - `.card-container` switches to `grid-template-columns: repeat(2, 1fr)` (two columns)\n4. At `min-width: 1024px` (desktop):\n   - `.card-container` switches to `grid-template-columns: repeat(3, 1fr)` (three columns)\n\nUse a mobile-first approach: start with the smallest layout and add complexity with `min-width` media queries.",
+      "starterCode": "/* Mobile-first responsive card layout */\n",
+      "solution": ".card-container {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 20px;\n  padding: 20px;\n}\n\n.resp-card {\n  padding: 20px;\n  border: 1px solid #e2e8f0;\n  border-radius: 8px;\n}\n\n@media (min-width: 640px) {\n  .card-container {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n\n@media (min-width: 1024px) {\n  .card-container {\n    grid-template-columns: repeat(3, 1fr);\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card-container\" id=\"card-container\"><div class=\"resp-card\" id=\"resp-card\"><h3>Card 1</h3><p>Content goes here with some text to fill space.</p></div><div class=\"resp-card\"><h3>Card 2</h3><p>Another card with different content.</p></div><div class=\"resp-card\"><h3>Card 3</h3><p>A third card to demonstrate the grid.</p></div><div class=\"resp-card\"><h3>Card 4</h3><p>Fourth card for layout testing.</p></div><div class=\"resp-card\"><h3>Card 5</h3><p>Fifth card rounds out the collection.</p></div><div class=\"resp-card\"><h3>Card 6</h3><p>Sixth card fills the last spot.</p></div></div>",
+      "testCases": [
+        {
+          "query": "#card-container",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": "container uses CSS grid"
+        },
+        {
+          "query": "#card-container",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "20px",
+          "description": "container has 20px gap"
+        },
+        {
+          "query": "#resp-card",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "20px",
+          "description": "cards have 20px padding"
+        },
+        {
+          "query": "#resp-card",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": "cards have 8px border-radius"
+        },
+        {
+          "query": "#card-container",
+          "assertion": "sourceContains",
+          "value": "@media",
+          "description": "uses media queries for responsiveness"
+        },
+        {
+          "query": "#card-container",
+          "assertion": "sourceContains",
+          "value": "min-width",
+          "description": "uses mobile-first min-width breakpoints"
+        },
+        {
+          "query": "#card-container",
+          "assertion": "sourceContains",
+          "value": "repeat(",
+          "description": "uses repeat() for grid columns"
+        }
+      ],
+      "hints": [
+        "Mobile-first design means starting with the simplest layout (single column) and progressively enhancing for larger screens using `min-width` media queries.",
+        "Set the base `.card-container` to `grid-template-columns: 1fr` for mobile. Add `@media (min-width: 640px)` to switch to 2 columns with `repeat(2, 1fr)`, and `@media (min-width: 1024px)` for 3 columns with `repeat(3, 1fr)`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Using media queries",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries",
+          "description": "Guide to CSS media queries"
+        },
+        {
+          "label": "MDN: grid-template-columns",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns",
+          "description": "Defining grid column tracks"
+        },
+        {
+          "label": "MDN: Responsive design",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design",
+          "description": "Responsive design fundamentals"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
     }
   ],
   "exerciseIds": [
@@ -32072,6 +35987,22 @@
     832,
     833,
     834,
-    835
+    835,
+    1224,
+    1225,
+    1226,
+    1227,
+    1228,
+    1229,
+    1230,
+    1231,
+    1232,
+    1233,
+    1234,
+    1235,
+    1236,
+    1237,
+    1238,
+    1239
   ]
 }
