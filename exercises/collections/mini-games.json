@@ -1,0 +1,322 @@
+{
+  "id": "mini-games",
+  "name": "Mini-Games",
+  "description": "Build complete game engines from scratch. Start with helper functions that teach core game-programming concepts, then implement full games like Tic-Tac-Toe, Hangman, Minesweeper, and Chess.",
+  "color": "#6366f1",
+  "source": "Original — CodeForge",
+  "license": "Educational Use",
+  "attribution": "Original game logic exercises designed for CodeForge",
+  "hidden": false,
+  "exerciseIds": [
+    1183,
+    1184,
+    1185,
+    1186,
+    1187,
+    1188,
+    1189,
+    1190
+  ],
+  "exercises": [
+    {
+      "id": 1183,
+      "title": "Shuffle Array",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "games",
+        "foundations"
+      ],
+      "tags": [
+        "games",
+        "shuffle",
+        "arrays",
+        "randomization",
+        "fisher-yates"
+      ],
+      "description": "Implement the Fisher-Yates shuffle algorithm to randomly reorder an array in place.",
+      "instructions": "Write a function called `shuffleArray` that takes an array and returns a new array with the same elements in a random order. The function should not modify the original array.\n\nThe Fisher-Yates algorithm works by iterating from the last element to the first, swapping each element with a randomly chosen element that comes before it (or itself).\n\nExample:\n```\nshuffleArray([1, 2, 3, 4, 5])\n// Returns: [3, 1, 5, 2, 4] (order varies)\n```\n\nThe returned array must contain exactly the same elements as the input — no duplicates, no missing values.",
+      "starterCode": "// Implement the Fisher-Yates shuffle algorithm\n// Return a new shuffled copy of the array\nfunction shuffleArray(arr) {\n  \n}",
+      "solution": "function shuffleArray(arr) {\n  const result = [...arr];\n  for (let i = result.length - 1; i > 0; i--) {\n    const j = Math.floor(Math.random() * (i + 1));\n    [result[i], result[j]] = [result[j], result[i]];\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return shuffleArray;')();\n  const input1 = [1, 2, 3, 4, 5];\n  const input1Copy = [...input1];\n  const r1 = fn(input1);\n  const r2 = fn([10, 20, 30]);\n  const r3 = fn([]);\n  const r4 = fn([42]);\n  const runs = Array.from({ length: 20 }, () => fn([1, 2, 3, 4, 5]));\n  const allSame = runs.every(r => JSON.stringify(r) === JSON.stringify(runs[0]));\n  return [\n    { pass: Array.isArray(r1) && r1.length === 5, description: 'Returns array of same length', got: String(r1.length) },\n    { pass: JSON.stringify([...r1].sort((a,b) => a-b)) === JSON.stringify([1,2,3,4,5]), description: 'Contains all original elements', got: JSON.stringify([...r1].sort((a,b) => a-b)) },\n    { pass: JSON.stringify(input1) === JSON.stringify(input1Copy), description: 'Does not modify original array', got: JSON.stringify(input1) },\n    { pass: r3.length === 0, description: 'Empty array returns empty array', got: String(r3.length) },\n    { pass: r4.length === 1 && r4[0] === 42, description: 'Single element returns same element', got: JSON.stringify(r4) },\n    { pass: !allSame, description: 'Produces different orderings across multiple calls', got: allSame ? 'always same' : 'varies' }\n  ];\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "The Fisher-Yates algorithm iterates backward through the array. On each step, pick a random index from 0 to the current position and swap those two elements.",
+        "Make a copy of the input array first with spread syntax. Loop from the last index down to 1, using `Math.floor(Math.random() * (i + 1))` to pick the swap target."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Arrays",
+          "url": "https://www.w3schools.com/js/js_arrays.asp"
+        },
+        {
+          "label": "MDN: Math.random()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1184,
+      "title": "Create Card Deck",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "games",
+        "foundations"
+      ],
+      "tags": [
+        "games",
+        "cards",
+        "arrays",
+        "objects",
+        "deck"
+      ],
+      "description": "Generate a standard 52-card playing card deck as an array of card objects.",
+      "instructions": "Write a function called `createDeck` that takes no arguments and returns an array of 52 card objects.\n\nEach card object should have three properties:\n- `suit`: one of `\"hearts\"`, `\"diamonds\"`, `\"clubs\"`, `\"spades\"`\n- `rank`: one of `\"2\"` through `\"10\"`, `\"J\"`, `\"Q\"`, `\"K\"`, `\"A\"`\n- `value`: numeric value (2-10 for number cards, 10 for J/Q/K, 11 for A)\n\nExample:\n```\ncreateDeck()\n// Returns: [\n//   { suit: \"hearts\", rank: \"2\", value: 2 },\n//   { suit: \"hearts\", rank: \"3\", value: 3 },\n//   ...\n//   { suit: \"spades\", rank: \"A\", value: 11 }\n// ]\n```",
+      "starterCode": "// Generate a standard 52-card deck\n// Each card: { suit, rank, value }\nfunction createDeck() {\n  \n}",
+      "solution": "function createDeck() {\n  const suits = [\"hearts\", \"diamonds\", \"clubs\", \"spades\"];\n  const ranks = [\"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"J\", \"Q\", \"K\", \"A\"];\n  const deck = [];\n  for (const suit of suits) {\n    for (const rank of ranks) {\n      let value;\n      if (rank === \"A\") value = 11;\n      else if ([\"J\", \"Q\", \"K\"].includes(rank)) value = 10;\n      else value = Number(rank);\n      deck.push({ suit, rank, value });\n    }\n  }\n  return deck;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return createDeck;')();\n  const deck = fn();\n  const suits = [\"hearts\", \"diamonds\", \"clubs\", \"spades\"];\n  const ranks = [\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"J\",\"Q\",\"K\",\"A\"];\n  const hearts = deck.filter(c => c.suit === \"hearts\");\n  const aces = deck.filter(c => c.rank === \"A\");\n  const jacks = deck.filter(c => c.rank === \"J\");\n  const fives = deck.filter(c => c.rank === \"5\");\n  return [\n    { pass: Array.isArray(deck) && deck.length === 52, description: 'Returns array of 52 cards', got: String(deck.length) },\n    { pass: hearts.length === 13, description: 'Each suit has 13 cards', got: String(hearts.length) + ' hearts' },\n    { pass: aces.length === 4, description: 'There are 4 aces', got: String(aces.length) },\n    { pass: aces.every(c => c.value === 11), description: 'Aces have value 11', got: String(aces[0] && aces[0].value) },\n    { pass: jacks.every(c => c.value === 10), description: 'Face cards have value 10', got: String(jacks[0] && jacks[0].value) },\n    { pass: fives.every(c => c.value === 5), description: 'Number cards have numeric value', got: String(fives[0] && fives[0].value) },\n    { pass: deck.every(c => suits.includes(c.suit) && ranks.includes(c.rank)), description: 'All cards have valid suit and rank', got: 'valid' }\n  ];\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "You need two arrays — one for the four suits and one for the thirteen ranks. Use nested loops to create every combination.",
+        "Inside the inner loop, determine the value using conditionals: aces are 11, face cards (J, Q, K) are 10, and number cards use their numeric rank."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript For Of",
+          "url": "https://www.w3schools.com/js/js_loop_forof.asp"
+        },
+        {
+          "label": "MDN: Array.prototype.push()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1185,
+      "title": "Roll Dice",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "games",
+        "foundations"
+      ],
+      "tags": [
+        "games",
+        "dice",
+        "random",
+        "arrays",
+        "objects"
+      ],
+      "description": "Simulate rolling multiple dice and return the individual rolls along with their sum.",
+      "instructions": "Write a function called `rollDice` that takes two parameters:\n- `count`: the number of dice to roll (default: 1)\n- `sides`: the number of sides per die (default: 6)\n\nReturn an object with:\n- `rolls`: an array of individual roll results (each between 1 and `sides` inclusive)\n- `total`: the sum of all rolls\n\nExample:\n```\nrollDice(3, 6)\n// Returns: { rolls: [4, 2, 6], total: 12 } (values vary)\n\nrollDice()\n// Returns: { rolls: [3], total: 3 } (single d6)\n```",
+      "starterCode": "// Simulate rolling dice\n// Return { rolls: [...], total: sum }\nfunction rollDice(count, sides) {\n  \n}",
+      "solution": "function rollDice(count, sides) {\n  count = count || 1;\n  sides = sides || 6;\n  const rolls = [];\n  for (let i = 0; i < count; i++) {\n    rolls.push(Math.floor(Math.random() * sides) + 1);\n  }\n  const total = rolls.reduce((sum, r) => sum + r, 0);\n  return { rolls, total };\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return rollDice;')();\n  const r1 = fn(3, 6);\n  const r2 = fn(1, 20);\n  const r3 = fn();\n  const r4 = fn(5, 4);\n  const manyRolls = Array.from({ length: 100 }, () => fn(1, 6));\n  const allValues = manyRolls.map(r => r.rolls[0]);\n  const hasVariety = new Set(allValues).size > 1;\n  const allInRange = manyRolls.every(r => r.rolls[0] >= 1 && r.rolls[0] <= 6);\n  return [\n    { pass: Array.isArray(r1.rolls) && r1.rolls.length === 3, description: 'rollDice(3,6) returns 3 rolls', got: String(r1.rolls.length) },\n    { pass: r1.total === r1.rolls.reduce((a,b) => a+b, 0), description: 'Total equals sum of rolls', got: String(r1.total) },\n    { pass: r1.rolls.every(v => v >= 1 && v <= 6), description: 'All d6 rolls between 1 and 6', got: JSON.stringify(r1.rolls) },\n    { pass: r2.rolls.length === 1 && r2.rolls[0] >= 1 && r2.rolls[0] <= 20, description: 'rollDice(1,20) rolls a d20', got: String(r2.rolls[0]) },\n    { pass: r3.rolls.length === 1 && r3.rolls[0] >= 1 && r3.rolls[0] <= 6, description: 'Default is 1d6', got: JSON.stringify(r3) },\n    { pass: r4.rolls.length === 5 && r4.rolls.every(v => v >= 1 && v <= 4), description: 'rollDice(5,4) rolls 5d4', got: JSON.stringify(r4.rolls) },\n    { pass: hasVariety && allInRange, description: 'Produces random values within range', got: hasVariety ? 'random' : 'constant' }\n  ];\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Use `Math.floor(Math.random() * sides) + 1` to generate a single roll between 1 and the number of sides. Loop `count` times to fill the rolls array.",
+        "Handle default parameter values at the start of the function. After building the rolls array, use `reduce()` to compute the sum for the total property."
+      ],
+      "resources": [
+        {
+          "label": "W3Schools: JavaScript Random",
+          "url": "https://www.w3schools.com/js/js_random.asp"
+        },
+        {
+          "label": "MDN: Math.floor()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 25
+    },
+    {
+      "id": 1186,
+      "title": "Check Grid Winner",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "games",
+        "foundations"
+      ],
+      "tags": [
+        "games",
+        "grid",
+        "2d-array",
+        "tic-tac-toe",
+        "winner-detection"
+      ],
+      "description": "Check a tic-tac-toe board for a winner by scanning rows, columns, and diagonals.",
+      "instructions": "Write a function called `checkWinner` that takes a 3x3 grid (array of 3 arrays, each with 3 values) and returns the winner.\n\nEach cell contains `\"X\"`, `\"O\"`, or `null` (empty). A player wins by filling an entire row, column, or diagonal.\n\nReturn:\n- `\"X\"` if X has three in a row\n- `\"O\"` if O has three in a row\n- `null` if no winner\n\nExample:\n```\ncheckWinner([\n  [\"X\", \"X\", \"X\"],\n  [\"O\", \"O\", null],\n  [null, null, null]\n])\n// Returns: \"X\" (top row)\n```",
+      "starterCode": "function checkWinner(grid) {\n  \n}",
+      "solution": "function checkWinner(grid) {\n  // Check rows\n  for (let r = 0; r < 3; r++) {\n    if (grid[r][0] && grid[r][0] === grid[r][1] && grid[r][1] === grid[r][2]) {\n      return grid[r][0];\n    }\n  }\n  // Check columns\n  for (let c = 0; c < 3; c++) {\n    if (grid[0][c] && grid[0][c] === grid[1][c] && grid[1][c] === grid[2][c]) {\n      return grid[0][c];\n    }\n  }\n  // Check diagonals\n  if (grid[0][0] && grid[0][0] === grid[1][1] && grid[1][1] === grid[2][2]) {\n    return grid[0][0];\n  }\n  if (grid[0][2] && grid[0][2] === grid[1][1] && grid[1][1] === grid[2][0]) {\n    return grid[0][2];\n  }\n  return null;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return checkWinner;')();\n  const eq = (a, b) => a === b;\n  return [\n    { pass: eq(fn([[\"X\",\"X\",\"X\"],[\"O\",\"O\",null],[null,null,null]]), \"X\"), description: 'Detects X winning top row', got: String(fn([[\"X\",\"X\",\"X\"],[\"O\",\"O\",null],[null,null,null]])) },\n    { pass: eq(fn([[\"O\",null,null],[\"O\",\"X\",null],[\"O\",null,\"X\"]]), \"O\"), description: 'Detects O winning left column', got: String(fn([[\"O\",null,null],[\"O\",\"X\",null],[\"O\",null,\"X\"]])) },\n    { pass: eq(fn([[\"X\",null,\"O\"],[null,\"X\",\"O\"],[null,null,\"X\"]]), \"X\"), description: 'Detects X winning main diagonal', got: String(fn([[\"X\",null,\"O\"],[null,\"X\",\"O\"],[null,null,\"X\"]])) },\n    { pass: eq(fn([[null,null,\"O\"],[null,\"O\",null],[\"O\",null,\"X\"]]), \"O\"), description: 'Detects O winning anti-diagonal', got: String(fn([[null,null,\"O\"],[null,\"O\",null],[\"O\",null,\"X\"]])) },\n    { pass: eq(fn([[\"X\",\"O\",\"X\"],[\"O\",\"X\",\"O\"],[\"O\",\"X\",\"O\"]]), null), description: 'Returns null for full board with no winner', got: String(fn([[\"X\",\"O\",\"X\"],[\"O\",\"X\",\"O\"],[\"O\",\"X\",\"O\"]])) },\n    { pass: eq(fn([[null,null,null],[null,null,null],[null,null,null]]), null), description: 'Returns null for empty board', got: String(fn([[null,null,null],[null,null,null],[null,null,null]])) },\n    { pass: eq(fn([[\"O\",\"O\",\"O\"],[\"X\",\"X\",null],[null,null,\"X\"]]), \"O\"), description: 'Detects O winning middle row', got: String(fn([[\"O\",\"O\",\"O\"],[\"X\",\"X\",null],[null,null,\"X\"]])) }\n  ];\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "There are eight possible winning lines on a 3x3 grid: three rows, three columns, and two diagonals. Check each one separately.",
+        "For rows, loop through each row and compare all three cells. For columns, compare cells at the same index across all three rows. For diagonals, check the two fixed diagonal paths. Only return a winner if all three cells match and are not null."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1187,
+      "title": "Score Card Hand",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "games",
+        "foundations"
+      ],
+      "tags": [
+        "games",
+        "cards",
+        "blackjack",
+        "scoring",
+        "conditionals"
+      ],
+      "description": "Calculate the score of a Blackjack hand, adjusting aces from 11 to 1 to avoid busting.",
+      "instructions": "Write a function called `scoreHand` that takes an array of card objects (each with a `value` property) and returns the best Blackjack score.\n\nRules:\n- Sum all card values\n- If the total exceeds 21 and there are aces (value 11), convert aces to 1 (subtract 10) one at a time until the total is 21 or under, or all aces are converted\n\nReturn an object with:\n- `total`: the final score\n- `soft`: `true` if the hand contains an unconverted ace (still worth 11), `false` otherwise\n\nExample:\n```\nscoreHand([{ value: 11 }, { value: 5 }])\n// Returns: { total: 16, soft: true }\n\nscoreHand([{ value: 11 }, { value: 7 }, { value: 8 }])\n// Returns: { total: 16, soft: false } (ace converted to 1)\n```",
+      "starterCode": "function scoreHand(cards) {\n  \n}",
+      "solution": "function scoreHand(cards) {\n  let total = 0;\n  let aces = 0;\n  for (const card of cards) {\n    total += card.value;\n    if (card.value === 11) aces++;\n  }\n  while (total > 21 && aces > 0) {\n    total -= 10;\n    aces--;\n  }\n  return { total, soft: aces > 0 };\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return scoreHand;')();\n  const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b);\n  return [\n    { pass: eq(fn([{value:11},{value:5}]), {total:16,soft:true}), description: 'Ace + 5 = 16 (soft)', got: JSON.stringify(fn([{value:11},{value:5}])) },\n    { pass: eq(fn([{value:11},{value:7},{value:8}]), {total:16,soft:false}), description: 'Ace + 7 + 8 = 16 (ace converted)', got: JSON.stringify(fn([{value:11},{value:7},{value:8}])) },\n    { pass: eq(fn([{value:10},{value:10}]), {total:20,soft:false}), description: '10 + 10 = 20 (no aces)', got: JSON.stringify(fn([{value:10},{value:10}])) },\n    { pass: eq(fn([{value:11},{value:11}]), {total:12,soft:true}), description: 'Two aces = 12 (one converted)', got: JSON.stringify(fn([{value:11},{value:11}])) },\n    { pass: eq(fn([{value:11},{value:10}]), {total:21,soft:true}), description: 'Ace + 10 = 21 (blackjack, soft)', got: JSON.stringify(fn([{value:11},{value:10}])) },\n    { pass: eq(fn([{value:11},{value:11},{value:11}]), {total:13,soft:true}), description: 'Three aces = 13 (two converted)', got: JSON.stringify(fn([{value:11},{value:11},{value:11}])) },\n    { pass: eq(fn([{value:5},{value:3},{value:2}]), {total:10,soft:false}), description: '5 + 3 + 2 = 10 (no aces)', got: JSON.stringify(fn([{value:5},{value:3},{value:2}])) },\n    { pass: eq(fn([{value:10},{value:5},{value:8}]), {total:23,soft:false}), description: '10 + 5 + 8 = 23 (bust, no aces to convert)', got: JSON.stringify(fn([{value:10},{value:5},{value:8}])) }\n  ];\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "First pass: sum all values and count how many aces are in the hand. Second pass: while the total is over 21 and you still have uncoverted aces, subtract 10 from the total and decrement the ace count.",
+        "The hand is \"soft\" if there is still at least one ace counting as 11 after all adjustments. Track aces with a counter that decreases each time you convert one."
+      ],
+      "resources": [
+        {
+          "label": "MDN: for...of",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1188,
+      "title": "Score Wordle Guess",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "games",
+        "foundations"
+      ],
+      "tags": [
+        "games",
+        "wordle",
+        "strings",
+        "arrays",
+        "comparison"
+      ],
+      "description": "Score a 5-letter Wordle guess against the target word, returning green, yellow, or gray for each letter.",
+      "instructions": "Write a function called `scoreGuess` that takes two 5-letter strings — `guess` and `target` — and returns an array of 5 result strings.\n\nScoring rules (applied in order):\n1. If the letter is in the correct position, mark it `\"green\"`\n2. If the letter exists in the target but in a different position, mark it `\"yellow\"` — but only if that letter hasn't already been \"used\" by a green or earlier yellow match\n3. Otherwise, mark it `\"gray\"`\n\nExample:\n```\nscoreGuess(\"crane\", \"brain\")\n// Returns: [\"gray\", \"green\", \"green\", \"yellow\", \"yellow\"]\n// c: not in brain → gray\n// r: correct position → green\n// a: correct position → green\n// n: in brain but wrong position → yellow\n// e: not in brain → gray... wait, let me recalculate\n```\n\nImportant: Handle duplicate letters correctly. If the guess has two of the same letter but the target only has one, only the first match (prioritizing green) should be marked.",
+      "starterCode": "function scoreGuess(guess, target) {\n  \n}",
+      "solution": "function scoreGuess(guess, target) {\n  const result = Array(5).fill(\"gray\");\n  const targetLetters = target.split(\"\");\n  const used = Array(5).fill(false);\n  // First pass: mark greens\n  for (let i = 0; i < 5; i++) {\n    if (guess[i] === target[i]) {\n      result[i] = \"green\";\n      used[i] = true;\n    }\n  }\n  // Second pass: mark yellows\n  for (let i = 0; i < 5; i++) {\n    if (result[i] === \"green\") continue;\n    for (let j = 0; j < 5; j++) {\n      if (!used[j] && guess[i] === targetLetters[j]) {\n        result[i] = \"yellow\";\n        used[j] = true;\n        break;\n      }\n    }\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return scoreGuess;')();\n  const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b);\n  return [\n    { pass: eq(fn(\"hello\", \"hello\"), [\"green\",\"green\",\"green\",\"green\",\"green\"]), description: 'Exact match returns all green', got: JSON.stringify(fn(\"hello\", \"hello\")) },\n    { pass: eq(fn(\"abcde\", \"fghij\"), [\"gray\",\"gray\",\"gray\",\"gray\",\"gray\"]), description: 'No matching letters returns all gray', got: JSON.stringify(fn(\"abcde\", \"fghij\")) },\n    { pass: eq(fn(\"crane\", \"react\"), [\"yellow\",\"yellow\",\"green\",\"gray\",\"yellow\"]), description: 'Scrambled letters — a is green (correct position), c/r/e are yellow', got: JSON.stringify(fn(\"crane\", \"react\")) },\n    { pass: eq(fn(\"apple\", \"plead\"), [\"yellow\",\"yellow\",\"gray\",\"yellow\",\"yellow\"]), description: 'Handles duplicate letters — second p has no match left', got: JSON.stringify(fn(\"apple\", \"plead\")) },\n    { pass: eq(fn(\"speed\", \"abcde\"), [\"gray\",\"gray\",\"yellow\",\"gray\",\"yellow\"]), description: 'Two e letters — first e is yellow, d is yellow', got: JSON.stringify(fn(\"speed\", \"abcde\")) },\n    { pass: eq(fn(\"aabbb\", \"aaccc\"), [\"green\",\"green\",\"gray\",\"gray\",\"gray\"]), description: 'Matching prefix with non-matching suffix', got: JSON.stringify(fn(\"aabbb\", \"aaccc\")) },\n    { pass: eq(fn(\"xxxxx\", \"xaaaa\"), [\"green\",\"gray\",\"gray\",\"gray\",\"gray\"]), description: 'Repeated guess letter — only one green, rest gray', got: JSON.stringify(fn(\"xxxxx\", \"xaaaa\")) }\n  ];\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "This requires two passes. First, scan for exact position matches (green) and mark those target positions as used. Second, scan remaining letters for wrong-position matches (yellow), again marking target positions as consumed.",
+        "Use a boolean array to track which target positions have been claimed. Green matches get priority in the first pass. In the second pass, skip positions already marked green and only match against unused target positions."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.prototype.split()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1189,
+      "title": "Slide and Merge Row",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "games",
+        "foundations"
+      ],
+      "tags": [
+        "games",
+        "2048",
+        "arrays",
+        "merging",
+        "sliding"
+      ],
+      "description": "Implement the core 2048 row mechanic: slide non-zero values left and merge adjacent equal values.",
+      "instructions": "Write a function called `slideAndMerge` that takes an array of 4 numbers (representing a row in 2048) and returns an object with:\n- `row`: the new row after sliding left and merging\n- `score`: points earned from merges (sum of all merged tile values)\n\nRules:\n1. Slide all non-zero values to the left (remove gaps)\n2. If two adjacent values are equal, merge them into one tile worth double\n3. A merged tile cannot merge again in the same move\n4. Fill remaining spaces with 0\n\nExample:\n```\nslideAndMerge([2, 0, 2, 0])\n// Returns: { row: [4, 0, 0, 0], score: 4 }\n\nslideAndMerge([2, 2, 2, 2])\n// Returns: { row: [4, 4, 0, 0], score: 8 }\n```",
+      "starterCode": "function slideAndMerge(row) {\n  \n}",
+      "solution": "function slideAndMerge(row) {\n  // Remove zeros\n  let nums = row.filter(n => n !== 0);\n  let score = 0;\n  // Merge adjacent equal values\n  const merged = [];\n  let i = 0;\n  while (i < nums.length) {\n    if (i + 1 < nums.length && nums[i] === nums[i + 1]) {\n      merged.push(nums[i] * 2);\n      score += nums[i] * 2;\n      i += 2;\n    } else {\n      merged.push(nums[i]);\n      i++;\n    }\n  }\n  // Pad with zeros\n  while (merged.length < 4) {\n    merged.push(0);\n  }\n  return { row: merged, score };\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return slideAndMerge;')();\n  const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b);\n  return [\n    { pass: eq(fn([2,0,2,0]), {row:[4,0,0,0],score:4}), description: '[2,0,2,0] → [4,0,0,0] score 4', got: JSON.stringify(fn([2,0,2,0])) },\n    { pass: eq(fn([2,2,2,2]), {row:[4,4,0,0],score:8}), description: '[2,2,2,2] → [4,4,0,0] score 8', got: JSON.stringify(fn([2,2,2,2])) },\n    { pass: eq(fn([0,0,0,0]), {row:[0,0,0,0],score:0}), description: 'All zeros stays all zeros', got: JSON.stringify(fn([0,0,0,0])) },\n    { pass: eq(fn([4,0,0,4]), {row:[8,0,0,0],score:8}), description: '[4,0,0,4] → [8,0,0,0] score 8', got: JSON.stringify(fn([4,0,0,4])) },\n    { pass: eq(fn([2,4,8,16]), {row:[2,4,8,16],score:0}), description: 'No merges when all different', got: JSON.stringify(fn([2,4,8,16])) },\n    { pass: eq(fn([2,2,4,4]), {row:[4,8,0,0],score:12}), description: '[2,2,4,4] → [4,8,0,0] score 12', got: JSON.stringify(fn([2,2,4,4])) },\n    { pass: eq(fn([4,4,4,0]), {row:[8,4,0,0],score:8}), description: '[4,4,4,0] → [8,4,0,0] — merged tile does not re-merge', got: JSON.stringify(fn([4,4,4,0])) },\n    { pass: eq(fn([0,2,0,2]), {row:[4,0,0,0],score:4}), description: '[0,2,0,2] → [4,0,0,0] slides then merges', got: JSON.stringify(fn([0,2,0,2])) }\n  ];\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Start by filtering out all zeros to get just the non-zero values pushed left. Then walk through the compacted array looking for adjacent pairs that match — when found, combine them and skip the second value.",
+        "After merging, pad the result array with zeros until it has 4 elements. Track points earned by accumulating the value of each merged tile. Remember that a merged tile cannot merge again in the same move."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.filter()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    },
+    {
+      "id": 1190,
+      "title": "Count Grid Neighbors",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "games",
+        "foundations"
+      ],
+      "tags": [
+        "games",
+        "grid",
+        "2d-array",
+        "minesweeper",
+        "neighbors"
+      ],
+      "description": "Count how many of a cell's 8 neighbors in a 2D grid contain a specific value.",
+      "instructions": "Write a function called `countNeighbors` that takes three parameters:\n- `grid`: a 2D array (array of arrays)\n- `row`: the row index of the target cell\n- `col`: the column index of the target cell\n\nReturn the count of how many of the cell's 8 surrounding neighbors (up, down, left, right, and 4 diagonals) contain a truthy value.\n\nEdge and corner cells have fewer than 8 neighbors — only count positions that exist within the grid boundaries.\n\nExample:\n```\nconst grid = [\n  [1, 0, 0],\n  [0, 0, 1],\n  [1, 0, 0]\n];\ncountNeighbors(grid, 1, 1)\n// Returns: 3 (top-left 1, right 1, bottom-left 1)\n```",
+      "starterCode": "function countNeighbors(grid, row, col) {\n  \n}",
+      "solution": "function countNeighbors(grid, row, col) {\n  let count = 0;\n  for (let dr = -1; dr <= 1; dr++) {\n    for (let dc = -1; dc <= 1; dc++) {\n      if (dr === 0 && dc === 0) continue;\n      const r = row + dr;\n      const c = col + dc;\n      if (r >= 0 && r < grid.length && c >= 0 && c < grid[0].length) {\n        if (grid[r][c]) count++;\n      }\n    }\n  }\n  return count;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return countNeighbors;')();\n  const g1 = [[1,0,0],[0,0,1],[1,0,0]];\n  const g2 = [[1,1,1],[1,1,1],[1,1,1]];\n  const g3 = [[0,0,0],[0,0,0],[0,0,0]];\n  const g4 = [[1,1],[1,1]];\n  return [\n    { pass: fn(g1, 1, 1) === 3, description: 'Center cell with 3 truthy neighbors', got: String(fn(g1, 1, 1)) },\n    { pass: fn(g2, 1, 1) === 8, description: 'Center of all-1s grid has 8 neighbors', got: String(fn(g2, 1, 1)) },\n    { pass: fn(g3, 1, 1) === 0, description: 'Center of all-0s grid has 0 neighbors', got: String(fn(g3, 1, 1)) },\n    { pass: fn(g2, 0, 0) === 3, description: 'Corner cell has 3 neighbors', got: String(fn(g2, 0, 0)) },\n    { pass: fn(g2, 0, 1) === 5, description: 'Edge cell has 5 neighbors', got: String(fn(g2, 0, 1)) },\n    { pass: fn(g4, 0, 0) === 3, description: '2x2 grid corner has 3 neighbors', got: String(fn(g4, 0, 0)) },\n    { pass: fn(g1, 0, 0) === 0, description: 'Corner with no truthy neighbors returns 0', got: String(fn(g1, 0, 0)) },\n    { pass: fn(g1, 2, 0) === 0, description: 'Bottom-left corner with no truthy neighbors', got: String(fn(g1, 2, 0)) }\n  ];\n}",
+      "testCases": [],
+      "dataset": "",
+      "hints": [
+        "Use two nested loops with offsets from -1 to +1 for both row and column. This gives you all 9 positions in the 3x3 neighborhood — skip the center (0, 0) offset since that is the cell itself.",
+        "Before accessing a neighbor, check that the computed row and column are within the grid boundaries (not negative and not past the last index). Only increment the count for in-bounds positions with truthy values."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+        }
+      ],
+      "solutionGate": 10,
+      "basePoints": 50
+    }
+  ]
+}
