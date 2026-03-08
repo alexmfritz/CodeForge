@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import path from 'path';
+import mongoose from 'mongoose';
 import { config } from './config.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import authRoutes from './routes/auth.js';
@@ -17,14 +20,58 @@ import leaderboardRoutes from './routes/leaderboard.js';
 
 const app = express();
 
-app.use(cors());
+// Security headers
+app.use(
+  helmet({
+    contentSecurityPolicy: config.isDev ? false : undefined,
+  }),
+);
+
+// CORS — restrict to known origins in production
+app.use(
+  cors(
+    config.isDev
+      ? { origin: ['http://localhost:5173'], credentials: true }
+      : { origin: false },
+  ),
+);
+
 app.use(express.json({ limit: '1mb' }));
 
-app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+// Rate limiters
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 30, // 30 login attempts per window
+  message: { success: false, error: 'Too many login attempts — try again in 15 minutes' },
+  standardHeaders: true,
+  legacyHeaders: false,
 });
 
-app.use('/api/auth', authRoutes);
+const apiLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 120, // 120 requests per minute per IP
+  message: { success: false, error: 'Too many requests — slow down' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Health check — verifies MongoDB connection
+app.get('/api/health', (_req, res) => {
+  const dbState = mongoose.connection.readyState;
+  const dbStatus = dbState === 1 ? 'connected' : dbState === 2 ? 'connecting' : 'disconnected';
+  const healthy = dbState === 1;
+
+  res.status(healthy ? 200 : 503).json({
+    status: healthy ? 'ok' : 'degraded',
+    timestamp: new Date().toISOString(),
+    database: dbStatus,
+  });
+});
+
+// Apply rate limiters
+app.use('/api/auth', authLimiter, authRoutes);
+app.use('/api', apiLimiter);
+
 app.use('/api/users', userRoutes);
 app.use('/api/cohorts', cohortRoutes);
 app.use('/api/exercises', exerciseRoutes);
