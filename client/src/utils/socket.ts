@@ -37,18 +37,6 @@ export function connectSocket(): TypedSocket {
     reconnectionDelayMax: 5000,
   }) as TypedSocket;
 
-  socket.on('connect', () => {
-    console.log('[Socket] Connected, id:', socket?.id);
-  });
-
-  socket.on('disconnect', (reason) => {
-    console.log(`[Socket] Disconnected: ${reason}`);
-  });
-
-  socket.on('connect_error', (err) => {
-    console.error('[Socket] Connection error:', err.message);
-  });
-
   return socket;
 }
 

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from './features/store';
 import { fetchMe, logout } from './features/authSlice';
@@ -115,6 +115,7 @@ function AppShell() {
 function UserMenu({ user, onSettings, onLogout }: { user: { displayName: string }; onSettings: () => void; onLogout: () => void }) {
   const [open, setOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleEnter = () => {
     clearTimeout(timeoutRef.current);
@@ -125,17 +126,44 @@ function UserMenu({ user, onSettings, onLogout }: { user: { displayName: string 
     timeoutRef.current = setTimeout(() => setOpen(false), 150);
   };
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setOpen(false);
+      containerRef.current?.querySelector('button')?.focus();
+    }
+  }, []);
+
+  const handleBlur = useCallback((e: React.FocusEvent) => {
+    if (!containerRef.current?.contains(e.relatedTarget as Node)) {
+      setOpen(false);
+    }
+  }, []);
+
   return (
-    <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-      <button className="text-sm text-text-secondary hover:text-text-primary transition-colors px-2 py-1">
+    <div
+      className="relative"
+      ref={containerRef}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+      onKeyDown={handleKeyDown}
+      onBlur={handleBlur}
+    >
+      <button
+        className="text-sm text-text-secondary hover:text-text-primary transition-colors px-2 py-1"
+        aria-expanded={open}
+        aria-haspopup="menu"
+        onClick={() => setOpen((v) => !v)}
+      >
         {user.displayName} <span className="text-text-muted text-xs">&#9662;</span>
       </button>
       {open && (
         <div
           className="absolute right-0 top-full mt-1 min-w-[140px] rounded-lg border border-border shadow-lg overflow-hidden z-50"
           style={{ backgroundColor: 'var(--bg-surface)' }}
+          role="menu"
         >
           <button
+            role="menuitem"
             onClick={() => { onSettings(); setOpen(false); }}
             className="w-full text-left px-4 py-2 text-sm text-text-secondary hover:text-text-primary transition-colors"
             style={{ backgroundColor: 'transparent' }}
@@ -145,6 +173,7 @@ function UserMenu({ user, onSettings, onLogout }: { user: { displayName: string 
             Settings
           </button>
           <button
+            role="menuitem"
             onClick={() => { onLogout(); setOpen(false); }}
             className="w-full text-left px-4 py-2 text-sm transition-colors"
             style={{ color: 'var(--error)', backgroundColor: 'transparent' }}

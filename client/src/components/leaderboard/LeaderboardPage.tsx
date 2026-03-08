@@ -5,6 +5,7 @@ import { setFilterCohortId } from '../../features/leaderboardSlice';
 import { useLeaderboardPolling } from '../../hooks/useLeaderboardPolling';
 import LeaderboardTable from './LeaderboardTable';
 import HighlightsWidget from './HighlightsWidget';
+import Skeleton from '../shared/Skeleton';
 
 type FilterOption = 'cohort' | 'all';
 
@@ -90,8 +91,10 @@ export default function LeaderboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
             {loading && entries.length === 0 ? (
-              <div className="bg-bg-surface border border-border rounded-lg p-8 text-center text-text-muted">
-                Loading leaderboard...
+              <div className="flex flex-col gap-3">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <Skeleton key={i} height="44px" borderRadius="8px" />
+                ))}
               </div>
             ) : (
               <LeaderboardTable entries={entries} showCohort={activeFilter === 'all'} />

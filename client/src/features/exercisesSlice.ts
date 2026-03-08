@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { Exercise, Category, Collection, ExercisesData } from '@codeforge/shared';
 import { apiFetch } from '../utils/api';
-import { setServerReachable } from './uiSlice';
+import { showToast } from './uiSlice';
 
 interface ExercisesState {
   exercises: Exercise[];
@@ -24,10 +24,9 @@ export const fetchExercises = createAsyncThunk<ExercisesData>(
   async (_, { dispatch, rejectWithValue }) => {
     const result = await apiFetch<ExercisesData>('/api/exercises');
     if (!result.success || !result.data) {
-      dispatch(setServerReachable(false));
+      dispatch(showToast({ type: 'error', message: 'Failed to load exercises. Check your connection.' }));
       return rejectWithValue(result.error || 'Failed to load exercises');
     }
-    dispatch(setServerReachable(true));
     return result.data;
   },
 );
