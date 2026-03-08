@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import '../config.js'; // loads .env
 import { config } from '../config.js';
 import { seedInstructor } from '../seed/seedInstructor.js';
+import { seedTA } from '../seed/seedTA.js';
 import { seedExercises } from '../seed/seedExercises.js';
 import { seedAchievements } from '../seed/seedAchievements.js';
 import { seedAssignments } from '../seed/seedAssignments.js';
@@ -21,6 +22,7 @@ async function main() {
 
   console.log('Running seeds…');
   await seedInstructor();
+  await seedTA();
   await seedExercises();
   await seedAchievements();
   await seedAssignments();

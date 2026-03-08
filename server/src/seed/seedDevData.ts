@@ -41,7 +41,6 @@ function dateString(d: Date): string {
 // ─── Student Names ──────────────────────────────────────────────────────────
 
 const STUDENT_NAMES: { first: string; last: string }[] = [
-  { first: 'Alex', last: 'Fritz' },
   { first: 'Jane', last: 'Smith' },
   { first: 'Marcus', last: 'Johnson' },
   { first: 'Priya', last: 'Patel' },

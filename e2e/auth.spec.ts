@@ -4,8 +4,8 @@ test.describe('Authentication', () => {
   test('login with valid credentials redirects to dashboard', async ({ page }) => {
     await page.goto('/login');
 
-    await page.fill('input[name="username"]', 'auser');
-    await page.fill('input[name="password"]', '000000');
+    await page.fill('input[name="username"]', 'afritz');
+    await page.fill('input[name="password"]', 'password');
     await page.click('button[type="submit"]');
 
     // Should redirect to dashboard
@@ -18,7 +18,7 @@ test.describe('Authentication', () => {
   test('login with wrong password shows error', async ({ page }) => {
     await page.goto('/login');
 
-    await page.fill('input[name="username"]', 'auser');
+    await page.fill('input[name="username"]', 'afritz');
     await page.fill('input[name="password"]', 'wrongpassword');
     await page.click('button[type="submit"]');
 
@@ -44,8 +44,8 @@ test.describe('Authentication', () => {
   test('logout redirects to login', async ({ page }) => {
     // First login
     await page.goto('/login');
-    await page.fill('input[name="username"]', 'auser');
-    await page.fill('input[name="password"]', '000000');
+    await page.fill('input[name="username"]', 'afritz');
+    await page.fill('input[name="password"]', 'password');
     await page.click('button[type="submit"]');
     await expect(page).toHaveURL(/\/(dashboard|exercises)/, { timeout: 10000 });
 

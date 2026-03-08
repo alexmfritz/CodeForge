@@ -57,6 +57,11 @@ export const config = {
     docNumber: process.env.INSTRUCTOR_DOC_NUMBER || '000000',
   },
 
+  ta: {
+    name: process.env.TA_NAME || '',
+    docNumber: process.env.TA_DOC_NUMBER || '',
+  },
+
   paths: {
     root: ROOT,
     clientDist: path.join(ROOT, 'client', 'dist'),

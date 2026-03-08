@@ -11,8 +11,8 @@ function formatTime(dateStr: string): string {
   return d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
 }
 
-function renderContent(content: string, mentions: string[]) {
-  if (!mentions.length) return content;
+function renderContent(content: string, mentions?: string[]) {
+  if (!mentions || !mentions.length) return content;
   const regex = new RegExp(`@(${mentions.map((m) => m.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
   const parts = content.split(regex);
   return parts.map((part, i) =>
@@ -100,7 +100,7 @@ export default function MessageBubble({ message, showPin }: MessageBubbleProps) 
         )}
 
         <div className="flex items-center justify-between" style={{ position: 'relative' }}>
-          <ReactionBar messageId={message._id} reactions={message.reactions} isOwn={isOwn} readOnly={!showPin} />
+          <ReactionBar messageId={message._id ?? ''} reactions={message.reactions ?? []} isOwn={isOwn} readOnly={!showPin} />
           {isInstructor && showPin && (
             <button
               onClick={handlePin}
