@@ -29,7 +29,7 @@ export function connectSocket(): TypedSocket {
     : window.location.origin;
 
   socket = io(url, {
-    auth: { token },
+    auth: (cb) => cb({ token: getToken() }),
     transports: ['websocket', 'polling'],
     reconnection: true,
     reconnectionAttempts: 10,
