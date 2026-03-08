@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { fetchBulkRatings } from '../../features/ratingsSlice';
@@ -22,6 +22,8 @@ import TopicCards from './TopicCards';
 import CollectionCards from './CollectionCards';
 import CollectionBanner from './CollectionBanner';
 import SubcategoryNav from './SubcategoryNav';
+
+const PAGE_SIZE = 60;
 
 const FEATURED_TAGS = [
   'arrays', 'strings', 'objects', 'loops', 'conditionals', 'functions',
@@ -47,6 +49,8 @@ export default function BrowseView() {
   const loading = useAppSelector((s) => s.exercises.loading);
 
   const [showFilters, setShowFilters] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (exercises.length > 0) {
@@ -91,9 +95,9 @@ export default function BrowseView() {
     if (filter.search.trim()) {
       const q = filter.search.trim().toLowerCase();
       result = result.filter((ex) =>
-        ex.title.toLowerCase().includes(q) ||
-        ex.description.toLowerCase().includes(q) ||
-        ex.tags.some((t) => t.toLowerCase().includes(q)),
+        ex.title?.toLowerCase().includes(q) ||
+        ex.description?.toLowerCase().includes(q) ||
+        ex.tags?.some((t) => t?.toLowerCase().includes(q)),
       );
     }
 
@@ -119,6 +123,30 @@ export default function BrowseView() {
 
     return result;
   }, [exercises, filter, collections, progressItems, statusSort]);
+
+  // Reset visible count when filters change
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [filteredExercises]);
+
+  // Auto-load more when sentinel scrolls into view
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisibleCount((prev) => prev + PAGE_SIZE);
+        }
+      },
+      { rootMargin: '200px' },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [filteredExercises]);
+
+  const visibleExercises = filteredExercises.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredExercises.length;
 
   const hasActiveFilters =
     filter.search || filter.tags.length > 0 || filter.tier || filter.type || filter.collectionId || filter.categoryPath.length > 0 || statusSort !== 'default';
@@ -282,20 +310,46 @@ export default function BrowseView() {
               No exercises match your filters.
             </div>
           ) : (
-            <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }}>
-              {filteredExercises.map((ex) => (
-                <ExerciseCard
-                  key={ex._id}
-                  exercise={ex}
-                  onDismiss={filter.collectionId === '__in-progress__' ? (exerciseId) => {
-                    dispatch(resetExercise(exerciseId))
-                      .unwrap()
-                      .then(() => dispatch(showToast({ message: 'Exercise removed from In Progress', type: 'success' })))
-                      .catch(() => dispatch(showToast({ message: 'Failed to remove — server may be offline', type: 'error' })));
-                  } : undefined}
-                />
-              ))}
-            </div>
+            <>
+              <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }}>
+                {visibleExercises.map((ex) => (
+                  <ExerciseCard
+                    key={ex._id}
+                    exercise={ex}
+                    onDismiss={filter.collectionId === '__in-progress__' ? (exerciseId) => {
+                      dispatch(resetExercise(exerciseId))
+                        .unwrap()
+                        .then(() => dispatch(showToast({ message: 'Exercise removed from In Progress', type: 'success' })))
+                        .catch(() => dispatch(showToast({ message: 'Failed to remove — server may be offline', type: 'error' })));
+                    } : undefined}
+                  />
+                ))}
+              </div>
+
+              {/* Sentinel for IntersectionObserver auto-load */}
+              <div ref={sentinelRef} style={{ height: 1 }} />
+
+              {hasMore && (
+                <div className="flex flex-col items-center gap-2 py-6">
+                  <button
+                    onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
+                    className="px-5 py-2 rounded-lg text-sm font-medium transition-colors"
+                    style={{
+                      backgroundColor: 'var(--bg-surface)',
+                      border: '1px solid var(--border)',
+                      color: 'var(--accent)',
+                      cursor: 'pointer',
+                      fontFamily: 'Lexend, sans-serif',
+                    }}
+                  >
+                    Load More
+                  </button>
+                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                    Showing {visibleExercises.length} of {filteredExercises.length}
+                  </span>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
