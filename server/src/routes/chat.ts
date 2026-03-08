@@ -8,8 +8,15 @@ router.use(authenticate);
 // GET /api/chat/logs/:cohortId — list archived logs for a cohort
 router.get('/logs/:cohortId', async (req, res, next) => {
   try {
-    const logs = await getArchivedLogs(req.params.cohortId);
-    res.json({ success: true, data: logs });
+    if (req.query.page) {
+      const page = Math.max(1, Number(req.query.page) || 1);
+      const pageSize = Math.min(100, Math.max(1, Number(req.query.pageSize) || 25));
+      const result = await getArchivedLogs(req.params.cohortId, { page, pageSize }) as { items: unknown[]; page: number; pageSize: number; totalItems: number; totalPages: number };
+      res.json({ success: true, data: result.items, pagination: { page: result.page, pageSize: result.pageSize, totalItems: result.totalItems, totalPages: result.totalPages } });
+    } else {
+      const logs = await getArchivedLogs(req.params.cohortId);
+      res.json({ success: true, data: logs });
+    }
   } catch (err) {
     next(err);
   }

@@ -33,6 +33,8 @@ export default function CollectionCards() {
             style={{ backgroundColor: 'var(--bg-surface)', border: '1px dashed #f59e0b66' }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#f59e0b'; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#f59e0b66'; }}
+            onFocus={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#f59e0b'; }}
+            onBlur={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#f59e0b66'; }}
           >
             <span className="font-heading font-semibold text-sm" style={{ color: '#f59e0b' }}>
               In Progress
@@ -56,6 +58,8 @@ export default function CollectionCards() {
               style={{ backgroundColor: 'var(--bg-surface)', border: `1px solid ${col.color ?? 'var(--border)'}33` }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = `${col.color ?? 'var(--accent)'}66`; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = `${col.color ?? 'var(--border)'}33`; }}
+              onFocus={(e) => { (e.currentTarget as HTMLElement).style.borderColor = `${col.color ?? 'var(--accent)'}66`; }}
+              onBlur={(e) => { (e.currentTarget as HTMLElement).style.borderColor = `${col.color ?? 'var(--border)'}33`; }}
             >
               <span className="font-heading font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{col.name}</span>
               <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>

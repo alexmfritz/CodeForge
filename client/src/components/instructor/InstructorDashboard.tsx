@@ -86,6 +86,7 @@ export default function InstructorDashboard() {
           <select
             value={selectedCohortId || ''}
             onChange={(e) => setSelectedCohortId(e.target.value || undefined)}
+            aria-label="Select cohort"
             className="bg-bg-surface text-text-primary border border-border-strong rounded px-3 py-1.5 text-sm"
           >
             <option value="">All Cohorts</option>

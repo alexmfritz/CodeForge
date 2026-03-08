@@ -16,8 +16,16 @@ router.get('/', authorize('instructor', 'ta'), async (req, res) => {
     if (req.query.role) filter.role = req.query.role;
     if (req.query.active !== undefined) filter.isActive = req.query.active === 'true';
 
-    const users = await User.find(filter).sort({ displayName: 1 });
-    res.json({ success: true, data: users });
+    // Support optional pagination — if page param is present, paginate
+    if (req.query.page) {
+      const { parsePagination, paginate } = await import('../utils/pagination.js');
+      const params = parsePagination(req.query as Record<string, unknown>);
+      const result = await paginate(User.find(filter).sort({ displayName: 1 }), params);
+      res.json({ success: true, data: result.items, pagination: { page: result.page, pageSize: result.pageSize, totalItems: result.totalItems, totalPages: result.totalPages } });
+    } else {
+      const users = await User.find(filter).sort({ displayName: 1 });
+      res.json({ success: true, data: users });
+    }
   } catch {
     res.status(500).json({ success: false, error: 'Failed to fetch users' });
   }

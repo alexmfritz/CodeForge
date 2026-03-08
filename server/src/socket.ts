@@ -1,5 +1,6 @@
 import { Server as SocketIOServer } from 'socket.io';
 import type { Server as HttpServer } from 'http';
+import type { Express } from 'express';
 import jwt from 'jsonwebtoken';
 import { config } from './config.js';
 import { logger } from './logger.js';
@@ -14,6 +15,7 @@ declare module 'socket.io' {
 
 export function initSocketIO(
   httpServer: HttpServer,
+  expressApp?: Express,
 ): SocketIOServer<ClientToServerEvents, ServerToClientEvents> {
   const io = new SocketIOServer<ClientToServerEvents, ServerToClientEvents>(httpServer, {
     cors: {
@@ -37,12 +39,18 @@ export function initSocketIO(
     }
   });
 
+  const updateCount = () => {
+    if (expressApp) expressApp.set('socketConnectionCount', io.engine.clientsCount);
+  };
+
   io.on('connection', (socket) => {
     logger.debug({ userId: socket.user.userId, role: socket.user.role }, 'Socket connected');
+    updateCount();
     registerChatHandlers(io, socket);
 
     socket.on('disconnect', () => {
       logger.debug({ userId: socket.user.userId }, 'Socket disconnected');
+      updateCount();
     });
   });
 

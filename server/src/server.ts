@@ -34,7 +34,7 @@ async function start(): Promise<void> {
     await archivePreviousDayLogs();
 
     const httpServer = createServer(app);
-    const io = initSocketIO(httpServer);
+    const io = initSocketIO(httpServer, app);
 
     const port = config.isDev ? config.devPort : config.port;
     httpServer.listen(port, () => {

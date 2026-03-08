@@ -10,7 +10,7 @@ interface RatingStarsProps {
 function StarIcon({ filled, half, color, size }: { filled: boolean; half: boolean; color: string; size: number }) {
   if (half) {
     return (
-      <svg width={size} height={size} viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
+      <svg width={size} height={size} viewBox="0 0 24 24" style={{ flexShrink: 0 }} aria-hidden="true">
         <defs>
           <linearGradient id={`half-${size}`}>
             <stop offset="50%" stopColor={color} />
@@ -29,7 +29,7 @@ function StarIcon({ filled, half, color, size }: { filled: boolean; half: boolea
   }
 
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
+    <svg width={size} height={size} viewBox="0 0 24 24" style={{ flexShrink: 0 }} aria-hidden="true">
       <path
         d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
         fill={filled ? color : 'none'}
@@ -50,6 +50,8 @@ export default function RatingStars({ rating, size = 'md', interactive = false, 
   return (
     <div
       className="flex items-center"
+      role={interactive ? 'group' : undefined}
+      aria-label={interactive ? 'Rate this exercise' : `Rating: ${rating} out of 5 stars`}
       style={{ gap: size === 'sm' ? '1px' : '2px' }}
       onMouseLeave={interactive ? () => setHoverValue(0) : undefined}
     >
@@ -57,13 +59,23 @@ export default function RatingStars({ rating, size = 'md', interactive = false, 
         const isFilled = displayRating >= star;
         const isHalf = !isFilled && displayRating >= star - 0.5;
 
+        if (interactive) {
+          return (
+            <button
+              key={star}
+              type="button"
+              aria-label={`${star} star${star !== 1 ? 's' : ''}`}
+              style={{ cursor: 'pointer', display: 'flex', background: 'none', border: 'none', padding: 0 }}
+              onMouseEnter={() => setHoverValue(star)}
+              onClick={onRate ? () => onRate(star) : undefined}
+            >
+              <StarIcon filled={isFilled} half={isHalf} color={filledColor} size={starSize} />
+            </button>
+          );
+        }
+
         return (
-          <span
-            key={star}
-            style={{ cursor: interactive ? 'pointer' : 'default', display: 'flex' }}
-            onMouseEnter={interactive ? () => setHoverValue(star) : undefined}
-            onClick={interactive && onRate ? () => onRate(star) : undefined}
-          >
+          <span key={star} style={{ display: 'flex' }}>
             <StarIcon filled={isFilled} half={isHalf} color={filledColor} size={starSize} />
           </span>
         );

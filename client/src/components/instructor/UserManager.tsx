@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../features/store';
-import { fetchAllUsers, createUser, updateUser } from '../../features/instructorSlice';
+import { fetchAllUsers, createUser, updateUser, resetUserPassword } from '../../features/instructorSlice';
 import BulkUserImport from './BulkUserImport';
 import Skeleton from '../shared/Skeleton';
 
@@ -66,6 +66,11 @@ export default function UserManager({ cohortId }: UserManagerProps) {
     await dispatch(updateUser({ id: user._id, isActive: !user.isActive }));
   };
 
+  const handleResetPassword = async (user: (typeof users)[0]) => {
+    if (!window.confirm(`Reset password for ${user.displayName} to their DOC number?`)) return;
+    await dispatch(resetUserPassword(user._id));
+  };
+
   if (studentsLoading && users.length === 0) {
     return (
       <div className="flex flex-col gap-4">
@@ -81,6 +86,7 @@ export default function UserManager({ cohortId }: UserManagerProps) {
         <input
           type="text"
           placeholder="Search users..."
+          aria-label="Search users"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="flex-1 min-w-[200px] px-3 py-2 rounded-lg text-sm"
@@ -93,6 +99,7 @@ export default function UserManager({ cohortId }: UserManagerProps) {
         <select
           value={roleFilter}
           onChange={(e) => setRoleFilter(e.target.value)}
+          aria-label="Filter by role"
           className="px-3 py-2 rounded-lg text-sm"
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -344,18 +351,32 @@ export default function UserManager({ cohortId }: UserManagerProps) {
                       </span>
                     </td>
                     <td className="text-center py-3 px-4">
-                      <button
-                        onClick={() => handleToggleActive(user)}
-                        className="text-xs px-2 py-1 rounded transition-colors"
-                        style={{
-                          color: user.isActive ? 'var(--warning)' : 'var(--success)',
-                          border: `1px solid ${user.isActive ? 'var(--warning)' : 'var(--success)'}`,
-                          cursor: 'pointer',
-                          backgroundColor: 'transparent',
-                        }}
-                      >
-                        {user.isActive ? 'Deactivate' : 'Activate'}
-                      </button>
+                      <div className="flex items-center justify-center gap-2">
+                        <button
+                          onClick={() => handleResetPassword(user)}
+                          className="text-xs px-2 py-1 rounded transition-colors"
+                          style={{
+                            color: 'var(--text-muted)',
+                            border: '1px solid var(--border)',
+                            cursor: 'pointer',
+                            backgroundColor: 'transparent',
+                          }}
+                        >
+                          Reset PW
+                        </button>
+                        <button
+                          onClick={() => handleToggleActive(user)}
+                          className="text-xs px-2 py-1 rounded transition-colors"
+                          style={{
+                            color: user.isActive ? 'var(--warning)' : 'var(--success)',
+                            border: `1px solid ${user.isActive ? 'var(--warning)' : 'var(--success)'}`,
+                            cursor: 'pointer',
+                            backgroundColor: 'transparent',
+                          }}
+                        >
+                          {user.isActive ? 'Deactivate' : 'Activate'}
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 );

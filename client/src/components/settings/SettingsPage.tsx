@@ -31,11 +31,11 @@ export default function SettingsPage() {
   return (
     <div className="h-full overflow-y-auto p-6">
       <div className="max-w-2xl mx-auto space-y-6">
-        <h2 className="text-2xl font-heading font-bold">Settings</h2>
+        <h1 className="text-2xl font-heading font-bold">Settings</h1>
 
         {/* Appearance */}
         <section className="bg-bg-surface border border-border rounded-lg p-5">
-          <h3 className="text-lg font-semibold mb-4">Appearance</h3>
+          <h2 className="text-lg font-semibold mb-4">Appearance</h2>
           <label className="block text-sm text-text-secondary mb-2">Theme</label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {THEMES.map((t) => {
@@ -61,7 +61,7 @@ export default function SettingsPage() {
 
         {/* Leaderboard */}
         <section className="bg-bg-surface border border-border rounded-lg p-5">
-          <h3 className="text-lg font-semibold mb-2">Leaderboard</h3>
+          <h2 className="text-lg font-semibold mb-2">Leaderboard</h2>
           <p className="text-sm text-text-secondary mb-4">
             Opt in to appear on the cohort leaderboard. Your display name and scores will be visible
             to other students in your cohort. You can opt out at any time.

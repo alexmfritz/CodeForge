@@ -65,17 +65,19 @@ export default function InstructionsPanel({
             #{exercise.legacyId ?? exercise._id.slice(-6)}
           </span>
         </div>
-        <h1 className="font-heading font-semibold text-base" style={{ color: 'var(--text-primary)' }}>
+        <h2 className="font-heading font-semibold text-base" style={{ color: 'var(--text-primary)' }}>
           {exercise.title}
-        </h1>
+        </h2>
       </div>
       <div className="flex-shrink-0 flex" style={{ borderBottom: '1px solid var(--border)' }} role="tablist">
         {tabs.filter((t) => t.show).map((tab) => (
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
+            id={`tab-${tab.id}`}
             role="tab"
             aria-selected={activeTab === tab.id}
+            aria-controls="exercise-tabpanel"
             className="px-4 py-2 text-xs font-medium relative"
             style={{
               color: activeTab === tab.id ? 'var(--text-primary)' : 'var(--text-muted)',
@@ -91,7 +93,7 @@ export default function InstructionsPanel({
           </button>
         ))}
       </div>
-      <div className="flex-1 overflow-y-auto" role="tabpanel">
+      <div className="flex-1 overflow-y-auto" id="exercise-tabpanel" role="tabpanel" aria-labelledby={`tab-${activeTab}`}>
         {activeTab === 'instructions' ? (
           <div className="p-4 flex flex-col gap-4">
             <MarkdownLite text={exercise.instructions || exercise.description} />
