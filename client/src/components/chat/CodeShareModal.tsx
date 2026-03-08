@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { CodeSnippetData } from '@codeforge/shared';
 
 interface CodeShareModalProps {
@@ -10,6 +10,20 @@ interface CodeShareModalProps {
 export default function CodeShareModal({ isOpen, onClose, onShare }: CodeShareModalProps) {
   const [code, setCode] = useState('');
   const [language, setLanguage] = useState('javascript');
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (isOpen) textareaRef.current?.focus();
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -28,6 +42,9 @@ export default function CodeShareModal({ isOpen, onClose, onShare }: CodeShareMo
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Share Code"
         className="rounded-lg overflow-hidden w-full max-w-lg"
         style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}
         onClick={(e) => e.stopPropagation()}
@@ -38,7 +55,9 @@ export default function CodeShareModal({ isOpen, onClose, onShare }: CodeShareMo
           </h3>
         </div>
         <div className="p-4 flex flex-col gap-3">
+          <label className="sr-only" htmlFor="code-language">Language</label>
           <select
+            id="code-language"
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
             className="px-2 py-1.5 rounded text-sm"
@@ -52,7 +71,10 @@ export default function CodeShareModal({ isOpen, onClose, onShare }: CodeShareMo
             <option value="html">HTML</option>
             <option value="css">CSS</option>
           </select>
+          <label className="sr-only" htmlFor="code-content">Code</label>
           <textarea
+            id="code-content"
+            ref={textareaRef}
             value={code}
             onChange={(e) => setCode(e.target.value)}
             placeholder="Paste your code here..."
@@ -65,7 +87,6 @@ export default function CodeShareModal({ isOpen, onClose, onShare }: CodeShareMo
               fontFamily: '"JetBrains Mono", "Fira Code", monospace',
               resize: 'vertical',
             }}
-            autoFocus
           />
         </div>
         <div className="flex items-center justify-end gap-2 px-4 py-3" style={{ borderTop: '1px solid var(--border)' }}>

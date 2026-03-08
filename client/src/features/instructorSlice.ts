@@ -276,6 +276,19 @@ export const updateUser = createAsyncThunk(
   },
 );
 
+export const resetUserPassword = createAsyncThunk(
+  'instructor/resetUserPassword',
+  async (userId: string, { rejectWithValue }) => {
+    const result = await apiFetch<User>(`/api/users/${userId}/reset-password`, {
+      method: 'POST',
+    });
+    if (!result.success || !result.data) {
+      return rejectWithValue(result.error || 'Failed to reset password');
+    }
+    return result.data;
+  },
+);
+
 export const fetchAllUsers = createAsyncThunk(
   'instructor/fetchAllUsers',
   async (_, { rejectWithValue }) => {

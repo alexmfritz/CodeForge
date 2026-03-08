@@ -55,16 +55,25 @@ const apiLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// Health check — verifies MongoDB connection
+// Health check — verifies MongoDB connection + basic metrics
+const startedAt = Date.now();
 app.get('/api/health', (_req, res) => {
   const dbState = mongoose.connection.readyState;
   const dbStatus = dbState === 1 ? 'connected' : dbState === 2 ? 'connecting' : 'disconnected';
   const healthy = dbState === 1;
+  const mem = process.memoryUsage();
 
   res.status(healthy ? 200 : 503).json({
     status: healthy ? 'ok' : 'degraded',
     timestamp: new Date().toISOString(),
+    uptime: Math.floor((Date.now() - startedAt) / 1000),
     database: dbStatus,
+    memory: {
+      rss: Math.round(mem.rss / 1024 / 1024),
+      heapUsed: Math.round(mem.heapUsed / 1024 / 1024),
+      heapTotal: Math.round(mem.heapTotal / 1024 / 1024),
+    },
+    socketConnections: app.get('socketConnectionCount') ?? 0,
   });
 });
 

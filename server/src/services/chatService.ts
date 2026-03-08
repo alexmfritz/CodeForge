@@ -1,6 +1,7 @@
 import { ChatMessage } from '../models/ChatMessage.js';
 import { ChatLog } from '../models/ChatLog.js';
 import { config } from '../config.js';
+import { logger } from '../logger.js';
 import type { EmojiReaction } from '@codeforge/shared';
 
 export function getTodayDateString(): string {
@@ -111,11 +112,26 @@ export async function archivePreviousDayLogs(): Promise<void> {
 
     await ChatMessage.deleteMany({ cohortId, date });
 
-    console.log(`Archived ${jsonMessages.length} chat messages for cohort ${cohortId} on ${date}`);
+    logger.info({ cohortId, date, count: jsonMessages.length }, 'Archived chat messages');
   }
 }
 
-export async function getArchivedLogs(cohortId: string) {
+export async function getArchivedLogs(cohortId: string, pagination?: { page: number; pageSize: number }) {
+  if (pagination) {
+    const { page, pageSize } = pagination;
+    const skip = (page - 1) * pageSize;
+    const [logs, totalItems] = await Promise.all([
+      ChatLog.find({ cohortId }).sort({ date: -1 }).select({ messages: 0 }).skip(skip).limit(pageSize),
+      ChatLog.countDocuments({ cohortId }),
+    ]);
+    return {
+      items: logs.map((l) => l.toJSON()),
+      page,
+      pageSize,
+      totalItems,
+      totalPages: Math.ceil(totalItems / pageSize),
+    };
+  }
   const logs = await ChatLog.find({ cohortId })
     .sort({ date: -1 })
     .select({ messages: 0 });

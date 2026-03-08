@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { useAppSelector } from '../../features/store';
 import type { Exercise } from '@codeforge/shared';
 
@@ -11,12 +11,26 @@ interface ExercisePickerProps {
 export default function ExercisePicker({ isOpen, onClose, onSelect }: ExercisePickerProps) {
   const exercises = useAppSelector((s) => s.exercises.exercises);
   const [search, setSearch] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const filtered = useMemo(() => {
     if (!search.trim()) return exercises.slice(0, 20);
     const q = search.toLowerCase();
     return exercises.filter((ex) => ex.title.toLowerCase().includes(q)).slice(0, 20);
   }, [exercises, search]);
+
+  useEffect(() => {
+    if (isOpen) inputRef.current?.focus();
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -27,6 +41,9 @@ export default function ExercisePicker({ isOpen, onClose, onSelect }: ExercisePi
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Share an Exercise"
         className="rounded-lg overflow-hidden w-full max-w-md"
         style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}
         onClick={(e) => e.stopPropagation()}
@@ -35,7 +52,10 @@ export default function ExercisePicker({ isOpen, onClose, onSelect }: ExercisePi
           <h3 className="font-heading font-semibold text-sm mb-2" style={{ color: 'var(--text-primary)' }}>
             Share an Exercise
           </h3>
+          <label className="sr-only" htmlFor="exercise-search">Search exercises</label>
           <input
+            id="exercise-search"
+            ref={inputRef}
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -46,7 +66,6 @@ export default function ExercisePicker({ isOpen, onClose, onSelect }: ExercisePi
               color: 'var(--text-primary)',
               border: '1px solid var(--border)',
             }}
-            autoFocus
           />
         </div>
         <div style={{ maxHeight: 300, overflowY: 'auto' }}>
