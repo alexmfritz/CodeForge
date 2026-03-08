@@ -104,6 +104,9 @@ const authSlice = createSlice({
       })
       .addCase(updatePreferences.fulfilled, (state, action) => {
         state.user = action.payload;
+      })
+      .addCase(updatePreferences.rejected, (state, action) => {
+        state.error = action.payload as string;
       });
   },
 });

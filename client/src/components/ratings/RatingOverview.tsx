@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { apiFetch } from '../../utils/api';
 import RatingStars from './RatingStars';
+import Skeleton from '../shared/Skeleton';
 
 interface RatingOverviewProps {
   cohortId?: string;
@@ -38,8 +39,15 @@ export default function RatingOverview({ cohortId }: RatingOverviewProps) {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <span className="text-sm" style={{ color: 'var(--text-muted)' }}>Loading ratings...</span>
+      <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-2 gap-4">
+          <Skeleton height="80px" borderRadius="8px" />
+          <Skeleton height="80px" borderRadius="8px" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Skeleton height="160px" borderRadius="8px" />
+          <Skeleton height="160px" borderRadius="8px" />
+        </div>
       </div>
     );
   }

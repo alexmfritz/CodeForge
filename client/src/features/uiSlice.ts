@@ -23,12 +23,9 @@ interface UiState {
     collectionId: string | null;
     categoryPath: string[];
   };
-  activeView: string;
   toast: Toast | null;
   saveStatus: 'idle' | 'saving' | 'saved';
-  showHelpModal: boolean;
   statusSort: StatusSort;
-  serverReachable: boolean;
 }
 
 const initialState: UiState = {
@@ -41,12 +38,9 @@ const initialState: UiState = {
     collectionId: null,
     categoryPath: [],
   },
-  activeView: 'browse',
   toast: null,
   saveStatus: 'idle',
-  showHelpModal: false,
   statusSort: 'default',
-  serverReachable: true,
 };
 
 const uiSlice = createSlice({
@@ -104,20 +98,11 @@ const uiSlice = createSlice({
       };
       state.statusSort = 'default';
     },
-    setActiveView(state, action: PayloadAction<string>) {
-      state.activeView = action.payload;
-    },
     setSaveStatus(state, action: PayloadAction<UiState['saveStatus']>) {
       state.saveStatus = action.payload;
     },
-    setShowHelpModal(state, action: PayloadAction<boolean>) {
-      state.showHelpModal = action.payload;
-    },
     setStatusSort(state, action: PayloadAction<StatusSort>) {
       state.statusSort = action.payload;
-    },
-    setServerReachable(state, action: PayloadAction<boolean>) {
-      state.serverReachable = action.payload;
     },
   },
 });
@@ -133,11 +118,8 @@ export const {
   setCollectionFilter,
   setCategoryPath,
   clearFilters,
-  setActiveView,
   setSaveStatus,
-  setShowHelpModal,
   setStatusSort,
-  setServerReachable,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

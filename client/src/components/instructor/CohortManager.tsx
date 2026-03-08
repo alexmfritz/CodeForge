@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { createCohort, updateCohort } from '../../features/instructorSlice';
+import { showToast } from '../../features/uiSlice';
 import Skeleton from '../shared/Skeleton';
 
 export default function CohortManager() {
@@ -63,7 +64,11 @@ export default function CohortManager() {
   };
 
   const toggleActive = async (cohort: (typeof cohorts)[0]) => {
-    await dispatch(updateCohort({ id: cohort._id, isActive: !cohort.isActive })).unwrap();
+    try {
+      await dispatch(updateCohort({ id: cohort._id, isActive: !cohort.isActive })).unwrap();
+    } catch {
+      dispatch(showToast({ type: 'error', message: `Failed to ${cohort.isActive ? 'deactivate' : 'activate'} cohort.` }));
+    }
   };
 
   if (cohortsLoading && cohorts.length === 0) {

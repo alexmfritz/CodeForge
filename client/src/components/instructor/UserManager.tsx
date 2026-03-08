@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { fetchAllUsers, createUser, updateUser, resetUserPassword } from '../../features/instructorSlice';
+import { showToast } from '../../features/uiSlice';
 import BulkUserImport from './BulkUserImport';
 import Skeleton from '../shared/Skeleton';
 
@@ -63,12 +64,21 @@ export default function UserManager({ cohortId }: UserManagerProps) {
   };
 
   const handleToggleActive = async (user: (typeof users)[0]) => {
-    await dispatch(updateUser({ id: user._id, isActive: !user.isActive }));
+    try {
+      await dispatch(updateUser({ id: user._id, isActive: !user.isActive })).unwrap();
+    } catch {
+      dispatch(showToast({ type: 'error', message: `Failed to ${user.isActive ? 'deactivate' : 'activate'} user.` }));
+    }
   };
 
   const handleResetPassword = async (user: (typeof users)[0]) => {
     if (!window.confirm(`Reset password for ${user.displayName} to their DOC number?`)) return;
-    await dispatch(resetUserPassword(user._id));
+    try {
+      await dispatch(resetUserPassword(user._id)).unwrap();
+      dispatch(showToast({ type: 'success', message: `Password reset for ${user.displayName}.` }));
+    } catch {
+      dispatch(showToast({ type: 'error', message: 'Failed to reset password.' }));
+    }
   };
 
   if (studentsLoading && users.length === 0) {
