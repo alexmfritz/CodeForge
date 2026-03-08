@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { fetchBulkRatings } from '../../features/ratingsSlice';
@@ -52,6 +52,8 @@ export default function BrowseView() {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [searchInput, setSearchInput] = useState(filter.search);
   const sentinelRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   // Debounced search dispatch — immediate local state for snappy input, 300ms delay on Redux
   const dispatchRef = useRef(dispatch);
@@ -137,9 +139,10 @@ export default function BrowseView() {
     return result;
   }, [exercises, filter, collections, progressItems, statusSort]);
 
-  // Reset visible count when filters change
+  // Reset visible count and scroll position when filters change
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
+    scrollRef.current?.scrollTo({ top: 0 });
   }, [filteredExercises]);
 
   // Auto-load more when sentinel scrolls into view
@@ -167,6 +170,33 @@ export default function BrowseView() {
   const categoryBreadcrumbs = getCategoryLabels(filter.categoryPath, categories);
   const completedCount = exercises.filter((ex) => progressItems[ex._id]?.status === 'completed').length;
   const totalCount = exercises.length;
+
+  // Arrow-key navigation through exercise card grid
+  const handleGridKeyDown = useCallback((e: React.KeyboardEvent) => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('[role="button"]'));
+    const currentIndex = cards.indexOf(document.activeElement as HTMLElement);
+    if (currentIndex === -1) return;
+
+    const firstCard = cards[0];
+    if (!firstCard) return;
+    const cardWidth = firstCard.offsetWidth + 12; // 12px = gap-3
+    const cols = Math.max(1, Math.floor(grid.clientWidth / cardWidth));
+
+    let nextIndex = currentIndex;
+    switch (e.key) {
+      case 'ArrowRight': nextIndex = Math.min(currentIndex + 1, cards.length - 1); break;
+      case 'ArrowLeft': nextIndex = Math.max(currentIndex - 1, 0); break;
+      case 'ArrowDown': nextIndex = Math.min(currentIndex + cols, cards.length - 1); break;
+      case 'ArrowUp': nextIndex = Math.max(currentIndex - cols, 0); break;
+      default: return;
+    }
+    if (nextIndex !== currentIndex) {
+      e.preventDefault();
+      cards[nextIndex].focus();
+    }
+  }, []);
 
   if (loading) {
     return (
@@ -361,7 +391,7 @@ export default function BrowseView() {
         </div>
       )}
 
-      <div className="flex-1 overflow-y-auto">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto">
         {!hasActiveFilters && filter.categoryPath.length === 0 && (
           <>
             <TopicCards />
@@ -372,12 +402,37 @@ export default function BrowseView() {
         {filter.collectionId && filter.collectionId !== '__in-progress__' && <CollectionBanner />}
         <div className="px-5 py-4">
           {filteredExercises.length === 0 ? (
-            <div className="text-center py-16 text-sm" style={{ color: 'var(--text-muted)' }}>
-              No exercises match your filters.
+            <div className="flex flex-col items-center gap-4 py-20">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-faint)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <line x1="8" y1="11" x2="14" y2="11" />
+              </svg>
+              <div className="text-center">
+                <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+                  No exercises match your filters
+                </p>
+                <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
+                  Try broadening your search or removing some filters
+                </p>
+              </div>
+              <button
+                onClick={() => dispatch(clearFilters())}
+                className="px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: '1px solid var(--accent)',
+                  color: 'var(--accent)',
+                  cursor: 'pointer',
+                  fontFamily: 'Lexend, sans-serif',
+                }}
+              >
+                Clear All Filters
+              </button>
             </div>
           ) : (
             <>
-              <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }}>
+              <div ref={gridRef} className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }} onKeyDown={handleGridKeyDown} role="grid" aria-label="Exercise list">
                 {visibleExercises.map((ex) => (
                   <ExerciseCard
                     key={ex._id}

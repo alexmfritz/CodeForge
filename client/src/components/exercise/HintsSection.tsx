@@ -45,12 +45,25 @@ export default function HintsSection({ hints, expandedHints, onToggleHint, uniqu
                 </span>
               )}
             </button>
-            {unlocked && expandedHints.has(i) && (
+            {unlocked && (
               <div
-                className="px-3 py-2 text-xs leading-relaxed"
-                style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--bg-surface)', borderTop: '1px solid var(--border)' }}
+                style={{
+                  maxHeight: expandedHints.has(i) ? '500px' : '0px',
+                  overflow: 'hidden',
+                  transition: 'max-height 200ms ease',
+                }}
               >
-                <MarkdownLite text={hintText} />
+                <div
+                  className="px-3 py-2 text-xs leading-relaxed"
+                  style={{
+                    color: 'var(--text-secondary)',
+                    backgroundColor: 'var(--bg-surface)',
+                    borderTop: expandedHints.has(i) ? '1px solid var(--border)' : '1px solid transparent',
+                    transition: 'border-top-color 200ms ease',
+                  }}
+                >
+                  <MarkdownLite text={hintText} />
+                </div>
               </div>
             )}
           </div>
