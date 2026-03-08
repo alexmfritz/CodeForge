@@ -15,7 +15,7 @@ import {
 import { resetExercise } from '../../features/progressSlice';
 import type { Tier, ExerciseType, StatusSort } from '@codeforge/shared';
 import { TIER_META, TYPE_META } from '@codeforge/shared/constants';
-import { getCategoryLabels } from '../../utils/helpers';
+import { getCategoryLabels, debounce } from '../../utils/helpers';
 import Skeleton from '../shared/Skeleton';
 import ExerciseCard from './ExerciseCard';
 import TopicCards from './TopicCards';
@@ -50,7 +50,20 @@ export default function BrowseView() {
 
   const [showFilters, setShowFilters] = useState(false);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [searchInput, setSearchInput] = useState(filter.search);
   const sentinelRef = useRef<HTMLDivElement>(null);
+
+  // Debounced search dispatch — immediate local state for snappy input, 300ms delay on Redux
+  const dispatchRef = useRef(dispatch);
+  dispatchRef.current = dispatch;
+  const debouncedSearch = useRef(
+    debounce((value: string) => dispatchRef.current(setSearch(value)), 300),
+  );
+
+  // Sync local input when filter.search changes externally (Clear button, dashboard nav)
+  useEffect(() => {
+    setSearchInput(filter.search);
+  }, [filter.search]);
 
   useEffect(() => {
     if (exercises.length > 0) {
@@ -158,18 +171,68 @@ export default function BrowseView() {
   if (loading) {
     return (
       <div className="flex flex-col h-full overflow-hidden">
+        {/* Search bar skeleton */}
         <div className="flex-shrink-0 flex items-center gap-3 px-5 py-3" style={{ borderBottom: '1px solid var(--border)', backgroundColor: 'var(--bg-surface)' }}>
           <Skeleton width="280px" height="32px" borderRadius="6px" />
           <Skeleton width="80px" height="32px" borderRadius="6px" />
+          <div className="flex-1" />
+          <Skeleton width="120px" height="14px" borderRadius="4px" />
         </div>
-        <div className="px-5 pt-5 pb-2">
-          <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
-            {Array.from({ length: 4 }, (_, i) => <Skeleton key={i} height="80px" borderRadius="8px" />)}
+        <div className="flex-1 overflow-y-auto">
+          {/* Topics section skeleton */}
+          <div className="px-5 pt-5 pb-2">
+            <Skeleton width="70px" height="20px" borderRadius="4px" className="mb-3" />
+            <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
+              {Array.from({ length: 6 }, (_, i) => (
+                <div key={i} className="rounded-lg p-4 flex flex-col gap-2" style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)', borderLeft: '4px solid var(--bg-raised)' }}>
+                  <Skeleton width="70%" height="14px" borderRadius="3px" />
+                  <div className="flex items-center gap-2">
+                    <Skeleton width="30px" height="10px" borderRadius="3px" />
+                    <Skeleton height="4px" borderRadius="2px" />
+                    <Skeleton width="24px" height="10px" borderRadius="3px" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="px-5 py-4">
-          <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }}>
-            {Array.from({ length: 8 }, (_, i) => <Skeleton key={i} height="88px" borderRadius="8px" />)}
+          {/* Collections section skeleton */}
+          <div className="px-5 pb-2">
+            <Skeleton width="100px" height="20px" borderRadius="4px" className="mb-3" />
+            <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
+              {Array.from({ length: 4 }, (_, i) => (
+                <div key={i} className="rounded-lg p-4 flex flex-col gap-2" style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
+                  <Skeleton width="65%" height="14px" borderRadius="3px" />
+                  <div className="flex items-center gap-2">
+                    <Skeleton width="30px" height="10px" borderRadius="3px" />
+                    <Skeleton height="4px" borderRadius="2px" />
+                    <Skeleton width="24px" height="10px" borderRadius="3px" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Exercise cards grid skeleton */}
+          <div className="px-5 py-4">
+            <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }}>
+              {Array.from({ length: 6 }, (_, i) => (
+                <div key={i} className="rounded-lg p-4 flex flex-col gap-3" style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
+                  <div className="flex items-center gap-2">
+                    <Skeleton width="24px" height="24px" borderRadius="50%" />
+                    <Skeleton width="36px" height="18px" borderRadius="4px" />
+                  </div>
+                  <Skeleton width="75%" height="14px" borderRadius="3px" />
+                  <div className="flex flex-col gap-1.5">
+                    <Skeleton height="10px" borderRadius="3px" />
+                    <Skeleton width="60%" height="10px" borderRadius="3px" />
+                  </div>
+                  <div className="flex gap-1.5 mt-auto">
+                    <Skeleton width="44px" height="18px" borderRadius="4px" />
+                    <Skeleton width="52px" height="18px" borderRadius="4px" />
+                    <Skeleton width="40px" height="18px" borderRadius="4px" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -182,8 +245,11 @@ export default function BrowseView() {
         <div className="relative flex-1 max-w-sm" style={{ minWidth: '160px' }}>
           <input
             type="text"
-            value={filter.search}
-            onChange={(e) => dispatch(setSearch(e.target.value))}
+            value={searchInput}
+            onChange={(e) => {
+              setSearchInput(e.target.value);
+              debouncedSearch.current(e.target.value);
+            }}
             placeholder="Search exercises, tags…"
             className="w-full text-sm px-3 py-1.5 pl-8 rounded"
             style={{ backgroundColor: 'var(--bg-raised)', border: '1px solid var(--border)', color: 'var(--text-primary)', outline: 'none', fontFamily: 'Source Code Pro, monospace' }}
