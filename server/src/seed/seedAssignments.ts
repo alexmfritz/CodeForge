@@ -2,6 +2,7 @@ import { Assignment } from '../models/Assignment.js';
 import { Cohort } from '../models/Cohort.js';
 import { Exercise } from '../models/Exercise.js';
 import { User } from '../models/User.js';
+import { logger } from '../logger.js';
 
 export async function seedAssignments(): Promise<void> {
   const existingCount = await Assignment.countDocuments();
@@ -11,7 +12,7 @@ export async function seedAssignments(): Promise<void> {
   const instructor = await User.findOne({ role: 'instructor' }).lean();
 
   if (!cohort || !instructor) {
-    console.log('[seed] Skipping assignments — no cohort or instructor found');
+    logger.info('Skipping assignments seed — no cohort or instructor found');
     return;
   }
 
@@ -72,6 +73,6 @@ export async function seedAssignments(): Promise<void> {
 
   if (assignments.length > 0) {
     await Assignment.insertMany(assignments);
-    console.log(`[seed] Created ${assignments.length} mock assignment(s)`);
+    logger.info({ count: assignments.length }, 'Seeded assignments');
   }
 }

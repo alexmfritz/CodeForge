@@ -14,6 +14,7 @@ import { hashPassword } from '../services/authService.js';
 import { generateUsername, ensureUniqueUsername } from '../services/userService.js';
 import { calculateScore } from '@codeforge/shared/constants';
 import type { Tier } from '@codeforge/shared';
+import { logger } from '../logger.js';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -199,11 +200,11 @@ const ARCHETYPE_CONFIG: Record<Archetype, ArchetypeConfig> = {
 export async function seedDevData(): Promise<void> {
   const userCount = await User.countDocuments();
   if (userCount > 5) {
-    console.log(`Found ${userCount} users — dev data already seeded, skipping`);
+    logger.info({ userCount }, 'Dev data already seeded — skipping');
     return;
   }
 
-  console.log('Seeding dev data…');
+  logger.info('Seeding dev data');
   const startTime = Date.now();
 
   const cohorts = await createCohorts();
@@ -216,7 +217,7 @@ export async function seedDevData(): Promise<void> {
   await createExtraAssignments(cohorts, exercises);
 
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-  console.log(`Dev data seeded in ${elapsed}s`);
+  logger.info({ elapsed: `${elapsed}s` }, 'Dev data seeded');
 }
 
 // ─── Cohorts ────────────────────────────────────────────────────────────────
@@ -241,7 +242,7 @@ async function createCohorts(): Promise<CohortInfo[]> {
     const cohort = await Cohort.create(data);
     cohorts.push({ _id: cohort._id as mongoose.Types.ObjectId, ...data });
   }
-  console.log(`  Created ${cohorts.length} cohorts`);
+  logger.info({ count: cohorts.length }, 'Created cohorts');
   return cohorts;
 }
 
@@ -306,7 +307,7 @@ async function createStudents(cohorts: CohortInfo[]): Promise<StudentInfo[]> {
     }
   }
 
-  console.log(`  Created ${students.length} students`);
+  logger.info({ count: students.length }, 'Created students');
   return students;
 }
 
@@ -429,7 +430,7 @@ async function createProgress(
     await Progress.insertMany(bulkOps, { ordered: false });
   }
 
-  console.log(`  Created ${bulkOps.length} progress records`);
+  logger.info({ count: bulkOps.length }, 'Created progress records');
   return allProgress;
 }
 
@@ -541,7 +542,7 @@ async function createChatData(cohorts: CohortInfo[], students: StudentInfo[]): P
   }
 
   await ChatMessage.insertMany(messages);
-  console.log(`  Created ${messages.length} chat messages`);
+  logger.info({ count: messages.length }, 'Created chat messages');
 
   // Archived chat logs for all 3 cohorts
   let logCount = 0;
@@ -583,7 +584,7 @@ async function createChatData(cohorts: CohortInfo[], students: StudentInfo[]): P
     }
   }
 
-  console.log(`  Created ${logCount} archived chat logs`);
+  logger.info({ count: logCount }, 'Created archived chat logs');
 }
 
 // ─── Ratings ────────────────────────────────────────────────────────────────
@@ -615,7 +616,7 @@ async function createRatings(students: StudentInfo[], progress: ProgressInfo[]):
   if (ratingDocs.length > 0) {
     await Rating.insertMany(ratingDocs, { ordered: false });
   }
-  console.log(`  Created ${ratingDocs.length} ratings`);
+  logger.info({ count: ratingDocs.length }, 'Created ratings');
 }
 
 // ─── Achievements ───────────────────────────────────────────────────────────
@@ -673,7 +674,7 @@ async function createAchievements(
   if (instanceDocs.length > 0) {
     await AchievementInstance.insertMany(instanceDocs, { ordered: false });
   }
-  console.log(`  Created ${instanceDocs.length} achievement instances`);
+  logger.info({ count: instanceDocs.length }, 'Created achievement instances');
 }
 
 // ─── Extra Assignments ──────────────────────────────────────────────────────
@@ -719,5 +720,5 @@ async function createExtraAssignments(
   if (assignments.length > 0) {
     await Assignment.insertMany(assignments);
   }
-  console.log(`  Created ${assignments.length} extra assignments`);
+  logger.info({ count: assignments.length }, 'Created extra assignments');
 }

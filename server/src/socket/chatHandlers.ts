@@ -16,6 +16,7 @@ import {
   unpinMessages,
   toggleReaction,
 } from '../services/chatService.js';
+import { logger } from '../logger.js';
 
 type TypedIO = Server<ClientToServerEvents, ServerToClientEvents>;
 type TypedSocket = Socket<ClientToServerEvents, ServerToClientEvents>;
@@ -102,7 +103,7 @@ export function registerChatHandlers(io: TypedIO, socket: TypedSocket): void {
       io.to(roomKey).emit('chat:active-users', activeUsers);
       io.to(roomKey).emit('chat:user-joined', activeUser);
     } catch (err) {
-      console.error('[Chat] Error joining room:', err);
+      logger.error({ err }, 'Error joining chat room');
       socket.emit('chat:error', 'Failed to join room');
     }
   });
@@ -187,7 +188,7 @@ export function registerChatHandlers(io: TypedIO, socket: TypedSocket): void {
         }
       }
     } catch (err) {
-      console.error('[Chat] Error saving message:', err);
+      logger.error({ err }, 'Error saving chat message');
       socket.emit('chat:error', 'Failed to send message');
     }
   });
@@ -212,7 +213,7 @@ export function registerChatHandlers(io: TypedIO, socket: TypedSocket): void {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       io.to(currentRoom).emit('chat:pinned', pinned as any);
     } catch (err) {
-      console.error('[Chat] Error pinning message:', err);
+      logger.error({ err }, 'Error pinning message');
       socket.emit('chat:error', 'Failed to pin message');
     }
   });
@@ -227,7 +228,7 @@ export function registerChatHandlers(io: TypedIO, socket: TypedSocket): void {
       await unpinMessages(currentCohortId);
       io.to(currentRoom).emit('chat:pinned', null);
     } catch (err) {
-      console.error('[Chat] Error unpinning message:', err);
+      logger.error({ err }, 'Error unpinning message');
       socket.emit('chat:error', 'Failed to unpin message');
     }
   });
@@ -244,7 +245,7 @@ export function registerChatHandlers(io: TypedIO, socket: TypedSocket): void {
         });
       }
     } catch (err) {
-      console.error('[Chat] Error toggling reaction:', err);
+      logger.error({ err }, 'Error toggling reaction');
       socket.emit('chat:error', 'Failed to toggle reaction');
     }
   });

@@ -2,6 +2,7 @@ import { User } from '../models/User.js';
 import { hashPassword } from '../services/authService.js';
 import { generateUsername, ensureUniqueUsername } from '../services/userService.js';
 import { config } from '../config.js';
+import { logger } from '../logger.js';
 
 export async function seedInstructor(): Promise<void> {
   const existing = await User.findOne({ role: 'instructor' });
@@ -25,5 +26,5 @@ export async function seedInstructor(): Promise<void> {
     preferences: { theme: 'midnight' },
   });
 
-  console.log(`Instructor account created: ${username}`);
+  logger.info({ username }, 'Instructor account created');
 }
