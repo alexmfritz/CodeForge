@@ -21,12 +21,29 @@ if (fs.existsSync(envPath)) {
   }
 }
 
-export const config = {
-  port: Number(process.env.PORT || 3000),
-  devPort: Number(process.env.VITE_API_PORT || 3001),
-  isDev: process.argv.includes('--dev') || process.env.NODE_ENV === 'development',
+const isDev = process.argv.includes('--dev') || process.env.NODE_ENV === 'development';
 
-  mongoUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/codeforge',
+// Validate critical config — fail fast with clear messages
+const port = Number(process.env.PORT || 3000);
+const devPort = Number(process.env.VITE_API_PORT || 3001);
+if (Number.isNaN(port) || port < 1 || port > 65535) {
+  throw new Error(`Invalid PORT: "${process.env.PORT}" — must be 1-65535`);
+}
+if (Number.isNaN(devPort) || devPort < 1 || devPort > 65535) {
+  throw new Error(`Invalid VITE_API_PORT: "${process.env.VITE_API_PORT}" — must be 1-65535`);
+}
+
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/codeforge';
+if (!mongoUri.startsWith('mongodb://') && !mongoUri.startsWith('mongodb+srv://')) {
+  throw new Error(`Invalid MONGODB_URI — must start with mongodb:// or mongodb+srv://`);
+}
+
+export const config = {
+  port,
+  devPort,
+  isDev,
+
+  mongoUri,
 
   jwt: {
     secret: process.env.JWT_SECRET || 'change-this-to-a-random-secret',

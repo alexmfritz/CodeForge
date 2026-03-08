@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { authenticate, authorize } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
-import { createCohortSchema, updateCohortSchema } from '@codeforge/shared/validation';
+import { createCohortSchema, updateCohortSchema, addStudentToCohortSchema } from '@codeforge/shared/validation';
 import { createCohort, addStudentToCohort, removeStudentFromCohort, getCohortWithStudentCount } from '../services/cohortService.js';
 import { deleteCohortChatData } from '../services/chatService.js';
 import { Cohort } from '../models/Cohort.js';
@@ -77,14 +77,9 @@ router.patch('/:id', authorize('instructor'), validate(updateCohortSchema), asyn
   }
 });
 
-router.post('/:id/students', authorize('instructor'), async (req, res) => {
+router.post('/:id/students', authorize('instructor'), validate(addStudentToCohortSchema), async (req, res) => {
   try {
-    const { userId } = req.body;
-    if (!userId) {
-      res.status(400).json({ success: false, error: 'userId is required' });
-      return;
-    }
-    const user = await addStudentToCohort(req.params.id as string, userId);
+    const user = await addStudentToCohort(req.params.id as string, req.body.userId);
     res.json({ success: true, data: user });
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Failed to add student';

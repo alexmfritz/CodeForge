@@ -47,8 +47,12 @@ export async function apiFetch<T>(
       return { success: false, error: 'Session expired' };
     }
 
-    const data = await response.json();
-    return data;
+    const text = await response.text();
+    try {
+      return JSON.parse(text);
+    } catch {
+      return { success: false, error: `Unexpected response (${response.status})` };
+    }
   } catch {
     return { success: false, error: 'Network error' };
   }

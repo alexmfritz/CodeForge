@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { store, useAppDispatch } from '../../../features/store';
 import {
   recordAttempt,
@@ -45,6 +45,15 @@ export function useTestRunner(
   const [isRunning, setIsRunning] = useState(false);
   const [duplicateWarning, setDuplicateWarning] = useState(false);
   const cleanupRef = useRef<(() => void) | null>(null);
+  const cleanupTimerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  // Clear pending cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      clearTimeout(cleanupTimerRef.current);
+      cleanupRef.current?.();
+    };
+  }, []);
 
   const clearResults = useCallback(() => {
     setTestResults([]);
@@ -79,12 +88,12 @@ export function useTestRunner(
         const { results: r, cleanup } = await runCssTests(code, exercise.providedHtml ?? '', exercise.testCases ?? []);
         results = r;
         cleanupRef.current = cleanup;
-        setTimeout(() => cleanup(), 2000);
+        cleanupTimerRef.current = setTimeout(() => cleanup(), 2000);
       } else if (exercise.type === 'html-css') {
         const { results: r, cleanup } = await runHtmlCssTests(code, cssCode, exercise.testCases ?? []);
         results = r;
         cleanupRef.current = cleanup;
-        setTimeout(() => cleanup(), 2000);
+        cleanupTimerRef.current = setTimeout(() => cleanup(), 2000);
       }
     } catch (err) {
       results = [{ pass: false, description: `Test error: ${err instanceof Error ? err.message : String(err)}` }];
