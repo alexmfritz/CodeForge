@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from './features/store';
 import { fetchMe, logout } from './features/authSlice';
@@ -7,17 +7,20 @@ import { fetchProgress } from './features/progressSlice';
 import ErrorBoundary from './components/shared/ErrorBoundary';
 import LoginPage from './components/auth/LoginPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import BrowseView from './components/browse/BrowseView';
-import ExerciseView from './components/exercise/ExerciseView';
-import StudentDashboard from './components/dashboard/StudentDashboard';
-import InstructorDashboard from './components/instructor/InstructorDashboard';
-import AssignmentDetail from './components/assignments/AssignmentDetail';
-import ChatPage from './components/chat/ChatPage';
-import LeaderboardPage from './components/leaderboard/LeaderboardPage';
-import SettingsPage from './components/settings/SettingsPage';
+import LoadingSpinner from './components/shared/LoadingSpinner';
 import Toast from './components/shared/Toast';
 import AchievementToast from './components/achievements/AchievementToast';
 import { useSocket } from './hooks/useSocket';
+
+// Lazy-loaded route components — each becomes a separate chunk
+const BrowseView = lazy(() => import('./components/browse/BrowseView'));
+const ExerciseView = lazy(() => import('./components/exercise/ExerciseView'));
+const StudentDashboard = lazy(() => import('./components/dashboard/StudentDashboard'));
+const InstructorDashboard = lazy(() => import('./components/instructor/InstructorDashboard'));
+const AssignmentDetail = lazy(() => import('./components/assignments/AssignmentDetail'));
+const ChatPage = lazy(() => import('./components/chat/ChatPage'));
+const LeaderboardPage = lazy(() => import('./components/leaderboard/LeaderboardPage'));
+const SettingsPage = lazy(() => import('./components/settings/SettingsPage'));
 
 function App() {
   const theme = useAppSelector((state) => state.ui.theme);
@@ -90,6 +93,7 @@ function AppShell() {
       </header>
       <main className="flex-1 overflow-hidden">
         <ErrorBoundary>
+          <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route
               path="/dashboard"
@@ -108,6 +112,7 @@ function AppShell() {
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
+          </Suspense>
         </ErrorBoundary>
       </main>
     </div>
