@@ -4,8 +4,8 @@ test.describe('Instructor Dashboard', () => {
   test.beforeEach(async ({ page }) => {
     // Login as instructor
     await page.goto('/login');
-    await page.fill('input[name="username"]', 'auser');
-    await page.fill('input[name="password"]', '000000');
+    await page.fill('input[name="username"]', 'nlopez');
+    await page.fill('input[name="password"]', '123456');
     await page.click('button[type="submit"]');
     await expect(page).toHaveURL(/\/(dashboard|exercises)/, { timeout: 10000 });
   });

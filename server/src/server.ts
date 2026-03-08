@@ -6,6 +6,7 @@ import { logger } from './logger.js';
 import { initSocketIO } from './socket.js';
 import { archivePreviousDayLogs } from './services/chatService.js';
 import { seedInstructor } from './seed/seedInstructor.js';
+import { seedTA } from './seed/seedTA.js';
 import { seedExercises } from './seed/seedExercises.js';
 import { seedAchievements } from './seed/seedAchievements.js';
 import { seedAssignments } from './seed/seedAssignments.js';
@@ -22,6 +23,7 @@ async function start(): Promise<void> {
     logger.info('Connected to MongoDB');
 
     await seedInstructor();
+    await seedTA();
     await seedExercises();
     await seedAchievements();
     await seedAssignments();
