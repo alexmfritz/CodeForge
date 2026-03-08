@@ -9,9 +9,10 @@ import RatingDisplay from '../ratings/RatingDisplay';
 interface ExerciseCardProps {
   exercise: Exercise;
   onDismiss?: (exerciseId: string) => void;
+  style?: React.CSSProperties;
 }
 
-export default function ExerciseCard({ exercise, onDismiss }: ExerciseCardProps) {
+export default function ExerciseCard({ exercise, onDismiss, style }: ExerciseCardProps) {
   const navigate = useNavigate();
   const categories = useAppSelector((s) => s.exercises.categories);
   const progress = useAppSelector((s) => s.progress.items[exercise._id]);
@@ -19,6 +20,12 @@ export default function ExerciseCard({ exercise, onDismiss }: ExerciseCardProps)
   const attempts = progress?.attempts ?? 0;
 
   const catColor = getCategoryColor(exercise.category, categories);
+  const isInProgress = !isComplete && attempts > 0;
+  const statusBorder = isComplete
+    ? '3px solid var(--success)'
+    : isInProgress
+      ? '3px solid var(--warning)'
+      : undefined;
 
   return (
     <article
@@ -26,15 +33,23 @@ export default function ExerciseCard({ exercise, onDismiss }: ExerciseCardProps)
       style={{
         backgroundColor: 'var(--bg-surface)',
         border: isComplete ? `1px solid ${catColor}55` : '1px solid var(--border)',
+        borderLeft: statusBorder,
+        ...style,
       }}
       onClick={() => navigate(`/exercises/${exercise._id}`)}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = isComplete ? `${catColor}99` : 'var(--border-strong)';
-        (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)';
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = isComplete ? `${catColor}99` : 'var(--border-strong)';
+        if (statusBorder) el.style.borderLeftColor = isComplete ? 'var(--success)' : 'var(--warning)';
+        el.style.transform = 'translateY(-2px)';
+        el.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = isComplete ? `${catColor}55` : 'var(--border)';
-        (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = isComplete ? `${catColor}55` : 'var(--border)';
+        if (statusBorder) el.style.borderLeftColor = isComplete ? 'var(--success)' : 'var(--warning)';
+        el.style.transform = 'translateY(0)';
+        el.style.boxShadow = 'none';
       }}
       role="button"
       tabIndex={0}

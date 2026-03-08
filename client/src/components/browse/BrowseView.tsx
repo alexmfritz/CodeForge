@@ -433,10 +433,14 @@ export default function BrowseView() {
           ) : (
             <>
               <div ref={gridRef} className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }} onKeyDown={handleGridKeyDown} role="grid" aria-label="Exercise list">
-                {visibleExercises.map((ex) => (
+                {visibleExercises.map((ex, i) => (
                   <ExerciseCard
                     key={ex._id}
                     exercise={ex}
+                    style={i < PAGE_SIZE ? {
+                      animation: 'fadeInUp 0.3s ease both',
+                      animationDelay: `${Math.min(i * 20, 400)}ms`,
+                    } : undefined}
                     onDismiss={filter.collectionId === '__in-progress__' ? (exerciseId) => {
                       dispatch(resetExercise(exerciseId))
                         .unwrap()
