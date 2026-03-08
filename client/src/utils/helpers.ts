@@ -1,15 +1,37 @@
 import type { Tier, ExerciseType, Category } from '@codeforge/shared';
 import { TIER_META, TYPE_META } from '@codeforge/shared/constants';
 
+interface DebouncedFn<T extends (...args: never[]) => unknown> {
+  (...args: Parameters<T>): void;
+  flush(): void;
+}
+
 export function debounce<T extends (...args: never[]) => unknown>(
   fn: T,
   delay: number,
-): (...args: Parameters<T>) => void {
+): DebouncedFn<T> {
   let timer: ReturnType<typeof setTimeout>;
-  return (...args: Parameters<T>) => {
+  let pendingArgs: Parameters<T> | null = null;
+
+  const debounced = (...args: Parameters<T>) => {
     clearTimeout(timer);
-    timer = setTimeout(() => fn(...args), delay);
+    pendingArgs = args;
+    timer = setTimeout(() => {
+      pendingArgs = null;
+      fn(...args);
+    }, delay);
   };
+
+  debounced.flush = () => {
+    if (pendingArgs) {
+      clearTimeout(timer);
+      const args = pendingArgs;
+      pendingArgs = null;
+      fn(...args);
+    }
+  };
+
+  return debounced;
 }
 
 export function getCategoryColor(

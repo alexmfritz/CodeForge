@@ -117,8 +117,11 @@ export default function ExerciseView() {
   ).current;
 
   useEffect(() => {
-    return () => clearTimeout(saveTimerRef.current);
-  }, []);
+    return () => {
+      debouncedSave.flush(); // fire any pending server save on unmount
+      clearTimeout(saveTimerRef.current);
+    };
+  }, [debouncedSave]);
 
   const handleCodeChange = useCallback(
     (newCode: string) => {

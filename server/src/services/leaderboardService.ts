@@ -94,6 +94,7 @@ export async function getLeaderboard(
     const tierBreakdown: Record<number, number> = {};
     if (scoreData?.tiers) {
       for (const t of scoreData.tiers) {
+        if (t == null) continue; // skip orphaned progress records
         tierBreakdown[t] = (tierBreakdown[t] || 0) + 1;
       }
     }
