@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "description": "Offline-first JavaScript coding exercise platform for DOC classroom environments",
-  "workspaces": ["shared", "server", "client"],
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
   "scripts": {
     "dev": "npm run dev:server & npm run dev:client",
     "dev:client": "npm run dev -w client",
@@ -11,10 +15,14 @@
     "build": "npm run build -w shared && npm run build -w server && npm run build -w client",
     "start": "npm run start -w server",
     "test": "npm run test -w client && npm run test -w server",
+    "test:e2e": "npx playwright test",
     "lint": "npm run lint -w client && npm run lint -w server",
     "seed:reset": "cd server && npx tsx src/scripts/resetAndSeed.ts"
   },
   "engines": {
     "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
   }
 }
