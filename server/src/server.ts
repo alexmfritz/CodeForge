@@ -41,13 +41,17 @@ async function start(): Promise<void> {
       logger.info({ port, mode: config.isDev ? 'dev' : 'production' }, 'CodeForge server started');
     });
 
-    // Graceful shutdown
+    // Graceful shutdown — drain connections before exiting
+    let shuttingDown = false;
     const shutdown = async (signal: string) => {
+      if (shuttingDown) return;
+      shuttingDown = true;
       logger.info({ signal }, 'Shutting down gracefully…');
+
       io.close();
-      httpServer.close(() => {
-        logger.info('HTTP server closed');
-      });
+      await new Promise<void>((resolve) => httpServer.close(() => resolve()));
+      logger.info('HTTP server closed');
+
       await mongoose.disconnect();
       logger.info('MongoDB disconnected');
       process.exit(0);

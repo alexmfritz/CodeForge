@@ -65,6 +65,10 @@ export const updateCohortSchema = z.object({
   isActive: z.boolean().optional(),
 });
 
+export const addStudentToCohortSchema = z.object({
+  userId: z.string().min(1, 'userId is required'),
+});
+
 // ─── Exercises ──────────────────────────────────────────────────────────────
 
 export const createExerciseSchema = z.object({
