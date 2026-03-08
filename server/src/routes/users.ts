@@ -4,6 +4,7 @@ import { validate } from '../middleware/validate.js';
 import { createUserSchema, bulkCreateUsersSchema, updateUserSchema } from '@codeforge/shared/validation';
 import { createUser, bulkCreateUsers, resetPassword } from '../services/userService.js';
 import { User } from '../models/User.js';
+import { logger } from '../logger.js';
 
 const router = Router();
 
@@ -26,7 +27,8 @@ router.get('/', authorize('instructor', 'ta'), async (req, res) => {
       const users = await User.find(filter).sort({ displayName: 1 });
       res.json({ success: true, data: users });
     }
-  } catch {
+  } catch (err) {
+    logger.error({ err, path: req.path }, 'Failed to fetch users');
     res.status(500).json({ success: false, error: 'Failed to fetch users' });
   }
 });
@@ -59,7 +61,8 @@ router.get('/:id', authorize('instructor', 'ta'), async (req, res) => {
       return;
     }
     res.json({ success: true, data: user });
-  } catch {
+  } catch (err) {
+    logger.error({ err, path: req.path }, 'Failed to fetch user');
     res.status(500).json({ success: false, error: 'Failed to fetch user' });
   }
 });
@@ -87,7 +90,8 @@ router.patch('/:id', authenticate, validate(updateUserSchema), async (req, res) 
       return;
     }
     res.json({ success: true, data: user });
-  } catch {
+  } catch (err) {
+    logger.error({ err, path: req.path }, 'Failed to update user');
     res.status(500).json({ success: false, error: 'Failed to update user' });
   }
 });
@@ -100,7 +104,8 @@ router.post('/:id/reset-password', authorize('instructor'), async (req, res) => 
       return;
     }
     res.json({ success: true, data: user });
-  } catch {
+  } catch (err) {
+    logger.error({ err, path: req.path }, 'Failed to reset password');
     res.status(500).json({ success: false, error: 'Failed to reset password' });
   }
 });

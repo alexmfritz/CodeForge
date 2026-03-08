@@ -89,24 +89,26 @@ function AppShell() {
         {user && <UserMenu user={user} onSettings={() => navigate('/settings')} onLogout={() => dispatch(logout())} />}
       </header>
       <main className="flex-1 overflow-hidden">
-        <Routes>
-          <Route
-            path="/dashboard"
-            element={
-              user?.role === 'instructor' || user?.role === 'ta'
-                ? <InstructorDashboard />
-                : <StudentDashboard />
-            }
-          />
-          <Route path="/exercises" element={<BrowseView />} />
-          <Route path="/exercises/:id" element={<ExerciseView />} />
-          <Route path="/assignments/:id" element={<AssignmentDetail />} />
-          <Route path="/chat" element={<ChatPage />} />
-          <Route path="/leaderboard" element={<LeaderboardPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route
+              path="/dashboard"
+              element={
+                user?.role === 'instructor' || user?.role === 'ta'
+                  ? <InstructorDashboard />
+                  : <StudentDashboard />
+              }
+            />
+            <Route path="/exercises" element={<BrowseView />} />
+            <Route path="/exercises/:id" element={<ExerciseView />} />
+            <Route path="/assignments/:id" element={<AssignmentDetail />} />
+            <Route path="/chat" element={<ChatPage />} />
+            <Route path="/leaderboard" element={<LeaderboardPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </ErrorBoundary>
       </main>
     </div>
   );
