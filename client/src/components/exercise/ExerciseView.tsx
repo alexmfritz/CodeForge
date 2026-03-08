@@ -4,6 +4,21 @@ import { useAppDispatch, useAppSelector } from '../../features/store';
 import { saveSolution, resetExercise, selectSavedCode } from '../../features/progressSlice';
 import { showToast, setSaveStatus } from '../../features/uiSlice';
 import { debounce } from '../../utils/helpers';
+
+// localStorage buffer for in-progress code (survives tab close / refresh)
+const CODE_CACHE_PREFIX = 'codeforge_draft_';
+function getCachedCode(exerciseId: string): string | null {
+  try { return localStorage.getItem(CODE_CACHE_PREFIX + exerciseId); }
+  catch { return null; }
+}
+function setCachedCode(exerciseId: string, code: string): void {
+  try { localStorage.setItem(CODE_CACHE_PREFIX + exerciseId, code); }
+  catch { /* quota exceeded — ignore */ }
+}
+function clearCachedCode(exerciseId: string): void {
+  try { localStorage.removeItem(CODE_CACHE_PREFIX + exerciseId); }
+  catch { /* ignore */ }
+}
 import Skeleton from '../shared/Skeleton';
 import { useExerciseNavigation } from './hooks/useExerciseNavigation';
 import { useTestRunner } from './hooks/useTestRunner';
@@ -55,11 +70,14 @@ export default function ExerciseView() {
 
   useEffect(() => {
     if (!exercise) return;
+    // Priority: server-saved code > localStorage draft > starter code
+    const cached = getCachedCode(exercise._id);
+    const initialCode = savedCode ?? cached ?? exercise.starterCode;
     if (exercise.type === 'html-css') {
-      setCode(savedCode ?? exercise.starterCode);
+      setCode(initialCode);
       setCssCode('');
     } else {
-      setCode(savedCode ?? exercise.starterCode);
+      setCode(initialCode);
     }
     clearResults();
     setActiveTab('instructions');
@@ -86,12 +104,14 @@ export default function ExerciseView() {
       dispatchRef.current(setSaveStatus('saving'));
       dispatchRef.current(saveSolution({ exerciseId, code: codeToSave }))
         .then(() => {
+          clearCachedCode(exerciseId); // server has it — clear local draft
           dispatchRef.current(setSaveStatus('saved'));
           clearTimeout(saveTimerRef.current);
           saveTimerRef.current = setTimeout(() => dispatchRef.current(setSaveStatus('idle')), 2000);
         })
         .catch(() => {
           dispatchRef.current(setSaveStatus('idle'));
+          // localStorage draft remains as fallback
         });
     }, 1000),
   ).current;
@@ -100,6 +120,7 @@ export default function ExerciseView() {
     (newCode: string) => {
       setCode(newCode);
       if (exercise && newCode !== exercise.starterCode) {
+        setCachedCode(exercise._id, newCode);
         debouncedSave(exercise._id, newCode);
       }
     },
@@ -110,7 +131,9 @@ export default function ExerciseView() {
     (newCss: string) => {
       setCssCode(newCss);
       if (exercise && (code !== exercise.starterCode || newCss !== '')) {
-        debouncedSave(exercise._id, code + '\n/*CSS*/\n' + newCss);
+        const combined = code + '\n/*CSS*/\n' + newCss;
+        setCachedCode(exercise._id, combined);
+        debouncedSave(exercise._id, combined);
       }
     },
     [exercise, code, debouncedSave],
@@ -120,6 +143,7 @@ export default function ExerciseView() {
     if (!exercise) return;
     try {
       await dispatch(resetExercise(exercise._id)).unwrap();
+      clearCachedCode(exercise._id);
       setCode(exercise.starterCode);
       setCssCode('');
       clearResults();

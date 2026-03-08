@@ -26,7 +26,22 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       outDir: 'dist',
-      sourcemap: true,
+      sourcemap: mode !== 'production',
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+            'vendor-redux': ['@reduxjs/toolkit', 'react-redux'],
+            'vendor-codemirror': [
+              'codemirror',
+              '@codemirror/lang-javascript',
+              '@codemirror/lang-html',
+              '@codemirror/lang-css',
+            ],
+            'vendor-socketio': ['socket.io-client'],
+          },
+        },
+      },
     },
     test: {
       globals: true,

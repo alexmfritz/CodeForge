@@ -2,6 +2,7 @@ import { createServer } from 'http';
 import mongoose from 'mongoose';
 import { app } from './app.js';
 import { config } from './config.js';
+import { logger } from './logger.js';
 import { initSocketIO } from './socket.js';
 import { archivePreviousDayLogs } from './services/chatService.js';
 import { seedInstructor } from './seed/seedInstructor.js';
@@ -13,14 +14,12 @@ async function start(): Promise<void> {
   try {
     // Validate critical config in production
     if (!config.isDev && config.jwt.secret === 'change-this-to-a-random-secret') {
-      console.error(
-        'FATAL: JWT_SECRET is still the default value. Set a secure secret in .env before running in production.',
-      );
+      logger.fatal('JWT_SECRET is still the default value. Set a secure secret in .env before running in production.');
       process.exit(1);
     }
 
     await mongoose.connect(config.mongoUri);
-    console.log('Connected to MongoDB');
+    logger.info('Connected to MongoDB');
 
     await seedInstructor();
     await seedExercises();
@@ -39,27 +38,25 @@ async function start(): Promise<void> {
 
     const port = config.isDev ? config.devPort : config.port;
     httpServer.listen(port, () => {
-      console.log(
-        `CodeForge server running on http://localhost:${port} (${config.isDev ? 'dev' : 'production'})`,
-      );
+      logger.info({ port, mode: config.isDev ? 'dev' : 'production' }, 'CodeForge server started');
     });
 
     // Graceful shutdown
     const shutdown = async (signal: string) => {
-      console.log(`\n${signal} received — shutting down gracefully…`);
+      logger.info({ signal }, 'Shutting down gracefully…');
       io.close();
       httpServer.close(() => {
-        console.log('HTTP server closed');
+        logger.info('HTTP server closed');
       });
       await mongoose.disconnect();
-      console.log('MongoDB disconnected');
+      logger.info('MongoDB disconnected');
       process.exit(0);
     };
 
     process.on('SIGTERM', () => shutdown('SIGTERM'));
     process.on('SIGINT', () => shutdown('SIGINT'));
   } catch (err) {
-    console.error('Failed to start server:', err);
+    logger.fatal({ err }, 'Failed to start server');
     process.exit(1);
   }
 }

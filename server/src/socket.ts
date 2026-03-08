@@ -2,6 +2,7 @@ import { Server as SocketIOServer } from 'socket.io';
 import type { Server as HttpServer } from 'http';
 import jwt from 'jsonwebtoken';
 import { config } from './config.js';
+import { logger } from './logger.js';
 import { registerChatHandlers } from './socket/chatHandlers.js';
 import type { JwtPayload, ServerToClientEvents, ClientToServerEvents } from '@codeforge/shared';
 
@@ -37,11 +38,11 @@ export function initSocketIO(
   });
 
   io.on('connection', (socket) => {
-    console.log(`[Socket] Connected: ${socket.user.userId} (${socket.user.role})`);
+    logger.debug({ userId: socket.user.userId, role: socket.user.role }, 'Socket connected');
     registerChatHandlers(io, socket);
 
     socket.on('disconnect', () => {
-      console.log(`[Socket] Disconnected: ${socket.user.userId}`);
+      logger.debug({ userId: socket.user.userId }, 'Socket disconnected');
     });
   });
 
