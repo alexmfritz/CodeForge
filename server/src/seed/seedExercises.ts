@@ -6,6 +6,7 @@ import { Exercise } from '../models/Exercise.js';
 import { Collection } from '../models/Collection.js';
 import { BASE_POINTS } from '@codeforge/shared/constants';
 import type { Tier } from '@codeforge/shared';
+import { logger } from '../logger.js';
 
 interface RawExercise {
   id: number;
@@ -58,23 +59,23 @@ function normalizeHints(raw: RawExercise): string[] {
 export async function seedExercises(): Promise<void> {
   const collectionsDir = path.join(config.paths.exercises, 'collections');
   if (!fs.existsSync(collectionsDir)) {
-    console.log('No exercises/collections directory found — skipping seed');
+    logger.info('No exercises/collections directory found — skipping seed');
     return;
   }
 
   const files = fs.readdirSync(collectionsDir).filter((f) => f.endsWith('.json') && !f.startsWith('_'));
   if (files.length === 0) {
-    console.log('No collection files found — skipping seed');
+    logger.info('No collection files found — skipping seed');
     return;
   }
 
   const existingCount = await Exercise.countDocuments();
   if (existingCount > 0) {
-    console.log(`Found ${existingCount} exercises already seeded — skipping`);
+    logger.info({ count: existingCount }, 'Exercises already seeded — skipping');
     return;
   }
 
-  console.log(`Seeding exercises from ${files.length} collection files…`);
+  logger.info({ fileCount: files.length }, 'Seeding exercises from collection files');
 
   const seenLegacyIds = new Set<number>();
   let totalExercises = 0;
@@ -140,8 +141,8 @@ export async function seedExercises(): Promise<void> {
     collection.exerciseIds = exerciseIds.map((id) => new mongoose.Types.ObjectId(id));
     await collection.save();
 
-    console.log(`  ${slug}: ${exerciseIds.length} exercises`);
+    logger.info({ collection: slug, count: exerciseIds.length }, 'Seeded collection');
   }
 
-  console.log(`Seed complete: ${totalExercises} exercises across ${files.length} collections`);
+  logger.info({ totalExercises, collections: files.length }, 'Exercise seed complete');
 }

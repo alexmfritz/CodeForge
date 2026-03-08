@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from './features/store';
 import { fetchMe, logout } from './features/authSlice';
 import { fetchExercises } from './features/exercisesSlice';
 import { fetchProgress } from './features/progressSlice';
+import ErrorBoundary from './components/shared/ErrorBoundary';
 import LoginPage from './components/auth/LoginPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import BrowseView from './components/browse/BrowseView';
@@ -41,7 +42,7 @@ function App() {
   }, [user, dispatch]);
 
   return (
-    <>
+    <ErrorBoundary>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route
@@ -55,7 +56,7 @@ function App() {
       </Routes>
       <Toast />
       <AchievementToast />
-    </>
+    </ErrorBoundary>
   );
 }
 

@@ -1,4 +1,5 @@
 import { AchievementDefinition } from '../models/AchievementDefinition.js';
+import { logger } from '../logger.js';
 
 const ACHIEVEMENT_SEEDS = [
   {
@@ -76,11 +77,11 @@ const ACHIEVEMENT_SEEDS = [
 export async function seedAchievements(): Promise<void> {
   const existingCount = await AchievementDefinition.countDocuments();
   if (existingCount > 0) {
-    console.log(`Found ${existingCount} achievement definitions already seeded \u2014 skipping`);
+    logger.info({ count: existingCount }, 'Achievement definitions already seeded — skipping');
     return;
   }
 
-  console.log('Seeding achievement definitions\u2026');
+  logger.info('Seeding achievement definitions');
 
   for (const seed of ACHIEVEMENT_SEEDS) {
     await AchievementDefinition.create({
@@ -89,5 +90,5 @@ export async function seedAchievements(): Promise<void> {
     });
   }
 
-  console.log(`Seed complete: ${ACHIEVEMENT_SEEDS.length} achievement definitions created`);
+  logger.info({ count: ACHIEVEMENT_SEEDS.length }, 'Achievement seed complete');
 }
