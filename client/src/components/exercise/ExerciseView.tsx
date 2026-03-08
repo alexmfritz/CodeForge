@@ -116,6 +116,10 @@ export default function ExerciseView() {
     }, 1000),
   ).current;
 
+  useEffect(() => {
+    return () => clearTimeout(saveTimerRef.current);
+  }, []);
+
   const handleCodeChange = useCallback(
     (newCode: string) => {
       setCode(newCode);

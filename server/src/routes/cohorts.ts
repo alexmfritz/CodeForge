@@ -6,6 +6,7 @@ import { createCohort, addStudentToCohort, removeStudentFromCohort, getCohortWit
 import { deleteCohortChatData } from '../services/chatService.js';
 import { Cohort } from '../models/Cohort.js';
 import { User } from '../models/User.js';
+import { logger } from '../logger.js';
 
 const router = Router();
 
@@ -26,7 +27,8 @@ router.get('/', async (_req, res) => {
       }),
     );
     res.json({ success: true, data: cohortsWithCounts });
-  } catch {
+  } catch (err) {
+    logger.error({ err }, 'Failed to fetch cohorts');
     res.status(500).json({ success: false, error: 'Failed to fetch cohorts' });
   }
 });
@@ -49,7 +51,8 @@ router.get('/:id', async (req, res) => {
       return;
     }
     res.json({ success: true, data: cohort });
-  } catch {
+  } catch (err) {
+    logger.error({ err, path: req.path }, 'Failed to fetch cohort');
     res.status(500).json({ success: false, error: 'Failed to fetch cohort' });
   }
 });
@@ -68,7 +71,8 @@ router.patch('/:id', authorize('instructor'), validate(updateCohortSchema), asyn
       return;
     }
     res.json({ success: true, data: cohort });
-  } catch {
+  } catch (err) {
+    logger.error({ err, path: req.path }, 'Failed to update cohort');
     res.status(500).json({ success: false, error: 'Failed to update cohort' });
   }
 });

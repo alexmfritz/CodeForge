@@ -73,11 +73,11 @@ export const createExerciseSchema = z.object({
   tier: z.number().int().min(1).max(5),
   category: z.array(z.string()),
   tags: z.array(z.string()),
-  description: z.string().min(1),
-  instructions: z.string().min(1),
-  starterCode: z.string().default(''),
-  solution: z.string().min(1),
-  testRunner: z.string().default(''),
+  description: z.string().min(1).max(10000),
+  instructions: z.string().min(1).max(50000),
+  starterCode: z.string().max(50000).default(''),
+  solution: z.string().min(1).max(50000),
+  testRunner: z.string().max(100000).default(''),
   testCases: z
     .array(
       z.object({
@@ -121,7 +121,7 @@ export const createExerciseSchema = z.object({
 // ─── Progress ───────────────────────────────────────────────────────────────
 
 export const saveCodeSchema = z.object({
-  code: z.string(),
+  code: z.string().max(50000),
 });
 
 export const recordAttemptSchema = z.object({

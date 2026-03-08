@@ -52,7 +52,6 @@ export function useSocket() {
       );
     }
     function onError(error: string) {
-      console.error('[Socket] chat:error:', error);
       dispatch(showToast({ message: error, type: 'error' }));
     }
 

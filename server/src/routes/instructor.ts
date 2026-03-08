@@ -7,6 +7,7 @@ import {
   getExerciseDifficultyReport,
   getEngagementTimeline,
 } from '../services/instructorService.js';
+import { logger } from '../logger.js';
 
 const router = Router();
 
@@ -18,7 +19,8 @@ router.get('/overview', async (req, res) => {
     const cohortId = req.query.cohortId as string | undefined;
     const overview = await getOverview(cohortId);
     res.json({ success: true, data: overview });
-  } catch {
+  } catch (err) {
+    logger.error({ err, path: req.path }, 'Failed to fetch overview');
     res.status(500).json({ success: false, error: 'Failed to fetch overview' });
   }
 });
@@ -30,6 +32,7 @@ router.get('/students/:id/progress', async (req, res) => {
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Failed to fetch student progress';
     const status = message === 'Student not found' ? 404 : 500;
+    if (status === 500) logger.error({ err, path: req.path }, 'Failed to fetch student progress');
     res.status(status).json({ success: false, error: message });
   }
 });
@@ -45,7 +48,8 @@ router.get('/cohort/:id/heatmap', async (req, res) => {
       pageSize: pageSize ? Number(pageSize) : 50,
     });
     res.json({ success: true, data });
-  } catch {
+  } catch (err) {
+    logger.error({ err, path: req.path }, 'Failed to fetch heatmap data');
     res.status(500).json({ success: false, error: 'Failed to fetch heatmap data' });
   }
 });
@@ -62,7 +66,8 @@ router.get('/analytics/difficulty', async (req, res) => {
       },
     );
     res.json({ success: true, data });
-  } catch {
+  } catch (err) {
+    logger.error({ err, path: req.path }, 'Failed to fetch difficulty report');
     res.status(500).json({ success: false, error: 'Failed to fetch difficulty report' });
   }
 });
@@ -75,7 +80,8 @@ router.get('/analytics/engagement', async (req, res) => {
       days ? Number(days) : 30,
     );
     res.json({ success: true, data });
-  } catch {
+  } catch (err) {
+    logger.error({ err, path: req.path }, 'Failed to fetch engagement data');
     res.status(500).json({ success: false, error: 'Failed to fetch engagement data' });
   }
 });
