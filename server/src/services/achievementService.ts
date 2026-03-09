@@ -3,6 +3,7 @@ import { AchievementInstance } from '../models/AchievementInstance.js';
 import { Progress } from '../models/Progress.js';
 import { Exercise } from '../models/Exercise.js';
 import { Collection } from '../models/Collection.js';
+import { ChatMessage } from '../models/ChatMessage.js';
 
 interface EarnedAchievement {
   _id: string;
@@ -21,8 +22,9 @@ async function evaluateCriteria(
     uniqueAttempts: number;
     solutionViewed: boolean;
     score: number;
+    completedAt?: Date;
   }>,
-  exerciseMap: Map<string, { type: string; tier: number; collectionId?: string }>,
+  exerciseMap: Map<string, { type: string; tier: number; category: string[]; collectionId?: string }>,
 ): Promise<boolean> {
   const params = definition.criteriaParams;
 
@@ -88,6 +90,75 @@ async function evaluateCriteria(
       return noSolutionCount >= requiredCount;
     }
 
+    // ─── New criteria types ───────────────────────────────────────────────
+
+    case 'all_exercises': {
+      const totalExercises = await Exercise.countDocuments({ isActive: true });
+      return totalExercises > 0 && completedProgress.length >= totalExercises;
+    }
+
+    case 'all_tiers': {
+      const tiers = new Set<number>();
+      for (const p of completedProgress) {
+        const ex = exerciseMap.get(p.exerciseId);
+        if (ex) tiers.add(ex.tier);
+      }
+      return [1, 2, 3, 4, 5].every((t) => tiers.has(t));
+    }
+
+    case 'all_types': {
+      const types = new Set<string>();
+      for (const p of completedProgress) {
+        const ex = exerciseMap.get(p.exerciseId);
+        if (ex) types.add(ex.type);
+      }
+      const requiredTypes = (params.types as string[]) || ['js', 'css', 'html'];
+      return requiredTypes.every((t) => types.has(t));
+    }
+
+    case 'collections_count': {
+      const requiredCount = params.count as number;
+      const allCollections = await Collection.find({ hidden: false }).lean();
+      const completedIds = new Set(completedProgress.map((p) => p.exerciseId));
+      let completedCollections = 0;
+      for (const col of allCollections) {
+        if (col.isDefault) continue; // skip default curriculum
+        const colExIds = col.exerciseIds.map((id) => String(id));
+        if (colExIds.length > 0 && colExIds.every((id) => completedIds.has(id))) {
+          completedCollections++;
+        }
+      }
+      return completedCollections >= requiredCount;
+    }
+
+    case 'categories_explored': {
+      const requiredCount = params.count as number;
+      const categories = new Set<string>();
+      for (const p of completedProgress) {
+        const ex = exerciseMap.get(p.exerciseId);
+        if (ex?.category?.[0]) categories.add(ex.category[0]);
+      }
+      return categories.size >= requiredCount;
+    }
+
+    case 'daily_completed': {
+      const requiredCount = params.count as number;
+      const dayCounts = new Map<string, number>();
+      for (const p of completedProgress) {
+        if (p.completedAt) {
+          const day = new Date(p.completedAt).toISOString().slice(0, 10);
+          dayCounts.set(day, (dayCounts.get(day) ?? 0) + 1);
+        }
+      }
+      return [...dayCounts.values()].some((count) => count >= requiredCount);
+    }
+
+    case 'chat_messages': {
+      const requiredCount = params.count as number;
+      const messageCount = await ChatMessage.countDocuments({ userId });
+      return messageCount >= requiredCount;
+    }
+
     default:
       return false;
   }
@@ -120,6 +191,7 @@ export async function checkAchievements(
     uniqueAttempts: p.uniqueAttempts,
     solutionViewed: p.solutionViewed,
     score: p.score,
+    completedAt: p.completedAt,
   }));
 
   const exerciseIds = completedProgress.map((p) => p.exerciseId);
@@ -130,6 +202,7 @@ export async function checkAchievements(
       {
         type: e.type,
         tier: e.tier,
+        category: e.category as string[],
         collectionId: e.collectionId ? String(e.collectionId) : undefined,
       },
     ]),
