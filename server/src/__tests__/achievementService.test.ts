@@ -26,16 +26,27 @@ vi.mock('../models/Progress.js', () => ({
 }));
 
 const mockExerciseFind = vi.fn();
+const mockExerciseCountDocuments = vi.fn();
 vi.mock('../models/Exercise.js', () => ({
   Exercise: {
     find: (...args: unknown[]) => mockExerciseFind(...args),
+    countDocuments: (...args: unknown[]) => mockExerciseCountDocuments(...args),
   },
 }));
 
 const mockCollectionFindById = vi.fn();
+const mockCollectionFind = vi.fn();
 vi.mock('../models/Collection.js', () => ({
   Collection: {
     findById: (...args: unknown[]) => mockCollectionFindById(...args),
+    find: (...args: unknown[]) => mockCollectionFind(...args),
+  },
+}));
+
+const mockChatMessageCountDocuments = vi.fn();
+vi.mock('../models/ChatMessage.js', () => ({
+  ChatMessage: {
+    countDocuments: (...args: unknown[]) => mockChatMessageCountDocuments(...args),
   },
 }));
 
@@ -76,8 +87,9 @@ function setupCheckAchievements(opts: {
     uniqueAttempts: number;
     solutionViewed: boolean;
     score: number;
+    completedAt?: Date;
   }>;
-  exercises?: Array<{ _id: string; type: string; tier: number; collectionId?: string }>;
+  exercises?: Array<{ _id: string; type: string; tier: number; category?: string[]; collectionId?: string }>;
 }) {
   // AchievementDefinition.find({ isActive: true }).lean()
   mockDefFind.mockReturnValue({ lean: () => Promise.resolve(opts.definitions) });
@@ -94,6 +106,7 @@ function setupCheckAchievements(opts: {
     uniqueAttempts: p.uniqueAttempts,
     solutionViewed: p.solutionViewed,
     score: p.score,
+    completedAt: p.completedAt,
   }));
   mockProgressFind.mockReturnValue({ lean: () => Promise.resolve(progress) });
 
@@ -102,6 +115,7 @@ function setupCheckAchievements(opts: {
     _id: makeObjectId(e._id),
     type: e.type,
     tier: e.tier,
+    category: e.category || [],
     collectionId: e.collectionId ? makeObjectId(e.collectionId) : undefined,
   }));
   mockExerciseFind.mockReturnValue({ lean: () => Promise.resolve(exercises) });
@@ -427,6 +441,329 @@ describe('checkAchievements', () => {
     const result = await checkAchievements('u1', 'c1');
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('New');
+  });
+
+  // ─── New criteria types ─────────────────────────────────────────────────
+
+  it('earns all_exercises achievement when all exercises completed', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'Completionist', criteriaType: 'all_exercises', criteriaParams: {} }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 50 },
+        { exerciseId: 'ex2', uniqueAttempts: 1, solutionViewed: false, score: 50 },
+        { exerciseId: 'ex3', uniqueAttempts: 1, solutionViewed: false, score: 50 },
+      ],
+      exercises: [
+        { _id: 'ex1', type: 'js', tier: 1 },
+        { _id: 'ex2', type: 'js', tier: 2 },
+        { _id: 'ex3', type: 'css', tier: 1 },
+      ],
+    });
+    mockExerciseCountDocuments.mockResolvedValue(3);
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Completionist');
+  });
+
+  it('does NOT earn all_exercises when some remain', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'A1', criteriaType: 'all_exercises', criteriaParams: {} }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 50 },
+      ],
+      exercises: [{ _id: 'ex1', type: 'js', tier: 1 }],
+    });
+    mockExerciseCountDocuments.mockResolvedValue(100);
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(0);
+  });
+
+  it('earns all_tiers achievement when 1+ exercise at each tier', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'Tier Climber', criteriaType: 'all_tiers', criteriaParams: {} }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 10 },
+        { exerciseId: 'ex2', uniqueAttempts: 1, solutionViewed: false, score: 20 },
+        { exerciseId: 'ex3', uniqueAttempts: 1, solutionViewed: false, score: 30 },
+        { exerciseId: 'ex4', uniqueAttempts: 1, solutionViewed: false, score: 40 },
+        { exerciseId: 'ex5', uniqueAttempts: 1, solutionViewed: false, score: 50 },
+      ],
+      exercises: [
+        { _id: 'ex1', type: 'js', tier: 1 },
+        { _id: 'ex2', type: 'js', tier: 2 },
+        { _id: 'ex3', type: 'js', tier: 3 },
+        { _id: 'ex4', type: 'js', tier: 4 },
+        { _id: 'ex5', type: 'js', tier: 5 },
+      ],
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Tier Climber');
+  });
+
+  it('does NOT earn all_tiers when missing a tier', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'A1', criteriaType: 'all_tiers', criteriaParams: {} }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 10 },
+        { exerciseId: 'ex2', uniqueAttempts: 1, solutionViewed: false, score: 20 },
+        { exerciseId: 'ex3', uniqueAttempts: 1, solutionViewed: false, score: 30 },
+      ],
+      exercises: [
+        { _id: 'ex1', type: 'js', tier: 1 },
+        { _id: 'ex2', type: 'js', tier: 2 },
+        { _id: 'ex3', type: 'js', tier: 3 },
+      ],
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(0);
+  });
+
+  it('earns all_types achievement when all types represented', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'Full Stack', criteriaType: 'all_types', criteriaParams: { types: ['js', 'css', 'html'] } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 10 },
+        { exerciseId: 'ex2', uniqueAttempts: 1, solutionViewed: false, score: 20 },
+        { exerciseId: 'ex3', uniqueAttempts: 1, solutionViewed: false, score: 30 },
+      ],
+      exercises: [
+        { _id: 'ex1', type: 'js', tier: 1 },
+        { _id: 'ex2', type: 'css', tier: 1 },
+        { _id: 'ex3', type: 'html', tier: 1 },
+      ],
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Full Stack');
+  });
+
+  it('does NOT earn all_types when missing a type', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'A1', criteriaType: 'all_types', criteriaParams: { types: ['js', 'css', 'html'] } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 10 },
+        { exerciseId: 'ex2', uniqueAttempts: 1, solutionViewed: false, score: 20 },
+      ],
+      exercises: [
+        { _id: 'ex1', type: 'js', tier: 1 },
+        { _id: 'ex2', type: 'css', tier: 1 },
+      ],
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(0);
+  });
+
+  it('earns collections_count achievement when enough collections completed', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'Librarian', criteriaType: 'collections_count', criteriaParams: { count: 2 } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 50 },
+        { exerciseId: 'ex2', uniqueAttempts: 1, solutionViewed: false, score: 50 },
+        { exerciseId: 'ex3', uniqueAttempts: 1, solutionViewed: false, score: 50 },
+      ],
+      exercises: [
+        { _id: 'ex1', type: 'js', tier: 1 },
+        { _id: 'ex2', type: 'js', tier: 2 },
+        { _id: 'ex3', type: 'css', tier: 1 },
+      ],
+    });
+
+    mockCollectionFind.mockReturnValue({
+      lean: () =>
+        Promise.resolve([
+          { _id: makeObjectId('col1'), exerciseIds: [makeObjectId('ex1')], isDefault: false, hidden: false },
+          { _id: makeObjectId('col2'), exerciseIds: [makeObjectId('ex2'), makeObjectId('ex3')], isDefault: false, hidden: false },
+          { _id: makeObjectId('col3'), exerciseIds: [makeObjectId('ex1'), makeObjectId('ex99')], isDefault: false, hidden: false },
+        ]),
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Librarian');
+  });
+
+  it('does NOT earn collections_count when not enough completed', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'A1', criteriaType: 'collections_count', criteriaParams: { count: 3 } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 50 },
+      ],
+      exercises: [{ _id: 'ex1', type: 'js', tier: 1 }],
+    });
+
+    mockCollectionFind.mockReturnValue({
+      lean: () =>
+        Promise.resolve([
+          { _id: makeObjectId('col1'), exerciseIds: [makeObjectId('ex1')], isDefault: false, hidden: false },
+          { _id: makeObjectId('col2'), exerciseIds: [makeObjectId('ex2')], isDefault: false, hidden: false },
+        ]),
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(0);
+  });
+
+  it('collections_count skips default curriculum collection', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'A1', criteriaType: 'collections_count', criteriaParams: { count: 1 } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 50 },
+      ],
+      exercises: [{ _id: 'ex1', type: 'js', tier: 1 }],
+    });
+
+    mockCollectionFind.mockReturnValue({
+      lean: () =>
+        Promise.resolve([
+          { _id: makeObjectId('col1'), exerciseIds: [makeObjectId('ex1')], isDefault: true, hidden: false },
+        ]),
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(0);
+  });
+
+  it('earns categories_explored achievement', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'Explorer', criteriaType: 'categories_explored', criteriaParams: { count: 3 } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 10 },
+        { exerciseId: 'ex2', uniqueAttempts: 1, solutionViewed: false, score: 20 },
+        { exerciseId: 'ex3', uniqueAttempts: 1, solutionViewed: false, score: 30 },
+      ],
+      exercises: [
+        { _id: 'ex1', type: 'js', tier: 1, category: ['javascript', 'arrays'] },
+        { _id: 'ex2', type: 'css', tier: 1, category: ['css', 'flexbox'] },
+        { _id: 'ex3', type: 'html', tier: 1, category: ['html', 'forms'] },
+      ],
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Explorer');
+  });
+
+  it('does NOT earn categories_explored when not enough categories', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'A1', criteriaType: 'categories_explored', criteriaParams: { count: 5 } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 10 },
+        { exerciseId: 'ex2', uniqueAttempts: 1, solutionViewed: false, score: 20 },
+      ],
+      exercises: [
+        { _id: 'ex1', type: 'js', tier: 1, category: ['javascript', 'arrays'] },
+        { _id: 'ex2', type: 'js', tier: 1, category: ['javascript', 'strings'] },
+      ],
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(0);
+  });
+
+  it('earns daily_completed achievement', async () => {
+    const sameDay = new Date('2026-03-07T10:00:00Z');
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'Marathon', criteriaType: 'daily_completed', criteriaParams: { count: 3 } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 10, completedAt: sameDay },
+        { exerciseId: 'ex2', uniqueAttempts: 1, solutionViewed: false, score: 20, completedAt: sameDay },
+        { exerciseId: 'ex3', uniqueAttempts: 1, solutionViewed: false, score: 30, completedAt: sameDay },
+      ],
+      exercises: [
+        { _id: 'ex1', type: 'js', tier: 1 },
+        { _id: 'ex2', type: 'js', tier: 1 },
+        { _id: 'ex3', type: 'js', tier: 1 },
+      ],
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Marathon');
+  });
+
+  it('does NOT earn daily_completed when exercises spread across days', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'A1', criteriaType: 'daily_completed', criteriaParams: { count: 3 } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 10, completedAt: new Date('2026-03-07T10:00:00Z') },
+        { exerciseId: 'ex2', uniqueAttempts: 1, solutionViewed: false, score: 20, completedAt: new Date('2026-03-08T10:00:00Z') },
+        { exerciseId: 'ex3', uniqueAttempts: 1, solutionViewed: false, score: 30, completedAt: new Date('2026-03-09T10:00:00Z') },
+      ],
+      exercises: [
+        { _id: 'ex1', type: 'js', tier: 1 },
+        { _id: 'ex2', type: 'js', tier: 1 },
+        { _id: 'ex3', type: 'js', tier: 1 },
+      ],
+    });
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(0);
+  });
+
+  it('earns chat_messages achievement', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'Chatty', criteriaType: 'chat_messages', criteriaParams: { count: 10 } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 10 },
+      ],
+      exercises: [{ _id: 'ex1', type: 'js', tier: 1 }],
+    });
+    mockChatMessageCountDocuments.mockResolvedValue(15);
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Chatty');
+  });
+
+  it('does NOT earn chat_messages when count too low', async () => {
+    setupCheckAchievements({
+      definitions: [
+        makeDefinition({ _id: 'd1', name: 'A1', criteriaType: 'chat_messages', criteriaParams: { count: 25 } }),
+      ],
+      progress: [
+        { exerciseId: 'ex1', uniqueAttempts: 1, solutionViewed: false, score: 10 },
+      ],
+      exercises: [{ _id: 'ex1', type: 'js', tier: 1 }],
+    });
+    mockChatMessageCountDocuments.mockResolvedValue(5);
+
+    const result = await checkAchievements('u1', 'c1');
+    expect(result).toHaveLength(0);
   });
 });
 
