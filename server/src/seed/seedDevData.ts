@@ -7,11 +7,11 @@ import { Progress } from '../models/Progress.js';
 import { ChatMessage } from '../models/ChatMessage.js';
 import { ChatLog } from '../models/ChatLog.js';
 import { Rating } from '../models/Rating.js';
-import { AchievementDefinition } from '../models/AchievementDefinition.js';
 import { AchievementInstance } from '../models/AchievementInstance.js';
 import { Assignment } from '../models/Assignment.js';
 import { hashPassword } from '../services/authService.js';
 import { generateUsername, ensureUniqueUsername } from '../services/userService.js';
+import { checkAchievements } from '../services/achievementService.js';
 import { calculateScore } from '@codeforge/shared/constants';
 import type { Tier } from '@codeforge/shared';
 import { logger } from '../logger.js';
@@ -622,58 +622,23 @@ async function createRatings(students: StudentInfo[], progress: ProgressInfo[]):
 
 async function createAchievements(
   students: StudentInfo[],
-  progress: ProgressInfo[],
-  cohorts: CohortInfo[],
+  _progress: ProgressInfo[],
+  _cohorts: CohortInfo[],
 ): Promise<void> {
-  const definitions = await AchievementDefinition.find({ isActive: true }).lean();
-  if (definitions.length === 0) return;
+  // Use the actual checkAchievements service to evaluate all criteria types.
+  // This stays in sync automatically when new achievements are added.
+  let totalEarned = 0;
 
-  const defByName = new Map(definitions.map((d) => [d.name, d]));
-  const instanceDocs: Record<string, unknown>[] = [];
-
-  // Pre-compute per-student stats
   for (const student of students) {
-    const studentProgress = progress.filter((p) => String(p.userId) === String(student._id) && p.status === 'completed');
-    const completedCount = studentProgress.length;
-    if (completedCount === 0) continue;
-
-    const jsCount = studentProgress.filter((p) => p.tier <= 3).length; // approximation — all are JS
-    const perfectCount = studentProgress.filter((p) => p.score > 0 && !p.solutionViewed).length;
-    const latestCompletion = studentProgress.reduce((latest, p) =>
-      p.completedAt && (!latest || p.completedAt > latest) ? p.completedAt : latest,
-      null as Date | null,
+    if (student.archetype === 'dropped') continue;
+    const earned = await checkAchievements(
+      String(student._id),
+      String(student.cohortId),
     );
-
-    const checks: [string, boolean][] = [
-      ['First Spark', completedCount >= 1],
-      ['Getting Started', completedCount >= 5],
-      ['Double Digits', completedCount >= 10],
-      ['Quarter Century', completedCount >= 25],
-      ['Century Club', completedCount >= 100],
-      ['JavaScript Journeyman', jsCount >= 50],
-      ['Perfect Ten', perfectCount >= 10],
-      ['No Peeking', perfectCount >= 10],
-    ];
-
-    for (const [name, earned] of checks) {
-      if (!earned) continue;
-      const def = defByName.get(name);
-      if (!def) continue;
-
-      instanceDocs.push({
-        userId: student._id,
-        achievementId: def._id,
-        cohortId: student.cohortId,
-        earnedAt: latestCompletion || new Date(),
-        metadata: {},
-      });
-    }
+    totalEarned += earned.length;
   }
 
-  if (instanceDocs.length > 0) {
-    await AchievementInstance.insertMany(instanceDocs, { ordered: false });
-  }
-  logger.info({ count: instanceDocs.length }, 'Created achievement instances');
+  logger.info({ count: totalEarned }, 'Created achievement instances');
 }
 
 // ─── Extra Assignments ──────────────────────────────────────────────────────
