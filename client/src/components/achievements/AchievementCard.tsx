@@ -9,8 +9,10 @@ interface AchievementCardProps {
 
 export default function AchievementCard({ definition, earned, earnedAt, progress }: AchievementCardProps) {
   const hasProgress = progress && progress.target > 0;
-  const pct = hasProgress ? Math.min(progress.current / progress.target, 1) : 0;
-  const almostThere = !earned && hasProgress && pct >= 0.8;
+  const rawPct = hasProgress ? progress.current / progress.target : 0;
+  const pct = Math.min(rawPct, 1);
+  const metCriteria = !earned && hasProgress && rawPct >= 1;
+  const almostThere = !earned && hasProgress && rawPct >= 0.8 && rawPct < 1;
   const hasAnyProgress = !earned && hasProgress && progress.current > 0;
 
   return (
@@ -74,21 +76,32 @@ export default function AchievementCard({ definition, earned, earnedAt, progress
               className="h-full rounded-full transition-all duration-300"
               style={{
                 width: `${Math.max(pct * 100, pct > 0 ? 4 : 0)}%`,
-                backgroundColor: almostThere ? 'var(--accent)' : 'var(--text-muted)',
+                backgroundColor: metCriteria ? 'var(--success)' : almostThere ? 'var(--accent)' : 'var(--text-muted)',
               }}
             />
           </div>
           {/* Progress text */}
           <div
             className="text-xs mt-1"
-            style={{ color: 'var(--text-faint)' }}
+            style={{ color: metCriteria ? 'var(--success)' : 'var(--text-faint)' }}
           >
-            {progress.current.toLocaleString()} / {progress.target.toLocaleString()}
+            {Math.min(progress.current, progress.target).toLocaleString()} / {progress.target.toLocaleString()}
           </div>
         </div>
       )}
 
-      {/* "Almost there!" badge */}
+      {/* Status badge */}
+      {metCriteria && (
+        <div
+          className="text-xs mt-1.5 px-2 py-0.5 rounded-full font-medium"
+          style={{
+            backgroundColor: 'color-mix(in srgb, var(--success) 15%, transparent)',
+            color: 'var(--success)',
+          }}
+        >
+          Criteria met!
+        </div>
+      )}
       {almostThere && (
         <div
           className="text-xs mt-1.5 px-2 py-0.5 rounded-full font-medium"
