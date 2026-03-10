@@ -22,6 +22,7 @@ function clearCachedCode(exerciseId: string): void {
 import Skeleton from '../shared/Skeleton';
 import { useExerciseNavigation } from './hooks/useExerciseNavigation';
 import { useTestRunner } from './hooks/useTestRunner';
+import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import InstructionsPanel from './InstructionsPanel';
 import TestResults from './TestResults';
 import ExerciseToolbar from './ExerciseToolbar';
@@ -164,6 +165,26 @@ export default function ExerciseView() {
 
   const canReset = !!savedCode || isComplete;
 
+  // ── Immediate save (flush debounce + flash indicator) ──────────────────
+  const handleImmediateSave = useCallback(() => {
+    if (!exercise) return;
+    debouncedSave.flush();
+    dispatch(setSaveStatus('saved'));
+    clearTimeout(saveTimerRef.current);
+    saveTimerRef.current = setTimeout(() => dispatch(setSaveStatus('idle')), 2000);
+  }, [exercise, debouncedSave, dispatch]);
+
+  // ── Keyboard shortcuts ─────────────────────────────────────────────────
+  const isModalOpen = showResetModal || showCompare || showRatingPrompt;
+
+  useKeyboardShortcuts({
+    onSave: handleImmediateSave,
+    onTogglePanel: useCallback(() => setPanelCollapsed((v) => !v), []),
+    onNavigatePrev: prevExercise ? () => navigate(`/exercises/${prevExercise._id}`) : null,
+    onNavigateNext: nextExercise ? () => navigate(`/exercises/${nextExercise._id}`) : null,
+    isModalOpen,
+  });
+
   if (!exercise && exercisesLoading) {
     return (
       <div className="flex h-full overflow-hidden">
@@ -279,7 +300,7 @@ export default function ExerciseView() {
         />
         <ResetModal isOpen={showResetModal} isComplete={isComplete} onConfirm={handleReset} onCancel={() => setShowResetModal(false)} />
         <CompareModal isOpen={showCompare} studentCode={code} referenceCode={exercise.solution} language={exercise.type} onClose={() => setShowCompare(false)} />
-        <EditorLayout exerciseType={exercise.type} code={code} cssCode={cssCode} onCodeChange={handleCodeChange} onCssChange={handleCssChange} onRun={runTests} />
+        <EditorLayout exerciseType={exercise.type} code={code} cssCode={cssCode} onCodeChange={handleCodeChange} onCssChange={handleCssChange} onRun={runTests} onSave={handleImmediateSave} />
       </div>
       {showRatingPrompt && (
         <RatingPrompt exerciseId={exercise._id} onClose={() => setShowRatingPrompt(false)} />

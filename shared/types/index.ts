@@ -174,6 +174,8 @@ export interface DashboardStats {
 
 // ─── Leaderboard ───────────────────────────────────────────────────────────
 
+export type LeaderboardPeriod = 'week' | 'month' | 'all';
+
 export interface LeaderboardEntry {
   userId: string;
   displayName: string;
