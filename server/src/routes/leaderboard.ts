@@ -10,8 +10,9 @@ router.use(authenticate);
 router.get('/', async (req, res, next) => {
   try {
     const cohortId = (req.query.cohortId as string) || null;
+    const period = (req.query.period as string) || 'all';
     const userCohortId = req.user!.cohortId?.toString() ?? null;
-    const entries = await getLeaderboard(cohortId, userCohortId);
+    const entries = await getLeaderboard(cohortId, userCohortId, period);
     res.json({ success: true, data: entries });
   } catch (err) {
     next(err);

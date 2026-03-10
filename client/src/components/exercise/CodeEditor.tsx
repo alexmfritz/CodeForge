@@ -15,6 +15,7 @@ interface CodeEditorProps {
   value: string;
   onChange: (code: string) => void;
   onRun?: () => void;
+  onSave?: () => void;
   language: ExerciseType | 'css-only';
   readOnly?: boolean;
   minHeight?: string;
@@ -161,6 +162,7 @@ export default function CodeEditor({
   value,
   onChange,
   onRun,
+  onSave,
   language,
   readOnly = false,
   minHeight = '300px',
@@ -170,6 +172,7 @@ export default function CodeEditor({
   const theme = useAppSelector((s) => s.ui.theme);
   const onChangeRef = useRef(onChange);
   const onRunRef = useRef(onRun);
+  const onSaveRef = useRef(onSave);
 
   const themeCompartment = useRef(new Compartment());
   const languageCompartment = useRef(new Compartment());
@@ -177,6 +180,7 @@ export default function CodeEditor({
 
   useEffect(() => { onChangeRef.current = onChange; }, [onChange]);
   useEffect(() => { onRunRef.current = onRun; }, [onRun]);
+  useEffect(() => { onSaveRef.current = onSave; }, [onSave]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -190,6 +194,7 @@ export default function CodeEditor({
     const runKeymap = keymap.of([
       { key: 'Ctrl-Enter', run: () => { onRunRef.current?.(); return true; } },
       { key: 'Mod-Enter', run: () => { onRunRef.current?.(); return true; } },
+      { key: 'Mod-s', run: () => { onSaveRef.current?.(); return true; } },
     ]);
 
     const state = EditorState.create({

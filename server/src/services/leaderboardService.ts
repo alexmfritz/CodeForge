@@ -25,9 +25,24 @@ async function computeStreak(userId: mongoose.Types.ObjectId): Promise<number> {
   return streak;
 }
 
+function getPeriodCutoff(period: string): Date | null {
+  if (period === 'week') {
+    const d = new Date();
+    d.setDate(d.getDate() - 7);
+    return d;
+  }
+  if (period === 'month') {
+    const d = new Date();
+    d.setDate(d.getDate() - 30);
+    return d;
+  }
+  return null; // 'all' — no cutoff
+}
+
 export async function getLeaderboard(
   cohortId: string | null,
   requestingUserCohortId: string | null,
+  period: string = 'all',
 ): Promise<LeaderboardEntry[]> {
   // Determine which users to include
   const userFilter: Record<string, unknown> = {
@@ -59,8 +74,14 @@ export async function getLeaderboard(
   const cohortMap = new Map(cohorts.map((c) => [String(c._id), c.name]));
 
   // Aggregate scores and completions
+  const cutoffDate = getPeriodCutoff(period);
+  const progressMatch: Record<string, unknown> = { userId: { $in: userIds }, status: 'completed' };
+  if (cutoffDate) {
+    progressMatch.completedAt = { $gte: cutoffDate };
+  }
+
   const pipeline = await Progress.aggregate([
-    { $match: { userId: { $in: userIds }, status: 'completed' } },
+    { $match: progressMatch },
     {
       $lookup: {
         from: 'exercises',

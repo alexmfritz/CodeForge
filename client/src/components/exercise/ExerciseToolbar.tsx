@@ -129,7 +129,7 @@ export default function ExerciseToolbar({
           </button>
         )}
         <SaveIndicator />
-        <span className="text-xs" style={{ color: 'var(--text-faint)' }}>Ctrl+Enter to run</span>
+        <span className="text-xs" style={{ color: 'var(--text-faint)' }}>Ctrl+Enter run · Ctrl+S save · Esc panel</span>
         <button
           onClick={onRunTests}
           disabled={isRunning}

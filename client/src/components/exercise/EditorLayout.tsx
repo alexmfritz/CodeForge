@@ -8,6 +8,7 @@ interface EditorLayoutProps {
   onCodeChange: (code: string) => void;
   onCssChange: (css: string) => void;
   onRun: () => void;
+  onSave?: () => void;
 }
 
 export default function EditorLayout({
@@ -17,6 +18,7 @@ export default function EditorLayout({
   onCodeChange,
   onCssChange,
   onRun,
+  onSave,
 }: EditorLayoutProps) {
   if (exerciseType === 'html-css') {
     return (
@@ -29,7 +31,7 @@ export default function EditorLayout({
             HTML
           </div>
           <div className="flex-1 overflow-hidden">
-            <CodeEditor value={code} onChange={onCodeChange} onRun={onRun} language="html" />
+            <CodeEditor value={code} onChange={onCodeChange} onRun={onRun} onSave={onSave} language="html" />
           </div>
         </div>
         <div className="flex-1 flex flex-col overflow-hidden" style={{ borderLeft: '1px solid var(--border)' }}>
@@ -40,7 +42,7 @@ export default function EditorLayout({
             CSS
           </div>
           <div className="flex-1 overflow-hidden">
-            <CodeEditor value={cssCode} onChange={onCssChange} onRun={onRun} language="css-only" />
+            <CodeEditor value={cssCode} onChange={onCssChange} onRun={onRun} onSave={onSave} language="css-only" />
           </div>
         </div>
       </div>
@@ -50,14 +52,14 @@ export default function EditorLayout({
   if (exerciseType === 'css') {
     return (
       <div className="flex-1 overflow-hidden">
-        <CodeEditor value={code} onChange={onCodeChange} onRun={onRun} language="css" />
+        <CodeEditor value={code} onChange={onCodeChange} onRun={onRun} onSave={onSave} language="css" />
       </div>
     );
   }
 
   return (
     <div className="flex-1 overflow-hidden">
-      <CodeEditor value={code} onChange={onCodeChange} onRun={onRun} language={exerciseType} />
+      <CodeEditor value={code} onChange={onCodeChange} onRun={onRun} onSave={onSave} language={exerciseType} />
     </div>
   );
 }

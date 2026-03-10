@@ -1,20 +1,26 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
-import { setFilterCohortId } from '../../features/leaderboardSlice';
+import { setFilterCohortId, setFilterPeriod } from '../../features/leaderboardSlice';
 import { useLeaderboardPolling } from '../../hooks/useLeaderboardPolling';
 import LeaderboardTable from './LeaderboardTable';
 import HighlightsWidget from './HighlightsWidget';
 import Skeleton from '../shared/Skeleton';
+import type { LeaderboardPeriod } from '@codeforge/shared';
 
 type FilterOption = 'cohort' | 'all';
+
+const PERIOD_OPTIONS: { value: LeaderboardPeriod; label: string }[] = [
+  { value: 'week', label: 'This Week' },
+  { value: 'month', label: 'This Month' },
+  { value: 'all', label: 'All Time' },
+];
 
 export default function LeaderboardPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { entries, highlights, filterCohortId, loading, highlightsLoading } = useAppSelector(
-    (s) => s.leaderboard,
-  );
+  const { entries, highlights, filterCohortId, filterPeriod, loading, highlightsLoading } =
+    useAppSelector((s) => s.leaderboard);
   const user = useAppSelector((s) => s.auth.user);
   const isOptedIn = user?.preferences.leaderboardOptIn ?? false;
 
@@ -25,6 +31,13 @@ export default function LeaderboardPage() {
   const handleFilterChange = useCallback(
     (filter: FilterOption) => {
       dispatch(setFilterCohortId(filter === 'all' ? 'all' : null));
+    },
+    [dispatch],
+  );
+
+  const handlePeriodChange = useCallback(
+    (period: LeaderboardPeriod) => {
+      dispatch(setFilterPeriod(period));
     },
     [dispatch],
   );
@@ -58,6 +71,33 @@ export default function LeaderboardPage() {
             >
               All Cohorts
             </button>
+
+            {/* Divider */}
+            <span
+              className="mx-1"
+              style={{ color: 'var(--border)', userSelect: 'none' }}
+              aria-hidden="true"
+            >
+              |
+            </span>
+
+            {/* Period filter */}
+            {PERIOD_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => handlePeriodChange(opt.value)}
+                className="px-3 py-1.5 rounded text-sm font-medium transition-colors"
+                style={{
+                  backgroundColor:
+                    filterPeriod === opt.value ? 'var(--bg-surface)' : 'transparent',
+                  color:
+                    filterPeriod === opt.value ? 'var(--accent)' : 'var(--text-muted)',
+                  border: `1px solid ${filterPeriod === opt.value ? 'var(--accent)' : 'var(--border)'}`,
+                }}
+              >
+                {opt.label}
+              </button>
+            ))}
           </div>
         </div>
 

@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import type { LeaderboardEntry, LeaderboardHighlight } from '@codeforge/shared';
+import type { LeaderboardEntry, LeaderboardHighlight, LeaderboardPeriod } from '@codeforge/shared';
 import { apiFetch } from '../utils/api';
 
 interface LeaderboardState {
   entries: LeaderboardEntry[];
   highlights: LeaderboardHighlight[];
   filterCohortId: string | null; // null = user's cohort, 'all' = all cohorts
+  filterPeriod: LeaderboardPeriod;
   loading: boolean;
   highlightsLoading: boolean;
 }
@@ -14,15 +15,24 @@ const initialState: LeaderboardState = {
   entries: [],
   highlights: [],
   filterCohortId: null,
+  filterPeriod: 'all',
   loading: false,
   highlightsLoading: false,
 };
 
+interface FetchLeaderboardArgs {
+  cohortId: string | null;
+  period: LeaderboardPeriod;
+}
+
 export const fetchLeaderboard = createAsyncThunk(
   'leaderboard/fetchEntries',
-  async (cohortId: string | null, { rejectWithValue }) => {
-    const params = cohortId ? `?cohortId=${cohortId}` : '';
-    const result = await apiFetch<LeaderboardEntry[]>(`/api/leaderboard${params}`);
+  async ({ cohortId, period }: FetchLeaderboardArgs, { rejectWithValue }) => {
+    const params = new URLSearchParams();
+    if (cohortId) params.set('cohortId', cohortId);
+    if (period !== 'all') params.set('period', period);
+    const qs = params.toString();
+    const result = await apiFetch<LeaderboardEntry[]>(`/api/leaderboard${qs ? `?${qs}` : ''}`);
     if (!result.success || !result.data) {
       return rejectWithValue(result.error || 'Failed to load leaderboard');
     }
@@ -48,6 +58,9 @@ const leaderboardSlice = createSlice({
   reducers: {
     setFilterCohortId(state, action: PayloadAction<string | null>) {
       state.filterCohortId = action.payload;
+    },
+    setFilterPeriod(state, action: PayloadAction<LeaderboardPeriod>) {
+      state.filterPeriod = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -75,5 +88,5 @@ const leaderboardSlice = createSlice({
   },
 });
 
-export const { setFilterCohortId } = leaderboardSlice.actions;
+export const { setFilterCohortId, setFilterPeriod } = leaderboardSlice.actions;
 export default leaderboardSlice.reducer;
