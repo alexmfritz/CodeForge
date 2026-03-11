@@ -18,6 +18,7 @@ import TierBreakdown from './TierBreakdown';
 import TypeBreakdown from './TypeBreakdown';
 import CollectionProgress from './CollectionProgress';
 import RecentActivity from './RecentActivity';
+import ActivityHeatmap from './ActivityHeatmap';
 import AssignmentList from '../assignments/AssignmentList';
 import AchievementGrid from '../achievements/AchievementGrid';
 import ChatLogViewer from '../chat/ChatLogViewer';
@@ -236,6 +237,8 @@ export default function StudentDashboard() {
               totalScore={stats.totalScore}
               onStatClick={handleStatClick}
             />
+
+            <ActivityHeatmap progressItems={progressItems} />
 
             <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
               <TierBreakdown tierBreakdown={stats.tierBreakdown} onTierClick={handleTierClick} />
