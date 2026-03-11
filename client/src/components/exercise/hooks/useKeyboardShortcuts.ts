@@ -5,6 +5,8 @@ interface KeyboardShortcutConfig {
   onTogglePanel: (() => void) | null;
   onNavigatePrev: (() => void) | null;
   onNavigateNext: (() => void) | null;
+  onFontSizeUp: (() => void) | null;
+  onFontSizeDown: (() => void) | null;
   isModalOpen: boolean;
 }
 
@@ -15,6 +17,8 @@ interface KeyboardShortcutConfig {
  * - Escape      → Toggle instructions panel (unless a modal is open)
  * - Ctrl/Cmd+[  → Previous exercise
  * - Ctrl/Cmd+]  → Next exercise
+ * - Ctrl/Cmd+=  → Increase editor font size
+ * - Ctrl/Cmd+-  → Decrease editor font size
  *
  * Uses a configRef pattern to avoid re-registering the listener
  * every time a callback changes.
@@ -52,6 +56,20 @@ export function useKeyboardShortcuts(config: KeyboardShortcutConfig) {
       if (mod && e.key === ']') {
         e.preventDefault();
         cfg.onNavigateNext?.();
+        return;
+      }
+
+      // Ctrl/Cmd + = → Increase editor font size
+      if (mod && (e.key === '=' || e.key === '+')) {
+        e.preventDefault();
+        cfg.onFontSizeUp?.();
+        return;
+      }
+
+      // Ctrl/Cmd + - → Decrease editor font size
+      if (mod && e.key === '-') {
+        e.preventDefault();
+        cfg.onFontSizeDown?.();
         return;
       }
     }

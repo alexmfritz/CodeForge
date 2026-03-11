@@ -103,6 +103,7 @@ export interface User {
   lastLogin?: string;
   preferences: {
     theme: Theme;
+    editorFontSize: number;
     leaderboardOptIn: boolean;
   };
   createdAt: string;
@@ -358,6 +359,7 @@ export type StatusSort = 'default' | 'in-progress-first' | 'not-started-first' |
 export interface Toast {
   message: string;
   type: 'error' | 'success' | 'warning' | 'celebration';
+  style?: Record<string, string>;
 }
 
 // ─── API Types ──────────────────────────────────────────────────────────────

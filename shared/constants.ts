@@ -125,6 +125,12 @@ export const THEMES: {
 
 export const DEFAULT_THEME: Theme = 'midnight';
 
+// ─── Editor Font Size ────────────────────────────────────────────────────────
+
+export const MIN_EDITOR_FONT_SIZE = 12;
+export const MAX_EDITOR_FONT_SIZE = 24;
+export const DEFAULT_EDITOR_FONT_SIZE = 14;
+
 // ─── Review Queue ───────────────────────────────────────────────────────────
 
 export const REVIEW_INTERVAL = 10;

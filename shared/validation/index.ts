@@ -45,6 +45,7 @@ export const updateUserSchema = z.object({
           'dracula',
         ])
         .optional(),
+      editorFontSize: z.number().int().min(12).max(24).optional(),
       leaderboardOptIn: z.boolean().optional(),
     })
     .optional(),

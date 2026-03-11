@@ -290,7 +290,6 @@ h1, h2, h3, h4, h5, h6 {
 .cm-editor {
   height: 100%;
   font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace !important;
-  font-size: 14px !important;
 }
 
 .cm-scroller {
