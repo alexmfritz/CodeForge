@@ -12,6 +12,7 @@ import {
   getUserStats,
 } from '../services/progressService.js';
 import { checkAchievements } from '../services/achievementService.js';
+import { maybeQueueReview } from '../services/reviewService.js';
 
 const router = Router();
 
@@ -70,7 +71,8 @@ router.post('/:exerciseId/complete', authenticate, validate(markCompleteSchema),
       req.body.solutionViewed,
     );
     const newAchievements = await checkAchievements(req.user!.userId, cohortId);
-    res.json({ success: true, data: { ...progress.toJSON(), newAchievements } });
+    const newReview = await maybeQueueReview(req.user!.userId, cohortId);
+    res.json({ success: true, data: { ...progress.toJSON(), newAchievements, newReview: newReview?.toJSON() ?? null } });
   } catch (err) {
     next(err);
   }

@@ -39,6 +39,7 @@ export function useTestRunner(
   code: string,
   cssCode: string,
   onTestsStart: () => void,
+  reviewId?: string | null,
 ): UseTestRunnerResult {
   const dispatch = useAppDispatch();
   const [testResults, setTestResults] = useState<TestResult[]>([]);
@@ -104,33 +105,48 @@ export function useTestRunner(
 
     const allPass = results.length > 0 && results.every((r) => r.pass);
 
-    // Record attempt on server
-    void dispatch(recordAttempt({ exerciseId: exercise._id, codeHash, passed: allPass }));
+    // Don't record attempts for reviews (original progress stays untouched)
+    if (!reviewId) {
+      void dispatch(recordAttempt({ exerciseId: exercise._id, codeHash, passed: allPass }));
+    }
 
     if (allPass) {
-      const wasAlreadyComplete = store.getState().progress.items[exercise._id]?.status === 'completed';
-      const progress = store.getState().progress.items[exercise._id];
-      const completeResult = await dispatch(markComplete({
-        exerciseId: exercise._id,
-        attempts: Math.max(progress?.uniqueAttempts ?? 0, 1),
-        solutionViewed: progress?.solutionViewed ?? false,
-      }));
-      if (!wasAlreadyComplete) {
-        dispatch(showToast({ message: getRandomCelebration(), type: 'celebration' }));
-      }
-      if (markComplete.fulfilled.match(completeResult)) {
-        const earned = completeResult.payload.newAchievements;
-        if (earned.length > 0) {
-          dispatch(addNewlyEarned(earned));
-          setTimeout(() => {
-            dispatch(showAchievementToast(earned[0]));
-          }, 1500);
+      if (reviewId) {
+        // REVIEW MODE: complete the review, show toast, skip progress/achievements
+        const { completeReview } = await import('../../../features/reviewSlice');
+        void dispatch(completeReview(reviewId));
+        dispatch(showToast({ message: 'Review complete! Great refresher!', type: 'success' }));
+      } else {
+        // NORMAL MODE
+        const wasAlreadyComplete = store.getState().progress.items[exercise._id]?.status === 'completed';
+        const progress = store.getState().progress.items[exercise._id];
+        const completeResult = await dispatch(markComplete({
+          exerciseId: exercise._id,
+          attempts: Math.max(progress?.uniqueAttempts ?? 0, 1),
+          solutionViewed: progress?.solutionViewed ?? false,
+        }));
+        if (!wasAlreadyComplete) {
+          dispatch(showToast({ message: getRandomCelebration(), type: 'celebration' }));
+        }
+        if (markComplete.fulfilled.match(completeResult)) {
+          const earned = completeResult.payload.newAchievements;
+          if (earned.length > 0) {
+            dispatch(addNewlyEarned(earned));
+            setTimeout(() => {
+              dispatch(showAchievementToast(earned[0]));
+            }, 1500);
+          }
+          // Push new review into state if one was queued
+          if (completeResult.payload.newReview) {
+            const { setPendingReview } = await import('../../../features/reviewSlice');
+            dispatch(setPendingReview(completeResult.payload.newReview));
+          }
         }
       }
     } else if (!isDuplicate) {
       dispatch(recordLocalFailedAttempt({ exerciseId: exercise._id, code: fullCode }));
     }
-  }, [exercise, code, cssCode, dispatch, onTestsStart]);
+  }, [exercise, code, cssCode, dispatch, onTestsStart, reviewId]);
 
   return { testResults, isRunning, duplicateWarning, runTests, clearResults };
 }

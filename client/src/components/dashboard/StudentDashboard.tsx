@@ -2,6 +2,7 @@ import { useEffect, useCallback, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { fetchDashboardStats } from '../../features/dashboardSlice';
+import { fetchPendingReview } from '../../features/reviewSlice';
 import {
   clearFilters,
   setTierFilter,
@@ -19,6 +20,7 @@ import TypeBreakdown from './TypeBreakdown';
 import CollectionProgress from './CollectionProgress';
 import RecentActivity from './RecentActivity';
 import ActivityHeatmap from './ActivityHeatmap';
+import ReviewCard from './ReviewCard';
 import AssignmentList from '../assignments/AssignmentList';
 import AchievementGrid from '../achievements/AchievementGrid';
 import ChatLogViewer from '../chat/ChatLogViewer';
@@ -47,6 +49,7 @@ export default function StudentDashboard() {
 
   useEffect(() => {
     dispatch(fetchDashboardStats());
+    dispatch(fetchPendingReview());
   }, [dispatch]);
 
   const { filteredPct, filteredCompleted, filteredCount, filterLabel } = useMemo(() => {
@@ -229,6 +232,8 @@ export default function StudentDashboard() {
               filterLabel={filterLabel}
               totalScore={stats.totalScore}
             />
+
+            <ReviewCard />
 
             <StatsRow
               completedCount={stats.completedCount}
