@@ -1,12 +1,13 @@
 import { useAppDispatch, useAppSelector } from '../../features/store';
-import { setTheme } from '../../features/uiSlice';
+import { setTheme, setEditorFontSize } from '../../features/uiSlice';
 import { updatePreferences } from '../../features/authSlice';
-import { THEMES } from '@codeforge/shared/constants';
+import { THEMES, MIN_EDITOR_FONT_SIZE, MAX_EDITOR_FONT_SIZE } from '@codeforge/shared/constants';
 import type { Theme } from '@codeforge/shared';
 
 export default function SettingsPage() {
   const dispatch = useAppDispatch();
   const theme = useAppSelector((s) => s.ui.theme);
+  const editorFontSize = useAppSelector((s) => s.ui.editorFontSize);
   const user = useAppSelector((s) => s.auth.user);
 
   const leaderboardOptIn = user?.preferences.leaderboardOptIn ?? false;
@@ -15,6 +16,13 @@ export default function SettingsPage() {
     dispatch(setTheme(newTheme));
     if (user) {
       dispatch(updatePreferences({ userId: user._id, preferences: { theme: newTheme } }));
+    }
+  };
+
+  const handleFontSizeChange = (size: number) => {
+    dispatch(setEditorFontSize(size));
+    if (user) {
+      dispatch(updatePreferences({ userId: user._id, preferences: { editorFontSize: size } }));
     }
   };
 
@@ -56,6 +64,30 @@ export default function SettingsPage() {
                 </button>
               );
             })}
+          </div>
+          <div className="mt-5 pt-4" style={{ borderTop: '1px solid var(--border)' }}>
+            <label className="block text-sm text-text-secondary mb-3">Editor Font Size</label>
+            <div className="flex items-center gap-4">
+              <input
+                type="range"
+                min={MIN_EDITOR_FONT_SIZE}
+                max={MAX_EDITOR_FONT_SIZE}
+                step={2}
+                value={editorFontSize}
+                onChange={(e) => handleFontSizeChange(Number(e.target.value))}
+                className="flex-1"
+                style={{ accentColor: 'var(--accent)' }}
+              />
+              <span
+                className="w-16 text-center font-code font-medium"
+                style={{ fontSize: `${editorFontSize}px` }}
+              >
+                {editorFontSize}px
+              </span>
+            </div>
+            <p className="text-xs mt-1.5" style={{ color: 'var(--text-faint)' }}>
+              Also adjustable with Ctrl+= / Ctrl+- in the editor
+            </p>
           </div>
         </section>
 

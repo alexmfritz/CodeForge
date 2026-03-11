@@ -170,6 +170,7 @@ export default function CodeEditor({
   const containerRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
   const theme = useAppSelector((s) => s.ui.theme);
+  const editorFontSize = useAppSelector((s) => s.ui.editorFontSize);
   const onChangeRef = useRef(onChange);
   const onRunRef = useRef(onRun);
   const onSaveRef = useRef(onSave);
@@ -177,6 +178,7 @@ export default function CodeEditor({
   const themeCompartment = useRef(new Compartment());
   const languageCompartment = useRef(new Compartment());
   const readOnlyCompartment = useRef(new Compartment());
+  const fontSizeCompartment = useRef(new Compartment());
 
   useEffect(() => { onChangeRef.current = onChange; }, [onChange]);
   useEffect(() => { onRunRef.current = onRun; }, [onRun]);
@@ -211,14 +213,16 @@ export default function CodeEditor({
         runKeymap,
         updateListener,
         themeCompartment.current.of(getThemeExtension(theme)),
-        EditorView.theme({
-          '&': { minHeight, height: '100%' },
-          '.cm-scroller': {
-            fontFamily: 'ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace',
-            fontSize: '13px',
-            lineHeight: '1.6',
-          },
-        }),
+        fontSizeCompartment.current.of(
+          EditorView.theme({
+            '&': { minHeight, height: '100%' },
+            '.cm-scroller': {
+              fontFamily: 'ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace',
+              fontSize: `${editorFontSize}px`,
+              lineHeight: '1.6',
+            },
+          }),
+        ),
         readOnlyCompartment.current.of(EditorState.readOnly.of(readOnly)),
       ],
     });
@@ -250,6 +254,23 @@ export default function CodeEditor({
     if (!view) return;
     view.dispatch({ effects: readOnlyCompartment.current.reconfigure(EditorState.readOnly.of(readOnly)) });
   }, [readOnly]);
+
+  useEffect(() => {
+    const view = viewRef.current;
+    if (!view) return;
+    view.dispatch({
+      effects: fontSizeCompartment.current.reconfigure(
+        EditorView.theme({
+          '&': { minHeight, height: '100%' },
+          '.cm-scroller': {
+            fontFamily: 'ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace',
+            fontSize: `${editorFontSize}px`,
+            lineHeight: '1.6',
+          },
+        }),
+      ),
+    });
+  }, [editorFontSize]);
 
   useEffect(() => {
     const view = viewRef.current;

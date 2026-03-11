@@ -2,7 +2,9 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { saveSolution, resetExercise, selectSavedCode } from '../../features/progressSlice';
-import { showToast, setSaveStatus } from '../../features/uiSlice';
+import { showToast, setSaveStatus, setEditorFontSize } from '../../features/uiSlice';
+import { updatePreferences } from '../../features/authSlice';
+import { MIN_EDITOR_FONT_SIZE, MAX_EDITOR_FONT_SIZE } from '@codeforge/shared/constants';
 import { debounce } from '../../utils/helpers';
 
 // localStorage buffer for in-progress code (survives tab close / refresh)
@@ -38,6 +40,8 @@ export default function ExerciseView() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const user = useAppSelector((s) => s.auth.user);
+  const editorFontSize = useAppSelector((s) => s.ui.editorFontSize);
   const exercisesLoading = useAppSelector((s) => s.exercises.loading);
   const exercise = useAppSelector((s) =>
     s.exercises.exercises.find((ex) => ex._id === id),
@@ -178,6 +182,25 @@ export default function ExerciseView() {
     saveTimerRef.current = setTimeout(() => dispatch(setSaveStatus('idle')), 2000);
   }, [exercise, debouncedSave, dispatch]);
 
+  // ── Font size shortcuts ────────────────────────────────────────────────
+  const handleFontSizeUp = useCallback(() => {
+    const next = Math.min(editorFontSize + 2, MAX_EDITOR_FONT_SIZE);
+    if (next !== editorFontSize) {
+      dispatch(setEditorFontSize(next));
+      dispatch(showToast({ message: `Editor: ${next}px`, type: 'success', style: { fontSize: `${next}px`, fontFamily: 'ui-monospace, monospace' } }));
+      if (user) dispatch(updatePreferences({ userId: user._id, preferences: { editorFontSize: next } }));
+    }
+  }, [editorFontSize, dispatch, user]);
+
+  const handleFontSizeDown = useCallback(() => {
+    const next = Math.max(editorFontSize - 2, MIN_EDITOR_FONT_SIZE);
+    if (next !== editorFontSize) {
+      dispatch(setEditorFontSize(next));
+      dispatch(showToast({ message: `Editor: ${next}px`, type: 'success', style: { fontSize: `${next}px`, fontFamily: 'ui-monospace, monospace' } }));
+      if (user) dispatch(updatePreferences({ userId: user._id, preferences: { editorFontSize: next } }));
+    }
+  }, [editorFontSize, dispatch, user]);
+
   // ── Keyboard shortcuts ─────────────────────────────────────────────────
   const isModalOpen = showResetModal || showCompare || showRatingPrompt;
 
@@ -186,6 +209,8 @@ export default function ExerciseView() {
     onTogglePanel: useCallback(() => setPanelCollapsed((v) => !v), []),
     onNavigatePrev: prevExercise ? () => navigate(`/exercises/${prevExercise._id}`) : null,
     onNavigateNext: nextExercise ? () => navigate(`/exercises/${nextExercise._id}`) : null,
+    onFontSizeUp: handleFontSizeUp,
+    onFontSizeDown: handleFontSizeDown,
     isModalOpen,
   });
 

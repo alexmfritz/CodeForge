@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { Theme, Toast, Tier, ExerciseType, StatusSort } from '@codeforge/shared';
-import { THEMES, DEFAULT_THEME } from '@codeforge/shared/constants';
+import { THEMES, DEFAULT_THEME, MIN_EDITOR_FONT_SIZE, MAX_EDITOR_FONT_SIZE, DEFAULT_EDITOR_FONT_SIZE } from '@codeforge/shared/constants';
 
 const VALID_THEMES = new Set(THEMES.map((t) => t.id));
 
@@ -13,8 +13,18 @@ function getInitialTheme(): Theme {
   }
 }
 
+function getInitialFontSize(): number {
+  try {
+    const stored = Number(localStorage.getItem('editorFontSize'));
+    return stored >= MIN_EDITOR_FONT_SIZE && stored <= MAX_EDITOR_FONT_SIZE ? stored : DEFAULT_EDITOR_FONT_SIZE;
+  } catch {
+    return DEFAULT_EDITOR_FONT_SIZE;
+  }
+}
+
 interface UiState {
   theme: Theme;
+  editorFontSize: number;
   browseFilter: {
     search: string;
     tags: string[];
@@ -30,6 +40,7 @@ interface UiState {
 
 const initialState: UiState = {
   theme: getInitialTheme(),
+  editorFontSize: getInitialFontSize(),
   browseFilter: {
     search: '',
     tags: [],
@@ -55,6 +66,15 @@ const uiSlice = createSlice({
         } catch {
           // localStorage may not be available
         }
+      }
+    },
+    setEditorFontSize(state, action: PayloadAction<number>) {
+      const size = Math.max(MIN_EDITOR_FONT_SIZE, Math.min(MAX_EDITOR_FONT_SIZE, action.payload));
+      state.editorFontSize = size;
+      try {
+        localStorage.setItem('editorFontSize', String(size));
+      } catch {
+        // localStorage may not be available
       }
     },
     showToast(state, action: PayloadAction<Toast>) {
@@ -109,6 +129,7 @@ const uiSlice = createSlice({
 
 export const {
   setTheme,
+  setEditorFontSize,
   showToast,
   dismissToast,
   setSearch,

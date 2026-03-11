@@ -29,6 +29,7 @@ export default function Toast() {
         backgroundColor: c.bg,
         border: `1px solid ${c.border}`,
         color: c.text,
+        ...toast.style,
       }}
       role="alert"
     >

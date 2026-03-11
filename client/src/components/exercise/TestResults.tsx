@@ -1,4 +1,5 @@
 import type { TestResult } from '@codeforge/shared';
+import { useAppSelector } from '../../features/store';
 
 interface TestResultsProps {
   results: TestResult[];
@@ -6,6 +7,7 @@ interface TestResultsProps {
 }
 
 export default function TestResults({ results, isRunning }: TestResultsProps) {
+  const editorFontSize = useAppSelector((s) => s.ui.editorFontSize);
   if (isRunning) {
     return (
       <div className="flex items-center justify-center h-24" style={{ color: 'var(--text-muted)' }}>
@@ -27,7 +29,7 @@ export default function TestResults({ results, isRunning }: TestResultsProps) {
   const allPass = passCount === results.length;
 
   return (
-    <div className="flex flex-col gap-1 p-4" aria-live="polite" role="status">
+    <div className="flex flex-col gap-1 p-4" aria-live="polite" role="status" style={{ fontSize: `${editorFontSize}px` }}>
       <div className="flex items-center gap-3 pb-3 mb-1" style={{ borderBottom: '1px solid var(--border)' }}>
         <span className="font-heading font-bold text-base" style={{ color: allPass ? 'var(--success)' : 'var(--error)' }}>
           {allPass ? 'All Passing' : `${passCount} / ${results.length} Passing`}

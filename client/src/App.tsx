@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useCallback, lazy, Suspense } from 'react'
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from './features/store';
 import { fetchMe, logout } from './features/authSlice';
+import { setEditorFontSize } from './features/uiSlice';
 import { fetchExercises } from './features/exercisesSlice';
 import { fetchProgress } from './features/progressSlice';
 import ErrorBoundary from './components/shared/ErrorBoundary';
@@ -41,6 +42,10 @@ function App() {
     if (user) {
       dispatch(fetchExercises());
       dispatch(fetchProgress());
+      // Sync server preferences → local state
+      if (user.preferences.editorFontSize) {
+        dispatch(setEditorFontSize(user.preferences.editorFontSize));
+      }
     }
   }, [user, dispatch]);
 
