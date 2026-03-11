@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import type { Progress } from '@codeforge/shared';
+import type { Progress, Review } from '@codeforge/shared';
 import { apiFetch } from '../utils/api';
 import type { RootState } from './store';
 
@@ -14,6 +14,7 @@ interface NewAchievement {
 
 interface CompleteResponse extends Progress {
   newAchievements?: NewAchievement[];
+  newReview?: Review | null;
 }
 
 function hashCode(str: string): string {
@@ -93,8 +94,8 @@ export const markComplete = createAsyncThunk(
     if (!result.success || !result.data) {
       return rejectWithValue(result.error || 'Complete failed');
     }
-    const { newAchievements, ...progress } = result.data;
-    return { progress: progress as Progress, newAchievements: newAchievements ?? [] };
+    const { newAchievements, newReview, ...progress } = result.data;
+    return { progress: progress as Progress, newAchievements: newAchievements ?? [], newReview: newReview ?? null };
   },
 );
 

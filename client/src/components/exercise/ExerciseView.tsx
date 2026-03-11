@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { saveSolution, resetExercise, selectSavedCode } from '../../features/progressSlice';
 import { showToast, setSaveStatus } from '../../features/uiSlice';
@@ -33,6 +33,8 @@ import RatingPrompt from '../ratings/RatingPrompt';
 
 export default function ExerciseView() {
   const { id } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
+  const reviewId = searchParams.get('review');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -56,24 +58,26 @@ export default function ExerciseView() {
   const prevIsCompleteRef = useRef(isComplete);
 
   useEffect(() => {
-    if (isComplete && !prevIsCompleteRef.current) {
+    if (isComplete && !prevIsCompleteRef.current && !reviewId) {
       const timer = setTimeout(() => setShowRatingPrompt(true), 2000);
       return () => clearTimeout(timer);
     }
     prevIsCompleteRef.current = isComplete;
-  }, [isComplete]);
+  }, [isComplete, reviewId]);
 
   const { sortedExercises, currentIndex, prevExercise, nextExercise, navContext } =
     useExerciseNavigation(id ?? '');
 
   const { testResults, isRunning, duplicateWarning, runTests, clearResults } =
-    useTestRunner(exercise, code, cssCode, () => setActiveTab('results'));
+    useTestRunner(exercise, code, cssCode, () => setActiveTab('results'), reviewId);
 
   useEffect(() => {
     if (!exercise) return;
-    // Priority: server-saved code > localStorage draft > starter code
+    // In review mode, always start fresh with starterCode
     const cached = getCachedCode(exercise._id);
-    const initialCode = savedCode ?? cached ?? exercise.starterCode;
+    const initialCode = reviewId
+      ? exercise.starterCode
+      : (savedCode ?? cached ?? exercise.starterCode);
     if (exercise.type === 'html-css') {
       setCode(initialCode);
       setCssCode('');
@@ -127,24 +131,24 @@ export default function ExerciseView() {
   const handleCodeChange = useCallback(
     (newCode: string) => {
       setCode(newCode);
-      if (exercise && newCode !== exercise.starterCode) {
+      if (exercise && newCode !== exercise.starterCode && !reviewId) {
         setCachedCode(exercise._id, newCode);
         debouncedSave(exercise._id, newCode);
       }
     },
-    [exercise, debouncedSave],
+    [exercise, debouncedSave, reviewId],
   );
 
   const handleCssChange = useCallback(
     (newCss: string) => {
       setCssCode(newCss);
-      if (exercise && (code !== exercise.starterCode || newCss !== '')) {
+      if (exercise && (code !== exercise.starterCode || newCss !== '') && !reviewId) {
         const combined = code + '\n/*CSS*/\n' + newCss;
         setCachedCode(exercise._id, combined);
         debouncedSave(exercise._id, combined);
       }
     },
-    [exercise, code, debouncedSave],
+    [exercise, code, debouncedSave, reviewId],
   );
 
   const handleReset = async () => {
@@ -163,7 +167,7 @@ export default function ExerciseView() {
     }
   };
 
-  const canReset = !!savedCode || isComplete;
+  const canReset = !reviewId && (!!savedCode || isComplete);
 
   // ── Immediate save (flush debounce + flash indicator) ──────────────────
   const handleImmediateSave = useCallback(() => {
@@ -243,7 +247,25 @@ export default function ExerciseView() {
   );
 
   return (
-    <div className="flex h-full overflow-hidden">
+    <div className="flex flex-col h-full overflow-hidden">
+      {reviewId && (
+        <div
+          className="flex items-center gap-2 px-4 py-2 text-sm flex-shrink-0"
+          style={{
+            backgroundColor: 'rgba(99, 102, 241, 0.15)',
+            borderBottom: '1px solid var(--border)',
+            color: 'var(--accent)',
+          }}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="1 4 1 10 7 10" />
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+          </svg>
+          <span className="font-heading font-medium">Review Mode</span>
+          <span style={{ color: 'var(--text-muted)' }}>— Solve again for reinforcement. Your original progress is safe.</span>
+        </div>
+      )}
+      <div className="flex flex-1 overflow-hidden">
       {!panelCollapsed && (
         <div className="flex-shrink-0 overflow-hidden" style={{ width: '40%', minWidth: '320px' }}>
           <InstructionsPanel
@@ -305,6 +327,7 @@ export default function ExerciseView() {
       {showRatingPrompt && (
         <RatingPrompt exerciseId={exercise._id} onClose={() => setShowRatingPrompt(false)} />
       )}
+      </div>
     </div>
   );
 }

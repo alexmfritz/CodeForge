@@ -124,3 +124,8 @@ export const THEMES: {
 ];
 
 export const DEFAULT_THEME: Theme = 'midnight';
+
+// ─── Review Queue ───────────────────────────────────────────────────────────
+
+export const REVIEW_INTERVAL = 10;
+export const REVIEW_COOLDOWN_DAYS = 7;

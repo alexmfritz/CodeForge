@@ -305,6 +305,22 @@ export interface AchievementInstance {
   metadata: Record<string, unknown>;
 }
 
+// ─── Reviews ────────────────────────────────────────────────────────────────
+
+export type ReviewStatus = 'pending' | 'completed' | 'skipped';
+
+export interface Review {
+  _id: string;
+  userId: string;
+  exerciseId: string;
+  cohortId: string;
+  status: ReviewStatus;
+  completedAt?: string;
+  skippedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // ─── Ratings ────────────────────────────────────────────────────────────────
 
 export interface Rating {

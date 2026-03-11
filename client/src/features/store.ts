@@ -11,6 +11,7 @@ import achievementsReducer from './achievementsSlice';
 import ratingsReducer from './ratingsSlice';
 import chatReducer from './chatSlice';
 import leaderboardReducer from './leaderboardSlice';
+import reviewReducer from './reviewSlice';
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     ratings: ratingsReducer,
     chat: chatReducer,
     leaderboard: leaderboardReducer,
+    reviews: reviewReducer,
   },
 });
 
