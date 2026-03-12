@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import { saveSolution, resetExercise, selectSavedCode } from '../../features/progressSlice';
@@ -6,6 +6,7 @@ import { showToast, setSaveStatus, setEditorFontSize } from '../../features/uiSl
 import { updatePreferences } from '../../features/authSlice';
 import { MIN_EDITOR_FONT_SIZE, MAX_EDITOR_FONT_SIZE } from '@codeforge/shared/constants';
 import { debounce } from '../../utils/helpers';
+import { getNextRecommendation } from '../../utils/nextRecommendation';
 
 // localStorage buffer for in-progress code (survives tab close / refresh)
 const CODE_CACHE_PREFIX = 'codeforge_draft_';
@@ -43,9 +44,11 @@ export default function ExerciseView() {
   const user = useAppSelector((s) => s.auth.user);
   const editorFontSize = useAppSelector((s) => s.ui.editorFontSize);
   const exercisesLoading = useAppSelector((s) => s.exercises.loading);
-  const exercise = useAppSelector((s) =>
-    s.exercises.exercises.find((ex) => ex._id === id),
-  );
+  const allExercises = useAppSelector((s) => s.exercises.exercises);
+  const collections = useAppSelector((s) => s.exercises.collections);
+  const progress = useAppSelector((s) => s.progress.items);
+  const browseFilter = useAppSelector((s) => s.ui.browseFilter);
+  const exercise = allExercises.find((ex) => ex._id === id);
   const savedCode = useAppSelector(selectSavedCode(id ?? ''));
   const isComplete = useAppSelector(
     (s) => s.progress.items[id ?? '']?.status === 'completed',
@@ -201,6 +204,23 @@ export default function ExerciseView() {
     }
   }, [editorFontSize, dispatch, user]);
 
+  // ── Next recommendation ───────────────────────────────────────────────
+  const recommendation = useMemo(() => {
+    if (!exercise || !allExercises.length) return null;
+    return getNextRecommendation({
+      currentExercise: exercise,
+      exercises: allExercises,
+      progress,
+      collections,
+      browseFilter,
+    });
+  }, [exercise, allExercises, progress, collections, browseFilter]);
+
+  const handleRecommendationNavigate = useCallback((exerciseId: string) => {
+    navigate(`/exercises/${exerciseId}`);
+    setShowRatingPrompt(false);
+  }, [navigate]);
+
   // ── Keyboard shortcuts ─────────────────────────────────────────────────
   const isModalOpen = showResetModal || showCompare || showRatingPrompt;
 
@@ -350,7 +370,15 @@ export default function ExerciseView() {
         <EditorLayout exerciseType={exercise.type} code={code} cssCode={cssCode} onCodeChange={handleCodeChange} onCssChange={handleCssChange} onRun={runTests} onSave={handleImmediateSave} />
       </div>
       {showRatingPrompt && (
-        <RatingPrompt exerciseId={exercise._id} onClose={() => setShowRatingPrompt(false)} />
+        <RatingPrompt
+          exerciseId={exercise._id}
+          onClose={() => setShowRatingPrompt(false)}
+          recommendation={recommendation ? {
+            exercise: { _id: recommendation.exercise._id, title: recommendation.exercise.title, tier: recommendation.exercise.tier, type: recommendation.exercise.type },
+            reason: recommendation.reason,
+          } : undefined}
+          onNavigate={handleRecommendationNavigate}
+        />
       )}
       </div>
     </div>
