@@ -30,11 +30,17 @@ interface NewAchievement {
   earnedAt: string;
 }
 
+interface RarityEntry {
+  earned: number;
+  total: number;
+}
+
 interface AchievementsState {
   definitions: AchievementDefinition[];
   earned: EarnedInstance[];
   loading: boolean;
   pendingToast: NewAchievement | null;
+  rarityMap: Record<string, RarityEntry>;
 }
 
 const initialState: AchievementsState = {
@@ -42,6 +48,7 @@ const initialState: AchievementsState = {
   earned: [],
   loading: false,
   pendingToast: null,
+  rarityMap: {},
 };
 
 export const fetchDefinitions = createAsyncThunk(
@@ -61,6 +68,17 @@ export const fetchMyAchievements = createAsyncThunk(
     const result = await apiFetch<EarnedInstance[]>('/api/achievements/mine');
     if (!result.success || !result.data) {
       return rejectWithValue(result.error || 'Failed to load earned achievements');
+    }
+    return result.data;
+  },
+);
+
+export const fetchRarity = createAsyncThunk(
+  'achievements/fetchRarity',
+  async (_, { rejectWithValue }) => {
+    const result = await apiFetch<Record<string, RarityEntry>>('/api/achievements/rarity');
+    if (!result.success || !result.data) {
+      return rejectWithValue(result.error || 'Failed to load achievement rarity');
     }
     return result.data;
   },
@@ -124,6 +142,9 @@ const achievementsSlice = createSlice({
       })
       .addCase(fetchMyAchievements.rejected, (state) => {
         state.loading = false;
+      })
+      .addCase(fetchRarity.fulfilled, (state, action) => {
+        state.rarityMap = action.payload;
       });
   },
 });
@@ -144,5 +165,8 @@ export const selectEarnedMap = (state: RootState) => {
 
 export const selectPendingToast = (state: RootState) =>
   state.achievements.pendingToast;
+
+export const selectRarityMap = (state: RootState) =>
+  state.achievements.rarityMap;
 
 export default achievementsSlice.reducer;

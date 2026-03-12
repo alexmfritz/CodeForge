@@ -3,8 +3,10 @@ import { useAppDispatch, useAppSelector } from '../../features/store';
 import {
   fetchDefinitions,
   fetchMyAchievements,
+  fetchRarity,
   selectEarnedMap,
   selectEarnedIds,
+  selectRarityMap,
 } from '../../features/achievementsSlice';
 import AchievementCard from './AchievementCard';
 import Skeleton from '../shared/Skeleton';
@@ -75,12 +77,14 @@ function AchievementSection({
   onToggle,
   earnedMap,
   progressMap,
+  rarityMap,
 }: {
   section: SectionData;
   collapsed: boolean;
   onToggle: () => void;
   earnedMap: Record<string, { earnedAt: string }>;
   progressMap: Map<string, { current: number; target: number }>;
+  rarityMap: Record<string, { earned: number; total: number }>;
 }) {
   const allComplete = section.earnedCount === section.total;
 
@@ -131,6 +135,7 @@ function AchievementSection({
                 earned={!!instance}
                 earnedAt={instance?.earnedAt}
                 progress={progress}
+                rarity={rarityMap[def._id]}
               />
             );
           })}
@@ -150,12 +155,14 @@ export default function AchievementGrid() {
   const exercises = useAppSelector((s) => s.exercises.exercises);
   const progressItems = useAppSelector((s) => s.progress.items);
   const collections = useAppSelector((s) => s.exercises.collections);
+  const rarityMap = useAppSelector(selectRarityMap);
 
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     dispatch(fetchDefinitions());
     dispatch(fetchMyAchievements());
+    dispatch(fetchRarity());
   }, [dispatch]);
 
   // ── Progress computation ──────────────────────────────────────────────
@@ -286,6 +293,7 @@ export default function AchievementGrid() {
             onToggle={() => toggleSection(section.key)}
             earnedMap={earnedMap}
             progressMap={progressMap}
+            rarityMap={rarityMap}
           />
         ))}
       </div>
