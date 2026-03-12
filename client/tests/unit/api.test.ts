@@ -79,8 +79,12 @@ describe('clearToken', () => {
 
 describe('apiFetch', () => {
   beforeEach(() => {
-    // Prevent actual navigation
-    vi.stubGlobal('location', { href: '' });
+    // Prevent actual navigation — use defineProperty so href assignment doesn't throw in jsdom
+    Object.defineProperty(window, 'location', {
+      value: { href: '' },
+      writable: true,
+      configurable: true,
+    });
   });
 
   it('sends request with Content-Type header', async () => {
