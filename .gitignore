@@ -9,3 +9,6 @@ backups/
 *.tsbuildinfo
 test-results/
 playwright-report/
+exercises/_generate_*.js
+exercises/_validate_*.js
+exercises/collections/_generate_*.js

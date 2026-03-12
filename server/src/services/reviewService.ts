@@ -44,14 +44,12 @@ export async function maybeQueueReview(
   });
 }
 
-/** Returns the single pending review for a user, or null. */
 export async function getPendingReview(
   userId: string,
 ): Promise<InstanceType<typeof Review> | null> {
   return Review.findOne({ userId, status: 'pending' });
 }
 
-/** Marks a pending review as completed. */
 export async function completeReview(
   reviewId: string,
   userId: string,
@@ -66,7 +64,6 @@ export async function completeReview(
   return review;
 }
 
-/** Marks a pending review as skipped. */
 export async function skipReview(
   reviewId: string,
   userId: string,
