@@ -1,6 +1,6 @@
 import { Progress } from '../models/Progress.js';
 import { Exercise } from '../models/Exercise.js';
-import { computeScore } from './scoreService.js';
+import { calculateScore } from '@codeforge/shared/constants';
 import type { Tier } from '@codeforge/shared';
 
 export async function getOrCreateProgress(userId: string, exerciseId: string, cohortId: string) {
@@ -60,7 +60,7 @@ export async function markComplete(
   const exercise = await Exercise.findById(exerciseId);
   if (!exercise) throw new Error('Exercise not found');
 
-  const score = computeScore(
+  const score = calculateScore(
     exercise.tier as Tier,
     uniqueAttempts || progress.uniqueAttempts || 1,
     solutionViewed || progress.solutionViewed,

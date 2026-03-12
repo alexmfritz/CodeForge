@@ -243,7 +243,7 @@ describe('toggleReaction', () => {
 
   it('returns null when message not found', async () => {
     mockChatMessageFindById.mockResolvedValue(null);
-    const result = await toggleReaction('missing', 'u1', '👍');
+    const result = await toggleReaction('missing', 'u1', 'thumbs-up');
     expect(result).toBeNull();
   });
 
@@ -251,27 +251,27 @@ describe('toggleReaction', () => {
     const msg = {
       reactions: [] as Array<{ emoji: string; userIds: string[] }>,
       save: vi.fn().mockResolvedValue(undefined),
-      toJSON: vi.fn().mockReturnValue({ reactions: [{ emoji: '👍', userIds: ['u1'] }] }),
+      toJSON: vi.fn().mockReturnValue({ reactions: [{ emoji: 'thumbs-up', userIds: ['u1'] }] }),
     };
     mockChatMessageFindById.mockResolvedValue(msg);
 
-    const result = await toggleReaction('msg1', 'u1', '👍');
+    const result = await toggleReaction('msg1', 'u1', 'thumbs-up');
 
     expect(msg.reactions).toHaveLength(1);
-    expect(msg.reactions[0].emoji).toBe('👍');
+    expect(msg.reactions[0].emoji).toBe('thumbs-up');
     expect(msg.save).toHaveBeenCalledOnce();
     expect(result).toBeTruthy();
   });
 
   it('adds user to existing reaction emoji', async () => {
     const msg = {
-      reactions: [{ emoji: '👍', userIds: ['u1'] }],
+      reactions: [{ emoji: 'thumbs-up', userIds: ['u1'] }],
       save: vi.fn().mockResolvedValue(undefined),
-      toJSON: vi.fn().mockReturnValue({ reactions: [{ emoji: '👍', userIds: ['u1', 'u2'] }] }),
+      toJSON: vi.fn().mockReturnValue({ reactions: [{ emoji: 'thumbs-up', userIds: ['u1', 'u2'] }] }),
     };
     mockChatMessageFindById.mockResolvedValue(msg);
 
-    await toggleReaction('msg1', 'u2', '👍');
+    await toggleReaction('msg1', 'u2', 'thumbs-up');
 
     expect(msg.reactions[0].userIds).toContain('u2');
     expect(msg.save).toHaveBeenCalledOnce();
@@ -279,27 +279,24 @@ describe('toggleReaction', () => {
 
   it('removes user from existing reaction when toggled again', async () => {
     const msg = {
-      reactions: [{ emoji: '👍', userIds: [{ toString: () => 'u1' }, { toString: () => 'u2' }] }] as Array<{
+      reactions: [{ emoji: 'thumbs-up', userIds: [{ toString: () => 'u1' }, { toString: () => 'u2' }] }] as Array<{
         emoji: string;
         userIds: Array<string | { toString: () => string }>;
       }>,
       save: vi.fn().mockResolvedValue(undefined),
-      toJSON: vi.fn().mockReturnValue({ reactions: [{ emoji: '👍', userIds: ['u2'] }] }),
+      toJSON: vi.fn().mockReturnValue({ reactions: [{ emoji: 'thumbs-up', userIds: ['u2'] }] }),
     };
-    // findById resolves the mock with a userIds array matching String(id) === userId
-    // The service does: existing.userIds.findIndex((id) => String(id) === userId)
     mockChatMessageFindById.mockResolvedValue(msg);
 
-    await toggleReaction('msg1', 'u1', '👍');
+    await toggleReaction('msg1', 'u1', 'thumbs-up');
 
-    // u1 should be spliced out
     expect(msg.reactions[0].userIds).toHaveLength(1);
     expect(msg.save).toHaveBeenCalledOnce();
   });
 
   it('removes the emoji entry entirely when last user toggles off', async () => {
     const msg = {
-      reactions: [{ emoji: '👍', userIds: [{ toString: () => 'u1' }] }] as Array<{
+      reactions: [{ emoji: 'thumbs-up', userIds: [{ toString: () => 'u1' }] }] as Array<{
         emoji: string;
         userIds: Array<string | { toString: () => string }>;
       }>,
@@ -308,9 +305,8 @@ describe('toggleReaction', () => {
     };
     mockChatMessageFindById.mockResolvedValue(msg);
 
-    await toggleReaction('msg1', 'u1', '👍');
+    await toggleReaction('msg1', 'u1', 'thumbs-up');
 
-    // After splice, length is 0 so the filter removes the emoji entry
     expect(msg.reactions).toHaveLength(0);
     expect(msg.save).toHaveBeenCalledOnce();
   });
