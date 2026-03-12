@@ -5,9 +5,20 @@ interface AchievementCardProps {
   earned: boolean;
   earnedAt?: string;
   progress?: { current: number; target: number };
+  rarity?: { earned: number; total: number };
 }
 
-export default function AchievementCard({ definition, earned, earnedAt, progress }: AchievementCardProps) {
+function getRarityLabel(rarity: { earned: number; total: number }, earned: boolean): { text: string; color: string } | null {
+  if (rarity.total === 0) return null;
+  const pct = Math.round((rarity.earned / rarity.total) * 100);
+  if (pct === 0 && !earned) return null;
+  if (pct <= 5) return { text: `Legendary \u00b7 ${pct}%`, color: 'var(--warning)' };
+  if (pct <= 20) return { text: `Rare \u00b7 ${pct}%`, color: 'var(--accent)' };
+  if (pct <= 50) return { text: `Uncommon \u00b7 ${pct}%`, color: 'var(--text-muted)' };
+  return { text: `${pct}% earned`, color: 'var(--text-faint)' };
+}
+
+export default function AchievementCard({ definition, earned, earnedAt, progress, rarity }: AchievementCardProps) {
   const hasProgress = progress && progress.target > 0;
   const rawPct = hasProgress ? progress.current / progress.target : 0;
   const pct = Math.min(rawPct, 1);
@@ -62,6 +73,17 @@ export default function AchievementCard({ definition, earned, earnedAt, progress
           Earned {formatDate(earnedAt)}
         </div>
       )}
+
+      {/* Rarity label */}
+      {rarity && (() => {
+        const label = getRarityLabel(rarity, earned);
+        if (!label) return null;
+        return (
+          <span className="text-[10px] font-medium mt-1" style={{ color: label.color }}>
+            {label.text}
+          </span>
+        );
+      })()}
 
       {/* Progress bar (unearned only) */}
       {!earned && hasProgress && (

@@ -1,9 +1,11 @@
+import mongoose from 'mongoose';
 import { AchievementDefinition, IAchievementDefinition } from '../models/AchievementDefinition.js';
 import { AchievementInstance } from '../models/AchievementInstance.js';
 import { Progress } from '../models/Progress.js';
 import { Exercise } from '../models/Exercise.js';
 import { Collection } from '../models/Collection.js';
 import { ChatMessage } from '../models/ChatMessage.js';
+import { User } from '../models/User.js';
 
 interface EarnedAchievement {
   _id: string;
@@ -270,4 +272,24 @@ export async function getUserAchievements(userId: string) {
       },
     };
   });
+}
+
+export async function getAchievementRarity(cohortId: string) {
+  const [counts, totalStudents] = await Promise.all([
+    AchievementInstance.aggregate([
+      { $match: { cohortId: new mongoose.Types.ObjectId(cohortId) } },
+      { $group: { _id: '$achievementId', count: { $sum: 1 } } },
+    ]),
+    User.countDocuments({
+      cohortId: new mongoose.Types.ObjectId(cohortId),
+      role: 'student',
+      isActive: true,
+    }),
+  ]);
+
+  const rarity: Record<string, { earned: number; total: number }> = {};
+  for (const { _id, count } of counts) {
+    rarity[_id.toString()] = { earned: count, total: totalStudents };
+  }
+  return rarity;
 }
