@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { config } from '../config.js';
 import { User } from '../models/User.js';
 import type { JwtPayload } from '@codeforge/shared';

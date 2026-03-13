@@ -39,10 +39,10 @@ app.use(
 
 app.use(express.json({ limit: '1mb' }));
 
-// Rate limiters
+// Rate limiters — relaxed in dev mode to avoid blocking e2e test runs
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 30, // 30 login attempts per window
+  max: config.isDev ? 200 : 30,
   message: { success: false, error: 'Too many login attempts — try again in 15 minutes' },
   standardHeaders: true,
   legacyHeaders: false,
@@ -50,7 +50,7 @@ const authLimiter = rateLimit({
 
 const apiLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
-  max: 120, // 120 requests per minute per IP
+  max: config.isDev ? 600 : 120,
   message: { success: false, error: 'Too many requests — slow down' },
   standardHeaders: true,
   legacyHeaders: false,
