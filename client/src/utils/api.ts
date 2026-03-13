@@ -42,6 +42,16 @@ export async function apiFetch<T>(
     const response = await fetch(url, { ...options, headers });
 
     if (response.status === 401) {
+      // Login endpoint: return the server's error (e.g. "Invalid credentials")
+      if (url.includes('/api/auth/login')) {
+        const text = await response.text();
+        try {
+          return JSON.parse(text);
+        } catch {
+          return { success: false, error: 'Invalid credentials' };
+        }
+      }
+      // All other endpoints: session expired, redirect to login
       clearToken();
       window.location.href = '/login';
       return { success: false, error: 'Session expired' };

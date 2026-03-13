@@ -2,55 +2,49 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Exercise Flow', () => {
   test.beforeEach(async ({ page }) => {
-    // Login as a student
     await page.goto('/login');
-    await page.fill('input[name="username"]', 'afritz');
-    await page.fill('input[name="password"]', 'password');
-    await page.click('button[type="submit"]');
+    await page.waitForLoadState('networkidle');
+    await page.getByLabel('Username').fill('jsmith');
+    await page.getByLabel('Password').fill('password');
+    await page.getByRole('button', { name: 'Sign In' }).click();
     await expect(page).toHaveURL(/\/(dashboard|exercises)/, { timeout: 10000 });
   });
 
-  test('browse exercises page loads with exercise cards', async ({ page }) => {
-    await page.goto('/exercises');
+  test('browse exercises page loads with exercise grid', async ({ page }) => {
+    // Click Exercises in nav (scoped to nav to avoid matching "Browse Exercises" button)
+    await page.getByRole('navigation').getByRole('button', { name: 'Exercises' }).click();
     await page.waitForLoadState('networkidle');
 
-    // Should see exercise cards or list items
-    const exercises = page.locator('[data-testid="exercise-card"], .exercise-card, [class*="exercise"]');
-    await expect(exercises.first()).toBeVisible({ timeout: 10000 });
+    // Exercise page shows a grid of exercise cards
+    await expect(page.locator('[role="grid"]')).toBeVisible({ timeout: 10000 });
   });
 
-  test('clicking an exercise navigates to exercise view', async ({ page }) => {
-    await page.goto('/exercises');
+  test('clicking a topic shows exercise list', async ({ page }) => {
+    await page.getByRole('navigation').getByRole('button', { name: 'Exercises' }).click();
     await page.waitForLoadState('networkidle');
 
-    // Click the first exercise link/card
-    const firstExercise = page.locator('a[href*="/exercises/"], [data-testid="exercise-card"] a').first();
-    await firstExercise.waitFor({ timeout: 10000 });
-    await firstExercise.click();
+    // Click the JS Fundamentals topic
+    await page.getByRole('button', { name: 'JS Fundamentals' }).click();
 
-    // Should navigate to an exercise detail page
-    await expect(page).toHaveURL(/\/exercises\//, { timeout: 5000 });
-
-    // Should see exercise content (instructions, editor, or similar)
-    const content = page.locator('[class*="instruction"], [class*="editor"], [class*="exercise"]');
-    await expect(content.first()).toBeVisible({ timeout: 5000 });
+    // Should show exercise cards (article elements with role="button")
+    await expect(page.locator('[role="grid"] [role="button"]').first()).toBeVisible({ timeout: 10000 });
   });
 
-  test('exercise view has code editor and test runner', async ({ page }) => {
-    await page.goto('/exercises');
+  test('exercise view has code editor and run button', async ({ page }) => {
+    // Navigate to exercises via nav
+    await page.getByRole('navigation').getByRole('button', { name: 'Exercises' }).click();
     await page.waitForLoadState('networkidle');
 
-    // Navigate to first exercise
-    const firstExercise = page.locator('a[href*="/exercises/"]').first();
+    // Click into a topic then click the first exercise card
+    await page.getByRole('button', { name: 'JS Fundamentals' }).click();
+    const firstExercise = page.locator('[role="grid"] [role="button"]').first();
     await firstExercise.waitFor({ timeout: 10000 });
     await firstExercise.click();
-    await expect(page).toHaveURL(/\/exercises\//, { timeout: 5000 });
 
     // Should see a code editor (CodeMirror)
-    const editor = page.locator('.cm-editor, [class*="CodeMirror"], [class*="editor"]');
-    await expect(editor.first()).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.cm-editor').first()).toBeVisible({ timeout: 10000 });
 
-    // Should see a run/submit button
+    // Should see a run/test button
     const runButton = page.locator('button:has-text("Run"), button:has-text("Test"), button:has-text("Submit")');
     await expect(runButton.first()).toBeVisible({ timeout: 5000 });
   });
