@@ -38,8 +38,8 @@ const progressSchema = new Schema<IProgress>(
 );
 
 progressSchema.index({ userId: 1, exerciseId: 1 }, { unique: true });
-progressSchema.index({ userId: 1, status: 1 });
-progressSchema.index({ cohortId: 1 });
+progressSchema.index({ userId: 1, status: 1, completedAt: -1 });
+progressSchema.index({ cohortId: 1, status: 1 });
 progressSchema.index({ exerciseId: 1 });
 
 progressSchema.set('toJSON', {
