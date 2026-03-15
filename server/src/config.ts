@@ -38,6 +38,25 @@ if (!mongoUri.startsWith('mongodb://') && !mongoUri.startsWith('mongodb+srv://')
   throw new Error(`Invalid MONGODB_URI — must start with mongodb:// or mongodb+srv://`);
 }
 
+// JWT validation
+const jwtSecret = process.env.JWT_SECRET || 'change-this-to-a-random-secret';
+if (!isDev && jwtSecret === 'change-this-to-a-random-secret') {
+  throw new Error('JWT_SECRET must be set in production — do not use the default value');
+}
+
+const jwtExpiresIn = process.env.JWT_EXPIRES_IN || '24h';
+if (!/^\d+[smhd]$/.test(jwtExpiresIn)) {
+  throw new Error(`Invalid JWT_EXPIRES_IN: "${jwtExpiresIn}" — must match pattern like "24h", "7d", "30m", "3600s"`);
+}
+
+// Timezone validation
+const timezone = process.env.TIMEZONE || 'America/Los_Angeles';
+try {
+  Intl.DateTimeFormat(undefined, { timeZone: timezone });
+} catch {
+  throw new Error(`Invalid TIMEZONE: "${timezone}" — must be a valid IANA timezone (e.g. "America/Los_Angeles")`);
+}
+
 export const config = {
   port,
   devPort,
@@ -46,11 +65,11 @@ export const config = {
   mongoUri,
 
   jwt: {
-    secret: process.env.JWT_SECRET || 'change-this-to-a-random-secret',
-    expiresIn: process.env.JWT_EXPIRES_IN || '24h',
+    secret: jwtSecret,
+    expiresIn: jwtExpiresIn,
   },
 
-  timezone: process.env.TIMEZONE || 'America/Los_Angeles',
+  timezone,
 
   instructor: {
     name: process.env.INSTRUCTOR_NAME || 'Admin User',
