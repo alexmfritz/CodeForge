@@ -21,7 +21,9 @@ if (fs.existsSync(envPath)) {
   }
 }
 
-const isDev = process.argv.includes('--dev') || process.env.NODE_ENV === 'development';
+const isDev = process.argv.includes('--dev')
+  || process.env.NODE_ENV === 'development'
+  || process.argv[1]?.includes('resetAndSeed');
 
 // Validate critical config — fail fast with clear messages
 const port = Number(process.env.PORT || 3000);
